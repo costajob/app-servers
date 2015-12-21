@@ -16,33 +16,30 @@ The vagrant box uses Ubuntu Trusty 64 bit. The configuration uses 3 CPUs (i have
 four on my MacBook Pro) and 6GB of RAM.
 
 ## Languages
-Since i use some different tools i decided to provision the box by installing the
-following languages/runtimes:
+I opted to provision the box by installing the following languages/runtimes:
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.2 is installed by adding the
 [brightbox](https://www.brightbox.com/docs/guides/cli/installation-debian/) repository.  
-Ruby is the language i have more experience on, but looking for some more modern
-alternative to support parallelism on the multi CPUs era.
+Ruby is the language i have more experience with. I find it a great language, but recently i feel the urge to master an
+alternative language that better supports parallelism on the multi CPUs era.  
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) last version is installed by adding the
 [erlang-solutions](https://www.erlang-solutions.com/about/erlang-other-technologies.html) repository.  
-I studied Elixir last year, finding its rubyesque resemblance pretty easy to grasp.  
+I studied Elixir last year, surfing the wave of Dave Thomas enthusiasm, finding its rubyesque resemblance pretty easy to grasp.  
 It also support parallelism quite nicely, being one of the fastest app server
 tested (although i suspect the credits goes to [cowboy](http://ninenines.eu)).  
-What i dislike more is the lack of state that a pure functional language implies:
-i am not convinced this is required to get parallelism right, while in many cases
-OO grants silver bullets to your arsenal.
+What i dislike more is the lack of state that a pure functional language implies: while i invested too much time into OO techniques, i am not convinced pure immutability is required to get parallelism right.
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) stable version (4.x) is installed by adding nodesource repository.  
-I am not a big fan of JavaScript, although i used it for some years. Google V8
-implementation is quite fast anyway, proving the reactor pattern to be good for
-not-distributed scenarios. 
+I once used to program in JavaScript much more that these days. I left it behind in
+favor or more "backend" languages. I know it's a shame, since (among others) V8 implementation of JS is quite fast, and the rise of Node.js has proven JS is much more than an in-browser tool.
 
 ### GO
 [Go](https://golang.org/) language is installed by source, since installation is straightforward.  
 Go is the favorite of mine between the "modern" languages: is simple, elegant and
-fast. Once i get accomplished to its style i found coding with Go as natural as
-Ruby.
+fast. It compilies to native OS code, making it ideal to deployment and have CSP
+built in to favor parallelism.  
+I am still exploring GO by as far as i've gone i am pretty enthusiast of it.
