@@ -3,6 +3,7 @@
 * [Vagrant](#vagrant)
 * [Languages](#languages)
   * [Ruby](#ruby)
+  * [Python](#python)
   * [Elixir](#elixir)
   * [Node.js](#nodejs)
   * [GO](#go)
@@ -29,6 +30,11 @@ You'll notice i've not included any JVM language here: well, although i got two 
 [brightbox](https://www.brightbox.com/docs/guides/cli/installation-debian/) repository.  
 Ruby is the language i have more experience with.  
 I find it an enjoyable language, although i start missing a serious support parallel processing, something quite "hot" on the uprising multi CPUs era.  
+
+### Python
+[Python](https://www.python.org/) 3.2 comes pre-installed on Ubuntu.  
+I included Python just to see how it compares versus Ruby. I have never had the urge to learn Python, since i am pretty happy with Ruby.  
+Said that i know Python has probably a stronger community and can benefit of being one of the supported languages by Google.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) last version is installed by adding the
