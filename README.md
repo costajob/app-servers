@@ -12,8 +12,8 @@
 
 ## Scope
 The idea behind this repo is to have an environment where to test different application servers for disparate programming languages.  
-The scope id to test out different langugages and at the same time verify the HTTP server implementation each langugage brings to the table.  
-In the meantime i also tried to benchmark each server, althought i have to admit i had know how on Ruby only and i've applied no particular optimization to the others.
+The scope id to test out different languages and at the same time verify the HTTP server implementation each langugage brings to the table.  
+In the meantime i also tried to benchmark each server, although i have to admit i had know how on Ruby only and i've applied no particular optimization to the others.
 
 ## Vagrant
 As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo i've used a vagrant box wth the following specs:
@@ -33,8 +33,7 @@ I find it an enjoyable language, although i start missing a serious support para
 
 ### Python
 [Python](https://www.python.org/) 3.2 comes pre-installed on Ubuntu.  
-I included Python just to see how it compares versus Ruby. I have never had the urge to learn Python, since i am pretty happy with Ruby.  
-Said that i know Python has probably a stronger community and can benefit of being one of the supported languages by Google.
+I included Python just to see how it compares versus Ruby. I have never had the urge to learn Python, since i am pretty happy with Ruby. Said that i know Python has probably a stronger community and can benefit of being one of the supported languages by Google.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) last version is installed by adding the
@@ -51,13 +50,13 @@ favor or more "backend" languages. I know it's a shame, since nowadays implement
 ### GO
 [Go](https://golang.org/) language is installed by source.
 Go is the favorite of mine between the "modern" languages: is simple, elegant and
-fast. It compilies to native OS code and have CSP built in to favor parallelism.  
+fast. It compiles to native OS code and have CSP built in to favor parallelism.  
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ## Benchmarks
-I decided to just test ow these languages manage multiple HTTP requests on some implementations. 
-Talking about requests in Ruby is taboo, since the langugage (together with Python, Perl and PHP) has no native support for parallelism.
-Some langugaes (GO and Erlang/Elixir) come with parallelism in mind, so i know is like comparing oranges and apples here.
+I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.
+One exception is Rails: since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to a more micro-service friendly Ruby library (Roda). 
+Talking about multiple HTTP requests in Ruby is taboo, since the language (together with Python, Perl and PHP) has no native support for parallelism: most application servers grant parallelism via OS-process programming, thus reducing the real number of concurrent processes (versus lighter threads/routines).
 
 ### Hello World
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.

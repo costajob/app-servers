@@ -66,31 +66,25 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   $os = [
-    "echo '*** Updating OS'",
     "apt-get -q update",
     "apt-get -y -q install build-essential libssl-dev"]
   $go = [
-    "echo '*** Installing GO lang'",
     "wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz",
     "tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz",
     "echo \"export PATH=$PATH:/usr/local/go/bin\" >> /etc/profile",
     "echo \"export GOPATH=/vagrant\" >> /etc/profile"]
   $ruby = [
-    "echo '*** Installing Ruby'",
     "apt-add-repository ppa:brightbox/ruby-ng",
     "apt-get -q update",
     "apt-get -y -q install ruby2.2 ruby2.2-dev",
     "gem install bundler"]
   $node = [
-    "echo '*** Installing Node.js'",
     "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -",
     "apt-get -y -q install nodejs"]
   $python = [
-    "echo '*** Installing PIP for Python 3'",
     "curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py",
     "python3.4 get-pip.py"]
   $elixir = [
-    "echo '*** Installing Erlang & Elixir'",
     "wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb",
     "dpkg -i erlang-solutions_1.0_all.deb",
     "apt-get -q update",
