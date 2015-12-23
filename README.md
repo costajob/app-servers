@@ -54,11 +54,8 @@ fast. It compiles to native OS code and have CSP built in to favor parallelism.
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ## Benchmarks
-I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.
-One exception is Rails: since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to a more micro-service friendly Ruby library (Roda). 
-Talking about multiple HTTP requests in Ruby is taboo, since the language (together with Python, Perl and PHP) has no native support for parallelism: most application servers grant parallelism via OS-process programming, thus reducing the real number of concurrent processes (versus lighter threads/routines).
+I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
+One exception is [Rails](http://rubyonrails.org/): since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to a more micro-service friendly Ruby library like [Roda](http://roda.jeremyevans.net/). 
 
 ### Hello World
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
-
-
