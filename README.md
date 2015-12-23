@@ -9,6 +9,8 @@
   * [GO](#go)
 * [Benchmarks](#benchmarks)
   * [Hello World](#hello-world)
+  * [Wrk](#wrk)
+  * [Ruby](#ruby)
 
 ## Scope
 The idea behind this repo is to have an environment where to test different application servers for disparate programming languages.  
@@ -59,3 +61,34 @@ One exception is [Rails](http://rubyonrails.org/): since many start-ups favor ot
 
 ### Hello World
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
+
+### Wrk
+I used the [wrk](https://github.com/wg/wrk) tool to stress load the different application servers.  
+Here is the common script i used:
+```
+wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
+```
+
+### Ruby
+Here's how i started both Rails and Roda applications, using Puma on three workers:
+```
+bundle exec puma -w 3 -t 16:16 -q --preload -e production
+```
+
+And here's the results:
+| App            | Throughput (req/s) | Latency (ms) | Req. Errors (n/tot) |
+| :------------- | -----------------: | -----------: | ------------------: |
+| Rails          |            761.15  |       62.95  |            0/22910  |
+| Roda           |           7386.36  |        6.27  |           0/221696  |
+
+While comparing Rails with Roda is like comparing melons with oranges, the results are quite impressive all the way.  
+This also prove that Ruby is far from being "slow" when minimal libraries are used together with mature App servers.
+Just one note for Roda: when request start piling on Puma trying to access the URL in the broeser does not loads the page, thus proving latency is pretty high indeed.
+
+### Python
+I just tested [Tornado](http://www.tornadoweb.org/en/stable/), just by reading some profiling online:
+| App            | Throughput (req/s) | Latency (ms) | Req. Errors (n/tot) |
+| :------------- | -----------------: | -----------: | ------------------: |
+| Tornado        |           1609.54  |       93.02  |            0/48388  |
+
+Performnce are twice as Rails, but far form Roda. Probably some specific configuration is necessary here (although i used one process per CPU).

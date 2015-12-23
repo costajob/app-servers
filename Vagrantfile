@@ -67,7 +67,7 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   $os = [
     "apt-get -q update",
-    "apt-get -y -q install build-essential libssl-dev"]
+    "apt-get -y -q install build-essential libssl-dev libsqlite3-dev"]
   $go = [
     "wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz",
     "tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz",
