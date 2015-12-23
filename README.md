@@ -76,6 +76,7 @@ bundle exec puma -w 3 -t 16:16 -q --preload -e production
 ```
 
 And here's the results:
+
 | App            | Throughput (req/s) | Latency (ms) | Req. Errors (n/tot) |
 | :------------- | -----------------: | -----------: | ------------------: |
 | Rails          |            761.15  |       62.95  |            0/22910  |
@@ -87,6 +88,7 @@ Just one note for Roda: when request start piling on Puma trying to access the U
 
 ### Python
 I just tested [Tornado](http://www.tornadoweb.org/en/stable/), just by reading some profiling online:
+
 | App            | Throughput (req/s) | Latency (ms) | Req. Errors (n/tot) |
 | :------------- | -----------------: | -----------: | ------------------: |
 | Tornado        |           1609.54  |       93.02  |            0/48388  |
