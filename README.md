@@ -136,7 +136,7 @@ node node_server.js
 
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it has proven to be very fast indeed.   
-By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant good results (but consistency is far from GO and Elixir).
+By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant good results (but consistency is the worst of the pack).
 
 ### ServerMux
 Since GO is pretty flexible and comes with "battery built-in", i opted for the HTTP ServerMux standard library in place of using some flavoured framework.
@@ -169,11 +169,11 @@ Reactive programming may not be your best friend (i.e. callbacks hell), but the 
 
 ### 3. Ruby
 While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that Ruby deserves its fame to Rails is a double-sharped knife for me, since many people complains about Ruby slowness while it's the heavyweight of Rails they are really paying.  
+The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people which complains about Ruby slowness while it's the heavyweight of Rails they are really paying.  
 Said that Ruby lacks the speed of V8 and i fear it has to keep the pace if it wants to be a serious contender of the years to come (Ruby 3.0 is aimed to be x3 faster, but i fear it will come too late)
 
 ### 4. Elixir
-By only reading benchmarks Elixir wins hands down. I have kept it off the podium for the following reasons.  
+By only reading benchmarks Elixir wins hands down. I have kept it off the podium several reasons.  
 Elixir leverages on Erlang and this is both for good and bad. 
 It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries implemented with concurrency in mind.  
 It's bad since i always had the sense of playing with a face-lifting language, knowing i have to understand Erlang internals when getting serious with the language.  
