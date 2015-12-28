@@ -59,8 +59,7 @@ favor or more "backend" languages. I know it's a shame, since nowadays implement
 ### GO
 [Go](https://golang.org/) language is installed by source.
 Go is the favorite of mine between the "modern" languages: is simple, elegant and
-fast. It compiles to native OS code and have CSP built in to favor parallelism.  
-I am still exploring GO, but as far as i've gone i am pretty happy with it.
+fast. It compiles to native OS code and have CSP built in to favor parallelism. I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
@@ -70,64 +69,92 @@ One exception is [Rails](http://rubyonrails.org/): since many start-ups favor ot
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
 
 ### Wrk
-I used the [wrk](https://github.com/wg/wrk) tool to stress load the different application servers.  
+I used the [wrk](https://github.com/wg/wrk) tool as the load tool.
 Here is the common script i used:
 ```
 wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ```
 
 ### Rails & Roda
-Here's how i started both Rails and Roda applications, using Puma on three workers:
+As said before i know comparing Roda and Rails is like comparing cherries with watermelons. Bear with me anyway, since results are pretty interesting.
+
+#### Bootstrap
 ```
 bundle exec puma -w 3 -t 16:16 -q --preload -e production
 ```
 
-And here's the results:
-
+#### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
 | Rails          |            761.15  |           62.95/19.97/393.54  |            0/22910  |
 | Roda           |           7500.36  |            8.21/16.17/309.10  |           0/225169  |
 
-While comparing Rails with Roda is like comparing watermelons with cherries, the x10 results are quite impressive all the way.  
+#### Considerations
+I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressive all the way.  
 This also prove that Ruby is far from being "slow" when minimal libraries are used together with mature App servers.
 
 ### Tornado
 I just tested [Tornado](http://www.tornadoweb.org/en/stable/), just by reading some profiling online:
 
+#### Bootstrap
+```
+python3.4 tornado_server.py
+```
+
+#### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
 | Tornado        |           1609.54  |            93.60/9.83/418.61  |            0/48388  |
 
+#### Considerations
 Performance are twice as Rails, but far form Roda. Probably some specific configuration is necessary here (although i used one process per CPU as for Puma).
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library together with the battle-tested [Cowboy](://github.com/ninenines/cowboy) Web server.
 
+#### Bootstrap
+I started elixir by using iex interactive console as described on Plug README.
+
+#### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
 | Plug           |          11166.19  |            13.99/9.61/235.06  |           0/335079  |
 
+#### Considerations
 As expected Elixir performs very well: using small green processes to server each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too. 
 
 ### Node Cluster
 Node cluster library was used to let all of the cores serve the requests.
 
+#### Bootstrap
+```
+node node_server.js
+```
+
+#### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
 | Node Cluster   |          10874.73  |           15.98/24.35/648.51  |           0/326353  |
 
+#### Considerations
 While it is true that Node.js suffers JavaScript single thread nature, it is very fast indeed. By using cluster library it uses multiple processes (like Ruby and Python) and V8 implementation is fater enough to grant good results.
 
 ### ServerMux
 Since GO is pretty flexible when using HTTP standard libraries i decided to go straight with them instead of using some wrapping framework.
 
+#### Bootstrap
+```
+go run go_server.go
+```
+
+#### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
 | Node Cluster   |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
 
-GO is a pretty fast language and allows you to uses all of the cores by using small goroutines to server each request.  
-Also standard deviation on both latency and number of requests is 20% less than all of the contendants, proving it's a pretty consistent on scaling high traffic.
+#### Considerations
+GO is a pretty fast language and allows using all of the cores with no particular configuration effort.
+Also standard deviation on both latency and number of requests is 20% less than all of the contendants, proving it's a pretty consistent on scaling with high traffic.
 
 ## Conclusions
 If i've have to pick my personal winners here i will rank them as the following:
