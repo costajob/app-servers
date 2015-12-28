@@ -53,7 +53,7 @@ Being based on Erlang it supports parallelism quite nicely, what i dislike most 
 I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since nowadays implementation of JS is pretty fast and the rise of Node.js has proven the language is much more than an in-browser tool.
 
 ### GO
-[Go](https://golang.org/) language is installed by source.
+[Go](https://golang.org/) language version 1.5.2 is installed by source.
 Go is the favorite of mine between the "modern" languages: is simple, elegant and fast. It compiles to native OS bytecode and has CSP built in to favor parallelism.  
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
@@ -157,10 +157,10 @@ The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many
 Said that Ruby lacks the speed of V8 and i fear it has to keep the pace if it wants to be a serious contender of the years to come (Ruby 3.0 is aimed to be x3 faster, but i fear it will come too late)
 
 ### 4. Elixir
-By only reading benchmarks Elixir wins hands down. I have kept it off the podium several reasons.  
-Elixir leverages on Erlang and this is both for good and bad. 
+By only reading benchmarks Elixir wins hands down. I have kept it off the podium for several reasons.  
+Elixir leverages on Erlang and this is both for good and bad.  
 It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries implemented with concurrency in mind.  
-It's bad since i always had the sense of playing with a face-lifting language, knowing i have to understand Erlang internals when getting serious with the language.  
+It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
 Erlang OTP is not straightforward: aside from having introduced Mix, the overall complexity is still high compared to Bundler or the GO tool.  
 Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but programming without state is really painful in some cases.
 
