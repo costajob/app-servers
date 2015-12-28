@@ -71,20 +71,23 @@ Here is the common script i used:
 wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ```
 
+### Results
+| App             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
+| :-------------- | -----------------: | ----------------------------: | ------------------: |
+| Ruby Rails      |            761.15  |           62.95/19.97/393.54  |            0/22910  |
+| Ruby Roda       |           7500.36  |            8.21/16.17/309.10  |           0/225169  |
+| Python Tornado  |           3657.77  |            40.98/3.89/342.75  |           0/109850  |
+| Elixir Plug     |          11166.19  |            13.99/9.61/235.06  |           0/335079  |
+| Node Cluster    |          10874.73  |           15.98/24.35/648.51  |           0/326353  |
+| GO ServerMux    |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
+
 ### Rails and Roda
-As said before i know comparing Rails and Roda is like comparing watermelons with cherries. 
-Bear with me anyway, since results are pretty interesting.
+As said before i know comparing Rails and Roda is like comparing watermelons with cherries, but i dare to point out a fact here.
 
 ##### Bootstrap
 ```
 bundle exec puma -w 3 -t 16:16 -q --preload -e production
 ```
-
-##### Results
-| App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :------------- | -----------------: | ----------------------------: | ------------------: |
-| Rails          |            761.15  |           62.95/19.97/393.54  |            0/22910  |
-| Roda           |           7500.36  |            8.21/16.17/309.10  |           0/225169  |
 
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressive all the way.  
@@ -98,11 +101,6 @@ I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some prof
 python3.4 tornado_server.py
 ```
 
-##### Results
-| App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :------------- | -----------------: | ----------------------------: | ------------------: |
-| Tornado        |           3657.77  |            40.98/3.89/342.75  |           0/109850  |
-
 ##### Considerations
 Performance are pretty nice but behind Roda.  
 I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
@@ -112,11 +110,6 @@ I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library tha
 
 ##### Bootstrap
 I started elixir by using iex interactive console as described on Plug README.
-
-##### Results
-| App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :------------- | -----------------: | ----------------------------: | ------------------: |
-| Plug           |          11166.19  |            13.99/9.61/235.06  |           0/335079  |
 
 ##### Considerations
 As expected Elixir performs very well: using small green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too being one of the fastest Erlang app server available. 
@@ -129,11 +122,6 @@ Node cluster library was used to let all of the cores serve the requests.
 node node_server.js
 ```
 
-##### Results
-| App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :------------- | -----------------: | ----------------------------: | ------------------: |
-| Node Cluster   |          10874.73  |           15.98/24.35/648.51  |           0/326353  |
-
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it has proven to be very fast indeed.   
 By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant good results (but consistency is the worst of the pack).
@@ -145,11 +133,6 @@ Since GO is pretty flexible and comes with "battery built-in", i opted for the H
 ```
 go run go_server.go
 ```
-
-##### Results
-| App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :------------- | -----------------: | ----------------------------: | ------------------: |
-| Node Cluster   |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
