@@ -113,7 +113,7 @@ I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library tha
 I started elixir by using iex interactive console as described on Plug README.
 
 ##### Considerations
-As expected Elixir performs very well: using small green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too being one of the fastest Erlang app server available. 
+As expected Elixir performs very well: using small green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too, being one of the fastest Erlang app server. 
 
 ### Node Cluster
 Node cluster library was used to let all of the cores serve the requests.
