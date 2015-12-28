@@ -107,7 +107,7 @@ python3.4 tornado_server.py
 Performance are twice as Rails, but far form Roda. Probably some specific configuration is necessary here (although i used one process per CPU as for Puma).
 
 ### Plug
-I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](://github.com/ninenines/cowboy) adapter.
+I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
 I started elixir by using iex interactive console as described on Plug README.
