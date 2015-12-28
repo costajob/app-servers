@@ -95,7 +95,7 @@ I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressiv
 This also prove that Ruby is far from being "slow" when minimal libraries are used together with mature App servers.
 
 ### Tornado
-I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to throw it in:
+I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to test it too.
 
 ##### Bootstrap
 ```
