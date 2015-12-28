@@ -54,7 +54,7 @@ I once used to program in JavaScript much more that these days. I left it behind
 
 ### GO
 [Go](https://golang.org/) language is installed by source.
-Go is the favorite of mine between the "modern" languages: is simple, elegant and fast. It compiles to native OS bytecode and have CSP built in to favor parallelism.  
+Go is the favorite of mine between the "modern" languages: is simple, elegant and fast. It compiles to native OS bytecode and has CSP built in to favor parallelism.  
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ## Benchmarks
@@ -182,4 +182,4 @@ Last but not least i consider Erlang a niche language aimed to solve specific us
 ### 5. Python
 I left Python as the last one, just because the benchmarks are not as good as Roda.  
 If someone will prove me some better performing app-server solution i will be glad to update my results.  
-Said that Python is in the same league of Ruby regarding parallelism: it's not fast as V8 and is born when multi-core architecture was SciFi. Said that it probably have more support by scientific community and by Google, thus letting me suppose it will have a happier future than Ruby.
+Said that Python is in the same league of Ruby regarding parallelism: it's not fast as V8 and is born when multi-core architecture was SciFi. Said that it probably has more support by scientific community and by Google, thus letting me suppose it will have a brighter future than Ruby.
