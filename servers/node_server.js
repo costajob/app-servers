@@ -2,7 +2,7 @@ const http = require('http');
 const cluster = require('cluster');
 const numCPUs = 3;
 const hostname = '0.0.0.0';
-const port = 7000;
+const port = 9292;
 
 if (cluster.isMaster) {
         for (var i = 0; i < numCPUs; i++) {
