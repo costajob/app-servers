@@ -91,7 +91,7 @@ I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressiv
 This also prove that Ruby is far from being "slow" when minimal libraries are used together with mature App servers.
 
 ### Tornado
-I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to add them:
+I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to throw it in:
 
 ##### Bootstrap
 ```
@@ -101,10 +101,11 @@ python3.4 tornado_server.py
 ##### Results
 | App            | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :------------- | -----------------: | ----------------------------: | ------------------: |
-| Tornado        |           1609.54  |            93.60/9.83/418.61  |            0/48388  |
+| Tornado        |           3657.77  |            40.98/3.89/342.75  |           0/109850  |
 
 ##### Considerations
-Performance are twice as Rails, but far form Roda. Probably some specific configuration is necessary here (although i used one process per CPU as for Puma).
+Performance are pretty nice but behind Roda.  
+I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -172,14 +173,14 @@ The fact that Ruby deserves its fame to Rails is a double-sharped knife for me, 
 Said that Ruby lacks the speed of V8 and i fear it has to keep the pace if it wants to be a serious contender of the years to come (Ruby 3.0 is aimed to be x3 faster, but i fear it will come too late)
 
 ### 4. Elixir
-Elixir wins by only reading benchmarks, anyway i will keep it off the podium for several reasons.  
+By only reading benchmarks Elixir wins hands down. I have kept it off the podium for the following reasons.  
 Elixir leverages on Erlang and this is both for good and bad. 
-It's good since it can rely on thirty years of Erlang VM programming and battle tested libraries implemented with concurrency in mind.  
-It's bad since i always had the sense of playing with a face-lifting language, knowing i have to understand Erlang internals when getting serious with the language.
-Erlang configuration is not straightforward either (nor Elixir): aside from having introduced Mix, the overall complexity is still high compared to Bundler or the GO tool.
-Last but not least i consider Erlang a niche language aimed to solve specific use cases: it is a good candidate for the Web, much less for other general purpose programming (in the sense that GO, Ruby and Python are aimed for).
+It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries implemented with concurrency in mind.  
+It's bad since i always had the sense of playing with a face-lifting language, knowing i have to understand Erlang internals when getting serious with the language.  
+Erlang OTP is not straightforward: aside from having introduced Mix, the overall complexity is still high compared to Bundler or the GO tool.  
+Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but programming without state is really painful in some cases.
 
 ### 5. Python
-I left Python as the last one, just because the benchmarks are not as good as Roda.  
-If someone will prove me some better performing app-server solution i will be glad to update my results.  
-Said that Python is in the same league of Ruby regarding parallelism: it's not fast as V8 and is born when multi-core architecture was SciFi. Said that it probably has more support by scientific community and by Google, thus letting me suppose it will have a brighter future than Ruby.
+I left Python as the last one, just because the benchmarks are not as good as Roda (but similar to Sinatra).  
+Aside from that Python is in the same league of Ruby regarding parallelism: it's not fast as V8 and is born when multi-core architecture was SciFi.  
+That said it probably has more support by scientific community and by Google, thus letting me suppose it will have a brighter future than Ruby.
