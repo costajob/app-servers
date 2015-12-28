@@ -82,7 +82,8 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | GO ServerMux    |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
 
 ### Rails and Roda
-As said before i know comparing Rails and Roda is like comparing watermelons with cherries, but i dare to point out a fact here.
+As said before i included Rails here to illustrate a fact.  
+Roda is a slim framework i used to replace [Sinatra](http://www.sinatrarb.com/) in many cases, since is faster and allow a better integration with the request/response life-cycle.  
 
 ##### Bootstrap
 ```
