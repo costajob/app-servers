@@ -83,15 +83,15 @@ wrk -t 2 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ```
 
 ### Results
-| App             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :-------------- | -----------------: | ----------------------------: | ------------------: |
-| Ruby Rails      |            669.31  |           29.81/20.84/417.84  |            0/20137  |
-| Ruby Roda       |           6979.73  |             10.68/71.89/1600  |           0/209507  |
-| Python Tornado  |           2647.45  |            56.76/9.68/571.87  |            0/79525  |
-| Elixir Plug     |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
-| Node Cluster    |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
-| GO ServerMux    |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
-| Java Jetty      |          13496.64  |           12.08/15.11/340.81  |           0/406292  |
+| App Server                     | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
+| :----------------------------- | -----------------: | ----------------------------: | ------------------: |
+| [Rails](#rails-and-roda)       |            669.31  |           29.81/20.84/417.84  |            0/20137  |
+| [Roda](#rails-and-roda)        |           6979.73  |             10.68/71.89/1600  |           0/209507  |
+| [Tornado](#tornado)            |           2647.45  |            56.76/9.68/571.87  |            0/79525  |
+| [Plug](#plug)                  |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
+| [Node Cluster](#node-cluster)  |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
+| [ServerMux](#servermux)        |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
+| [Jetty](#jetty)                |          13496.64  |           12.08/15.11/340.81  |           0/406292  |
 
 ### Rails and Roda
 As said before i included Rails here to illustrate a fact.  
@@ -104,7 +104,7 @@ bundle exec puma -w 2 -q --preload -e production
 
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way.  
-To be fair Roda latency can get pretty high when stressing Puma, i recorded the worst of the pack.
+To be fair Roda latency can get pretty high when stressing Puma, i recorded the worst data of the pack.
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online.  
