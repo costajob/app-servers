@@ -172,7 +172,9 @@ To me GO wins from the design point of view too: suffice to say it has been crea
 
 ### 2. Node.js
 I am impressed how V8 and clustered Node have performed.  
-Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.
+Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.  
+The only limiting factor for me is that JavaScript was not intended as a general purpose programming language from its birth. Node tries to address this by using some extrenal libraries, but it should be great to find them in the standard library of the language.  
+In this regard ECMASCRIPT 6 is promising: it tooks a more OO approach and rescues many MIA features of current implementation.
 
 ### 3. Elixir
 By only reading benchmarks Elixir wins hands down. To me it is not the champion for several reasons.  
