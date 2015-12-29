@@ -54,9 +54,10 @@ Being based on Erlang it supports parallelism quite nicely, what i dislike most 
 I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since nowadays implementation of JS is pretty fast and the rise of Node.js has proven the language is much more than an in-browser tool.
 
 ### GO
-[Go](https://golang.org/) language version 1.5.2 is installed by source.
-Go is the favorite of mine between the "modern" languages: is simple, elegant and fast. It compiles to native OS bytecode and has CSP built in to favor parallelism.  
-I am still exploring GO, but as far as i've gone i am pretty happy with it.
+[GO](https://golang.org/) language version 1.5.2 is installed by source.  
+GO is the answer by Google to the need for a modern GC language to scale both in terms of multi-core devices and large distributed teams.
+GO focus on simplicity, intentionally removing features considered redundant (i.e. inheritance, exception handling, generics). It also remove verbosity by using type inference, duck typing and a dry synthax. At the same time GO tooks a straight approach to parallelism, coming with build in CSP and goroutines.    
+I am still exploring GO, but as far as i've gone i like what i see.
 
 ### Java
 [Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 7 Ubuntu's deafult JDK is used.   
