@@ -192,6 +192,8 @@ Aside from that Python is in the same league of Ruby regarding parallelism: it's
 Anyway Python is strongly supported by the scientific community and by Google, thus letting me forecast a brighter future than Ruby.
 
 ### 6. Java
-You should have figured out i do not like Java. To me Java is like an old reliable man with a lot of know-how under his belt, who tell you stories of past wars and glory.  
-If you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.
-Doing so you can leverage on many battle-tested libraries and count of hundreds of well written books.
+You should have figured out i do not like Java. It's not completely true you know.  
+I dislike Java rigidity of doing things, i dislike the overall verbosity, i dislike the fat frameworks build around the language, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards on the language, and, when it tried, it invented EJB...  
+Ok, it's true...  
+Apart from me, if you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.  
+Doing so you can leverage on many battle-tested libraries and count of hundreds of good resources.
