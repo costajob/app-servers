@@ -120,13 +120,13 @@ I used multi process here as i do for Puma, granting the loads to be balanced on
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
-I started elixir by using iex interactive console as described on Plug README.
+I started elixir by using iex interactive console as described on Plug readme.
 
 ##### Considerations
 As expected Elixir performs very well: using small green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too, being one of the fastest Erlang app server. 
 
 ### Node Cluster
-I used Node cluster library to spwan one process per CPU (i hard-coded this for simplicity).
+I used Node cluster library to spawn one process per CPU (i hard-coded this for simplicity).
 
 ##### Bootstrap
 ```
@@ -135,7 +135,7 @@ node node_server.js
 
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it has proven to be one of the fastest app server tested.  
-By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant great results.
+By using cluster library it spawns multiple processes (like Ruby and Python) and V8 implementation is faster enough to grant great results.
 
 ### ServerMux
 Since GO is pretty flexible and comes with "built-in battery", i opted for the HTTP ServerMux standard library in place of using some flavoured framework.
@@ -159,7 +159,7 @@ java -cp .:javax.servlet-3.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar He
 ```
 
 ##### Considerations
-I know Java is pretty fast nowaday: many optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
+I know Java is pretty fast nowadays: many optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
 Said that its performance are worst than GO, Node.js and Elixir and just a tad better than Roda (but far more consistent as well).
 
 ## Conclusions
@@ -174,7 +174,7 @@ To me GO wins from the design point of view too: suffice to say it has been crea
 I am impressed how V8 and clustered Node have performed.  
 Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.  
 The only limiting factor for me is that JavaScript was not intended as a general purpose programming language from its birth. Node tries to address this by using some extrenal libraries, but it should be great to find them in the standard library of the language.  
-In this regard ECMASCRIPT 6 is promising: it tooks a more OO approach and rescues many MIA features of current implementation.
+In this regard Ecmascript6 is promising: it took a more OO approach and rescues many MIA features of current implementation.
 
 ### 3. Elixir
 By only reading benchmarks Elixir wins hands down. To me it is not the champion for several reasons.  
@@ -196,7 +196,7 @@ Anyway Python is strongly supported by the scientific community and by Google, t
 
 ### 6. Java
 You should have figured out i do not like Java. It's not true, you know.  
-Well, i dislike Java rigidity of doing things, i dislike its overall verbosity, i dislike the fat frameworks built around it, i dislike annotations, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards and, when it tried, it comes out with EJB.  
+Well, i dislike Java rigidity of doing things, i dislike its overall verbosity, i dislike the fat frameworks built around it, i dislike annotations, i dislike having to create a XML everytime i do something, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards and, when it tried, it comes out with EJB.  
 Ok, it's true...  
 Apart from me, if you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.  
 Doing so you can leverage on a reliable language, many battle-tested libraries and hundreds of good resources.
