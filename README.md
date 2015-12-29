@@ -199,5 +199,5 @@ Anyway Python is strongly supported by the scientific community and by Google, t
 You should have figured out i do not like Java. It's not true, you know.  
 Well, i dislike Java rigidity of doing things, i dislike its overall verbosity, i dislike the fat frameworks built around it, i dislike annotations, i dislike having to create a XML everytime i do something, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards and, when it tried, it comes out with EJB.  
 Ok, it's true...  
-Apart from me, if you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.  
-Doing so you can leverage on a reliable language, many battle-tested libraries and hundreds of good resources.
+Apart from me, if you are not thrilled by new languages and/or other JVM dialects and are comfortable with Java, there's no reason stop using it.  
+Doing so you can leverage on a reliable language, a plethora of battle-tested libraries and thousands of excellent resources.
