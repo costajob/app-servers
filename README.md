@@ -101,7 +101,7 @@ bundle exec puma -w 3 -t 16:16 -q --preload -e production
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressive all the way.  
 To be fair Roda latency can get pretty high when stressing Puma: i get the worst case of 20 seconds when requests start piling up, probably due to the fact that spawned porcesses consume up available memory.  
-In this regards Rails is more consistent, albait much more slower.
+In this regards Rails is more consistent, albeit much more slower.
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to test it too.
