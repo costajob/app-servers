@@ -24,7 +24,7 @@
 The idea behind this repo to test out different languages and how each of them provide solutions to serve high HTTP traffic.   
 
 ## Vagrant
-As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo i've used a vagrant box wth the following specs:
+As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo i've used a [Vagrant](https://www.vagrantup.com/) box with the following specs:
 * Ubuntu Trusty 64 bit 
 * 3 VCPUs (out of 4 cores 2.2Ghz)
 * 6GB of RAM (out of 8 1333Mhz DDR3)
@@ -59,8 +59,8 @@ Go is the favorite of mine between the "modern" languages: is simple, elegant an
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ### Java
-[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) default JDK 7 was installed.  
-I get two SUN certifications back to 2006, the more i delve into Java the less i like it: its "enterprise" mood of doing things, its ceremonious approach of writing code, its fat editors that left developer watching code from 10.000 feet (i use VIM)... If you love coding and ever used Java you know what i mean.  
+[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) JDK 7 Ubuntu deafult is used.
+I get two SUN certifications back to 2006 and experienced the more i delve into Java the less i like it: its "enterprise" mood of doing things, its ceremonious approach of writing code, its fat editors that left developer watching code from 10.000 feet. If you love coding and ever used Java you know what i mean.  
 Said that, ignoring Java on this comparison is not an option: Java is the most used language in the world (2015) and some smart folks have invested on it since twenty years.
 
 ## Benchmarks
