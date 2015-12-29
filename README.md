@@ -8,6 +8,7 @@
   * [Elixir](#elixir)
   * [Node.js](#nodejs)
   * [GO](#go)
+  * [Java](#java)
 * [Benchmarks](#benchmarks)
   * [Hello World](#hello-world)
   * [Wrk](#wrk)
@@ -16,6 +17,7 @@
   * [Plug](#plug)
   * [Node Cluster](#node-cluster)
   * [ServerMux](#servermux)
+  * [Jetty](#jetty)
 * [Conclusions](#conclusions)
 
 ## Scope
@@ -28,8 +30,7 @@ As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo
 * 6GB of RAM (out of 8 1333Mhz DDR3)
 
 ## Languages
-I chose to make the tests on the following languages/runtimes: Ruby, Python, Elixir, Node.js, GO.
-You'll notice i've not included any JVM language here: well, although i got two SUN certifications in 1996, my experience with the JVM had never made me happy, so i skipped this lap.
+I chose to make the tests on the following languages/runtimes: Ruby, Python, Elixir, Node.js, GO, Java.
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.2 is installed by adding the
@@ -57,6 +58,11 @@ I once used to program in JavaScript much more that these days. I left it behind
 Go is the favorite of mine between the "modern" languages: is simple, elegant and fast. It compiles to native OS bytecode and has CSP built in to favor parallelism.  
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
+### Java
+[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) default JDK 7 was installed.  
+I get two SUN certifications back to 2006, the more i delve into Java the less i like it: its "enterprise" mood of doing things, its cerimonious approach of writing code, its specific design patterns that left developer watching code from 10.000 feet, its proliferation of bulky tools and editors (i use VIM)... If you ever used it and love coding you know what i am talking about.
+Said that, ignoring Java on this comparison is not an option, being the most used language in the world (2015) and having some smart folks invested so much into the technology.
+
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
 One exception is [Rails](http://rubyonrails.org/): since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to a more micro-service friendly Ruby library like [Roda](http://roda.jeremyevans.net/). 
@@ -80,6 +86,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | Elixir Plug     |          11166.19  |            13.99/9.61/235.06  |           0/335079  |
 | Node Cluster    |          10874.73  |           15.98/24.35/648.51  |           0/326353  |
 | GO ServerMux    |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
+| Java Jetty      |           8650.67  |           19.98/25.40/422.29  |           0/259679  |
 
 ### Rails and Roda
 As said before i included Rails here to illustrate a fact.  
@@ -139,6 +146,19 @@ go run go_server.go
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
 Also standard deviation on both latency and number of requests is 20% less than all of the contendants, proving GO it's pretty consistent on scaling high traffic.
 
+### Jetty
+To test Java i used Jetty 9, since is a modern, stable and quite fast servlet container.  
+
+##### Bootstrap
+I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/documentation/9.2.2.v20140723/advanced-embedding.html) by Eclipse.
+```
+java -cp .:javax.servlet-3.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld
+```
+
+##### Considerations
+I know Java is pretty fast nowaday: many optimizations have been done to the JVM and many corporates have invested too much in Java to make leave it behind.  
+Said that its performance is not only disappointing compared to GO (regarding latency in particular), Node.js and Elixir, but just a tad better than Roda as well.
+
 ## Conclusions
 If i have to pick my personal winners here's the rank:
 
@@ -168,3 +188,8 @@ Last but not least i consider Erlang a niche language aimed to solve specific us
 I left Python as the last one, just because the benchmarks are not as good as Roda (but similar to Sinatra).  
 Aside from that Python is in the same league of Ruby regarding parallelism: it's not fast as V8 and is born when multi-core architecture was SciFi.  
 That said it probably has more support by scientific community and by Google, thus letting me suppose it will have a brighter future than Ruby.
+
+### 6. Java
+You should have figured out i do not like Java. To me Java is like an old reliable man with a lot of know-how under his belt.
+If you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.
+Doing so you can leverage on many battle-tested libraries and count of hundeds of well written books.

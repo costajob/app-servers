@@ -89,10 +89,14 @@ Vagrant.configure(2) do |config|
     "dpkg -i erlang-solutions_1.0_all.deb",
     "apt-get -q update",
     "apt-get -y -q install elixir"]
+  $java = [
+    "apt-get -y -q install default-jdk"
+  ]
   config.vm.provision "shell", inline: $os.join(" && ")
   config.vm.provision "shell", inline: $go.join(" && ")
   config.vm.provision "shell", inline: $ruby.join(" && ")
   config.vm.provision "shell", inline: $node.join(" && ")
   config.vm.provision "shell", inline: $python.join(" && ")
   config.vm.provision "shell", inline: $elixir.join(" && ")
+  config.vm.provision "shell", inline: $java.join(" && ")
 end
