@@ -36,7 +36,7 @@ I chose to make the tests on the following languages/runtimes: Ruby, Python, Eli
 [Ruby](https://www.ruby-lang.org/en/) 2.2 is installed by adding the
 [brightbox](https://www.brightbox.com/docs/guides/cli/installation-debian/) repository.  
 Ruby is the language i have more experience with.  
-I find it an enjoyable language, although i start missing a serious support parallel processing, something quite "hot" on the uprising multi CPUs era.  
+I find it an enjoyable language, although i start missing serious support for parallel processing, something quite "hot" on the uprising multi CPUs era.  
 
 ### Python
 [Python](https://www.python.org/) 3.4 comes pre-installed on Ubuntu.  
