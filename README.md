@@ -60,7 +60,7 @@ I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ### Java
 [Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) JDK 7 Ubuntu deafult is used.
-I get two SUN certifications back to 2006 and experienced the more i delve into Java the less i like it: its "enterprise" mood of doing things, its ceremonious approach of writing code, its fat editors that left developer watching code from 10.000 feet. If you love coding and ever used Java you know what i mean.  
+I get two SUN certifications back to 2006 and experienced the more i delve into Java the less i like it (read conclusions).  
 Said that, ignoring Java on this comparison is not an option: Java is the most used language in the world (2015) and some smart folks have invested on it since twenty years.
 
 ## Benchmarks
@@ -192,8 +192,8 @@ Aside from that Python is in the same league of Ruby regarding parallelism: it's
 Anyway Python is strongly supported by the scientific community and by Google, thus letting me forecast a brighter future than Ruby.
 
 ### 6. Java
-You should have figured out i do not like Java. It's not completely true you know.  
-I dislike Java rigidity of doing things, i dislike the overall verbosity, i dislike the fat frameworks build around the language, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards on the language, and, when it tried, it invented EJB...  
+You should have figured out i do not like Java. It's not true, you know.  
+Well, i dislike Java rigidity of doing things, i dislike its overall verbosity, i dislike the fat frameworks built around it, i dislike annotations, i dislike i have to install a 500MB editor to get things done, i dislike the fact that SUN has never being able to impose standards and, when it tried, it comes out with EJB.  
 Ok, it's true...  
 Apart from me, if you are not thrilled by new languages out there and are comfortable with the JVM internals there's no reason stop using Java.  
-Doing so you can leverage on many battle-tested libraries and count of hundreds of good resources.
+Doing so you can leverage on a reliable language, many battle-tested libraries and hundreds of good resources.
