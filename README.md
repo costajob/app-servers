@@ -59,8 +59,8 @@ Go is the favorite of mine between the "modern" languages: is simple, elegant an
 I am still exploring GO, but as far as i've gone i am pretty happy with it.
 
 ### Java
-[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) JDK 7 Ubuntu deafult is used.
-I get two SUN certifications back to 2006 and experienced the more i delve into Java the less i like it (read conclusions).  
+[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 7 Ubuntu's deafult JDK is used.   
+I get two SUN certifications back to 2006 and found out the more i delved into Java the less i liked it (read conclusions).  
 Said that, ignoring Java on this comparison is not an option: Java is the most used language in the world (2015) and some smart folks have invested on it since twenty years.
 
 ## Benchmarks
@@ -100,11 +100,12 @@ bundle exec puma -w 3 -t 16:16 -q --preload -e production
 
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressive all the way.  
-To be fair Roda latency can get pretty high when stressing Puma: i get the worst case of 20 seconds when requests start piling up, probably due to the fact that spawned porcesses consume up available memory.  
-In this regards Rails is more consistent, albeit much more slower.
+To be fair Roda latency can get pretty high when stressing Puma: i get the worst case of 20 seconds when requests start piling up, probably due to the fact that spawned porcesses consume all available memory.  
+In this regards Rails is more consistent, albeit an order of magnitude slower.
 
 ### Tornado
-I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to test it too.
+I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online.  
+If you know some faster app-server for Python i'll be glad to test it too.
 
 ##### Bootstrap
 ```
@@ -125,7 +126,7 @@ I started elixir by using iex interactive console as described on Plug README.
 As expected Elixir performs very well: using small green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too, being one of the fastest Erlang app server. 
 
 ### Node Cluster
-Node cluster library was used to let all of the cores serve the requests.
+I used Node cluster library to spwan one process per CPU (i hard-coded this for simplicity).
 
 ##### Bootstrap
 ```
@@ -137,7 +138,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it has 
 By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant great results.
 
 ### ServerMux
-Since GO is pretty flexible and comes with "battery built-in", i opted for the HTTP ServerMux standard library in place of using some flavoured framework.
+Since GO is pretty flexible and comes with "built-in battery", i opted for the HTTP ServerMux standard library in place of using some flavoured framework.
 
 ##### Bootstrap
 ```
@@ -159,7 +160,7 @@ java -cp .:javax.servlet-3.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar He
 
 ##### Considerations
 I know Java is pretty fast nowaday: many optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
-Said that its performance are worst than GO, Node.js and Elixir and just a tad better than Roda as well (but far more consistent as well).
+Said that its performance are worst than GO, Node.js and Elixir and just a tad better than Roda (but far more consistent as well).
 
 ## Conclusions
 If i have to pick my personal winners here's the rank:
