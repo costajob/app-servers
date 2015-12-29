@@ -1,6 +1,6 @@
 const http = require('http');
 const cluster = require('cluster');
-const numCPUs = 3;
+const numCPUs = require('os').cpus().length;
 const hostname = '0.0.0.0';
 const port = 9292;
 
