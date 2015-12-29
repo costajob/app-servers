@@ -72,6 +72,7 @@ The "application" i tested is barely minimal: is the HTTP version of the "Hello 
 
 ### Wrk
 I used the [wrk](https://github.com/wg/wrk) as the loading tool.
+I measured each app server five times and took the best lap.  
 Here is the common script i used:
 ```
 wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
@@ -82,11 +83,11 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | :-------------- | -----------------: | ----------------------------: | ------------------: |
 | Ruby Rails      |            761.15  |           62.95/19.97/393.54  |            0/22910  |
 | Ruby Roda       |           7500.36  |            8.21/16.17/309.10  |           0/225169  |
-| Python Tornado  |           3657.77  |            40.98/3.89/342.75  |           0/109850  |
-| Elixir Plug     |          11166.19  |            13.99/9.61/235.06  |           0/335079  |
-| Node Cluster    |          10874.73  |           15.98/24.35/648.51  |           0/326353  |
-| GO ServerMux    |           9939.28  |             15.08/2.50/47.05  |           0/298310  |
-| Java Jetty      |           8650.67  |           19.98/25.40/422.29  |           0/259679  |
+| Python Tornado  |           3724.99  |            40.24/6.93/347.27  |           0/111834  |
+| Elixir Plug     |          11335.87  |            13.43/6.02/228.83  |           0/340165  |
+| Node Cluster    |          11085.29  |           14.66/17.25/411.10  |           0/333696  |
+| GO ServerMux    |          10075.21  |             14.89/2.81/91.20  |           0/302352  |
+| Java Jetty      |           9108.45  |           16.79/10.06/368.92  |           0/274195  |
 
 ### Rails and Roda
 As said before i included Rails here to illustrate a fact.  
@@ -99,7 +100,8 @@ bundle exec puma -w 3 -t 16:16 -q --preload -e production
 
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is x10 faster is quite impressive all the way.  
-This also prove that Ruby is far from being "slow" when minimal libraries are used together with mature App servers.
+To be fair Roda latency can get pretty high when stressing Puma: i get the worst case of 20 seconds when requests start piling up, probably due to the fact that spawned porcesses consume up available memory.  
+In this regards Rails is more consistent, albait much more slower.
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online. If you know some faster app-server for Python i'll be glad to test it too.
@@ -131,8 +133,8 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it has proven to be very fast indeed.   
-By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant good results (but consistency is the worst of the pack).
+While it is true that Node.js suffers JavaScript single threaded nature, it has proven to be one of the fastest app server tested.  
+By using cluster library it spawns multiple processs (like Ruby and Python) and V8 implementation is faster enough to grant great results.
 
 ### ServerMux
 Since GO is pretty flexible and comes with "battery built-in", i opted for the HTTP ServerMux standard library in place of using some flavoured framework.
@@ -157,7 +159,7 @@ java -cp .:javax.servlet-3.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar He
 
 ##### Considerations
 I know Java is pretty fast nowaday: many optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
-Said that its performance is not only disappointing compared to GO (regarding latency in particular), Node.js and Elixir, but just a tad better than Roda as well.
+Said that its performance are worst than GO, Node.js and Elixir and just a tad better than Roda as well (but far more consistent as well).
 
 ## Conclusions
 If i have to pick my personal winners here's the rank:
@@ -171,18 +173,18 @@ To me GO wins from the design point of view too: suffice to say it has been crea
 I am impressed how V8 and clustered Node have performed.  
 Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.
 
-### 3. Ruby
+### 3. Elixir
+By only reading benchmarks Elixir wins hands down. To me it is not the champion for several reasons.  
+Elixir leverages on Erlang and this is both for good and bad.  
+It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries (implemented with concurrency in mind).  
+It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
+Erlang OTP is not straightforward either: aside from having introduced Mix, the overall complexity is still higher than the experience i have using Bundler or the GO tool.  
+Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but i consider programming without state really painful most of the time.
+
+### 4. Ruby
 While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
 The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people  complains about Ruby slowness, ignoring it's the heavyweight of Rails they are really suffering from.
 Said that Ruby lacks the speed of V8 and i think it has to keep the pace if it wants to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster with a better support for concurrency (although i doubt the GIL can be removed easily).
-
-### 4. Elixir
-By only reading benchmarks Elixir wins hands down. I have kept it off the podium for several reasons.  
-Elixir leverages on Erlang and this is both for good and bad.  
-It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries implemented with concurrency in mind.  
-It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
-Erlang OTP is not straightforward: aside from having introduced Mix, the overall complexity is still high compared to Bundler or the GO tool.  
-Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but programming without state is really painful in some cases.
 
 ### 5. Python
 I admit i do not know Python, so its position is justified by the benchmarks not being as good as Roda (but on par with Sinatra, not in the comparison).  
