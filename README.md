@@ -184,7 +184,7 @@ Apart from me, if you are not thrilled by new languages and/or other JVM dialect
 Doing so you can leverage on a reliable language, a plethora of battle-tested libraries and thousands of excellent resources.
 
 ### 4. Elixir
-I am expecting Elixir good results, so the reason of its ranking are outside of pure performance aspects.  
+I am expecting Elixir good results, so the reasons of its ranking are outside of pure performance aspects.  
 Elixir leverages on Erlang and this is both for good and bad.  
 It's good since it can rely on more than 30 years of Erlang VM programming and battle tested libraries (implemented with concurrency in mind).  
 It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
