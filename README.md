@@ -56,7 +56,7 @@ I once used to program in JavaScript much more that these days. I left it behind
 ### GO
 [GO](https://golang.org/) language version 1.5.2 is installed by source.  
 GO is the answer by Google to the need for a modern GC language to scale both in terms of multi-core devices and large distributed teams.
-GO focus on simplicity, intentionally removing features considered redundant (i.e. inheritance, exception handling, generics). It also remove verbosity by using type inference, duck typing and a dry synthax. At the same time GO tooks a straight approach to parallelism, coming with build in CSP and goroutines.    
+GO focuses on simplicity, by intentionally missing features considered redundant (i.e. inheritance, exception handling, generics). It also addresses verbosity by using type inference, duck typing and a dry syntax. At the same time GO took a straight approach to parallelism, coming with build in CSP and green threads (GO routines).  
 I am still exploring GO, but as far as i've gone i like what i see.
 
 ### Java
