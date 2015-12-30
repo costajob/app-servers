@@ -139,7 +139,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it has 
 By using cluster library it spawns multiple processes (like Ruby and Python) and V8 implementation is faster enough to grant the results.
 
 ### ServerMux
-Since GO is pretty flexible and comes with "built-in battery", i opted for the HTTP ServerMux standard library in place of some flavoured framework.
+Since GO is pretty flexible and comes with "batteries included", i opted for the HTTP ServerMux standard library in place of some flavoured framework.
 
 ##### Bootstrap
 ```
