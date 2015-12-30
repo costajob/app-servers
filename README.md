@@ -171,12 +171,12 @@ The future of GO also appears bright: it's designed by some of the coolest geeks
 ### 2. Node.js
 I am impressed how V8 and clustered Node have performed.  
 Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.  
-The only limiting factor for me is that JavaScript was not intended as a general purpose programming language from its birth. Node tries to address this by using custom libraries, but it should be great to find core functionalities (i.e. packages dependencies) into the standard one.
-In this regard Ecmascript6 is promising: it takes a more OO approach and rescues features that are missing-in-action on current implementation.
+The only limiting factor for me is that JavaScript was not intended as a general purpose programming language at its birth. Node tries to address this by using custom libraries, but it should be great to find core functionalities (i.e. packages dependencies) into the standard one.
+In this regard Ecmascript6 is promising: it takes a more object oriented approach and rescues features that are missing-in-action on current implementation.
 
 ### 3. Java
 You could have figured out i do not like Java. It's not true, you know.  
-Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to have things under control; i dislike the fact that SUN have never being able to impose standards and, when they tried, they come out with EJB.  
+Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that SUN have never been able to impose standards and, when they tried, they came out with EJB.  
 Ok, it's true...  
 Apart from me, if you are not thrilled by new languages and/or other JVM dialects and are comfortable with Java, there's no reason stop using it.  
 It's a reliable programming language that can count on a plethora of battle-tested libraries and thousands of excellent resources.
@@ -192,7 +192,7 @@ Last but not least i consider Erlang a niche language aimed to solve specific us
 
 ### 5. Ruby
 While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people  complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging on.
+The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people  complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging on.  
 Ruby lacks the speed of V8 and i suppose it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster with a better support for concurrency (although i doubt the GIL can be removed easily).
 
 ### 6. Python
