@@ -84,7 +84,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | App Server                     | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :----------------------------- | -----------------: | ----------------------------: | ------------------: |
 | [Rails](#rails-and-roda)       |            669.31  |           29.81/20.84/417.84  |            0/20137  |
-| [Roda](#rails-and-roda)        |           6979.73  |             10.68/71.89/1600  |           0/209507  |
+| [Roda](#rails-and-roda)        |           5882.79  |            6.12/12.52/152.66  |           0/176611  |
 | [Tornado](#tornado)            |           2647.45  |            56.76/9.68/571.87  |            0/79525  |
 | [Plug](#plug)                  |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
 | [Node Cluster](#node-cluster)  |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
@@ -101,7 +101,7 @@ bundle exec puma -w 2 -q --preload -e production
 ```
 
 ##### Considerations
-I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way.  
+I know Rails was pretty slow, but the fact Roda is almost an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 To be fair Roda latency can get pretty high when stressing Puma, i recorded the worst data of the pack.
 
 ### Tornado
@@ -181,19 +181,18 @@ Ok, it's true...
 Apart from me, if you are not thrilled by new languages and/or other JVM dialects and are comfortable with Java, there's no reason stop using it.  
 It's a reliable programming language that can count on a plethora of battle-tested libraries and thousands of excellent resources.
 
-### 4. Elixir
+### 4. Ruby
+While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
+The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging on.  
+Ruby lacks the speed of V8 and i suppose it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster with a better support for concurrency.
+
+### 5. Elixir
 I am expecting Elixir good results, so the reasons of its ranking are outside of pure performance aspects.  
 Elixir leverages on Erlang and this is both for good and bad.  
-It's good since it can rely on more than 30 years of Erlang VM programming and
-optimizations.   
+It's good since it can rely on more than 30 years of Erlang VM programming and optimizations.   
 It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
 Erlang OTP is not straightforward either: aside from having introduced Mix, the overall complexity is still higher than tools like Bundler or GO (the tool).  
 Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but i consider programming without state really painful most of the time.
-
-### 5. Ruby
-While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people  complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging on.  
-Ruby lacks the speed of V8 and i suppose it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster with a better support for concurrency (although i doubt the GIL can be removed easily).
 
 ### 6. Python
 I admit i do not know Python, so its position is justified by the benchmarks not being as good as Roda.
