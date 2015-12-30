@@ -44,7 +44,6 @@ I find it an enjoyable language, although i start missing serious support for pa
 ### Python
 [Python](https://www.python.org/) 3.4 comes pre-installed on Ubuntu.  
 I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not learn Ruby.  
-I know Python has probably a strong scientific community and can benefit of being one of the languages officially supported by Google.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.1.1 version is installed by adding the
@@ -199,4 +198,4 @@ Ruby lacks the speed of V8 and i suppose it has to keep the pace to be a serious
 ### 6. Python
 I admit i do not know Python, so its position is justified by the benchmarks not being as good as Roda.
 Aside from that Python is in the same league of Ruby regarding parallelism: it's not fast as the V8 and is born when multi-core devices were SciFi.  
-As already said Python benefits by the strong support of scientific community and by Google, thus letting me forecast a brighter future than Ruby.
+Python benefits by the strong support of scientific community and by Google, thus letting me forecast a brighter future than Ruby.
