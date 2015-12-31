@@ -139,7 +139,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it deli
 These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 optimizations introduced by Google.
 
 ### ServerMux
-Since GO is pretty flexible and comes with "batteries included", i opted for the HTTP ServerMux standard library in place of some flavoured framework.
+Since GO is pretty flexible and comes with "batteries included", i opted for the [HTTP ServerMux](https://golang.org/pkg/net/http/) standard library in place of some flavoured framework.
 
 ##### Bootstrap
 ```
@@ -151,7 +151,7 @@ GO is a pretty fast language (and is getting faster) and allows using all of the
 The results delivered by GO is consistent, with the lower latency of the pack. 
 
 ### Jetty
-To test Java i used Jetty 9: a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
+To test Java i used [Jetty 9](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
 
 ##### Bootstrap
 I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/documentation/9.2.2.v20140723/advanced-embedding.html) by Eclipse.
