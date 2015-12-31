@@ -151,7 +151,7 @@ GO is a pretty fast language (and is getting faster) and allows using all of the
 The results delivered by GO is consistent, with the lower latency of the pack. 
 
 ### Jetty
-To test Java i used [Jetty 9](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
+To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
 
 ##### Bootstrap
 I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/documentation/9.2.2.v20140723/advanced-embedding.html) by Eclipse.
