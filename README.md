@@ -58,7 +58,7 @@ I once used to program in JavaScript much more that these days. I left it behind
 ### GO
 [GO](https://golang.org/) language version 1.5.2 is installed by source.  
 GO is the answer by Google to the need for a modern garbage-collected programming language to scale both in terms of multi-core devices and large distributed teams.
-GO focuses on simplicity, by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It also addresses verbosity by using type inference, duck typing and a dry syntax. At the same time GO takes a straight approach to parallelism, coming with build in CSP and green threads (goroutines).  
+GO focuses on simplicity, by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It also addresses verbosity by using type inference, duck typing and a dry syntax. At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Java
 [Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 7 Ubuntu's default JDK is used.   
