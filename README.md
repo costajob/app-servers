@@ -16,7 +16,7 @@
   * [Tornado](#tornado)
   * [Plug](#plug)
   * [Node Cluster](#node-cluster)
-  * [ServerMux](#servermux)
+  * [ServeMux](#servemux)
   * [Jetty](#jetty)
 * [Conclusions](#conclusions)
 
@@ -88,7 +88,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | [Tornado](#tornado)            |           2647.45  |            56.76/9.68/571.87  |            0/79525  |
 | [Plug](#plug)                  |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
 | [Node Cluster](#node-cluster)  |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
-| [ServerMux](#servermux)        |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
+| [ServeMux](#servemux)          |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
 | [Jetty](#jetty)                |          13496.64  |           12.08/15.11/340.81  |           0/406292  |
 
 ### Rails and Roda
@@ -138,8 +138,8 @@ node node_server.js
 While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance (but latency is higher than compiled languages).
 These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 optimizations introduced by Google.
 
-### ServerMux
-Since GO is pretty flexible and comes with "batteries included", i opted for the [HTTP ServerMux](https://golang.org/pkg/net/http/) standard library in place of some flavoured framework.
+### ServeMux
+Since GO is pretty flexible and comes with "batteries included", i opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) standard library in place of some flavoured framework.
 
 ##### Bootstrap
 ```
