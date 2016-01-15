@@ -115,7 +115,7 @@ python2.7 tornado_server.py
 ```
 
 ##### Considerations
-Performance are pretty good, but the half of Roda.  
+Performance are pretty good, but the half of Roda (but consistency is much better).  
 I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
 
 ### Plug
