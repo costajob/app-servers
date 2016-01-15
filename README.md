@@ -42,7 +42,7 @@ Ruby is the language i have more experience with.
 I find it an enjoyable language, although i start missing serious support for parallelism, a hot topic on the uprising multi CPUs era.  
 
 ### Python
-[Python](https://www.python.org/) 3.4 comes pre-installed on Ubuntu.  
+[Python](https://www.python.org/) 2.7 and 3.4 come pre-installed on Ubuntu. 
 I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not learn Ruby.  
 
 ### Elixir
@@ -84,8 +84,8 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 | App Server                     | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
 | :----------------------------- | -----------------: | ----------------------------: | ------------------: |
 | [Rails](#rails-and-roda)       |            669.31  |           29.81/20.84/417.84  |            0/20137  |
-| [Roda](#rails-and-roda)        |           5882.79  |            6.12/12.52/152.66  |           0/176611  |
-| [Tornado](#tornado)            |           2647.45  |            56.76/9.68/571.87  |            0/79525  |
+| [Roda](#rails-and-roda)        |           6389.49  |            8.07/16.20/167.26  |           0/191827  |
+| [Tornado](#tornado)            |           3062.94  |             32.62/1.16/49.72  |            0/91987  |
 | [Plug](#plug)                  |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
 | [Node Cluster](#node-cluster)  |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
 | [ServeMux](#servemux)          |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
@@ -106,11 +106,12 @@ To be fair Roda latency can get pretty high when stressing Puma, i recorded the 
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online.  
-If you know some faster app-server for Python i'll be glad to test it too.
+If you know some faster app-server for Python i'll be glad to test it too.  
+I tested Tornado with both Python 2.7 and 3.4, finding the former 10% faster, so i reported results for the 2.7 version only.
 
 ##### Bootstrap
 ```
-python3.4 tornado_server.py
+python2.7 tornado_server.py
 ```
 
 ##### Considerations
