@@ -94,7 +94,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ### Rails and Roda
 As said before i included Rails here to illustrate a fact.  
 Roda is a slim framework i used to replace [Sinatra](http://www.sinatrarb.com/) in many cases, since is faster and allow a better interaction with the request/response life cycle.  
-I also performed all of the benchmarks against [Jruby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
+I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
 
 ##### Bootstrap
 ```
