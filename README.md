@@ -62,7 +62,7 @@ GO focuses on simplicity, by intentionally lacking features considered redundant
 
 ### Java
 [Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 7 Ubuntu's default JDK is used.   
-I get two SUN certifications back in 2006 and found out the more i delved into Java the less i liked it.
+I get two Sun certifications back in 2006 and found out the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2015) and some smart folks have invested on it since the 90ies.
 
 ## Benchmarks
@@ -178,7 +178,7 @@ In this regard Ecmascript6 is promising: it takes a more object oriented approac
 
 ### 3. Java
 You could have figured out i don't like Java. It's not true, you know.  
-Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that SUN have never been able to impose standards and, when they tried, they came out with EJB.  
+Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that Sun and Oracle have never been able to impose standards and, when they tried, they came out with EJB.  
 Ok, it's true...  
 Apart from me, if you are not thrilled by new languages and/or other JVM dialects and are comfortable with Java, there's no reason stop using it.  
 It's a fast and reliable programming language that can count on a plethora of battle-tested libraries and thousands of excellent resources.
