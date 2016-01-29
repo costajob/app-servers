@@ -65,38 +65,35 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-  $os = [
-    "apt-get -q update",
-    "apt-get -y -q install build-essential libssl-dev libsqlite3-dev"]
-  $go = [
-    "wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz",
-    "tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz",
-    "echo \"export PATH=$PATH:/usr/local/go/bin\" >> /etc/profile",
-    "echo \"export GOPATH=/vagrant\" >> /etc/profile"]
-  $ruby = [
-    "apt-add-repository ppa:brightbox/ruby-ng",
-    "apt-get -q update",
-    "apt-get -y -q install ruby2.2 ruby2.2-dev",
-    "gem install bundler"]
-  $node = [
-    "curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -",
-    "apt-get -y -q install nodejs"]
-  $python = [
-    "curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py",
-    "python3.4 get-pip.py"]
-  $elixir = [
-    "wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb",
-    "dpkg -i erlang-solutions_1.0_all.deb",
-    "apt-get -q update",
-    "apt-get -y -q install elixir"]
-  $java = [
-    "apt-get -y -q install default-jdk"
-  ]
-  config.vm.provision "shell", inline: $os.join(" && ")
-  config.vm.provision "shell", inline: $go.join(" && ")
-  config.vm.provision "shell", inline: $ruby.join(" && ")
-  config.vm.provision "shell", inline: $node.join(" && ")
-  config.vm.provision "shell", inline: $python.join(" && ")
-  config.vm.provision "shell", inline: $elixir.join(" && ")
-  config.vm.provision "shell", inline: $java.join(" && ")
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update
+    apt-get -y -q install build-essential libssl-dev libsqlite3-dev
+    apt-get -y -q install default-jdk
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
+    tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz
+    echo \"export PATH=$PATH:/usr/local/go/bin\" >> /etc/profile
+    echo \"export GOPATH=/vagrant\" >> /etc/profile
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-add-repository ppa:brightbox/ruby-ng
+    apt-get -q update
+    apt-get -y -q install ruby2.2 ruby2.2-dev
+    gem install bundler
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+    apt-get -y -q install nodejs
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    dpkg -i erlang-solutions_1.0_all.deb
+    apt-get -q update
+    apt-get -y -q install elixir
+  SHELL
 end
