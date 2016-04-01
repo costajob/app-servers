@@ -48,8 +48,8 @@ Vagrant.configure(2) do |config|
     #vb.gui = true
  
     # Customize the amount of memory on the VM:
-    vb.memory = "4096"
-    vb.cpus = 2
+    vb.memory = "6144"
+    vb.cpus = 3
   end
   #
   # View the documentation for the provider you are using for more
@@ -72,8 +72,8 @@ Vagrant.configure(2) do |config|
   SHELL
 
   config.vm.provision "shell", inline: <<-SHELL
-    wget https://storage.googleapis.com/golang/go1.5.2.linux-amd64.tar.gz
-    tar -C /usr/local -xzf go1.5.2.linux-amd64.tar.gz
+    wget https://storage.googleapis.com/golang/go1.6.linux-amd64.tar.gz
+    tar -C /usr/local -xzf go1.6.linux-amd64.tar.gz
     echo \"export PATH=$PATH:/usr/local/go/bin\" >> /etc/profile
     echo \"export GOPATH=/vagrant\" >> /etc/profile
   SHELL
@@ -81,8 +81,14 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt-add-repository ppa:brightbox/ruby-ng
     apt-get -q update
-    apt-get -y -q install ruby2.2 ruby2.2-dev
+    apt-get -y -q install ruby2.3 ruby2.3-dev
     gem install bundler
+  SHELL
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get -y -q install python-pip python-dev
+    pip install --upgrade pip 
+    pip install --upgrade virtualenv 
   SHELL
 
   config.vm.provision "shell", inline: <<-SHELL

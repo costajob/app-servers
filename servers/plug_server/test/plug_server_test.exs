@@ -1,6 +1,6 @@
-defmodule ServerTest do
+defmodule PlugServerTest do
   use ExUnit.Case
-  doctest Server
+  doctest PlugServer
 
   test "the truth" do
     assert 1 + 1 == 2

@@ -6,4 +6,5 @@
 /cover
 /deps
 erl_crash.dump
+/servers/**/Gemfile.lock
 *.ez

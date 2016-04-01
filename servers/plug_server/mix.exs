@@ -1,8 +1,8 @@
-defmodule Server.Mixfile do
+defmodule PlugServer.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :elixir_server,
+    [app: :plug_server,
      version: "0.0.1",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,

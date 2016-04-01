@@ -1,4 +1,4 @@
-defmodule Server do
+defmodule PlugServer do
   import Plug.Conn
 
   def init(options) do

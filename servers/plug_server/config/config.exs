@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure for your application as:
 #
-#     config :elixir_server, key: :value
+#     config :plug_server, key: :value
 #
 # And access this configuration in your application as:
 #
-#     Application.get_env(:elixir_server, :key)
+#     Application.get_env(:plug_server, :key)
 #
 # Or configure a 3rd-party app:
 #

@@ -26,10 +26,10 @@ The idea behind this repo is to test out how different languages HTTP libraries 
 ## Vagrant
 As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo i've used a [Vagrant](https://www.vagrantup.com/) box with the following specs:
 * Ubuntu Trusty 64 bit 
-* 2 VCPUs (out of 4 cores 2.2Ghz)
-* 4GB of RAM (out of 8GB 1333Mhz DDR3)
+* 3 VCPUs (out of 4 cores 2.2Ghz)
+* 6GB of RAM (out of 8GB 1333Mhz DDR3)
 
-I know i am not testing on a production server, anyway this hardware mimics very closely the average slice offered by common [cloud hosting providers](https://www.digitalocean.com).
+I know i am not testing on a production server, anyway this hardware mimics pretty closely the common slice offered by cloud hosting providers.
 Using Vagrant also allows decoupling the client (app servers) by the server (wrk), thus preventing unreliable results.
 
 ## Languages
@@ -56,7 +56,7 @@ Being based on Erlang it supports parallelism out of the box. What i miss in Eli
 I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since nowadays implementation of JavaScript is pretty fast and the rise of Node.js has proven the language is much more than an in-browser tool (but also brought entropy on the table).
 
 ### GO
-[GO](https://golang.org/) language version 1.5.2 is installed by source.  
+[GO](https://golang.org/) language version 1.6 is installed by source.  
 GO is the answer by Google to the need for a modern garbage-collected programming language to scale both in terms of multi-core devices and large distributed teams.
 GO focuses on simplicity, by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It also addresses verbosity by using type inference, duck typing and a dry syntax. At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -67,38 +67,40 @@ Ignoring Java on this comparison is not an option anyway: Java is the most used 
 
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
-One exception is [Rails](http://rubyonrails.org/): since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to a more micro-service friendly Ruby library like [Roda](http://roda.jeremyevans.net/). 
+One exception is [Rails](http://rubyonrails.org/): since many start-ups favor other languages over Ruby for APIs based applications, i dare to illustrate how Rails compare to more micro-service friendly Ruby frameworks.
 
 ### Hello World
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
-I measured each app server five times and took the best lap.  
+I measured each app server three times and took the best lap.  
 Here is the common script i used:
 ```
 wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ```
 
 ### Results
-| App Server                     | Throughput (req/s) | Latency in ms (avg/stdev/max) | Req. Errors (n/tot) |
-| :----------------------------- | -----------------: | ----------------------------: | ------------------: |
-| [Rails](#rails-and-roda)       |            669.31  |           29.81/20.84/417.84  |            0/20137  |
-| [Roda](#rails-and-roda)        |           6389.49  |            8.07/16.20/167.26  |           0/191827  |
-| [Tornado](#tornado)            |           3062.94  |             32.62/1.16/49.72  |            0/91987  |
-| [Plug](#plug)                  |          10004.01  |           17.82/21.07/499.11  |           0/301158  |
-| [Node Cluster](#node-cluster)  |           9722.71  |           21.63/38.09/857.91  |           0/291939  |
-| [ServeMux](#servemux)          |          14299.24  |            11.29/8.25/200.92  |           0/430475  |
-| [Jetty](#jetty)                |          13496.64  |           12.08/15.11/340.81  |           0/406292  |
+| App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
+| :------------------------------------- | -----------------: | ----------------------------: |
+| [Rails](#rails-sinatra-and-roda)       |            833.18  |          129.26/48.09/367.67  |
+| [Sinatra](#rails-sinatra-and-roda)     |           1912.56  |           40.47/52.40/551.55  |
+| [Roda](#rails-sinatra-and-roda)        |           8353.74  |           19.37/20.03/412.39  |
+| [Tornado](#tornado)                    |           4193.27  |            35.74/6.64/137.35  |
+| [Plug](#plug)                          |          11277.30  |           14.95/19.58/385.37  |
+| [Node Cluster](#node-cluster)          |          11616.61  |            13.09/5.11/236.63  |
+| [ServeMux](#servemux)                  |           9926.36  |            15.25/4.68/129.87  |
+| [Jetty](#jetty)                        |           8887.97  |           21.62/43.61/795.46  |
 
-### Rails and Roda
+### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
-Roda is a slim framework i used to replace [Sinatra](http://www.sinatrarb.com/) in many cases, since is faster and allow a better interaction with the request/response life cycle.  
+[Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty felxible ofering a straightforward DSL over HTTP.  
+[Roda](http://roda.jeremyevans.net/) is a slim framework i used to replace Sinatra, since it is faster and allow for a better interaction with the request/response life cycle.  
 I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
 
 ##### Bootstrap
 ```
-bundle exec puma -w 2 -q --preload -e production
+bundle exec puma -w 5 -q --preload -e production
 ```
 
 ##### Considerations
@@ -116,7 +118,7 @@ python2.7 tornado_server.py
 ```
 
 ##### Considerations
-Performance are pretty good, but the half of Roda (but consistency is much better).  
+Performance are pretty good, better than almost all Ruby farmeworks but for Roda (which is twice as faster).
 I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
 
 ### Plug
@@ -137,7 +139,7 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance (but latency is higher than compiled languages).
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance.
 These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 optimizations introduced by Google.
 
 ### ServeMux
@@ -160,7 +162,6 @@ I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/docum
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
-Said that its performance are less consistent than GO, with higher latency and throughput standard deviation.
 
 ## Conclusions
 To layout my personal ranking i'm not only considering the benchmarks, but also look at the simplicity of the program, the dependencies footprint and setup times.
@@ -170,6 +171,7 @@ Balancing excellent speed, consistency and ease of use GO is the winner for me.
 It has all of the features you need straight in the standard libraries and made concurrency a real breeze. Configuring a production server requires no more than few lines of code and running an OS executable.  
 This frees the developer from the heavyweight of "enterprise frameworks", allowing to consider the "Web" just a detail of the main business model (in this regard have a look at [Uncle Bob speech](https://youtu.be/WpkDN78P884)).  
 The future of GO also appears bright: it's designed by some of the coolest geeks in the industry (Pike and Thompson among others) and is backed by both Google and a strong OS community.
+As a recent prove of that, VER 1.6 has introduced support for HTTP/2 in the standard net/http library.
 
 ### 2. Node.js
 I am impressed how V8 and clustered Node have performed.  
@@ -179,15 +181,17 @@ In this regard Ecmascript6 is promising: it takes a more object oriented approac
 
 ### 3. Java
 You could have figured out i don't like Java. It's not true, you know.  
-Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that Sun and Oracle have never been able to impose standards and, when they tried, they came out with EJB.  
+Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that Sun has never been able to impose standards and, when they tried, they came out with EJB.  
 Ok, it's true...  
-Apart from me, if you are not thrilled by new languages and/or other JVM dialects and are comfortable with Java, there's no reason stop using it.  
+Apart from me, if you are not thrilled by new languages and/or other JVM, there's no reason stop using Java.  
 It's a fast and reliable programming language that can count on a plethora of battle-tested libraries and thousands of excellent resources.
 
 ### 4. Ruby
+Ruby is my go-to language for everyday uses.  
 While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that Ruby got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging behind.  
-Ruby lacks the speed of V8 and i think it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster (introducing JIT), but i'm not confident it will be able to throw away the process-per-request model.
+The fact that the lenguage got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging behind.  
+Ruby lacks the speed of V8 and i think it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster (introducing JIT). 
+I'm also not confident about current Ruby concurrency model: being stucked to multi-process can ease parallel programming (no race conditions) but degrades performance quite quickly on large applications (a.k.a forking-bomb).
 
 ### 5. Elixir
 I am expecting Elixir good results, so the reasons of its ranking are outside of pure performance aspects.  
@@ -200,4 +204,4 @@ Last but not least i consider Erlang a niche language aimed to solve specific us
 ### 6. Python
 I admit i do not know Python, so its position is justified by the benchmarks not being as good as Roda.
 Aside from that Python is in the same league of Ruby regarding parallelism: it's not fast as the V8 and is born when multi-core devices were SciFi.  
-Python benefits by the strong support of scientific community and by Google, thus letting me forecast a brighter future than Ruby.
+Python benefits by the strong support of scientific community and by Google, thus letting me forecast a bright future.
