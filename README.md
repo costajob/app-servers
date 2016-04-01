@@ -21,10 +21,10 @@
 * [Conclusions](#conclusions)
 
 ## Scope
-The idea behind this repo is to test out how different languages HTTP libraries behave upon high loading.   
+The idea behind this repository is to test out how different languages HTTP libraries behave upon high loading.   
 
 ## Vagrant
-As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo i've used a [Vagrant](https://www.vagrantup.com/) box with the following specs:
+As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repository i've used a [Vagrant](https://www.vagrantup.com/) box with the following specs:
 * Ubuntu Trusty 64 bit 
 * 3 VCPUs (out of 4 cores 2.2Ghz)
 * 6GB of RAM (out of 8GB 1333Mhz DDR3)
@@ -33,7 +33,7 @@ I know i am not testing on a production server, anyway this hardware mimics pret
 Using Vagrant also allows decoupling the client (app servers) by the server (wrk), thus preventing unreliable results.
 
 ## Languages
-I chose to test the following languages/runtimes: Ruby, Python, Elixir, Node.js, GO, Java.
+I chose to test the following languages/runtime: Ruby, Python, Elixir, Node.js, GO, Java.
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.2 is installed by adding the
@@ -94,7 +94,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 
 ### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
-[Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty felxible ofering a straightforward DSL over HTTP.  
+[Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
 [Roda](http://roda.jeremyevans.net/) is a slim framework i used to replace Sinatra, since it is faster and allow for a better interaction with the request/response life cycle.  
 I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
 
@@ -104,7 +104,7 @@ bundle exec puma -w 5 -q --preload -e production
 ```
 
 ##### Considerations
-I know Rails was pretty slow, but the fact Roda is almost an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
+I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 To be fair Roda latency can get pretty high when stressing Puma, i recorded the worst data of the pack.
 
 ### Tornado
@@ -118,14 +118,14 @@ python2.7 tornado_server.py
 ```
 
 ##### Considerations
-Performance are pretty good, better than almost all Ruby farmeworks but for Roda (which is twice as faster).
+Performance are pretty good, better than almost all Ruby frameworks but for Roda (which is twice as faster).
 I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
-I started elixir by using iex interactive console as described on Plug readme.
+I started elixir by using iex interactive console as described on Plug read-me.
 
 ##### Considerations
 As expected Elixir performs very well: using green processes to serve each requests will allow to scale horizontally on multi-core CPUs. I also suspect Cowboy does its part too, being one of the fastest Erlang app server. 
@@ -189,9 +189,9 @@ It's a fast and reliable programming language that can count on a plethora of ba
 ### 4. Ruby
 Ruby is my go-to language for everyday uses.  
 While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that the lenguage got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging behind.  
+The fact that the language got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging behind.  
 Ruby lacks the speed of V8 and i think it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster (introducing JIT). 
-I'm also not confident about current Ruby concurrency model: being stucked to multi-process can ease parallel programming (no race conditions) but degrades performance quite quickly on large applications (a.k.a forking-bomb).
+I'm also not confident about current Ruby concurrency model: to the fork-process model can ease parallel programming (no race conditions) but degrades performance quite quickly on large applications.
 
 ### 5. Elixir
 I am expecting Elixir good results, so the reasons of its ranking are outside of pure performance aspects.  
