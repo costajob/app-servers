@@ -18,7 +18,6 @@
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
   * [Jetty](#jetty)
-* [Conclusions](#conclusions)
 
 ## Scope
 The idea behind this repository is to test out how different languages HTTP libraries behave upon high loading.   
@@ -30,20 +29,20 @@ As for the [ruby-app-servers](https://github.com/costajob/ruby-app-servers) repo
 * 6GB of RAM (out of 8GB 1333Mhz DDR3)
 
 I know i am not testing on a production server, anyway this hardware mimics pretty closely the common slice offered by cloud hosting providers.
-Using Vagrant also allows decoupling the client (app servers) by the server (wrk), thus preventing unreliable results.
+Using Vagrant also allows decoupling the client by the server, thus preventing unreliable results.
 
 ## Languages
 I chose to test the following languages/runtime: Ruby, Python, Elixir, Node.js, GO, Java.
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.2 is installed by adding the
+[Ruby](https://www.ruby-lang.org/en/) 2.3 is installed by adding the
 [brightbox](https://www.brightbox.com/docs/guides/cli/installation-debian/) repository.  
 Ruby is the language i have more experience with.  
-I find it an enjoyable language, although i start missing serious support for parallelism, a hot topic on the uprising multi CPUs era.  
+I find it an enjoyable language, although i start missing serious support for a light parallelism model.
 
 ### Python
 [Python](https://www.python.org/) 2.7 and 3.4 come pre-installed on Ubuntu. 
-I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not learn Ruby.  
+I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not look at Ruby.  
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.1.1 version is installed by adding the
@@ -95,7 +94,7 @@ wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
 [Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
-[Roda](http://roda.jeremyevans.net/) is a slim framework i used to replace Sinatra, since it is faster and allow for a better interaction with the request/response life cycle.  
+[Roda](http://roda.jeremyevans.net/) is a slim framework i use to replace Sinatra these days: it's faster and allow for a better interaction with the request/response life cycle.  
 I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
 
 ##### Bootstrap
@@ -140,7 +139,7 @@ node node_server.js
 
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance.
-These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 optimizations introduced by Google.
+These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 speed.
 
 ### ServeMux
 Since GO is pretty flexible and comes with "batteries included", i opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) standard library in place of some flavoured framework.
@@ -152,7 +151,9 @@ go run go_server.go
 
 ##### Considerations
 GO is a pretty fast language (and is getting faster) and allows using all of the cores with no particular configuration.  
-The results delivered by GO is consistent, with the lower latency of the pack. 
+The results delivered by GO is consistent, with a standard deviation
+always under control.  
+Indeed GO is the fastest language of the pack, but strangely enough i've recorder its best lap by using only 2 VCPUs instead of 3 VCPUs (> 130000 requests/sec).  
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
@@ -162,46 +163,4 @@ I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/docum
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
-
-## Conclusions
-To layout my personal ranking i'm not only considering the benchmarks, but also look at the simplicity of the program, the dependencies footprint and setup times.
-
-### 1. GO
-Balancing excellent speed, consistency and ease of use GO is the winner for me.   
-It has all of the features you need straight in the standard libraries and made concurrency a real breeze. Configuring a production server requires no more than few lines of code and running an OS executable.  
-This frees the developer from the heavyweight of "enterprise frameworks", allowing to consider the "Web" just a detail of the main business model (in this regard have a look at [Uncle Bob speech](https://youtu.be/WpkDN78P884)).  
-The future of GO also appears bright: it's designed by some of the coolest geeks in the industry (Pike and Thompson among others) and is backed by both Google and a strong OS community.
-As a recent prove of that, VER 1.6 has introduced support for HTTP/2 in the standard net/http library.
-
-### 2. Node.js
-I am impressed how V8 and clustered Node have performed.  
-Reactive programming may not be your best friend (i.e. callbacks hell), but the fact that JavaScript is a well known language explains why Node.js has replaced Rails for the [sacrificial architecture](http://martinfowler.com/bliki/SacrificialArchitecture.html) of several startups projects.  
-The only limiting factor for me is that JavaScript was not intended as a general purpose programming language at its birth. Node tries to address this by using custom libraries, but it should be great to find core functionalities (i.e. package dependencies and IO) into the standard library.
-In this regard Ecmascript6 is promising: it takes a more object oriented approach and rescues features that are missing-in-action on current implementation.
-
-### 3. Java
-You could have figured out i don't like Java. It's not true, you know.  
-Well, is partially true: i dislike Java rigidity of doing things; i dislike its overall verbosity; i dislike the fat frameworks built around it; i dislike having to create a XML every time i do something or, alternatively, trash my code with annotations; i dislike i have to install a 500MB editor to keep things under control; i dislike the fact that Sun has never been able to impose standards and, when they tried, they came out with EJB.  
-Ok, it's true...  
-Apart from me, if you are not thrilled by new languages and/or other JVM, there's no reason stop using Java.  
-It's a fast and reliable programming language that can count on a plethora of battle-tested libraries and thousands of excellent resources.
-
-### 4. Ruby
-Ruby is my go-to language for everyday uses.  
-While Ruby clearly suffers its non-parallel nature, it has proven to scale pretty well for standard uses.  
-The fact that the language got famous thanks to Rails is a double-sharp-side knife: many people complains about Ruby slowness, ignoring it's the bulkiness of Rails they are really dragging behind.  
-Ruby lacks the speed of V8 and i think it has to keep the pace to be a serious contender of the years to come. In this regard Ruby 3.0 is aimed to be x3 faster (introducing JIT). 
-I'm also not confident about current Ruby concurrency model: to the fork-process model can ease parallel programming (no race conditions) but degrades performance quite quickly on large applications.
-
-### 5. Elixir
-I am expecting Elixir good results, so the reasons of its ranking are outside of pure performance aspects.  
-Elixir leverages on Erlang and this is both for good and bad.  
-It's good since it can rely on more than 30 years of Erlang VM programming and optimizations.   
-It's bad since i always had the sense of playing with a face-lifting language, knowing i have to deal with Erlang internals when getting more serious.  
-Erlang OTP is not straightforward either: aside from having introduced Mix, the overall complexity is still higher than other programming languages.
-Last but not least i consider Erlang a niche language aimed to solve specific use cases (the Web being one of them), but i consider programming without state really painful most of the time.
-
-### 6. Python
-I admit i do not know Python, so its position is justified by the benchmarks not being as good as Roda.
-Aside from that Python is in the same league of Ruby regarding parallelism: it's not fast as the V8 and is born when multi-core devices were SciFi.  
-Python benefits by the strong support of scientific community and by Google, thus letting me forecast a bright future.
+As with GO, i've recorded better results with only 2 VCPUs instead of 3 VCPUs (more than 12000 requests/sec).
