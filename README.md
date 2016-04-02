@@ -12,7 +12,7 @@
 * [Benchmarks](#benchmarks)
   * [Hello World](#hello-world)
   * [Wrk](#wrk)
-  * [Rails and Roda](#rails-and-roda)
+  * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
   * [Tornado](#tornado)
   * [Plug](#plug)
   * [Node Cluster](#node-cluster)
@@ -153,7 +153,7 @@ go run go_server.go
 GO is a pretty fast language (and is getting faster) and allows using all of the cores with no particular configuration.  
 The results delivered by GO is consistent, with a standard deviation
 always under control.  
-Indeed GO is the fastest language of the pack, but strangely enough i've recorder its best lap by using only 2 VCPUs instead of 3 VCPUs (> 130000 requests/sec).  
+Indeed GO is the fastest language of the pack, but strangely enough i've recorded its best lap by using only 2 VCPUs instead of 3 (> 130000 requests/sec).  
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
@@ -163,4 +163,4 @@ I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/docum
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
-As with GO, i've recorded better results with only 2 VCPUs instead of 3 VCPUs (more than 12000 requests/sec).
+As with GO, i've recorded better results by uisng only 2 VCPUs instead of 3 (more than 12000 requests/sec).
