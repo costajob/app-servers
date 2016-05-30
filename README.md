@@ -4,6 +4,7 @@
 * [Vagrant](#vagrant)
 * [Languages](#languages)
   * [Ruby](#ruby)
+  * [Crystal](#crystal)
   * [Python](#python)
   * [Elixir](#elixir)
   * [Node.js](#nodejs)
@@ -39,6 +40,10 @@ I chose to test the following languages/runtime: Ruby, Python, Elixir, Node.js, 
 [brightbox](https://www.brightbox.com/docs/guides/cli/installation-debian/) repository.  
 Ruby is the language i have more experience with.  
 I find it an enjoyable language, although i start missing serious support for a light parallelism model.
+
+### Crystal
+[Crystal](http://crystal-lang.org/) 0.17.3 is installed by homebrew: i used my MacBook PRO without Vagrant, since for some reason i was not able to access the HTTP server from the vagrant box.
+Crystal has a syntax similar to Ruby (quite impressive how much of Ruby good parts are in the language), but brings some desirable features such as static typing and efficient compiled native code.
 
 ### Python
 [Python](https://www.python.org/) 2.7 and 3.4 come pre-installed on Ubuntu. 
@@ -79,6 +84,9 @@ Here is the common script i used:
 wrk -t 3 -c 150 -d30s --timeout 2000 http://192.168.33.22:9292
 ```
 
+#### Missing data
+I avoid to report Crystal data, since they are recorded on my Mac and are much higher than the ones recorder withing the Vagrant box.
+
 ### Results
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
@@ -105,6 +113,19 @@ bundle exec puma -w 5 -q --preload -e production
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 To be fair Roda latency can get pretty high when stressing Puma, i recorded the worst data of the pack.
+
+### Crystal HTTP server
+I used Crystal HTTP server standard library. I know current Crystal version does use green threads called "Fibers", that runs on a single thread. According to the core members multi-threads support is something that will be added to the language before releasing version 1.0.
+
+##### Bootstrap
+```
+crystal build ./server/crystal_server.cr --release
+./crystal_server
+```
+
+##### Considerations
+I was simply astonished to record the best lap for the Crystal language: it outperformed more mature languages such as GO and Java of about 45% of throughput. What surprise me most is that this performance was recorded by using a single thread on a 4-CPUs device, thus leave me pondering the performance once multi-threading support will be available.  
+Also is incredible how Crystal can be so fast and still so enjoyable to code with: you are convinced to write ruby code until you run the compiler and see the benchmark produced by the running program...
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online.  
