@@ -33,12 +33,12 @@ I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs
 * 8 GB 1333 MHz DDR3
 
 ## Languages
-I chose to test the following languages/runtime: Ruby, Crystal, Python, Elixir, Node.js, GO, Java.
+I chose to test the following languages/runtime: Ruby, Crystal, Python, Elixir, Haskell, Node.js, GO, Java.
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.3 is installed via homebrew.  
 Ruby is the language i have more experience with.  
-I find it an enjoyable language, although i start missing serious support for a light parallelism model.
+I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
 ### Python
 [Python](https://www.python.org/) 2.7 comes pre-installed on OSX El Captain. 
@@ -47,7 +47,7 @@ I included Python just to see how it compares versus Ruby. I never had the urge 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.
-Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box. What i miss in Elixir is the complete lack of state: maybe i've invested too much in the OOP ground.
+Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box with small (2Kb) processes.
 
 ### Haskell
 [Haskell](https://www.haskell.org/) 7.10.3 is installed by official OSX package.  
@@ -57,22 +57,22 @@ Above all of Haskell features i've been impressed by its elegant type inference 
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.
-I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool (but also brought entropy on the table).
+I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
-[GO](https://golang.org/) language version 1.6.2 is installed by Mac's installer.  
-GO focuses on simplicity, by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
+[GO](https://golang.org/) language version 1.6.2 is installed by official OSX package.  
+GO focuses on simplicity by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.
 Crystal has a syntax similar to Ruby (indeed is quite impressive how much of Ruby good parts are in the language), but brings some desirable features such as compile-time type checking, efficient garbage collector and compilation to highly optimized native code.  
-Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid IO-blocking. 
-In order to mimic dynamic languages Crystal adopts a full type-inference approach (similar to Haskell) that is incredibly stable considering the language is still in its beta.
+Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls. 
+In order to mimic dynamic languages Crystal adopts an elegant type-inference approach (similar to Haskell) that is incredibly stable considering the language is still in its beta.
 
 ### Java
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
-I get two Sun certifications back in 2006 and found out the more i delved into Java the less i liked it.
+I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ## Benchmarks
@@ -84,10 +84,10 @@ The "application" i tested is barely minimal: is the HTTP version of the "Hello 
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
-I measured each application server three times and took the best lap.  
+I measured each application server three times, picking the best lap.  
 Here is the common script i used:
 ```
-wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:9292
+wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:<port>
 ```
 
 ### Results
@@ -108,7 +108,7 @@ wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:9292
 As said before i included Rails here to illustrate a fact.  
 [Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
 [Roda](http://roda.jeremyevans.net/) is a slim framework i use to replace Sinatra these days: it's twice as fast and allows for a better interaction with the request/response life cycle.  
-I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to include it into the pack.
+I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to report them.
 
 ##### Bootstrap
 ```
@@ -119,8 +119,9 @@ bundle exec puma -w 4 -q -t 16:16 --preload -e production
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 
 ### Tornado
-I picked [Tornado](http://www.tornadoweb.org/en/stable/) since it supports event-IO and multi processes spawning (i also tested Flask, but its prformance was disappointing).
-I tested Tornado with both Python 2.7 and 3.4, finding the former 10% faster, so i reported results for the 2.7 version only.
+I picked [Tornado](http://www.tornadoweb.org/en/stable/) since it supports event-IO and multi processes spawning (i also tested Flask, but its performance was disappointing).
+I tested Tornado with both Python 2.7 and 3.4, finding the former 10% faster (and
+dropping 3.4 results).
 
 ##### Bootstrap
 ```
@@ -138,7 +139,7 @@ I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library tha
 I started elixir by using iex interactive console as described on Plug read-me.
 
 ##### Considerations
-Elixir performance are pretty solid but not stellar. As for Erlang it probably performs better on a multi-core server or/and on a distributed system.
+Elixir performance are pretty solid but not stellar. One of the Elixir (Erlang) killer application is scaling on a multi-core (+16 cores) server and/or on a distributed system.
 
 ### Snap
 [Snap](http://snapframework.com/) is a lightweight Web framework build on top of Haskel.
@@ -150,8 +151,8 @@ cabal install
 ```
 
 ##### Considerations
-Haskell uses green threads and evented-io to grant concurrency and non-blocking calls. Functional language purists assert that immutability is the only way to do concurrency the right way.   
-Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda, Elixir and Node, not to mention GO, Java and Crystal.
+Haskell uses green threads and immutability to grant concurrency: functional purists assert that immutability is the only way to do concurrency the right way.   
+Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda, Elixir and Node, not to mention Java, GO and Crystal.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
@@ -189,13 +190,13 @@ crystal build ./server/crystal_server.cr --release
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java of about 25% of throughput.  
-This fact is more surprising considering the language is still in its beta and executes on a single process only (and also opens up questions about concurrency VS parallelism).  
+This fact is more surprising considering the language executes on a single process only (opening questions about concurrency VS parallelism model).  
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
 
 ##### Bootstrap
-I followed the minimal Hello World [tutorial](http://www.eclipse.org/jetty/documentation/9.2.2.v20140723/advanced-embedding.html) by Eclipse.
+I followed the minimal Hello World tutorial by Eclipse.
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
