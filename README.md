@@ -67,8 +67,8 @@ At the same time GO takes a straight approach to parallelism, coming with build 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.
 Crystal has a syntax similar to Ruby (indeed is quite impressive how much of Ruby good parts are in the language), but brings some desirable features such as compile-time type checking, efficient garbage collector and compilation to highly optimized native code.  
+In order to mimic dynamic languages Crystal relies on a global type inference algorithm (similar to Haskell).  
 Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls. 
-In order to mimic dynamic languages Crystal adopts an elegant type-inference approach (similar to Haskell) that is incredibly stable considering the language is still in its beta.
 
 ### Java
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
