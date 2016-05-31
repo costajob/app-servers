@@ -151,7 +151,7 @@ cabal install
 
 ##### Considerations
 Haskell uses green threads and evented-io to grant concurrency and non-blocking calls. Functional language purists assert that immutability is the only way to do concurrency the right way.   
-Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda and Node and an order of magnitude slower than other compiled languages.
+Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda, Elixir and Node, not to mention GO, Java and Crystal.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
