@@ -8,3 +8,5 @@
 erl_crash.dump
 /servers/**/Gemfile.lock
 *.ez
+*.class
+*.beam
