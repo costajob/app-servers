@@ -6,6 +6,7 @@
   * [Ruby](#ruby)
   * [Python](#python)
   * [Elixir](#elixir)
+  * [Haskell](#haskell)
   * [Node.js](#nodejs)
   * [GO](#go)
   * [Crystal](#crystal)
@@ -16,6 +17,7 @@
   * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
   * [Tornado](#tornado)
   * [Plug](#plug)
+  * [Yesod](#yesod)
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
   * [Crystal HTTP](#crystal-http)
@@ -43,16 +45,22 @@ I find it an enjoyable language, although i start missing serious support for a 
 I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not look at Ruby.  
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.1.1 version is installed via homebrew.
+[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box. What i miss in Elixir is the complete lack of state: maybe i've invested too much in the OOP ground.
+
+### Haskell
+[Haskell](https://www.haskell.org/) 7.10.3 is installed by using the Mac standard packages.  
+Haskell is a purely functional, strong typed, garbage collected, compiled language.
+Haskell's terse syntax rlegates it into the accademic world.  
+Above all of Haskell features i've been impressed by its elegant type inference (something very similar to Crystal too).
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) stable version (4.x) is installed by adding nodesource repository.  
 I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool (but also brought entropy on the table).
 
 ### GO
-[GO](https://golang.org/) language version 1.6.2 is installed by source.  
+[GO](https://golang.org/) language version 1.6.2 is installed by Mac's installer.  
 GO focuses on simplicity, by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -63,9 +71,9 @@ Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and a
 In order to mimic dynamic languages Crystal adopts a full type-inference approach (similar to Haskell) that is incredibly stable considering the language is still in its beta.
 
 ### Java
-[Java](http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html) 7 Ubuntu's default JDK is used.   
+[Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
 I get two Sun certifications back in 2006 and found out the more i delved into Java the less i liked it.
-Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2015) and some smart folks have invested on it since the 90ies.
+Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
@@ -90,6 +98,7 @@ wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:9292
 | [Roda](#rails-sinatra-and-roda)        |          24050.49  |              2.63/1.68/25.54  |
 | [Tornado](#tornado)                    |           7880.15  |             12.74/4.48/80.41  |
 | [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
+| [Snap](#snap)                          |           8508.51  |            11.87/4.39/176.70  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
 | [Crystal HTTP](#crystal-http)          |          72042.19  |              1.38/0.371/7.79  |
@@ -131,6 +140,19 @@ I started elixir by using iex interactive console as described on Plug read-me.
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar. As for Erlang it probably performs better on a multi-core server or/and on a distributed system.
+
+### Snap
+[Snap](http://snapframework.com/) is a lightweight Web framework build on top of Haskell: other alternatives exist, i chosed Snap for its straightforward scaffolding.
+
+##### Bootstrap
+```
+cabal install
+~/.cabal/bin/snapserver -p 9292
+```
+
+##### Considerations
+Haskell uses green threads and evented-io to grant concurrency and non-blocking calls. Many functional langugage purists assert that immutability is the only way to do concurrency the right way (i beg to differe here).  
+I'm expeting better performance from snap: it's on par with Sinatra and Tornado, but far away forom the other compiled langugages and Node. 
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.

@@ -1,0 +1,81 @@
+[31/May/2016:13:05:38 +0200] Server.httpServe: START, binding to [http://0.0.0.0:9292/]
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:10:27 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
+[31/May/2016:13:13:30 +0200] ["127.0.0.1"]: an exception escaped to toplevel:
+recv: resource vanished (Connection reset by peer)
