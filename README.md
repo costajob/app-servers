@@ -17,7 +17,7 @@
   * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
   * [Tornado](#tornado)
   * [Plug](#plug)
-  * [Yesod](#yesod)
+  * [Snap](#snap)
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
   * [Crystal HTTP](#crystal-http)
@@ -50,13 +50,13 @@ I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) 
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box. What i miss in Elixir is the complete lack of state: maybe i've invested too much in the OOP ground.
 
 ### Haskell
-[Haskell](https://www.haskell.org/) 7.10.3 is installed by using the Mac standard packages.  
+[Haskell](https://www.haskell.org/) 7.10.3 is installed by official OSX package.  
 Haskell is a purely functional, strong typed, garbage collected, compiled language.
-Haskell's terse syntax rlegates it into the accademic world.  
-Above all of Haskell features i've been impressed by its elegant type inference (something very similar to Crystal too).
+Haskell's terse syntax relegates it into the academic world.  
+Above all of Haskell features i've been impressed by its elegant type inference (as i do with Crystal).
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) stable version (4.x) is installed by adding nodesource repository.  
+[Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.
 I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool (but also brought entropy on the table).
 
 ### GO
@@ -119,8 +119,7 @@ bundle exec puma -w 4 -q -t 16:16 --preload -e production
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 
 ### Tornado
-I picked [Tornado](http://www.tornadoweb.org/en/stable/) after reading some profiling online.  
-If you know some faster app-server for Python i'll be glad to test it too.  
+I picked [Tornado](http://www.tornadoweb.org/en/stable/) since it supports event-IO and multi processes spawning (i also tested Flask, but its prformance was disappointing).
 I tested Tornado with both Python 2.7 and 3.4, finding the former 10% faster, so i reported results for the 2.7 version only.
 
 ##### Bootstrap
@@ -142,7 +141,7 @@ I started elixir by using iex interactive console as described on Plug read-me.
 Elixir performance are pretty solid but not stellar. As for Erlang it probably performs better on a multi-core server or/and on a distributed system.
 
 ### Snap
-[Snap](http://snapframework.com/) is a lightweight Web framework build on top of Haskell: other alternatives exist, i chosed Snap for its straightforward scaffolding.
+[Snap](http://snapframework.com/) is a lightweight Web framework build on top of Haskel.
 
 ##### Bootstrap
 ```
@@ -151,8 +150,8 @@ cabal install
 ```
 
 ##### Considerations
-Haskell uses green threads and evented-io to grant concurrency and non-blocking calls. Many functional langugage purists assert that immutability is the only way to do concurrency the right way (i beg to differe here).  
-I'm expeting better performance from snap: it's on par with Sinatra and Tornado, but far away forom the other compiled langugages and Node. 
+Haskell uses green threads and evented-io to grant concurrency and non-blocking calls. Functional language purists assert that immutability is the only way to do concurrency the right way.   
+Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda and Node and an order of magnitude slower than other compiled languages.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
