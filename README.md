@@ -4,6 +4,7 @@
 * [Platform](#platform)
 * [Languages](#languages)
   * [Ruby](#ruby)
+  * [JRuby](#jruby)
   * [Python](#python)
   * [Elixir](#elixir)
   * [Haskell](#haskell)
@@ -24,7 +25,7 @@
   * [Jetty](#jetty)
 
 ## Scope
-The idea behind this repository is to test out how different languages HTTP libraries behave upon high loading.   
+The idea behind this repository is to test out how different languages HTTP libraries behave under high loading.   
 
 ## Platform
 I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
@@ -40,6 +41,10 @@ I chose to test the following languages/runtime: Ruby, Crystal, Python, Elixir, 
 Ruby is the language i have more experience with.  
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
+### JRuby
+[JRuby](http://jruby.org/) 9.1.2.0 is installed via official distribution.  
+JRuby is the Ruby implementation on the JVM: it supports multi-threading and cope with the Ruby release pretty closely.
+
 ### Python
 [Python](https://www.python.org/) 2.7 comes pre-installed on OSX El Captain. 
 I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not look at Ruby.  
@@ -52,8 +57,7 @@ Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of 
 ### Haskell
 [Haskell](https://www.haskell.org/) 7.10.3 is installed by official OSX package.  
 Haskell is a purely functional, strong typed, garbage collected, compiled language.
-Haskell's terse syntax relegates it into the academic world.  
-Above all of Haskell features i've been impressed by its elegant type inference (as i do with Crystal).
+Haskell's weird, terse syntax has relegated it to the academic world (but for specific [use cases](https://code.facebook.com/posts/745068642270222/fighting-spam-with-haskell/)).  
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.
@@ -91,32 +95,41 @@ wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:<port>
 ```
 
 ### Results
+Here are the benchmarks results ordered by throughput.
+
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
-| [Rails](#rails-sinatra-and-roda)       |           1572.43  |           31.43/13.04/138.19  |
-| [Sinatra](#rails-sinatra-and-roda)     |          10470.59  |              6.04/3.51/46.38  |
-| [Roda](#rails-sinatra-and-roda)        |          24050.49  |              2.63/1.68/25.54  |
+| [Rails](#rails-sinatra-and-roda)       |           1804.99  |            55.34/5.06/142.75  |
+| [JRuby-Rails](#jruby-results)          |           4088.59  |             7.85/4.85/108.82  |
 | [Tornado](#tornado)                    |           7880.15  |             12.74/4.48/80.41  |
-| [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
 | [Snap](#snap)                          |           8508.51  |            11.87/4.39/176.70  |
+| [Sinatra](#rails-sinatra-and-roda)     |          10470.59  |              6.04/3.51/46.38  |
+| [JRuby-Sinatra](#jruby-results)        |          16649.11  |             1.53/6.38/127.03  |
+| [Roda](#rails-sinatra-and-roda)        |          24050.49  |              2.63/1.68/25.54  |
+| [JRuby-Roda](#jruby-results)           |          29968.88  |             1.39/5.87/251.27  |
+| [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
+| [Jetty](#jetty)                        |          51590.19  |              1.92/0.236/6.53  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
 | [Crystal HTTP](#crystal-http)          |          72042.19  |              1.38/0.371/7.79  |
-| [Jetty](#jetty)                        |          51590.19  |              1.92/0.236/6.53  |
 
 ### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
 [Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
 [Roda](http://roda.jeremyevans.net/) is a slim framework i use to replace Sinatra these days: it's twice as fast and allows for a better interaction with the request/response life cycle.  
-I also performed all of the benchmarks against [JRuby](http://jruby.org/) version 9.0.4: since results are on par with MRI i decided is not relevant to report them.
 
 ##### Bootstrap
 ```
-bundle exec puma -w 4 -q -t 16:16 --preload -e production
+bundle exec puma -w 4 -q -t 16:32 --preload -e production
+jruby -S bundle exec puma -q -t 16:32 -e production
 ```
 
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
+
+#### JRuby results
+JRuby constantly performs better than MRI (especially Rails and Sinatra): this is expected since Puma leverage on native threads for parallelism, thus squeezing every single drop from the platform.  
+JVM need to warm up to get better performance and consume much memory than MRI, said that JRuby it still offers better scalability on distributed system.
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) since it supports event-IO and multi processes spawning (i also tested Flask, but its performance was disappointing).
@@ -189,8 +202,8 @@ crystal build ./server/crystal_server.cr --release
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java of about 25% of throughput.  
-This fact is more surprising considering the language executes on a single process only (opening questions about concurrency VS parallelism model).  
+Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java (about 25% more throughtput).  
+This is interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model.  
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
