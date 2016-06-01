@@ -6,23 +6,23 @@
   * [Ruby](#ruby)
   * [JRuby](#jruby)
   * [Python](#python)
-  * [Elixir](#elixir)
   * [Haskell](#haskell)
+  * [Elixir](#elixir)
   * [Node.js](#nodejs)
   * [GO](#go)
-  * [Crystal](#crystal)
   * [Java](#java)
+  * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
   * [Hello World](#hello-world)
   * [Wrk](#wrk)
   * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
   * [Tornado](#tornado)
-  * [Plug](#plug)
   * [Snap](#snap)
+  * [Plug](#plug)
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
-  * [Crystal HTTP](#crystal-http)
   * [Jetty](#jetty)
+  * [Crystal HTTP](#crystal-http)
 
 ## Scope
 The idea behind this repository is to test out how different languages HTTP libraries behave under high loading.   
@@ -49,15 +49,15 @@ JRuby is the Ruby implementation on the JVM: it supports multi-threading and cop
 [Python](https://www.python.org/) 2.7 comes pre-installed on OSX El Captain. 
 I included Python just to see how it compares versus Ruby. I never had the urge to learn Python, the same way pythonians do not look at Ruby.  
 
-### Elixir
-[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.
-I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.
-Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box with small (2Kb) processes.
-
 ### Haskell
 [Haskell](https://www.haskell.org/) 7.10.3 is installed by official OSX package.  
 Haskell is a purely functional, strong typed, garbage collected, compiled language.
 Haskell's weird, terse syntax has relegated it to the academic world (but for specific [use cases](https://code.facebook.com/posts/745068642270222/fighting-spam-with-haskell/)).  
+
+### Elixir
+[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.
+I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.
+Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box with small (2Kb) processes.
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.
@@ -68,16 +68,16 @@ I once used to program in JavaScript much more that these days. I left it behind
 GO focuses on simplicity by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
+### Java
+[Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
+I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
+Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
+
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.
 Crystal has a syntax similar to Ruby (indeed is quite impressive how much of Ruby good parts are in the language), but brings some desirable features such as compile-time type checking, efficient garbage collector and compilation to highly optimized native code.  
 In order to mimic dynamic languages Crystal relies on a global type inference algorithm (similar to Haskell).  
 Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls. 
-
-### Java
-[Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
-I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
-Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
@@ -111,7 +111,7 @@ Here are the benchmarks results ordered by throughput.
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [Jetty](#jetty)                        |          51590.19  |              1.92/0.236/6.53  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
-| [Crystal HTTP](#crystal-http)          |          72042.19  |              1.38/0.371/7.79  |
+| [Crystal HTTP](#crystal-http)          |          74516.36  |              1.34/0.317/8.37  |
 
 ### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
@@ -145,15 +145,6 @@ python2.7 tornado_server.py
 Performance are pretty good, on par with Sinatra but far from Roda (which is trice as fast).
 I used multi process here as i do for Puma, granting the loads to be balanced on all of the available CPUs.
 
-### Plug
-I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
-
-##### Bootstrap
-I started elixir by using iex interactive console as described on Plug read-me.
-
-##### Considerations
-Elixir performance are pretty solid but not stellar. One of the Elixir (Erlang) killer application is scaling on a multi-core (+16 cores) server and/or on a distributed system.
-
 ### Snap
 [Snap](http://snapframework.com/) is a lightweight Web framework build on top of Haskel.
 
@@ -166,6 +157,15 @@ cabal install
 ##### Considerations
 Haskell uses green threads and immutability to grant concurrency: functional purists assert that immutability is the only way to do concurrency the right way.   
 Indeed i was expecting better performance from Snap: it's on par with Sinatra and Tornado, but far away from Roda, Elixir and Node, not to mention Java, GO and Crystal.
+
+### Plug
+I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
+
+##### Bootstrap
+I started elixir by using iex interactive console as described on Plug read-me.
+
+##### Considerations
+Elixir performance are pretty solid but not stellar. One of the Elixir (Erlang) killer application is scaling on a multi-core (+16 cores) server and/or on a distributed system.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
@@ -191,6 +191,15 @@ go run go_server.go
 GO is a pretty fast language (and is getting faster) and allows using all of the cores with no particular configuration.  
 The results delivered by GO is consistent, with a standard deviation always under control.  
 
+### Jetty
+To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
+
+##### Bootstrap
+I followed the minimal Hello World tutorial by Eclipse.
+
+##### Considerations
+I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
+
 ### Crystal HTTP
 I used Crystal HTTP server standard library. Crystal uses green threads called "fibers", that runs on a single process (thus allowing concurrency, but not parallelism).  
 According to the core team multi-threads support is something that will be added to the language before releasing version 1.0.
@@ -204,12 +213,3 @@ crystal build ./server/crystal_server.cr --release
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java (about 25% more throughtput).  
 This is interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model.  
-
-### Jetty
-To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
-
-##### Bootstrap
-I followed the minimal Hello World tutorial by Eclipse.
-
-##### Considerations
-I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
