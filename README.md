@@ -105,7 +105,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Snap](#snap)                          |           8508.51  |            11.87/4.39/176.70  |
 | [Sinatra](#rails-sinatra-and-roda)     |          15484.45  |            8.34/11.76/235.75  |
 | [JRuby-Sinatra](#jruby-results)        |          16649.11  |             1.53/6.38/127.03  |
-| [Roda](#rails-sinatra-and-roda)        |          27920.02  |             3.10/0.629/36.16  |
+| [Roda](#rails-sinatra-and-roda)        |          28557.31  |             2.99/0.534/33.40  |
 | [JRuby-Roda](#jruby-results)           |          30535.45  |             1.07/1.19/132.54  |
 | [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
@@ -127,7 +127,7 @@ jruby -S bundle exec puma -q -t 16:32 -e production
 ##### Considerations
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 
-#### JRuby results
+##### JRuby results
 JRuby constantly performs slightly better than MRI (Rails especially): Puma leverage on native threads for parallelism, instead of pre-forking a pool of processes.  
 Said that JVM need to warm up to do its best and consume much memory than MRI. I reduced performance differences by doubling the number of workers per CPU (8 processes) on MRI.
 
