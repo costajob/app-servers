@@ -99,19 +99,19 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
-| [Rails](#rails-sinatra-and-roda)       |           1804.99  |            55.34/5.06/142.75  |
+| [Rails](#rails-sinatra-and-roda)       |           2522.94  |            40.35/18.02241.45  |
 | [JRuby-Rails](#jruby-results)          |           4088.59  |             7.85/4.85/108.82  |
 | [Tornado](#tornado)                    |           7880.15  |             12.74/4.48/80.41  |
 | [Snap](#snap)                          |           8508.51  |            11.87/4.39/176.70  |
-| [Sinatra](#rails-sinatra-and-roda)     |          10470.59  |              6.04/3.51/46.38  |
+| [Sinatra](#rails-sinatra-and-roda)     |          15484.45  |            8.34/11.76/235.75  |
 | [JRuby-Sinatra](#jruby-results)        |          16649.11  |             1.53/6.38/127.03  |
-| [Roda](#rails-sinatra-and-roda)        |          24050.49  |              2.63/1.68/25.54  |
-| [JRuby-Roda](#jruby-results)           |          29968.88  |             1.39/5.87/251.27  |
+| [Roda](#rails-sinatra-and-roda)        |          27920.02  |             3.10/0.629/36.16  |
+| [JRuby-Roda](#jruby-results)           |          30535.45  |             1.07/1.19/132.54  |
 | [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [Jetty](#jetty)                        |          51590.19  |              1.92/0.236/6.53  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
-| [Crystal HTTP](#crystal-http)          |          74516.36  |              1.34/0.317/8.37  |
+| [Crystal HTTP](#crystal-http)          |          74997.65  |              1.33/0.323/6.83  |
 
 ### Rails, Sinatra and Roda
 As said before i included Rails here to illustrate a fact.  
@@ -120,7 +120,7 @@ As said before i included Rails here to illustrate a fact.
 
 ##### Bootstrap
 ```
-bundle exec puma -w 4 -q -t 16:32 --preload -e production
+bundle exec puma -w 8 -q -t 16:32 --preload -e production
 jruby -S bundle exec puma -q -t 16:32 -e production
 ```
 
@@ -128,8 +128,8 @@ jruby -S bundle exec puma -q -t 16:32 -e production
 I know Rails was pretty slow, but the fact Roda is an order of magnitude faster is quite impressive all the way (making it very close to standalone rack).  
 
 #### JRuby results
-JRuby constantly performs better than MRI (especially Rails and Sinatra): this is expected since Puma leverage on native threads for parallelism, thus squeezing every single drop from the platform.  
-JVM need to warm up to get better performance and consume much memory than MRI, said that JRuby it still offers better scalability on distributed system.
+JRuby constantly performs slightly better than MRI (Rails especially): Puma leverage on native threads for parallelism, instead of pre-forking a pool of processes.  
+Said that JVM need to warm up to do its best and consume much memory than MRI. I reduced performance differences by doubling the number of workers per CPU (8 processes) on MRI.
 
 ### Tornado
 I picked [Tornado](http://www.tornadoweb.org/en/stable/) since it supports event-IO and multi processes spawning (i also tested Flask, but its performance was disappointing).
