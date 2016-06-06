@@ -15,7 +15,7 @@
   * [Hello World](#hello-world)
   * [Platform](#platform)
   * [Wrk](#wrk)
-  * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
+  * [Rails, Sinatra, Roda and rack](#rails-sinatra-roda-and-rack)
   * [Tornado](#tornado)
   * [Snap](#snap)
   * [Plug](#plug)
@@ -99,17 +99,19 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
-| [Rails](#rails-sinatra-and-roda)       |           2522.94  |            40.35/18.02241.45  |
+| [Rails](#rails-sinatra-roda-and-rack)  |           2522.94  |            40.35/18.02241.45  |
 | [JRuby-Rails](#jruby-results)          |           4088.59  |             7.85/4.85/108.82  |
 | [Tornado](#tornado)                    |           7880.15  |             12.74/4.48/80.41  |
 | [Snap](#snap)                          |           8508.51  |            11.87/4.39/176.70  |
-| [Sinatra](#rails-sinatra-and-roda)     |          15484.45  |            8.34/11.76/235.75  |
+| [Sinatra](#rails-sinatra-roda-and-rack)|          15484.45  |            8.34/11.76/235.75  |
 | [JRuby-Sinatra](#jruby-results)        |          16649.11  |             1.53/6.38/127.03  |
-| [Roda](#rails-sinatra-and-roda)        |          28557.31  |             2.99/0.534/33.40  |
+| [Roda](#rails-sinatra-roda-and-rack)   |          28557.31  |             2.99/0.534/33.40  |
 | [JRuby-Roda](#jruby-results)           |          30535.45  |             1.07/1.19/132.54  |
+| [Rack](#rails-sinatra-roda-and-rack)   |          29208.81  |             3.13/0.348/13.28  |
+| [JRuby-Rack](#jruby-results)           |          32331.47  |             0.99/0.598/44.34  |
 | [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
-| [Jetty](#jetty)                        |          51590.19  |              1.92/0.236/6.53  |
+| [Jetty](#jetty)                        |          52398.88  |             1.90/0.432/22.45  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
 | [Crystal HTTP](#crystal-http)          |          74997.65  |              1.33/0.323/6.83  |
 
@@ -117,6 +119,7 @@ Here are the benchmarks results ordered by increasing throughput.
 As said before i included Rails here to illustrate a fact.  
 [Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
 [Roda](http://roda.jeremyevans.net/) is a slim framework i use to replace Sinatra these days: it's twice as fast and allows for a better interaction with the request/response life cycle.  
+[Rack](http://rack.github.io/) is the Ruby standard HTTP server interface implemented by Puma.
 
 ##### Bootstrap
 ```
