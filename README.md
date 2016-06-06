@@ -1,7 +1,6 @@
 ## Table of Contents
 
 * [Scope](#scope)
-* [Platform](#platform)
 * [Languages](#languages)
   * [Ruby](#ruby)
   * [JRuby](#jruby)
@@ -14,6 +13,7 @@
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
   * [Hello World](#hello-world)
+  * [Platform](#platform)
   * [Wrk](#wrk)
   * [Rails, Sinatra and Roda](#rails-sinatra-and-roda)
   * [Tornado](#tornado)
@@ -26,12 +26,6 @@
 
 ## Scope
 The idea behind this repository is to test out how different languages HTTP libraries behave under high loading.   
-
-## Platform
-I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
-* OSX El Captain
-* 2,2 GHz Intel Core i7 (4 cores)
-* 8 GB 1333 MHz DDR3
 
 ## Languages
 I chose to test the following languages/runtime: Ruby, Crystal, Python, Elixir, Haskell, Node.js, GO, Java.
@@ -77,7 +71,7 @@ Ignoring Java on this comparison is not an option anyway: Java is the most used 
 [Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.
 Crystal has a syntax similar to Ruby (indeed is quite impressive how much of Ruby good parts are in the language), but brings some desirable features such as compile-time type checking, efficient garbage collector and compilation to highly optimized native code.  
 In order to mimic dynamic languages Crystal relies on a global type inference algorithm (similar to Haskell).  
-Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls. 
+Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls, but does not support parallelism out of the box.
 
 ## Benchmarks
 I decided to test how these languages manage multiple HTTP requests by using standard libraries and/or micro-frameworks.  
@@ -85,6 +79,12 @@ One exception is [Rails](http://rubyonrails.org/): since many start-ups favor ot
 
 ### Hello World
 The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
+
+### Platform
+I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
+* OSX El Captain
+* 2,2 GHz Intel Core i7 (4 cores)
+* 8 GB 1333 MHz DDR3
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
@@ -95,7 +95,7 @@ wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:<port>
 ```
 
 ### Results
-Here are the benchmarks results ordered by throughput.
+Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
@@ -211,5 +211,5 @@ crystal build ./server/crystal_server.cr --release
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java (about 25% more throughtput).  
-This is interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model.  
+Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java.  
+This is even more interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model on multi core platforms.  
