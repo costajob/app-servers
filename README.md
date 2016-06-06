@@ -115,7 +115,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
 | [Crystal HTTP](#crystal-http)          |          74997.65  |              1.33/0.323/6.83  |
 
-### Rails, Sinatra and Roda
+### Rails, Sinatra, Roda and Rack
 As said before i included Rails here to illustrate a fact.  
 [Sinatra](http://www.sinatrarb.com/) is the second most used Ruby framework: it's pretty flexible offering a straightforward DSL over HTTP.  
 [Roda](http://roda.jeremyevans.net/) is a slim framework i use to replace Sinatra these days: it's twice as fast and allows for a better interaction with the request/response life cycle.  
