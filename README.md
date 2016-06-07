@@ -22,10 +22,10 @@
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
-The idea behind this repository is to test out how different languages HTTP libraries behave under high loading.   
+The idea behind this repository is to test how HTTP libraries for different languages behave under heavy loading.   
 
 ### Hello World
-The "application" i tested is barely minimal: is the HTTP version of the "Hello World" example.
+The "application" i tested is barely minimal: it is the HTTP version of the "Hello World" example.
 
 ### Platform
 I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
@@ -37,6 +37,7 @@ I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
 I measured each application server three times, picking the best lap.  
 Here is the common script i used:
+
 ```
 wrk -t 4 -c 150 -d30s --timeout 2000 http://127.0.0.1:<port>
 ```
@@ -54,18 +55,18 @@ I find it an enjoyable language to code with, with a plethora of good libraries 
 JRuby is the Ruby implementation on the JVM: it supports multi-threading and cope with Ruby MRI pretty closely.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.
-I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.
+[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.  
+I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.
-I once used to program in JavaScript much more that these days. I left it behind in favor or more "backend" languages. I know it's a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
+[Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.  
+I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
 [GO](https://golang.org/) language version 1.6.2 is installed by official OSX package.  
-GO focuses on simplicity by intentionally lacking features considered redundant (i.e. inheritance, exception handling, generics). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
-At the same time GO takes a straight approach to parallelism, coming with build in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
+GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
+At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Java
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
@@ -73,13 +74,13 @@ I get two Sun certifications back in 2006 and realized the more i delved into Ja
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.
-Crystal has a syntax similar to Ruby, but brings some desirable features such as compile-time type checking and compilation to highly optimized native code.  
+[Crystal](http://crystal-lang.org/) 0.17.3 is installed via homebrew.  
+Crystal has a syntax vry close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
 In order to mimic dynamic languages Crystal relies on a global type inference algorithm.   
 Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls, but does not support parallelism out of the box.
 
 ## Benchmarks
-I decided to test how these languages manage multiple HTTP requests by using standard HTTP libraries.
+I decided to test each language by using the standard/built-in HTTP library.
 
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
@@ -88,15 +89,15 @@ Here are the benchmarks results ordered by increasing throughput.
 | :------------------------------------- | -----------------: | ----------------------------: |
 | [Rack](#rack)                          |          29208.81  |             3.13/0.348/13.28  |
 | [JRuby-Rack](#jruby-results)           |          32331.47  |             0.99/0.598/44.34  |
-| [Plug](#plug)                          |          33261.44  |             2.98/4.97/114.59  |
+| [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [Jetty](#jetty)                        |          52398.88  |             1.90/0.432/22.45  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
 | [Crystal HTTP](#crystal-http)          |          74997.65  |              1.33/0.323/6.83  |
 
 ### Rack
-I opted to test ruby by using a plain [Rack](http://rack.github.io/) application.  
-Rack is the Ruby standard HTTP server interface implemented by Puma.
+I tested ruby by using a plain [Rack](http://rack.github.io/) application.  
+Rack is the Ruby standard HTTP server interface implemented by Puma (and other HTTP server).
 
 ##### Bootstrap
 ```
@@ -109,17 +110,17 @@ Rack proves to be a pretty fast HTTP server. It's modular, easy to extend and ba
 
 ##### JRuby results
 JRuby constantly performs slightly better than MRI: Puma leverage on native threads for parallelism, instead of pre-forking a pool of processes.  
-Said that JVM need to warm up to do its best and consume much memory than MRI. I was able to reduce performance differences by doubling the number of workers per CPU (8 processes) on MRI.
+Said that JVM need to warm up to do its best and consume much memory than MRI.
 
 ### Plug
-I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that comes with a [Cowboy](https://github.com/ninenines/cowboy) adapter.
+I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
 I started elixir by using iex interactive console as described on Plug read-me.
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
-Probably OTP benefits to be executed on a large distributed system, but on a 4-core workstation its performance are not far from Ruby+Rack (which indeed is much more simple to setup).
+Probably OTP benefits to be executed on a large distributed system, but on a 4-core workstation its performance are not far from Ruby+Rack.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
@@ -130,8 +131,9 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance.
-These results are the sum of using cluster library to spawn multiple processes per CPU (like Ruby and Python) and leveraging on V8 speed.
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance.  
+By using cluster library to spawn multiple processes per CPU, Node speed is on par
+with faster compiled languages.
 
 ### ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
@@ -143,11 +145,11 @@ go build go_server.go
 ```
 
 ##### Considerations
-GO is a pretty fast language (and is getting faster) and allows using all of the cores with no particular configuration.  
+GO is a pretty fast language and allows using all of the cores with no particular configuration.  
 The results delivered by GO is consistent, with a standard deviation always under control.  
 
 ### Jetty
-To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container (faster, and simpler, than Tomcat).  
+To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
 ##### Bootstrap
 I followed the minimal Hello World tutorial by Eclipse.
@@ -157,7 +159,7 @@ I know Java is pretty fast nowadays: thousands of optimizations have been done t
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library. Crystal uses green threads called "fibers", that runs on a single process (thus allowing concurrency, but not parallelism).  
-According to the core team multi-threads support is something that will be added to the language before releasing version 1.0.
+According to the core team multi-threads support will be added to the language before reaching production phase.
 
 ##### Bootstrap
 ```
@@ -166,5 +168,5 @@ crystal build ./server/crystal_server.cr --release
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages such as GO and Java.  
-This is even more interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model on multi core platforms.  
+Crystal language recorded the best lap of the pack, outperforming more mature languages like GO and Java.  
+This is even more interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model.
