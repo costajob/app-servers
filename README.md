@@ -93,7 +93,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [Jetty](#jetty)                        |          52398.88  |             1.90/0.432/22.45  |
 | [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
-| [Crystal HTTP](#crystal-http)          |          74997.65  |              1.33/0.323/6.83  |
+| [Crystal HTTP](#crystal-http)          |          75159.45  |              1.33/0.270/6.02  |
 
 ### Rack
 I tested ruby by using a plain [Rack](http://rack.github.io/) application.  
