@@ -120,7 +120,8 @@ I started elixir by using iex interactive console as described on Plug read-me.
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
-Probably OTP benefits to be executed on a large distributed system, but on a 4-core workstation its performance are not far from Ruby+Rack.
+To be fair Erlang, and by reflection Elixir, benefits most by using the bulky OTP library to grant reliability and resilience over a distributed system.  
+Being an immutable language, Elixir also consumes less memory when serving more articulated views.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU.
