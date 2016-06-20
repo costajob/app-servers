@@ -74,8 +74,8 @@ I get two Sun certifications back in 2006 and realized the more i delved into Ja
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.18.0 is installed via homebrew.  
-Crystal has a syntax vry close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
+[Crystal](http://crystal-lang.org/) 0.18.2 is installed via homebrew.  
+Crystal has a syntax very close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
 In order to mimic dynamic languages Crystal relies on a global type inference algorithm.   
 Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls, but does not support parallelism out of the box.
 
@@ -170,4 +170,4 @@ crystal build ./server/crystal_server.cr --release
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages like GO and Java.  
-This is even more interesting considering the language executes on a single thread only and opens questions about concurrency VS parallelism model.
+This is even more interesting considering the language executes on a single thread only and let ponder how fast the platform could be once multi-threading will be thrown in. 
