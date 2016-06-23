@@ -167,7 +167,7 @@ According to the core team multi-threads support will be added to the language b
 
 ##### Bootstrap
 ```
-crystal build ./server/crystal_server.cr --release
+crystal compile ./server/crystal_server.cr --release
 ./crystal_server
 ```
 
