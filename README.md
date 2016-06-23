@@ -74,7 +74,7 @@ I get two Sun certifications back in 2006 and realized the more i delved into Ja
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.18.2 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.18.4 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
 In order to mimic dynamic languages Crystal relies on a global type inference algorithm.   
 Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls, but does not support parallelism out of the box.
@@ -87,13 +87,13 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
-| [Rack](#rack)                          |          29208.81  |             3.13/0.348/13.28  |
-| [JRuby-Rack](#jruby-results)           |          32331.47  |             0.99/0.598/44.34  |
+| [Rack](#rack)                          |          29208.81  |              3.13/0.34/13.28  |
+| [JRuby-Rack](#jruby-results)           |          32331.47  |              0.99/0.59/44.34  |
 | [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
-| [Jetty](#jetty)                        |          52398.88  |             1.90/0.432/22.45  |
-| [ServeMux](#servemux)                  |          58359.97  |             1.70/0.315/18.63  |
-| [Crystal HTTP](#crystal-http)          |          75159.45  |              1.33/0.270/6.02  |
+| [Jetty](#jetty)                        |          52398.88  |              1.90/0.43/22.45  |
+| [ServeMux](#servemux)                  |          58359.97  |              1.70/0.31/18.63  |
+| [Crystal HTTP](#crystal-http)          |          75821.32  |               1.32/0.32/7.38  |
 
 ### Rack
 I tested ruby by using a plain [Rack](http://rack.github.io/) application.  
@@ -153,7 +153,10 @@ The results delivered by GO is consistent, with a standard deviation always unde
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
 ##### Bootstrap
-I followed the minimal Hello World tutorial by Eclipse.
+```
+javac -cp javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld.java
+java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar -server HelloWorld
+```
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
