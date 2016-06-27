@@ -11,6 +11,7 @@
   * [Node.js](#nodejs)
   * [GO](#go)
   * [Java](#java)
+  * [Nim](#java)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
@@ -73,6 +74,11 @@ At the same time GO takes a straight approach to parallelism, coming with built 
 I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
+### Nim
+[Nim](http://nim-lang.org/) 0.14.2 is installed from source.  
+Nim is an efficient, elegant, expressive strong typed, compiled language.
+Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style. It also provides several compiling options to better adapt to the running environment.
+
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.18.4 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
@@ -91,6 +97,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [JRuby-Rack](#jruby-results)           |          32331.47  |              0.99/0.59/44.34  |
 | [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
+| [Nim Async HTTP](#nim-async-http)      |          49049.54  |              2.04/0.46/46.25  |
 | [Jetty](#jetty)                        |          52398.88  |              1.90/0.43/22.45  |
 | [ServeMux](#servemux)                  |          58359.97  |              1.70/0.31/18.63  |
 | [Crystal HTTP](#crystal-http)          |          75821.32  |               1.32/0.32/7.38  |
@@ -160,6 +167,20 @@ java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar 
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
+
+### Nim Async HTTP
+I used the Nim Async HTTP Server module to implement a high performance asynchronous server.  
+
+##### Bootstrap
+```
+nim c -d:release --threads:on nim_server.nim
+./nim_server
+```
+
+##### Considerations
+Nim proved to keep its promises, being a fast and concise language.  
+From a pure performance point of view Nim falls behind (but it is very close to) both GO and Java. The gap with Crsytal is more consistent anyway.  
+Said that the combination of Nim's unique compiling options and powerful standard library make it an interesting language to keep an eye on.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library. Crystal uses green threads called "fibers", that runs on a single process (thus allowing concurrency, but not parallelism).  
