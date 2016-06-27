@@ -52,7 +52,7 @@ Ruby is the language i have more experience with.
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.3 is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
