@@ -6,7 +6,6 @@
   * [Wrk](#wrk)
 * [Languages](#languages)
   * [Ruby](#ruby)
-  * [JRuby](#jruby)
   * [Elixir](#elixir)
   * [Node.js](#nodejs)
   * [GO](#go)
@@ -52,10 +51,6 @@ I chose to test the following languages/runtime:
 Ruby is the language i have more experience with.  
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
-### JRuby
-[JRuby](http://jruby.org/) 9.1.2.0 is installed via official distribution.  
-JRuby is the Ruby implementation on the JVM: it supports multi-threading and cope with Ruby MRI pretty closely.
-
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.2.5 version is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
@@ -95,7 +90,6 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
 | [Rack](#rack)                          |          29208.81  |              3.13/0.34/13.28  |
-| [JRuby-Rack](#jruby-results)           |          32331.47  |              0.99/0.59/44.34  |
 | [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [asynchttpserver](#asynchttpserver)    |          49049.54  |              2.04/0.46/46.25  |
@@ -110,15 +104,11 @@ Rack is the Ruby standard HTTP server interface implemented by Puma (and other H
 ##### Bootstrap
 ```
 bundle exec puma -w 8 --preload -t 16:32 app.ru
-jruby -S bundle exec puma -t 16:32 app.ru
 ```
 
 ##### Considerations
 Rack proves to be a pretty fast HTTP server. It's modular, easy to extend and battle tested.  
-
-##### JRuby results
-JRuby constantly performs slightly better than MRI: Puma leverage on native threads for parallelism, instead of pre-forking a pool of processes.  
-Said that JVM need to warm up to do its best and consume much memory than MRI.
+The ability to add middlewares easily make it flexible and easy to use: a good starting point in place of heavyweight frameworks.  
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
