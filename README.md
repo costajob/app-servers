@@ -20,7 +20,7 @@
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
   * [Jetty](#jetty)
-  * [Nim Async HTTP](#nim-async-http)
+  * [asynchttpserver](#asynchttpserver)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
@@ -98,7 +98,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [JRuby-Rack](#jruby-results)           |          32331.47  |              0.99/0.59/44.34  |
 | [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
-| [Nim Async HTTP](#nim-async-http)      |          49049.54  |              2.04/0.46/46.25  |
+| [asynchttpserver](#asynchttpserver)    |          49049.54  |              2.04/0.46/46.25  |
 | [Jetty](#jetty)                        |          52398.88  |              1.90/0.43/22.45  |
 | [ServeMux](#servemux)                  |          58359.97  |              1.70/0.31/18.63  |
 | [Crystal HTTP](#crystal-http)          |          75821.32  |               1.32/0.32/7.38  |
@@ -169,8 +169,8 @@ java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
 
-### Nim Async HTTP
-I used the Nim Async HTTP Server module to implement a high performance asynchronous server.  
+### asynchttpserver
+I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
 
 ##### Bootstrap
 ```
