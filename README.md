@@ -98,8 +98,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Crystal HTTP](#crystal-http)          |          75821.32  |               1.32/0.32/7.38  |
 
 ### Rack
-I tested ruby by using a plain [Rack](http://rack.github.io/) application.  
-Rack is the Ruby standard HTTP server interface implemented by Puma (and other HTTP server).
+I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
 
 ##### Bootstrap
 ```
@@ -107,14 +106,18 @@ bundle exec puma -w 8 --preload -t 16:32 app.ru
 ```
 
 ##### Considerations
-Rack proves to be a pretty fast HTTP server. It's modular, easy to extend and battle tested.  
-The ability to add middlewares easily make it flexible and easy to use: a good starting point in place of heavyweight frameworks.  
+Rack proves to be a pretty fast HTTP server: it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
+The ability to add middlewares easily make it so flexible i suggest picking it in place of more heavyweight frameworks (that can be added in a second time).  
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
-I started elixir by using iex interactive console as described on Plug read-me.
+```
+iex -S mix
+iex> c "lib/plug_server.ex"
+iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
+```
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
