@@ -20,6 +20,7 @@
   * [Node Cluster](#node-cluster)
   * [ServeMux](#servemux)
   * [Jetty](#jetty)
+  * [Nim Async HTTP](#nim-async-http)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
