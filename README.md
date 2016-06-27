@@ -90,7 +90,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
 | :------------------------------------- | -----------------: | ----------------------------: |
 | [Rack](#rack)                          |          29208.81  |              3.13/0.34/13.28  |
-| [Plug](#plug)                          |          33583.07  |             3.35/7.62/145.87  |
+| [Plug](#plug)                          |          34053.95  |             3.11/6.95/140.31  |
 | [Node Cluster](#node-cluster)          |          47576.68  |             2.51/3.40/120.02  |
 | [asynchttpserver](#asynchttpserver)    |          49049.54  |              2.04/0.46/46.25  |
 | [Jetty](#jetty)                        |          52398.88  |              1.90/0.43/22.45  |
@@ -107,7 +107,7 @@ bundle exec puma -w 8 --preload -t 16:32 app.ru
 
 ##### Considerations
 Rack proves to be a pretty fast HTTP server: it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
-The ability to add middlewares easily make it so flexible i suggest picking it in place of more heavyweight frameworks (that can be added in a second time).  
+The ability to add middlewares easily make Rack so flexible i suggest picking it in place of heavyweight frameworks (that can be added in a second time).  
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
