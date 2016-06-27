@@ -180,7 +180,7 @@ nim c -d:release --threads:on nim_server.nim
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
 From a pure performance point of view Nim falls behind (but it is very close to) both GO and Java. The gap with Crsytal is more consistent anyway.  
-Said that the combination of Nim's unique compiling options and powerful standard library make it an interesting language to keep an eye on.
+Said that the combination of Nim's powerful compiler options, macro system and complete standard library make it an interesting language to keep an eye on.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library. Crystal uses green threads called "fibers", that runs on a single process (thus allowing concurrency, but not parallelism).  
