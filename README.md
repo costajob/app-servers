@@ -173,7 +173,7 @@ nim c -d:release --threads:on nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-From a pure performance point of view Nim falls behind (but it is very close to) both Java and GO, while gap with Crsytal is more consistent anyway.  
+From a pure performance point of view Nim falls behind (but it is very close to) both Java and GO, while gap with Crsytal is more consistent.  
 Said that the combination of Nim's powerful compiler options, macro system and complete standard library make it an interesting language to keep an eye on.
 
 ### Crystal HTTP
@@ -187,5 +187,5 @@ crystal compile ./server/crystal_server.cr --release
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages like GO and Java, but also new-kids-on-the-block ones like Nim.  
+Crystal language recorded the best lap of the pack, outperforming more mature languages like Java and GO, but also new-kids-on-the-block ones like Nim.  
 This is even more interesting considering the language executes on a single thread only and let ponder how fast the platform could be once multi-threading will be thrown in. 
