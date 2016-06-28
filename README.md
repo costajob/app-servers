@@ -77,9 +77,8 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.18.4 is installed via homebrew.  
-Crystal has a syntax very close to Ruby, but brings some fresh features such as type checking and compilation to highly optimized native code.  
-In order to mimic dynamic languages Crystal relies on a global type inference algorithm.   
-Crystal adopts the CSP model (like GO) and evented/IO to grant concurrency and avoid blocking calls, but does not support parallelism out of the box.
+Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
+For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
 ## Benchmarks
 I decided to test each language by using the standard/built-in HTTP library.
@@ -106,8 +105,8 @@ bundle exec puma -w 8 --preload -t 16:32 app.ru
 ```
 
 ##### Considerations
-Rack proves to be a pretty fast HTTP server: it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
-The ability to add middlewares easily make Rack so flexible i suggest picking it in place of heavyweight frameworks (that can be added in a second time).  
+Rack proves to be a pretty fast HTTP server (at least among scripting languages): it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
+The ability to add middlewares easily makes Rack so flexible to make it my first choice in place of heavyweight frameworks (that can be added in a second time).  
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -121,11 +120,11 @@ iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
-To be fair Erlang, and by reflection Elixir, benefits most by using the bulky OTP library to grant reliability and resilience over a distributed system.  
-Being an immutable language, Elixir also consumes less memory when serving more articulated views.
+To be fair Erlang, and by reflection Elixir, benefits most by using the [OTP library](#http://elixir-lang.org/getting-started/mix-otp/supervisor-and-application.html) to grant reliability and resilience over a distributed system.  
+Being an immutable language, Elixir optimizes memory usage when serving articulated views.
 
 ### Node Cluster
-I used Node cluster library to spawn one process per CPU.
+I used Node cluster library to spawn one process per CPU, thus granting parallelism (as with Ruby).
 
 ##### Bootstrap
 ```
@@ -133,8 +132,7 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance.  
-By using cluster library to spawn multiple processes per CPU, Node throughput is on par with compiled languages (but consistency is worst).
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is on par with slowest compiled languages (but consistency is worst).
 
 ### ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
@@ -147,7 +145,7 @@ go build go_server.go
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
-The results delivered by GO is consistent, with the best latency of the pack.  
+The usage of small green threads allows GO to tolerate high loads of requests with very good latency.  
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
@@ -159,7 +157,8 @@ java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar 
 ```
 
 ##### Considerations
-I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM and many corporates have invested too much in Java to leave it behind.  
+I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
+Jetty uses one thread per connection, delivering consistent results (accepting JVM memory consumption and warm-up times) 
 
 ### asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
@@ -175,7 +174,8 @@ Nim proved to keep its promises, being a fast and concise language.
 From a pure performance point of view Nim is faster than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ### Crystal HTTP
-I used Crystal HTTP server standard library. Crystal uses green threads called "fibers", that runs on a single process (thus allowing concurrency, but not parallelism).  
+I used Crystal HTTP server standard library.  
+Crystal uses green threads, called "fibers", spawned inside an event loop via the [libevent](http://libevent.org/) library.
 
 ##### Bootstrap
 ```
