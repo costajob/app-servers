@@ -2,8 +2,6 @@
 
 * [Scope](#scope)
   * [Hello World](#hello-world)
-  * [Platform](#platform)
-  * [Wrk](#wrk)
 * [Languages](#languages)
   * [Ruby](#ruby)
   * [Elixir](#elixir)
@@ -13,6 +11,8 @@
   * [Nim](#java)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
+  * [Platform](#platform)
+  * [Wrk](#wrk)
   * [Results](#results)
   * [Rack](#rack)
   * [Plug](#plug)
@@ -27,21 +27,6 @@ The idea behind this repository is to test how HTTP libraries for different lang
 
 ### Hello World
 The "application" i tested is barely minimal: it is the HTTP version of the "Hello World" example.
-
-### Platform
-I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
-* OSX El Captain
-* 2,2 GHz Intel Core i7 (4 cores)
-* 8 GB 1333 MHz DDR3
-
-### Wrk
-I used [wrk](https://github.com/wg/wrk) as the loading tool.
-I measured each application server three times, picking the best lap.  
-Here is the common script i used:
-
-```
-wrk -t 4 -c 50 -d30s --timeout 2000 http://127.0.0.1:<port>
-```
 
 ## Languages
 I chose to test the following languages/runtime:
@@ -83,18 +68,37 @@ For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid b
 ## Benchmarks
 I decided to test each language by using the standard/built-in HTTP library.
 
+### Platform
+I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
+* OSX El Captain
+* 2,2 GHz Intel Core i7 (4 cores)
+* 8 GB 1333 MHz DDR3
+
+### RAM and CPU
+I measured RAM and CPU consumption by using the Apple XCode Instruments and recording max peaks.  
+Since both Ruby and Node starts multiple processes (9) i reported average consumption of each one.
+
+### Wrk
+I used [wrk](https://github.com/wg/wrk) as the loading tool.
+I measured each application server three times, picking the best lap.  
+Here is the common script i used:
+
+```
+wrk -t 4 -c 50 -d30s --timeout 2000 http://127.0.0.1:9292
+```
+
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
 
-| App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) |
-| :------------------------------------- | -----------------: | ----------------------------: |
-| [Rack](#rack)                          |          29348.90  |              1.62/0.33/29.91  |
-| [Plug](#plug)                          |          29878.35  |              2.69/4.54/83.49  |
-| [Node Cluster](#node-cluster)          |          47053.76  |              1.44/2.31/88.66  |
-| [asynchttpserver](#asynchttpserver)    |          47351.25  |              1.01/0.15/10.93  |
-| [Jetty](#jetty)                        |          52009.95  |               0.91/0.14/9.87  |
-| [ServeMux](#servemux)                  |          57135.76  |               0.82/0.17/4.98  |
-| [Crystal HTTP](#crystal-http)          |          69467.38  |               0.68/0.20/4.09  |
+| App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
+| :------------------------------------- | -----------------: | ----------------------------: | ----------------: | -------------: |
+| [Rack](#rack)                          |          28322.39  |              1.68/0.25/14.88  |            ~30x9  |         ~65x9  |
+| [Plug](#plug)                          |          33436.02  |            6.55/20.83/191.69  |            41.12  |         451.7  |
+| [asynchttpserver](#asynchttpserver)    |          38240.33  |              1.25/0.20/13.85  |             5.03  |          99.6  |
+| [Node Cluster](#node-cluster)          |          39294.64  |              2.04/3.10/55.13  |            ~19x9  |         ~60x9  |
+| [Crystal HTTP](#crystal-http)          |          46601.62  |               1.03/0.18/5.66  |             5.75  |         102.9  |
+| [Jetty](#jetty)                        |          50427.58  |               0.93/0.14/8.29  |           123.63  |         372.5  |
+| [ServeMux](#servemux)                  |          54823.55  |               0.86/0.20/7.68  |             9.33  |         303.4  |
 
 ### Rack
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
@@ -113,8 +117,8 @@ I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library tha
 
 ##### Bootstrap
 ```
+mix compile
 iex -S mix
-iex> c "lib/plug_server.ex"
 iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
 ```
 

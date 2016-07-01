@@ -10,3 +10,8 @@ erl_crash.dump
 *.ez
 *.class
 *.beam
+
+# Executable
+crystal_server
+go_server
+nim_server
