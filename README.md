@@ -84,7 +84,7 @@ I measured each application server three times, picking the best lap.
 Here is the common script i used:
 
 ```
-wrk -t 4 -c 50 -d30s --timeout 2000 http://127.0.0.1:9292
+wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
 ```
 
 ### Results
@@ -92,13 +92,13 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
 | :------------------------------------- | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Rack](#rack)                          |          28322.39  |              1.68/0.25/14.88  |            ~30x9  |         ~65x9  |
-| [Plug](#plug)                          |          33436.02  |            6.55/20.83/191.69  |            41.12  |         451.7  |
-| [asynchttpserver](#asynchttpserver)    |          38240.33  |              1.25/0.20/13.85  |             5.03  |          99.6  |
-| [Node Cluster](#node-cluster)          |          39294.64  |              2.04/3.10/55.13  |            ~19x9  |         ~60x9  |
-| [Crystal HTTP](#crystal-http)          |          46601.62  |               1.03/0.18/5.66  |             5.75  |         102.9  |
-| [Jetty](#jetty)                        |          50427.58  |               0.93/0.14/8.29  |           123.63  |         372.5  |
-| [ServeMux](#servemux)                  |          54823.55  |               0.86/0.20/7.68  |             9.33  |         303.4  |
+| [Plug](#plug)                          |          27368.46  |            6.51/11.82/309.15  |            46.87  |         448.5  |
+| [Rack](#rack)                          |          28359.63  |              3.49/0.44/21.82  |            ~35x9  |         ~55x9  |
+| [Node Cluster](#node-cluster)          |          39668.71  |             3.33/3.97/138.49  |            ~30x9  |         ~60x9  |
+| [asynchttpserver](#asynchttpserver)    |          40109.09  |              2.49/0.58/46.80  |             6.93  |          99.8  |
+| [Jetty](#jetty)                        |          49555.95  |               1.99/0.24/9.13  |           138.41  |         363.8  |
+| [ServeMux](#servemux)                  |          55885.92  |               1.77/0.31/8.81  |             9.65  |         330.5  |
+| [Crystal HTTP](#crystal-http)          |          64996.45  |               1.53/0.48/8.37  |             8.95  |         102.4  |
 
 ### Rack
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
