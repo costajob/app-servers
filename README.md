@@ -143,7 +143,7 @@ iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
-To be fair the BEAM VM (on which Elixir and Erlang runs) is not known to be fast (compared to JVM for example), but to grant reliability and resilience over a distributed system.  
+To be fair the BEAM VM (on which Elixir and Erlang runs) is not famous to be fast, but to grant reliability and resilience over a distributed system.  
 
 ##### Concurrency and parallelism
 Elixir relies on the BEAM VM to distribute the workloads on all of the available cores, thus supporting parallelism quite nicely.  
@@ -158,11 +158,11 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is on par with slowest compiled languages (but consistency is worst).
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is on par with slowest compiled languages (with a worst consistency).
 
 ##### Concurrency and parallelism
-Node is a single threaded language that relies on the reactor pattern to allow non-blocking calls.  
-To grant parallelism node uses the pre-forking model (built in the standard library): it works pretty nicely, balancing the workload consistently on all of the cores.
+Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
+Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores.
 
 ### ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
@@ -178,8 +178,8 @@ GO is a pretty fast language and allows using all of the cores with no particula
 The usage of small green threads allows GO to tolerate high loads of requests with very good latency.  
 
 ##### Concurrency and parallelism
-GO runs natively on all of the cores: indeed it seems to be a little conservative compared to other parallel languages (Java, Elixir).  
-Memory consumption is really low (as expected). 
+GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
+Memory consumption is also really good.
 
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
@@ -196,7 +196,7 @@ Jetty uses one thread per connection, delivering consistent results (accepting J
 
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
-Memory consumption is high, but JVM can be tuned accordingly to better adapt to the running environment.
+Memory consumption is not one of the JVM key benefits.
 
 ### asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
@@ -212,8 +212,8 @@ Nim proved to keep its promises, being a fast and concise language.
 From a pure performance point of view Nim is faster than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
-Despite i was expecting NIM to support parallelism, it clearly does not: a single CPU is stressed by the NIM server.
-Memory consumption is really on the low side, also the executable program is a mere 150KB.
+Despite i was expecting Nim to support parallelism, it clearly does not.  
+Memory consumption is really on the low side. I dare to add that Nim executable is also the smallest one: a mere 150KB.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -226,9 +226,9 @@ crystal build --release ./server/crystal_server.cr
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages like Java and GO, but also new-kids-on-the-block ones like Nim.  
+Crystal language recorded the best lap of the pack, outperforming more mature languages.  
 This is even more interesting considering the language executes on a single thread only.
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.
-Memory consumption falls within NIM and GO, thus proving AOT languages have some real advantage over VM-based ones.
+Memory consumption falls within Nim and GO, thus proving AOT-based languages have a real advantage over VM-based ones.
