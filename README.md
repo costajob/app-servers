@@ -150,7 +150,7 @@ Elixir relies on the BEAM VM to distribute the workloads on all of the available
 VM memory consumption is also under control.
 
 ### Node Cluster
-I used Node cluster library to spawn one process per CPU, thus granting parallelism (as with Ruby).
+I used Node cluster library to spawn one process per CPU, thus granting parallelism.
 
 ##### Bootstrap
 ```
@@ -158,11 +158,11 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is on par with slowest compiled languages (with a worst consistency).
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is near compiled languages one (but consistency is worst).
 
 ##### Concurrency and parallelism
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
-Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores.
+Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores (unlike MRI).
 
 ### ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
