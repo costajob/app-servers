@@ -2,7 +2,7 @@ defmodule PlugServer.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :plug_server,
+    [app: :server,
      version: "0.0.1",
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
@@ -14,7 +14,9 @@ defmodule PlugServer.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:cowboy, :plug]]
+    [applications: [:cowboy, :plug],
+     mod: {App, []},
+     env: [cowboy_port: 9292]]
   end
 
   # Dependencies can be Hex packages:

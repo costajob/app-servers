@@ -136,9 +136,8 @@ I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library tha
 
 ##### Bootstrap
 ```
-mix compile
-iex -S mix
-iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
+MIX_ENV=prod mix compile
+MIX_ENV=prod mix run --no-halt
 ```
 
 ##### Considerations
