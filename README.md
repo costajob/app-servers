@@ -36,6 +36,10 @@ I chose to test the following languages/runtime:
 Ruby is the language i have more experience with.  
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
+### JRuby
+[JRuby](http://jruby.org/) 9.1.2.0 is installed via official distribution.  
+JRuby is the Ruby implementation on the JVM: it supports parallelism and cope with Ruby MRI pretty closely.
+
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.3 is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
@@ -61,7 +65,7 @@ Nim is an efficient, elegant, expressive strong typed, compiled language.
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style. It also provides several compiling options to better adapt to the running environment.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.18.4 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.18.7 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
@@ -75,8 +79,8 @@ I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs
 * 8 GB 1333 MHz DDR3
 
 ### RAM and CPU
-I measured RAM and CPU consumption by using the Apple XCode Instruments and recording max peaks.  
-Since both Ruby and Node starts multiple processes (9) i reported average consumption of each one.
+I measured RAM and CPU consumption by using the Apple XCode's Instruments and recording max consumption peak.  
+Since both Ruby and Node starts multiple processes (9) i reported average total RAM consumption and express CPUs usage as a range of percentages.
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
@@ -92,25 +96,40 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
 | :------------------------------------- | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Plug](#plug)                          |          27368.46  |            6.51/11.82/309.15  |            46.87  |         448.5  |
-| [Rack](#rack)                          |          28359.63  |              3.49/0.44/21.82  |            ~35x9  |         ~55x9  |
-| [Node Cluster](#node-cluster)          |          39668.71  |             3.33/3.97/138.49  |            ~30x9  |         ~60x9  |
-| [asynchttpserver](#asynchttpserver)    |          40109.09  |              2.49/0.58/46.80  |             6.93  |          99.8  |
+| [Rack-MRI](#rack)                      |          28359.63  |              3.49/0.44/21.82  |             ~315  |        10-100  |
+| [Rack-JRuby](#rack)                    |          30731.16  |             1.03/0.98/113.04  |            782.4  |         374.1  |
+| [Plug](#plug)                          |          33996.56  |             3.26/7.88/150.42  |            46.87  |         448.5  |
+| [Node Cluster](#node-cluster)          |          42599.16  |              2.96/3.23/57.78  |             ~270  |            60  |
+| [asynchttpserver](#asynchttpserver)    |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
 | [Jetty](#jetty)                        |          49555.95  |               1.99/0.24/9.13  |           138.41  |         363.8  |
 | [ServeMux](#servemux)                  |          55885.92  |               1.77/0.31/8.81  |             9.65  |         330.5  |
-| [Crystal HTTP](#crystal-http)          |          64996.45  |               1.53/0.48/8.37  |             8.95  |         102.4  |
+| [Crystal HTTP](#crystal-http)          |          63369.31  |               1.58/0.55/7.26  |             8.95  |         107.4  |
 
 ### Rack
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
 
 ##### Bootstrap
+
+###### MRI
 ```
 bundle exec puma -w 8 --preload -t 16:32 app.ru
+```
+
+###### JRuby
+```
+jruby -S bundle exec puma -t 16:32 app.ru
 ```
 
 ##### Considerations
 Rack proves to be a pretty fast HTTP server (at least among scripting languages): it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
 The ability to add middlewares easily makes Rack so flexible to make it my first choice in place of heavyweight frameworks (that can be added in a second time).  
+JRuby constantly performs slightly better than MRI.
+
+##### Concurrency and parallelism
+Puma delivers concurrency by using native threads. Since the global interpreter lock halts threads to run in parallel, Puma relies on the pre-forking model to distribute the workload on all of the cores.
+Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent on CPU usage.
+With JRuby Puma is able to dedicate one thread per request and distribute the workload on the available cores.  
+The downside that memory footprint of JRuby is very high, more than twice the MRI consumption.
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -124,8 +143,11 @@ iex> {:ok, _} = Plug.Adapters.Cowboy.http PlugServer, [], port: 9292
 
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
-To be fair Erlang, and by reflection Elixir, benefits most by using the [OTP library](#http://elixir-lang.org/getting-started/mix-otp/supervisor-and-application.html) to grant reliability and resilience over a distributed system.  
-Being an immutable language, Elixir optimizes memory usage when serving articulated views.
+To be fair the BEAM VM (on which Elixir and Erlang runs) is not known to be fast (compared to JVM for example), but to grant reliability and resilience over a distributed system.  
+
+##### Concurrency and parallelism
+Elixir relies on the BEAM VM to distribute the workloads on all of the available cores, thus supporting parallelism quite nicely.  
+VM memory consumption is also under control.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU, thus granting parallelism (as with Ruby).
@@ -137,6 +159,10 @@ node node_server.js
 
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is on par with slowest compiled languages (but consistency is worst).
+
+##### Concurrency and parallelism
+Node is a single threaded language that relies on the reactor pattern to allow non-blocking calls.  
+To grant parallelism node uses the pre-forking model (built in the standard library): it works pretty nicely, balancing the workload consistently on all of the cores.
 
 ### ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
@@ -151,6 +177,10 @@ go build go_server.go
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
 The usage of small green threads allows GO to tolerate high loads of requests with very good latency.  
 
+##### Concurrency and parallelism
+GO runs natively on all of the cores: indeed it seems to be a little conservative compared to other parallel languages (Java, Elixir).  
+Memory consumption is really low (as expected). 
+
 ### Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
@@ -164,12 +194,16 @@ java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar 
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
 Jetty uses one thread per connection, delivering consistent results (accepting JVM memory consumption and warm-up times) 
 
+##### Concurrency and parallelism
+JVM allows Java to use all of the available cores.  
+Memory consumption is high, but JVM can be tuned accordingly to better adapt to the running environment.
+
 ### asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
 
 ##### Bootstrap
 ```
-nim c -d:release --threads:on nim_server.nim
+nim c -d:release nim_server.nim
 ./nim_server
 ```
 
@@ -177,16 +211,24 @@ nim c -d:release --threads:on nim_server.nim
 Nim proved to keep its promises, being a fast and concise language.  
 From a pure performance point of view Nim is faster than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
+##### Concurrency and parallelism
+Despite i was expecting NIM to support parallelism, it clearly does not: a single CPU is stressed by the NIM server.
+Memory consumption is really on the low side, also the executable program is a mere 150KB.
+
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
 Crystal uses green threads, called "fibers", spawned inside an event loop via the [libevent](http://libevent.org/) library.
 
 ##### Bootstrap
 ```
-crystal compile ./server/crystal_server.cr --release
+crystal build --release ./server/crystal_server.cr
 ./crystal_server
 ```
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages like Java and GO, but also new-kids-on-the-block ones like Nim.  
 This is even more interesting considering the language executes on a single thread only.
+
+##### Concurrency and parallelism
+As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.
+Memory consumption falls within NIM and GO, thus proving AOT languages have some real advantage over VM-based ones.
