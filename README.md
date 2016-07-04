@@ -36,7 +36,7 @@ I chose to test the following languages/runtime:
 Ruby is the language i have more experience with.  
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
-### JRuby
+#### JRuby
 [JRuby](http://jruby.org/) 9.1.2.0 is installed via official distribution.  
 JRuby is the Ruby implementation on the JVM: it supports parallelism and cope with Ruby MRI pretty closely.
 
