@@ -126,10 +126,10 @@ The ability to add middlewares easily makes Rack so flexible to make it my first
 JRuby constantly performs slightly better than MRI.
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads. Since the global interpreter lock halts threads to run in parallel, Puma relies on the pre-forking model to distribute the workload on all of the cores.
-Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent on CPU usage.
-With JRuby Puma is able to dedicate one thread per request and distribute the workload on the available cores.  
-The downside that memory footprint of JRuby is very high, more than twice the MRI consumption.
+Puma delivers concurrency by using native threads. Since the global interpreter lock halts threads to run in parallel, Puma relies on the pre-forking model.
+Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent on CPU usage.  
+Once on the JVM Puma is finally able to distribute the workload on the available cores without forking multiple processes.  
+The downside of JRuby is its memory footprint: more than twice than MRI consumption.
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
