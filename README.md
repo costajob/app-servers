@@ -122,11 +122,10 @@ jruby -S bundle exec puma -t 16:32 app.ru
 
 ##### Considerations
 Rack proves to be a pretty fast HTTP server (at least among scripting languages): it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
-The ability to add middlewares easily makes Rack so flexible to make it my first choice in place of heavyweight frameworks (that can be added in a second time).  
-JRuby constantly performs slightly better than MRI.
+Rack on JRuby constantly performs slightly better than on MRI.
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads. Becouse of MRI's GIL, Puma relies on the pre-forking model for parallelism.  
+Puma delivers concurrency by using native threads. Because of MRI's GIL, Puma relies on the pre-forking model for parallelism.  
 Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent (each process CPU usage range from 10% to 100%).  
 Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
 The downside of JRuby is the memory footprint: more than twice than MRI.
