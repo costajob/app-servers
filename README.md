@@ -126,10 +126,10 @@ The ability to add middlewares easily makes Rack so flexible to make it my first
 JRuby constantly performs slightly better than MRI.
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads. Since the global interpreter lock halts threads to run in parallel, Puma relies on the pre-forking model.
-Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent on CPU usage.  
-Once on the JVM Puma is finally able to distribute the workload on the available cores without forking multiple processes.  
-The downside of JRuby is its memory footprint: more than twice than MRI consumption.
+Puma delivers concurrency by using native threads. Becouse of MRI's GIL, Puma relies on the pre-forking model for parallelism.  
+Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent (each process CPU usage range from 10% to 100%).  
+Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
+The downside of JRuby is the memory footprint: more than twice than MRI.
 
 ### Plug
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -145,7 +145,7 @@ Elixir performance are pretty solid but not stellar.
 To be fair the BEAM VM (on which Elixir and Erlang runs) is not famous to be fast, but to grant reliability and resilience over a distributed system.  
 
 ##### Concurrency and parallelism
-Elixir relies on the BEAM VM to distribute the workloads on all of the available cores, thus supporting parallelism quite nicely.  
+Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
 VM memory consumption is also under control.
 
 ### Node Cluster
@@ -195,7 +195,7 @@ Jetty uses one thread per connection, delivering consistent results (accepting J
 
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
-Memory consumption is not one of the JVM key benefits.
+Is a known fact that memory consumption is not one of the JVM key benefits.
 
 ### asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
@@ -229,5 +229,5 @@ Crystal language recorded the best lap of the pack, outperforming more mature la
 This is even more interesting considering the language executes on a single thread only.
 
 ##### Concurrency and parallelism
-As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.
+As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
 Memory consumption falls within Nim and GO, thus proving AOT-based languages have a real advantage over VM-based ones.
