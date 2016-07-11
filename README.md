@@ -84,7 +84,7 @@ Since both Ruby and Node starts multiple processes (9) i reported average total 
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
-I measured each application server three times, picking the best lap.  
+I measured each application server three times, picking the best lap (apart from JVM where warm it up).  
 Here is the common script i used:
 
 ```
@@ -97,7 +97,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
 | :------------------------------------- | -----------------: | ----------------------------: | ----------------: | -------------: |
 | [Rack-MRI](#rack)                      |          28359.63  |              3.49/0.44/21.82  |             ~315  |        10-100  |
-| [Rack-JRuby](#rack)                    |          30731.16  |             1.03/0.98/113.04  |            782.4  |         374.1  |
+| [Rack-JRuby](#rack)                    |          32050.31  |              1.03/0.49/55.27  |            782.4  |         374.1  |
 | [Plug](#plug)                          |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
 | [Node Cluster](#node-cluster)          |          42599.16  |              2.96/3.23/57.78  |             ~270  |            60  |
 | [asynchttpserver](#asynchttpserver)    |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
@@ -117,7 +117,7 @@ bundle exec puma -w 8 --preload -t 16:32 app.ru
 
 ###### JRuby
 ```
-jruby -S bundle exec puma -t 16:32 app.ru
+jruby --server -S bundle exec puma -t 16:32 app.ru
 ```
 
 ##### Considerations
