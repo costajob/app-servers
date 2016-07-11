@@ -1,9 +1,6 @@
 defmodule Server do
-  use Plug.Router
+  import Plug.Conn
 
-  plug :match
-  plug :dispatch
-
-  get "/", do: send_resp(conn, 200, "Hello World")
-  match _, do: send_resp(conn, 404, "Opps!")
+  def init(opts), do: opts
+  def call(conn, _opts), do: send_resp(conn, 200, "Hello World")
 end
