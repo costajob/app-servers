@@ -106,7 +106,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Crystal HTTP](#crystal-http)               |          66133.14  |               1.51/0.53/6.66  |          0/0/0/0  |             8.95  |         107.4  |
 
 ### Rack with Puma
-I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
+I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
 
 ##### Bootstrap
 
