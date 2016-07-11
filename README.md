@@ -14,12 +14,12 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
-  * [Rack & Puma](#rack-&-puma)
-  * [Plug+Cowboy](#plug+cowboy)
+  * [Rack with Puma](#rack-with-puma)
+  * [Plug with Cowboy](#plug with cowboy)
   * [Node Cluster](#node-cluster)
-  * [GO+ServeMux](#go+servemux)
-  * [Servlet3+Jetty](#servlet3+jetty)
-  * [Nim+asynchttpserver](#nim+asynchttpserver)
+  * [GO ServeMux](#go+servemux)
+  * [Servlet3 with Jetty](#servlet3-with-jetty)
+  * [Nim asynchttpserver](#nimr-+asynchttpserver)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
@@ -96,16 +96,16 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) |  Errors (c/r/w/t) | Memory peaks (MB) |           %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: |  ---------------: | ----------------: | -------------: |
-| [Rack & Puma (MRI)](#rack-&-puma)           |          28359.63  |              3.49/0.44/21.82  |          0/0/0/0  |             ~315  |        10-100  |
-| [Rack & Puma (JRuby)](#rack-&-puma)         |          32050.31  |              1.03/0.49/55.27  |          0/0/0/0  |            782.4  |         374.1  |
-| [Plug+cowboy](#plug+cowboy)                 |          35188.56  |             3.15/7.81/154.01  |          0/0/0/0  |            42.85  |        507.25  |
-| [Nim+asynchttpserver](#nim+asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |          0/0/0/0  |             6.93  |          99.8  |
+| [Rack with Puma (MRI)](#rack-with-puma)     |          28359.63  |              3.49/0.44/21.82  |          0/0/0/0  |             ~315  |        10-100  |
+| [Rack with Puma (JRuby)](#rack-with-puma)   |          32050.31  |              1.03/0.49/55.27  |          0/0/0/0  |            782.4  |         374.1  |
+| [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |          0/0/0/0  |            42.85  |        507.25  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |          0/0/0/0  |             6.93  |          99.8  |
 | [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |          0/0/0/0  |             ~270  |            60  |
-| [Servlet3+Jetty](#servlet3+jetty)           |          51616.87  |              1.92/0.22/11.61  |         0/32/0/0  |           138.41  |         363.8  |
-| [GO+ServeMux](#go+servemux)                 |          58339.71  |               1.70/0.28/6.42  |          0/0/0/0  |             9.65  |         330.5  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |          51616.87  |              1.92/0.22/11.61  |         0/32/0/0  |           138.41  |         363.8  |
+| [GO ServeMux](#go-servemux)                 |          58339.71  |               1.70/0.28/6.42  |          0/0/0/0  |             9.65  |         330.5  |
 | [Crystal HTTP](#crystal-http)               |          66133.14  |               1.51/0.53/6.66  |          0/0/0/0  |             8.95  |         107.4  |
 
-### Rack & Puma
+### Rack with Puma
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
 
 ##### Bootstrap
@@ -130,7 +130,7 @@ Each Puma process/worker consume about 35MB of memory, while their balancing is 
 Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
 The downside of JRuby is the memory footprint: more than twice than MRI.
 
-### Plug+Cowboy
+### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
@@ -162,7 +162,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it deli
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
 Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores (unlike MRI).
 
-### GO+ServeMux
+### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
 
 ##### Bootstrap
@@ -179,7 +179,7 @@ The usage of small green threads allows GO to tolerate high loads of requests wi
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 Memory consumption is also really good.
 
-### Servlet3+Jetty
+### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
 ##### Bootstrap
@@ -196,7 +196,7 @@ Jetty uses one thread per connection, delivering consistent results (accepting J
 JVM allows Java to use all of the available cores.  
 Is a known fact that memory consumption is not one of the JVM key benefits.
 
-### Nim+asynchttpserver
+### Nim asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
 
 ##### Bootstrap
