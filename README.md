@@ -164,7 +164,7 @@ Node uses the pre-forking model to get parallelism (like MRI): it works pretty n
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-I also have recorded [benchmarks](https://github.com/costajob/app-servers/tree/feature/fast-http) by using the fastest fast/http server.
+I also have recorded [benchmarks](https://github.com/costajob/app-servers/tree/feature/fast-http) by using the fastest fast/http library.
 
 ##### Bootstrap
 ```
@@ -208,7 +208,7 @@ nim c -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-Nim througput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
+Nim throughput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
 Despite i was expecting Nim to support parallelism, it clearly does not: only one CPU is hitted by the running thread.  
