@@ -14,12 +14,12 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
-  * [Rack](#rack)
-  * [Plug](#plug)
+  * [Rack+Puma](#rack+puma)
+  * [Plug+Cowboy](#plug+cowboy)
   * [Node Cluster](#node-cluster)
-  * [ServeMux](#servemux)
-  * [Jetty](#jetty)
-  * [asynchttpserver](#asynchttpserver)
+  * [GO+ServeMux](#go+servemux)
+  * [Servlet3+Jetty](#servlet3+jetty)
+  * [Nim+asynchttpserver](#nim+asynchttpserver)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
@@ -46,7 +46,7 @@ I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) 
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) stable version (4.x) is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 6.3.0 is installed by official OSX package.  
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
@@ -94,18 +94,18 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
 
-| App Server                             | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
-| :------------------------------------- | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Rack-MRI](#rack)                      |          28359.63  |              3.49/0.44/21.82  |             ~315  |        10-100  |
-| [Rack-JRuby](#rack)                    |          32050.31  |              1.03/0.49/55.27  |            782.4  |         374.1  |
-| [Plug](#plug)                          |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
-| [Node Cluster](#node-cluster)          |          42599.16  |              2.96/3.23/57.78  |             ~270  |            60  |
-| [asynchttpserver](#asynchttpserver)    |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
-| [Jetty](#jetty)                        |          49555.95  |               1.99/0.24/9.13  |           138.41  |         363.8  |
-| [ServeMux](#servemux)                  |          55885.92  |               1.77/0.31/8.81  |             9.65  |         330.5  |
-| [Crystal HTTP](#crystal-http)          |          63369.31  |               1.58/0.55/7.26  |             8.95  |         107.4  |
+| App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) |  Errors (c/r/w/t) | Memory peaks (MB) |           %CPU |
+| :------------------------------------------ | -----------------: | ----------------------------: |  ---------------: | ----------------: | -------------: |
+| [Rack+Puma-MRI](#rack+puma)                 |          28359.63  |              3.49/0.44/21.82  |          0/0/0/0  |             ~315  |        10-100  |
+| [Rack+Puma-JRuby](#rack+puma)               |          32050.31  |              1.03/0.49/55.27  |          0/0/0/0  |            782.4  |         374.1  |
+| [Plug+cowboy](#plug+cowboy)                 |          35188.56  |             3.15/7.81/154.01  |          0/0/0/0  |            42.85  |        507.25  |
+| [Nim+asynchttpserver](#nim+asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |          0/0/0/0  |             6.93  |          99.8  |
+| [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |          0/0/0/0  |             ~270  |            60  |
+| [Servlet3+Jetty](#servlet3+jetty)           |          51616.87  |              1.92/0.22/11.61  |         0/32/0/0  |           138.41  |         363.8  |
+| [GO+ServeMux](#go+servemux)                 |          58339.71  |               1.70/0.28/6.42  |          0/0/0/0  |             9.65  |         330.5  |
+| [Crystal HTTP](#crystal-http)               |          66133.14  |               1.51/0.53/6.66  |          0/0/0/0  |             8.95  |         107.4  |
 
-### Rack
+### Rack+Puma
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
 
 ##### Bootstrap
@@ -130,7 +130,7 @@ Each Puma process/worker consume about 35MB of memory, while their balancing is 
 Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
 The downside of JRuby is the memory footprint: more than twice than MRI.
 
-### Plug
+### Plug+Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 ##### Bootstrap
@@ -162,7 +162,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it deli
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
 Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores (unlike MRI).
 
-### ServeMux
+### GO+ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
 
 ##### Bootstrap
@@ -179,13 +179,13 @@ The usage of small green threads allows GO to tolerate high loads of requests wi
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 Memory consumption is also really good.
 
-### Jetty
+### Servlet3+Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
 ##### Bootstrap
 ```
 javac -cp javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld.java
-java -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar -server HelloWorld
+java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld
 ```
 
 ##### Considerations
@@ -196,7 +196,7 @@ Jetty uses one thread per connection, delivering consistent results (accepting J
 JVM allows Java to use all of the available cores.  
 Is a known fact that memory consumption is not one of the JVM key benefits.
 
-### asynchttpserver
+### Nim+asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
 
 ##### Bootstrap
@@ -207,10 +207,10 @@ nim c -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-From a pure performance point of view Nim is faster than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
+Nim througput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
-Despite i was expecting Nim to support parallelism, it clearly does not.  
+Despite i was expecting Nim to support parallelism, it clearly does not: only one CPU is hitted by the running thread.  
 Memory consumption is really on the low side. I dare to add that Nim executable is also the smallest one: a mere 150KB.
 
 ### Crystal HTTP
