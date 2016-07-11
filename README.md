@@ -17,7 +17,7 @@
   * [Rack with Puma](#rack-with-puma)
   * [Plug with Cowboy](#plug with cowboy)
   * [Node Cluster](#node-cluster)
-  * [GO ServeMux](#go+servemux)
+  * [GO ServeMux](#go-servemux)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Nim asynchttpserver](#nimr-+asynchttpserver)
   * [Crystal HTTP](#crystal-http)
@@ -163,7 +163,8 @@ Node is a single threaded language that relies on the reactor pattern to grant n
 Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores (unlike MRI).
 
 ### GO ServeMux
-I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
+I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+I also have recorded [benchmarks](https://github.com/costajob/app-servers/tree/feature/fast-http) by using the fastest fast/http server.
 
 ##### Bootstrap
 ```
