@@ -14,7 +14,7 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
-  * [Rack+Puma](#rack+puma)
+  * [Rack & Puma](#rack-&-puma)
   * [Plug+Cowboy](#plug+cowboy)
   * [Node Cluster](#node-cluster)
   * [GO+ServeMux](#go+servemux)
@@ -96,8 +96,8 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) |  Errors (c/r/w/t) | Memory peaks (MB) |           %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: |  ---------------: | ----------------: | -------------: |
-| [Rack+Puma-MRI](#rack+puma)                 |          28359.63  |              3.49/0.44/21.82  |          0/0/0/0  |             ~315  |        10-100  |
-| [Rack+Puma-JRuby](#rack+puma)               |          32050.31  |              1.03/0.49/55.27  |          0/0/0/0  |            782.4  |         374.1  |
+| [Rack & Puma (MRI)](#rack-&-puma)           |          28359.63  |              3.49/0.44/21.82  |          0/0/0/0  |             ~315  |        10-100  |
+| [Rack & Puma (JRuby)](#rack-&-puma)         |          32050.31  |              1.03/0.49/55.27  |          0/0/0/0  |            782.4  |         374.1  |
 | [Plug+cowboy](#plug+cowboy)                 |          35188.56  |             3.15/7.81/154.01  |          0/0/0/0  |            42.85  |        507.25  |
 | [Nim+asynchttpserver](#nim+asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |          0/0/0/0  |             6.93  |          99.8  |
 | [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |          0/0/0/0  |             ~270  |            60  |
@@ -105,7 +105,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [GO+ServeMux](#go+servemux)                 |          58339.71  |               1.70/0.28/6.42  |          0/0/0/0  |             9.65  |         330.5  |
 | [Crystal HTTP](#crystal-http)               |          66133.14  |               1.51/0.53/6.66  |          0/0/0/0  |             8.95  |         107.4  |
 
-### Rack+Puma
+### Rack & Puma
 I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](#http://puma.io/) application server.  
 
 ##### Bootstrap
