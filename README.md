@@ -164,7 +164,8 @@ Node uses the pre-forking model to get parallelism (like MRI): it works pretty n
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-I also have recorded [benchmarks](https://github.com/costajob/app-servers/tree/feature/fast-http) by using the fastest fast/http library.
+Someone pointed out that [fast/http](https://github.com/valyala/fasthttp) is faster than ServerMux, but it adds an external dependency, so i prefer to stick with th standard net/http. 
+I tested with fast/http too for about 8% more throughput.
 
 ##### Bootstrap
 ```
