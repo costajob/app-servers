@@ -7,6 +7,7 @@
   * [Elixir](#elixir)
   * [Node.js](#nodejs)
   * [GO](#go)
+  * [Rust](#rust)
   * [Java](#java)
   * [Nim](#java)
   * [Crystal](#crystal)
@@ -18,6 +19,7 @@
   * [Plug with Cowboy](#plug with cowboy)
   * [Node Cluster](#node-cluster)
   * [GO ServeMux](#go-servemux)
+  * [Rust Iron](#rust-iron)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Nim asynchttpserver](#nimr-+asynchttpserver)
   * [Crystal HTTP](#crystal-http)
@@ -53,6 +55,11 @@ I once used to code in JavaScript much more than today. I left it behind in favo
 [GO](https://golang.org/) language version 1.6.2 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
+
+### Rust
+[Rust](https://www.rust-lang.org/) language version 1.10.0 is installed by official OSX package.  
+According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety. 
+Rust grant parallelism by running on multiple threads: thread safety is granted by its ownership model.
 
 ### Java
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
@@ -100,7 +107,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rack with Puma (JRuby)](#rack-with-puma)   |          32050.31  |              1.03/0.49/55.27  |            782.4  |         374.1  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
-| [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |             ~270  |            60  |
+| [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |             ~270  |         60-65  |
+| [Rust Iron](#rust-iron)                     |          46806.10  |               1.36/0.13/7.66  |             7.88  |         404.7  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          51616.87  |              1.92/0.22/11.61  |           138.41  |         363.8  |
 | [GO ServeMux](#go-servemux)                 |          58339.71  |               1.70/0.28/6.42  |             9.65  |         330.5  |
 | [Crystal HTTP](#crystal-http)               |          72431.02  |              1.39/0.45/10.20  |             8.95  |         107.4  |
@@ -179,6 +187,23 @@ The usage of small green threads allows GO to tolerate high loads of requests wi
 ##### Concurrency and parallelism
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 Memory consumption is also really good.
+
+### Rust Iron
+Rust does not include an HTTP server library into the standard library, so i used the [Iron](https://github.com/iron/iron) Web framework.  
+
+##### Bootstrap
+```
+cargo build --release
+cargo run --release
+```
+
+##### Considerations
+Rust proved to be a fast language, but not blazing as promised: its throughput falls within Node and Java.  
+Rust latency is among the best of the pack anyway.
+
+##### Concurrency and parallelism
+As expected Rust uses all of the available cores.  
+Its memory consumption is also very low.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
