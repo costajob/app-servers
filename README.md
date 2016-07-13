@@ -255,4 +255,4 @@ This is even more interesting considering the language executes on a single thre
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
-Memory consumption falls within Nim and GO, thus proving AOT-based languages have a real advantage over VM-based ones.
+Memory consumption is similar to the other AOT-based languages: on the low side of the river.
