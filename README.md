@@ -58,7 +58,7 @@ At the same time GO takes a straight approach to parallelism, coming with built 
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.10.0 is installed by official OSX package.  
-According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety. 
+According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
 ### Java
