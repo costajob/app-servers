@@ -87,7 +87,7 @@ I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs
 
 ### RAM and CPU
 I measured RAM and CPU consumption by using the Apple XCode's Instruments and recording max consumption peak.  
-Since both Ruby and Node starts multiple processes (9) i reported average total RAM consumption and express CPUs usage as a range of percentages.
+Since both Ruby and Node starts multiple processes (8) i reported average total RAM consumption and express CPUs usage as a range of percentages.
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
@@ -103,8 +103,8 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Rack with Puma (MRI)](#rack-with-puma)     |          28359.63  |              3.49/0.44/21.82  |             ~315  |        10-100  |
-| [Rack with Puma (JRuby)](#rack-with-puma)   |          32050.31  |              1.03/0.49/55.27  |            782.4  |         374.1  |
+| [Rack with Puma (MRI)](#rack-with-puma)     |          29377.96  |              3.09/0.32/11.41  |             ~272  |        10-100  |
+| [Rack with Puma (JRuby)](#rack-with-puma)   |          32914.47  |             0.49/1.14/125.01  |            782.4  |         374.1  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
 | [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |             ~270  |         60-65  |
@@ -120,12 +120,12 @@ I tested ruby by using a plain [Rack](http://rack.github.io/) application with t
 
 ###### MRI
 ```
-bundle exec puma -w 8 --preload -t 16:32 app.ru
+bundle exec puma -w 7 --preload app.ru
 ```
 
 ###### JRuby
 ```
-jruby --server -S bundle exec puma -t 16:32 app.ru
+jruby --server -S bundle exec puma app.ru
 ```
 
 ##### Considerations
@@ -172,7 +172,7 @@ Node uses the pre-forking model to get parallelism (like MRI): it works pretty n
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-[Here](https://github.com/costajob/app-servers/blob/feature/fast-http/README.md) you can find results for the [fast/http](https://github.com/valyala/fasthttp) library: i added it as a feature branch since i prefer to avoid external dependencies when possible and ServerMux proved to be pretty flexible. 
+I also tested [fast/http](https://github.com/valyala/fasthttp) library: it proved to be faster than ServerMux (64308.13 req/sec), but its interface is not as radable and the idea is to stick with the langugae standard library when possible.
 
 ##### Bootstrap
 ```
@@ -236,8 +236,8 @@ Nim proved to keep its promises, being a fast and concise language.
 Nim throughput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
-Despite i was expecting Nim to support parallelism, it clearly does not: only one CPU is hitted by the running thread.  
-Memory consumption is really on the low side. I dare to add that Nim executable is also the smallest one: a mere 150KB.
+Nim asynchttpserver runs on a single thread only, thus preventing parallelism.  
+Memory consumption is really low side. I dare to add that Nim executable, at a mere 150KB, is also the smallest one.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
