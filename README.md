@@ -106,15 +106,15 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rack with Puma (MRI)](#rack-with-puma)     |          29377.96  |              3.09/0.32/11.41  |             ~272  |        10-100  |
 | [Rack with Puma (JRuby)](#rack-with-puma)   |          32914.47  |             0.49/1.14/125.01  |            782.4  |         374.1  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          44878.49  |              2.22/0.39/27.38  |             6.93  |          99.8  |
-| [Node Cluster](#node-cluster)               |          46734.27  |             2.61/3.99/134.86  |             ~270  |         60-65  |
-| [Rust Iron](#rust-iron)                     |          46806.10  |               1.36/0.13/7.66  |             7.88  |         404.7  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          46773.03  |              2.13/0.35/29.03  |             6.93  |          99.8  |
+| [Rust Iron](#rust-iron)                     |          47163.50  |               1.35/0.13/9.71  |             7.88  |         404.7  |
+| [Node Cluster](#node-cluster)               |          47415.09  |              2.18/1.59/61.18  |             ~270  |         80-85  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          51616.87  |              1.92/0.22/11.61  |           138.41  |         363.8  |
-| [GO ServeMux](#go-servemux)                 |          58339.71  |               1.70/0.28/6.42  |             9.65  |         330.5  |
-| [Crystal HTTP](#crystal-http)               |          72431.02  |              1.39/0.45/10.20  |             8.95  |         107.4  |
+| [GO ServeMux](#go-servemux)                 |          58851.90  |               1.69/0.28/5.60  |             9.65  |         330.5  |
+| [Crystal HTTP](#crystal-http)               |          76025.05  |               1.31/0.28/9.05  |             8.93  |         107.4  |
 
 ### Rack with Puma
-I tested ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
 
 ##### Bootstrap
 
@@ -198,7 +198,7 @@ cargo run --release
 ```
 
 ##### Considerations
-Rust proved to be a fast language, but not blazing as promised: its throughput falls within Node and Java.  
+Rust proved to be a fast language, but not blazing as promised: its throughput is in the same league as Nim and Node, but far from Java, GO and Crystal.  
 Rust latency is among the best of the pack anyway.
 
 ##### Concurrency and parallelism

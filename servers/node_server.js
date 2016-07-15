@@ -5,7 +5,7 @@ const hostname = '0.0.0.0';
 const port = 9292;
 
 if (cluster.isMaster) {
-        for (var i = 0; i < numCPUs; i++) {
+        for (var i = 0; i < numCPUs-1; i++) {
                 cluster.fork();
         }
 } else {
