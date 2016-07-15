@@ -87,7 +87,7 @@ I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs
 
 ### RAM and CPU
 I measured RAM and CPU consumption by using the Apple XCode's Instruments and recording max consumption peak.  
-Since both Ruby and Node starts multiple processes (8) i reported average total RAM consumption and express CPUs usage as a range of percentages.
+Since both Ruby and Node starts multiple processes (8) i reported the total sum of RAM consumption and CPU.
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
@@ -103,15 +103,15 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Rack with Puma (MRI)](#rack-with-puma)     |          29377.96  |              3.09/0.32/11.41  |             ~272  |        10-100  |
+| [Rack with Puma (MRI)](#rack-with-puma)     |          29377.96  |              3.09/0.32/11.41  |             ~239  |          ~424  |
 | [Rack with Puma (JRuby)](#rack-with-puma)   |          32914.47  |             0.49/1.14/125.01  |            782.4  |         374.1  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          46773.03  |              2.13/0.35/29.03  |             6.93  |          99.8  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          46773.03  |              2.13/0.35/29.03  |             6.93  |          99.9  |
 | [Rust Iron](#rust-iron)                     |          47163.50  |               1.35/0.13/9.71  |             7.88  |         404.7  |
-| [Node Cluster](#node-cluster)               |          47415.09  |              2.18/1.59/61.18  |             ~270  |         80-85  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |          51616.87  |              1.92/0.22/11.61  |           138.41  |         363.8  |
+| [Node Cluster](#node-cluster)               |          47415.09  |              2.18/1.59/61.18  |             ~213  |          ~494  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |          52033.65  |              1.91/0.24/14.22  |           191.25  |         397.1  |
 | [GO ServeMux](#go-servemux)                 |          58851.90  |               1.69/0.28/5.60  |             9.65  |         330.5  |
-| [Crystal HTTP](#crystal-http)               |          76025.05  |               1.31/0.28/9.05  |             8.93  |         107.4  |
+| [Crystal HTTP](#crystal-http)               |          76025.05  |               1.31/0.28/9.05  |             8.93  |         103.2  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
@@ -133,8 +133,7 @@ Rack proves to be a pretty fast HTTP server (at least among scripting languages)
 Rack on JRuby constantly performs slightly better than on MRI.
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads. Because of MRI's GIL, Puma relies on the pre-forking model for parallelism.  
-Each Puma process/worker consume about 35MB of memory, while their balancing is not consistent (each process CPU usage range from 10% to 100%).  
+Puma delivers concurrency by using native threads. Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
 Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
 The downside of JRuby is the memory footprint: more than twice than MRI.
 
@@ -168,7 +167,7 @@ While it is true that Node.js suffers JavaScript single threaded nature, it deli
 
 ##### Concurrency and parallelism
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
-Node uses the pre-forking model to get parallelism (like MRI): it works pretty nicely, balancing the workload consistently on all of the cores (unlike MRI).
+Node uses the pre-forking model to get parallelism (like MRI).
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
