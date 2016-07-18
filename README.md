@@ -1,4 +1,4 @@
-## Table of Contents
+# Table of Contents
 
 * [Scope](#scope)
   * [Hello World](#hello-world)
@@ -197,12 +197,12 @@ cargo run --release
 ```
 
 ##### Considerations
-Rust indeed keep its promise of being a valizing fast language: its throughput is in the same league as Java and GO.  
-Rust latency is among the best of the pack anyway.
+Rust keeps its promise of being a blazing fast language: its throughput is in the same league of Java and GO.  
+Rust latency is among the best of the pack also.
 
 ##### Concurrency and parallelism
 As expected Rust uses all of the available cores.  
-Its memory consumption is also very low.
+I was expecting better results on memory footprint.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
