@@ -91,7 +91,7 @@ Since both Ruby and Node starts multiple processes (8) i reported the total sum 
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
-I measured each application server three times, picking the best lap (apart from JVM where warm it up).  
+I measured each application server three times, picking the best lap (apart for JVM that demands warm-up).  
 Here is the common script i used:
 
 ```
@@ -188,7 +188,7 @@ GO runs natively on all of the cores: indeed it seems to be a little conservativ
 Memory consumption is also really good.
 
 ### Rust Iron
-Rust does not include an HTTP server library into the standard library, so i used the [Iron](https://github.com/iron/iron) Web framework.  
+Rust does not include an HTTP server into its standard library, so i picked the [Iron](https://github.com/iron/iron) Web framework.  
 
 ##### Bootstrap
 ```
