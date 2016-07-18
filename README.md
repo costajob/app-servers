@@ -198,7 +198,7 @@ cargo run --release
 
 ##### Considerations
 Rust keeps its promise of being a blazing fast language: its throughput is in the same league of Java and GO.  
-Rust latency is among the best of the pack also.
+Rust latency is among the best of the pack too.
 
 ##### Concurrency and parallelism
 As expected Rust uses all of the available cores.  
