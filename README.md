@@ -19,7 +19,7 @@
   * [Plug with Cowboy](#plug with cowboy)
   * [Node Cluster](#node-cluster)
   * [GO ServeMux](#go-servemux)
-  * [Rust Iron](#rust-iron)
+  * [Rust Hyper HTTP](#rust-hyper-http)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Nim asynchttpserver](#nimr-+asynchttpserver)
   * [Crystal HTTP](#crystal-http)
@@ -107,9 +107,9 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rack with Puma (JRuby)](#rack-with-puma)   |          32914.47  |             0.49/1.14/125.01  |            782.4  |         374.1  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          46773.03  |              2.13/0.35/29.03  |             6.93  |          99.9  |
-| [Rust Iron](#rust-iron)                     |          47163.50  |               1.35/0.13/9.71  |             7.88  |         404.7  |
 | [Node Cluster](#node-cluster)               |          47415.09  |              2.18/1.59/61.18  |             ~213  |          ~494  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          52033.65  |              1.91/0.24/14.22  |           191.25  |         397.1  |
+| [Rust Hyper HTTP](#rust-hyper-http)         |          56712.87  |               1.76/0.25/6.68  |            27.55  |         302.1  |
 | [GO ServeMux](#go-servemux)                 |          58851.90  |               1.69/0.28/5.60  |             9.65  |         330.5  |
 | [Crystal HTTP](#crystal-http)               |          76025.05  |               1.31/0.28/9.05  |             8.93  |         103.2  |
 
@@ -187,8 +187,8 @@ The usage of small green threads allows GO to tolerate high loads of requests wi
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 Memory consumption is also really good.
 
-### Rust Iron
-Rust does not include an HTTP server into its standard library, so i picked the [Iron](https://github.com/iron/iron) Web framework.  
+### Rust Hyper HTTP
+Rust does not include (yet) an HTTP server into its standard library, [OZ](https://github.com/oz) suggested me to try the [Hyper HTTP](https://github.com/hyperium/hyper) one. 
 
 ##### Bootstrap
 ```
@@ -197,7 +197,7 @@ cargo run --release
 ```
 
 ##### Considerations
-Rust proved to be a fast language, but not blazing as promised: its throughput is in the same league as Nim and Node, but far from Java, GO and Crystal.  
+Rust indeed keep its promise of being a valizing fast language: its throughput is in the same league as Java and GO.  
 Rust latency is among the best of the pack anyway.
 
 ##### Concurrency and parallelism

@@ -1,7 +1,0 @@
-[package]
-name = "iron_server"
-version = "0.1.0"
-authors = ["costajob <costajob@gmail.com>"]
-
-[dependencies]
-iron = "*"
