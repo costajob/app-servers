@@ -105,7 +105,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
-| [GO ServeMux](#go-servemux)                 |          90252.91  |              1.10/0.17/16.74  |       9.65  |     330.5  |
+| [GO ServeMux](#go-servemux)                 |          91274.75  |              1.08/0.16/17.19  |       9.65  |     330.5  |
 | [Crystal HTTP](#crystal-http)               |         116801.05  |               0.85/0.15/6.88  |       8.93  |     103.2  |
 
 ### Rack with Puma
