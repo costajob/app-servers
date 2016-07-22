@@ -38,10 +38,6 @@ I chose to test the following languages/runtime:
 Ruby is the language i have more experience with.  
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
-#### JRuby
-[JRuby](http://jruby.org/) 9.1.2.0 is installed via official distribution.  
-JRuby is the Ruby implementation on the JVM: it supports parallelism and cope with Ruby MRI pretty closely.
-
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.3 is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
@@ -80,10 +76,10 @@ For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid b
 I decided to test each language by using the standard/built-in HTTP library.
 
 ### Platform
-I registered these benchmarks with a MacBook PRO 15 late 2011 having these specs:
+I registered these benchmarks with a MacBook PRO 15 mid 2015 having these specs:
 * OSX El Captain
 * 2,2 GHz Intel Core i7 (4 cores)
-* 8 GB 1333 MHz DDR3
+* 16 GB 1600 MHz DDR3
 
 ### RAM and CPU
 I measured RAM and CPU consumption by using the Apple XCode's Instruments and recording max consumption peak.  
@@ -101,41 +97,32 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
 
-| App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory peaks (MB) |           %CPU |
-| :------------------------------------------ | -----------------: | ----------------------------: | ----------------: | -------------: |
-| [Rack with Puma (MRI)](#rack-with-puma)     |          29377.96  |              3.09/0.32/11.41  |             ~239  |          ~424  |
-| [Rack with Puma (JRuby)](#rack-with-puma)   |          32914.47  |             0.49/1.14/125.01  |            782.4  |         374.1  |
-| [Plug with Cowboy](#plug-with-cowboy)       |          35188.56  |             3.15/7.81/154.01  |            42.85  |        507.25  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          46773.03  |              2.13/0.35/29.03  |             6.93  |          99.9  |
-| [Node Cluster](#node-cluster)               |          47415.09  |              2.18/1.59/61.18  |             ~213  |          ~494  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |          52033.65  |              1.91/0.24/14.22  |           191.25  |         397.1  |
-| [Rust Hyper HTTP](#rust-hyper-http)         |          56712.87  |               1.76/0.25/6.68  |            27.55  |         302.1  |
-| [GO ServeMux](#go-servemux)                 |          58851.90  |               1.69/0.28/5.60  |             9.65  |         330.5  |
-| [Crystal HTTP](#crystal-http)               |          76025.05  |               1.31/0.28/9.05  |             8.93  |         103.2  |
+| App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
+| :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
+| [Plug with Cowboy](#plug-with-cowboy)       |          43351.15  |             5.87/9.10/138.13  |      42.85  |    507.25  |
+| [Rack with Puma (MRI)](#rack-with-puma)     |          47674.36  |              2.05/0.39/26.29  |       ~239  |      ~424  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          66265.83  |              1.51/0.19/19.61  |       6.93  |      99.9  |
+| [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
+| [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
+| [GO ServeMux](#go-servemux)                 |          90252.91  |              1.10/0.17/16.74  |       9.65  |     330.5  |
+| [Crystal HTTP](#crystal-http)               |         116801.05  |               0.85/0.15/6.88  |       8.93  |     103.2  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
 
 ##### Bootstrap
 
-###### MRI
 ```
 bundle exec puma -w 7 --preload app.ru
 ```
 
-###### JRuby
-```
-jruby --server -S bundle exec puma app.ru
-```
-
 ##### Considerations
 Rack proves to be a pretty fast HTTP server (at least among scripting languages): it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
-Rack on JRuby constantly performs slightly better than on MRI.
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads. Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
-Once on the JVM Puma is finally able to distribute the workload on the available cores on a single process.  
-The downside of JRuby is the memory footprint: more than twice than MRI.
+Puma delivers concurrency by using native threads.  
+Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -171,7 +158,7 @@ Node uses the pre-forking model to get parallelism (like MRI).
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-I also tested [fast/http](https://github.com/valyala/fasthttp) library: it proved to be faster than ServerMux (64308.13 req/sec), but its interface is not as readable and the idea is to stick with the language standard library when possible.
+I also tested [fast/http](https://github.com/valyala/fasthttp) library: it proved to be faster than ServerMux but its interface is not as readable and the idea is to stick with the language standard library when possible.
 
 ##### Bootstrap
 ```
