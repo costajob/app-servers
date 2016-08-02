@@ -101,7 +101,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
 | [Plug with Cowboy](#plug-with-cowboy)       |          44105.59  |           10.86/19.07/251.18  |      47.86  |     433.8  |
 | [Rack with Puma](#rack-with-puma)           |          47674.36  |              2.05/0.39/26.29  |       ~239  |      ~424  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          66265.83  |              1.51/0.19/19.61  |       6.57  |      99.7  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          72005.32  |              1.39/0.35/39.57  |       6.83  |      99.7  |
 | [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
@@ -213,7 +213,7 @@ I used the Nim asynchttpserver module to implement a high performance asynchrono
 
 ##### Bootstrap
 ```
-nim c -d:release nim_server.nim
+nim cpp -d:release nim_server.nim
 ./nim_server
 ```
 
