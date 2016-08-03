@@ -21,7 +21,7 @@
   * [GO ServeMux](#go-servemux)
   * [Rust Hyper HTTP](#rust-hyper-http)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
-  * [Nim asynchttpserver](#nimr-+asynchttpserver)
+  * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
@@ -64,8 +64,8 @@ Ignoring Java on this comparison is not an option anyway: Java is the most used 
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.14.2 is installed from source.  
-Nim is an efficient, elegant, expressive strong typed, compiled language.
-Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style. It also provides several compiling options to better adapt to the running environment.
+Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
+Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.18.7 is installed via homebrew.  
@@ -210,6 +210,7 @@ Is a known fact that memory consumption is not one of the JVM key benefits.
 
 ### Nim asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
+The only drawbacks is that Nim's asyncdispatch library is hard to use with threads, so the server runs on a snigle core only.  
 
 ##### Bootstrap
 ```
@@ -222,8 +223,8 @@ Nim proved to keep its promises, being a fast and concise language.
 Nim throughput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
-Nim asynchttpserver runs on a single thread only, thus preventing parallelism.  
-Memory consumption is really low side. I dare to add that Nim executable, at a mere 150KB, is also the smallest one.
+Nim asynchttpserver implementation runs on a single thread only, thus preventing parallelism.  
+Memory consumption is really on the low side. I dare to add that Nim executable, at a mere 150KB, is also the smallest one.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -241,4 +242,4 @@ This is even more interesting considering the language executes on a single thre
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
-Memory consumption is similar to the other AOT-based languages: on the low side of the river.
+Memory consumption is similar to the other AOT-based languages: very low compared to VM-based/interpreted langugages.
