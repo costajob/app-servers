@@ -7,5 +7,4 @@ class HelloWorld < HTTP::Handler
   end
 end
 
-puts "Listening on http://127.0.0.1:9292"
 HTTP::Server.new(9292, HelloWorld.new).listen

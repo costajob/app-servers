@@ -106,7 +106,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
 | [GO ServeMux](#go-servemux)                 |          91821.17  |               1.08/0.20/8.43  |       9.03  |     331.3  |
-| [Crystal HTTP](#crystal-http)               |         116801.05  |               0.85/0.15/6.88  |       8.92  |     103.5  |
+| [Crystal HTTP](#crystal-http)               |         116994.79  |               0.85/0.13/5.24  |       8.92  |     103.5  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
