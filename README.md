@@ -48,7 +48,7 @@ Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of 
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
-[GO](https://golang.org/) language version 1.6.2 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.7.0rc5 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -105,7 +105,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
-| [GO ServeMux](#go-servemux)                 |          91274.75  |              1.08/0.16/17.19  |       9.66  |     321.9  |
+| [GO ServeMux](#go-servemux)                 |          91821.17  |               1.08/0.20/8.43  |       9.03  |     331.3  |
 | [Crystal HTTP](#crystal-http)               |         116801.05  |               0.85/0.15/6.88  |       8.92  |     103.5  |
 
 ### Rack with Puma
