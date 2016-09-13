@@ -48,7 +48,7 @@ Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of 
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
-[GO](https://golang.org/) language version 1.7 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.7.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -68,7 +68,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.18.7 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.19.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
@@ -105,8 +105,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
-| [GO ServeMux](#go-servemux)                 |          91821.17  |               1.08/0.20/8.43  |       9.03  |     331.3  |
-| [Crystal HTTP](#crystal-http)               |         116994.79  |               0.85/0.13/5.24  |       8.92  |     103.5  |
+| [GO ServeMux](#go-servemux)                 |          90630.92  |               1.09/0.17/3.53  |       9.27  |     334.6  |
+| [Crystal HTTP](#crystal-http)               |         104657.61  |              0.95/0.31/10.18  |       9.73  |     111.4  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
@@ -238,7 +238,7 @@ crystal build --release ./server/crystal_server.cr
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages.  
-This is even more interesting considering the language executes on a single thread only.
+The language executes on a single thread only, proving reactive pattern works quite nicely in this scenario.
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
