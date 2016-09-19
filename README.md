@@ -68,7 +68,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.19.1 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.19.2 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
@@ -106,7 +106,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
 | [GO ServeMux](#go-servemux)                 |          90630.92  |               1.09/0.17/3.53  |       9.27  |     334.6  |
-| [Crystal HTTP](#crystal-http)               |         104657.61  |              0.95/0.31/10.18  |       9.73  |     111.4  |
+| [Crystal HTTP](#crystal-http)               |         104019.90  |              0.96/0.31/10.34  |       9.73  |     111.4  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
