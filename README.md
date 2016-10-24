@@ -19,7 +19,7 @@
   * [Plug with Cowboy](#plug with cowboy)
   * [Node Cluster](#node-cluster)
   * [GO ServeMux](#go-servemux)
-  * [Rust Hyper HTTP](#rust-hyper-http)
+  * [Rust Tiny HTTP](#rust-tiny-http)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Crystal HTTP](#crystal-http)
@@ -39,21 +39,21 @@ Ruby is the language i have more experience with.
 I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.3 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.3.4 is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 6.3.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 6.9.1 is installed by official OSX package.  
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
-[GO](https://golang.org/) language version 1.7.1 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.7.3 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.10.0 is installed by official OSX package.  
+[Rust](https://www.rust-lang.org/) language version 1.12.1 is installed by official OSX package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -63,12 +63,12 @@ I get two Sun certifications back in 2006 and realized the more i delved into Ja
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.14.2 is installed from source.  
+[Nim](http://nim-lang.org/) 0.15.0 is installed from source.  
 Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.19.2 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.19.4 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
@@ -99,13 +99,13 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
-| [Plug with Cowboy](#plug-with-cowboy)       |          44105.59  |           10.86/19.07/251.18  |      47.86  |     433.8  |
-| [Rack with Puma](#rack-with-puma)           |          47674.36  |              2.05/0.39/26.29  |       ~239  |      ~424  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          72005.32  |              1.39/0.35/39.57  |       6.83  |      99.7  |
-| [Node Cluster](#node-cluster)               |          75390.96  |             1.54/1.97/119.31  |       ~213  |      ~494  |
+| [Rack with Puma](#rack-with-puma)           |          46175.61  |              1.77/0.20/10.19  |       ~230  |      ~490  |
+| [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
+| [Rust Tiny HTTP](#rust-tiny-http)           |          69772.40  |               1.43/0.13/4.54  |      12.97  |     159.2  |
+| [Node Cluster](#node-cluster)               |          75151.39  |              1.49/1.65/43.25  |       ~302  |      ~525  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
-| [Rust Hyper HTTP](#rust-hyper-http)         |          83610.43  |               1.19/0.17/3.86  |      27.55  |     302.1  |
-| [GO ServeMux](#go-servemux)                 |          90630.92  |               1.09/0.17/3.53  |       9.27  |     334.6  |
+| [GO ServeMux](#go-servemux)                 |          91236.29  |               1.09/0.17/8.29  |       9.27  |     334.6  |
 | [Crystal HTTP](#crystal-http)               |         104019.90  |              0.96/0.31/10.34  |       9.73  |     111.4  |
 
 ### Rack with Puma
@@ -174,8 +174,8 @@ The usage of small green threads allows GO to tolerate high loads of requests wi
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 Memory consumption is also really good.
 
-### Rust Hyper HTTP
-Rust does not include (yet) an HTTP server into its standard library, [OZ](https://github.com/oz) suggested me to try the [Hyper HTTP](https://github.com/hyperium/hyper) one. 
+### Rust Tiny HTTP
+Rust does not include (yet) an HTTP server into its standard library, so i picked the [Tiny HTTP](https://github.com/frewsxcv/tiny-http) one. 
 
 ##### Bootstrap
 ```
@@ -184,12 +184,11 @@ cargo run --release
 ```
 
 ##### Considerations
-Rust keeps its promise of being a blazing fast language: its throughput is in the same league of Java and GO.  
-Rust latency is among the best of the pack too.
+While Rust consistency in delivering its performance is on par with the best languages of the pack, its throughput is not in the same league.  
+I will reserve to update the benchmarks once the language will got an HTTP server packed in the standard library.
 
 ##### Concurrency and parallelism
-As expected Rust uses all of the available cores.  
-I was expecting better results on memory footprint.
+Rust Tiny HTTP library is a bit conservative in using the available cores. The memory footprint is very good.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
