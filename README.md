@@ -99,7 +99,7 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
-| [Rack with Puma](#rack-with-puma)           |          46175.61  |              1.77/0.20/10.19  |       ~230  |      ~490  |
+| [Rack with Puma](#rack-with-puma)           |          46560.49  |              2.12/0.64/52.87  |       ~230  |      ~490  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
 | [Rust Tiny HTTP](#rust-tiny-http)           |          69772.40  |               1.43/0.13/4.54  |      12.97  |     159.2  |
@@ -118,11 +118,14 @@ bundle exec puma -w 7 --preload app.ru
 ```
 
 ##### Considerations
-Rack proves to be a pretty fast HTTP server (at least among scripting languages): it's modular, easy to extend and almost every Ruby Web framework is Rack-compliant.
+Rack is de facto the standard library to expose an HTTP interface in Ruby: it's modular, easy to extend and supported by almost all Ruby App server.  
+Not surprisingly Ruby delivers the worst performance of the pack. Ruby 3 is aimed to be three times faster than Ruby 2.0, although all has to be proven yet (it will happen in 2020).  
+If Ruby would reach Node.js on term of throughput it will be enough for most use cases.
 
 ##### Concurrency and parallelism
 Puma delivers concurrency by using native threads.  
 Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
+Ruby 3.0 will include a new, parallel, concurrency model beta-named *Guild*: yet it has to be seen how future App server implementations will use it efficiently.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
