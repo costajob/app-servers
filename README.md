@@ -44,7 +44,7 @@ I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) 
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 6.9.1 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 7.0.1 is installed by official OSX package.  
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
 
 ### GO
@@ -103,10 +103,10 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
 | [Rust Tiny HTTP](#rust-tiny-http)           |          69772.40  |               1.43/0.13/4.54  |      12.97  |     159.2  |
-| [Node Cluster](#node-cluster)               |          75151.39  |              1.49/1.65/43.25  |       ~302  |      ~525  |
+| [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [GO ServeMux](#go-servemux)                 |          91236.29  |               1.09/0.17/8.29  |       9.27  |     334.6  |
-| [Crystal HTTP](#crystal-http)               |         104019.90  |              0.96/0.31/10.34  |       9.73  |     111.4  |
+| [Crystal HTTP](#crystal-http)               |         111608.13  |              0.89/0.22/10.50  |       9.73  |     111.4  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
