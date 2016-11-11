@@ -101,8 +101,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
 | [Rack with Puma](#rack-with-puma)           |          46560.49  |              2.12/0.64/52.87  |       ~230  |      ~490  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
 | [GO ServeMux](#go-servemux)                 |          69208.42  |             1.55/3.22/152.28  |       8.75  |     291.2  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
 | [Rust Tiny HTTP](#rust-tiny-http)           |          69772.40  |               1.43/0.13/4.54  |      12.97  |     159.2  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
