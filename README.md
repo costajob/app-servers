@@ -102,11 +102,11 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rack with Puma](#rack-with-puma)           |          46560.49  |              2.12/0.64/52.87  |       ~230  |      ~490  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          69470.63  |              1.44/0.22/22.01  |       7.15  |      99.9  |
+| [GO ServeMux](#go-servemux)                 |          69208.42  |             1.55/3.22/152.28  |       8.75  |     291.2  |
 | [Rust Tiny HTTP](#rust-tiny-http)           |          69772.40  |               1.43/0.13/4.54  |      12.97  |     159.2  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
-| [GO ServeMux](#go-servemux)                 |          91236.29  |               1.09/0.17/8.29  |       9.27  |     334.6  |
-| [Crystal HTTP](#crystal-http)               |         111608.13  |              0.89/0.22/10.50  |       9.73  |     111.4  |
+| [Crystal HTTP](#crystal-http)               |         107877.54  |               0.93/0.24/9.77  |       9.73  |     111.4  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
@@ -171,7 +171,7 @@ go build go_server.go
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
-The usage of small green threads allows GO to tolerate high loads of requests with very good latency.  
+Said that i recorded a worsening of throughput of 20% for GO version 1.7.3; i will reserve the option to re-test with an upgraded version.
 
 ##### Concurrency and parallelism
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
