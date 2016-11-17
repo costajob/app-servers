@@ -1,7 +1,0 @@
-[package]
-name = "tiny_http"
-version = "0.1.0"
-authors = ["costajob <costajob@gmail.com>"]
-
-[dependencies]
-tiny_http = "*"

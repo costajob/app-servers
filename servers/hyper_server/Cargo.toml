@@ -1,0 +1,9 @@
+[package]
+name = "hyper_server"
+version = "0.1.0"
+authors = ["costajob <costajob@gmail.com>"]
+
+[dependencies]
+env_logger = "0.3.5"
+hyper = {git = "https://github.com/hyperium/hyper"}
+num_cpus = "1.1.0"
