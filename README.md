@@ -132,7 +132,6 @@ Unsurprisingly Ruby delivers the worst throughput of the pack.
 ##### Concurrency and parallelism
 Puma delivers concurrency by using native threads.  
 Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
-Ruby 3.0 will include a new concurrency model beta-named *Guild*: yet it has to be seen how future App servers will use it efficiently.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -262,4 +261,4 @@ The language executes on a single thread only, proving reactive pattern works qu
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
-Memory consumption is similar to the other compiled-in-binary languages: very tiny compared to VM and pre-fork based languages.
+Being binary-compiled, the memory consumption is very tiny compared to VM and pre-fork based languages.
