@@ -262,4 +262,4 @@ The language executes on a single thread only, proving reactive pattern works qu
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
-Memory consumption is similar to the other AOT-based languages: very low compared to VM-based/interpreted languages.
+Memory consumption is similar to the other compiled-in-binary languages: very tiny compared to VM and pre-fork based languages.
