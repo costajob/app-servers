@@ -7,6 +7,7 @@
   * [Elixir](#elixir)
   * [Nim](#nim)
   * [Node.js](#nodejs)
+  * [Clojure](#clojure)
   * [Java](#java)
   * [Rust](#rust)
   * [GO](#go)
@@ -19,6 +20,7 @@
   * [Plug with Cowboy](#plug with cowboy)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
+  * [Ring with Jetty](#ring-with-jetty)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Rust Hyper](#rust-hyper)
   * [GO ServeMux](#go-servemux)
@@ -51,6 +53,11 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 ### Node.js
 [Node.js](https://nodejs.org/en/) version 7.0.1 is installed by official OSX package.  
 I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
+
+### Clojure
+[Clojure](http://clojure.org/) 1.8.0 is installed via homebrew.  
+Clojure is a dynamic, general-purpose programming language, strongly inspired by Lips, that runs on the JVM.  
+Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
 
 ### Java
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
@@ -103,6 +110,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
+| [Ring with Jetty](#ring-with-jetty)         |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper](#rust-hyper)                   |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
 | [GO ServeMux](#go-servemux)                 |          91547.00  |               1.08/0.17/8.74  |       8.75  |     291.2  |
@@ -156,7 +164,6 @@ nim cpp -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-Nim throughput is better than Ruby and Elixir, substantially on par with Node, slower than Java, GO and Crystal.  
 
 ##### Concurrency and parallelism
 Nim asynchttpserver implementation runs on a single thread only, thus preventing parallelism.  
@@ -171,11 +178,25 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is near compiled languages one (but consistency is worst).
+While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is close to the one of compiled languages.
 
 ##### Concurrency and parallelism
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
 Node uses the pre-forking model to get parallelism (like MRI).
+
+### Ring with Jetty
+I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
+
+##### Bootstrap
+```
+lein run
+```
+
+##### Considerations
+Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput. What surprises me is the conciseness of the Clojure code compared to the Java one.
+
+##### Concurrency and parallelism
+Clojure leverages on the JVM to deliver parallelism. Indeed it parallelizes pretty well, since it fully uses all of the available cores, while keeping memory footprint behind the Java implementation.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
