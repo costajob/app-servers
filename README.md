@@ -127,13 +127,12 @@ bundle exec puma -w 7 --preload app.ru
 
 ##### Considerations
 Rack is de facto the standard library to expose an HTTP interface in Ruby: it's modular, easy to extend and supported by almost all Ruby App server.  
-Not surprisingly Ruby delivers the worst performance of the pack. Ruby 3 is aimed to be three times faster than Ruby 2.0, although all has to be proven yet (it will happen in 2020).  
-If Ruby would reach Node.js on term of throughput it will be enough for most use cases.
+Unsurprisingly Ruby delivers the worst throughput of the pack.  
 
 ##### Concurrency and parallelism
 Puma delivers concurrency by using native threads.  
 Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
-Ruby 3.0 will include a new concurrency model beta-named *Guild*: yet it has to be seen how future App server implementations will use it efficiently.
+Ruby 3.0 will include a new concurrency model beta-named *Guild*: yet it has to be seen how future App servers will use it efficiently.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
