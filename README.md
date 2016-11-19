@@ -56,7 +56,7 @@ I once used to code in JavaScript much more than today. I left it behind in favo
 
 ### Clojure
 [Clojure](http://clojure.org/) 1.8.0 is installed via homebrew.  
-Clojure is a dynamic, general-purpose programming language, strongly inspired by Lips, that runs on the JVM.  
+Clojure is a dynamic, general-purpose programming language, strongly inspired by Lisp, that runs on the JVM.  
 Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
 
 ### Java
