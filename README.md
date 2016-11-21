@@ -106,7 +106,7 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
-| [Rack with Puma](#rack-with-puma)           |          48266.95  |              1.93/0.52/33.92  |       ~230  |      ~490  |
+| [Rack with Puma](#rack-with-puma)           |          49339.76  |               0.27/0.56/8.16  |       ~230  |      ~420  |
 | [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
@@ -122,16 +122,16 @@ I tested Ruby by using a plain [Rack](http://rack.github.io/) application with t
 ##### Bootstrap
 
 ```
-bundle exec puma -w 7 --preload app.ru
+bundle exec puma -w 7 -t 0:2 --preload app.ru
 ```
 
 ##### Considerations
 Rack is de facto the standard library to expose an HTTP interface in Ruby: it's modular, easy to extend and supported by almost all Ruby App server.  
-Unsurprisingly Ruby delivers the worst throughput of the pack, consuming also plenty of memory (~30MB per process).  
+Ruby delivers the worst throughput of the pack, consuming also plenty of memory (~30MB per process).  
 
 ##### Concurrency and parallelism
-Puma delivers concurrency by using native threads.  
-Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes (workers) are forked, one acts as the parent.  
+Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads.
+Limiting threads per process augments throughput and latency for this scenario.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -162,13 +162,13 @@ nim cpp -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-Memory consumption is really on the low side. I dare to add that Nim executable, at a mere 150KB, is by far the smallest of the compiled binaries.
+Memory consumption is the smallest of the pack: unsurprisingly, considering Nim executes on a single thread.
 
 ##### Concurrency and parallelism
-Nim asynchttpserver implementation runs on a single thread only, thus preventing parallelism.  
+As expected Nim asynchttpserver is not parallel by implementation.
 
 ### Node Cluster
-I used Node cluster library to spawn one process per CPU, thus granting parallelism.
+I used Node cluster library to spawn multiple processes, thus granting parallelism.
 
 ##### Bootstrap
 ```
@@ -176,12 +176,11 @@ node node_server.js
 ```
 
 ##### Considerations
-While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is close to the one of compiled languages.
-Said that Node.js is a memory hungry piece of software (~40MB per process).
+JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
+Node.js has the worst memory footprint of the pack (~40MB per process).
 
 ##### Concurrency and parallelism
-Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
-Node uses the pre-forking model to get parallelism (like MRI).
+Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism (like MRI).
 
 ### Ring with Jetty
 I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
@@ -258,7 +257,7 @@ crystal build --release ./server/crystal_server.cr
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages.  
-Memory consumption, as for the others binary-compiled languages, is also very good.
+Memory consumption is also very good.
 
 ##### Concurrency and parallelism
-As expected Crystal does not supports parallelism: only one CPU is squeezed by the language.
+As expected Crystal does not supports parallelism yet.
