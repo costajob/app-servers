@@ -127,7 +127,7 @@ bundle exec puma -w 7 --preload app.ru
 
 ##### Considerations
 Rack is de facto the standard library to expose an HTTP interface in Ruby: it's modular, easy to extend and supported by almost all Ruby App server.  
-Unsurprisingly Ruby delivers the worst throughput of the pack.  
+Unsurprisingly Ruby delivers the worst throughput of the pack, consuming also plenty of memory (~30MB per process).  
 
 ##### Concurrency and parallelism
 Puma delivers concurrency by using native threads.  
@@ -145,14 +145,14 @@ MIX_ENV=prod mix run --no-halt
 ##### Considerations
 Elixir performance are pretty solid but not stellar.  
 To be fair the BEAM VM (on which Elixir and Erlang runs) is not famous to be fast, but to grant reliability and resilience over a distributed system.  
+VM memory consumption is good, thanks to the fact that only one process is created.
 
 ##### Concurrency and parallelism
 Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
-VM memory consumption is also under control.
 
 ### Nim asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
-The only drawbacks is that Nim's asyncdispatch library is hard to use with threads, so the server runs on a single core only.  
+Nim's asyncdispatch library is hard to use with threads, so the server runs on a single core only.  
 
 ##### Bootstrap
 ```
@@ -162,10 +162,10 @@ nim cpp -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
+Memory consumption is really on the low side. I dare to add that Nim executable, at a mere 150KB, is by far the smallest of the compiled binaries.
 
 ##### Concurrency and parallelism
 Nim asynchttpserver implementation runs on a single thread only, thus preventing parallelism.  
-Memory consumption is really on the low side. I dare to add that Nim executable, at a mere 150KB, is also the smallest one.
 
 ### Node Cluster
 I used Node cluster library to spawn one process per CPU, thus granting parallelism.
@@ -177,6 +177,7 @@ node node_server.js
 
 ##### Considerations
 While it is true that Node.js suffers JavaScript single threaded nature, it delivered very solid performance: Node's throughput is close to the one of compiled languages.
+Said that Node.js is a memory hungry piece of software (~40MB per process).
 
 ##### Concurrency and parallelism
 Node is a single threaded language that relies on the reactor pattern to grant non-blocking calls.  
@@ -191,10 +192,11 @@ lein run
 ```
 
 ##### Considerations
-Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput. What surprises me is the conciseness of the Clojure code compared to the Java one.
+Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput.  
+What surprises me is that memory footprint is smaller than Java.
 
 ##### Concurrency and parallelism
-Clojure leverages on the JVM to deliver parallelism. Indeed it parallelizes pretty well, since it fully uses all of the available cores, while keeping memory footprint behind the Java implementation.
+Clojure leverages on the JVM to deliver parallelism: indeed it parallelizes better than Java, since it uses all of the available cores.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
@@ -207,11 +209,10 @@ java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151
 
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
-Jetty uses one thread per connection, delivering consistent results (accepting JVM memory consumption and warm-up times) 
+Is a known fact that memory consumption is not one of the key benefits of JVM.
 
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
-Is a known fact that memory consumption is not one of the JVM key benefits.
 
 ### Rust Hyper
 Rust does not include (yet) an HTTP server into its standard library, so i picked one of the more mature micro-framework available: [Hyper](http://hyper.rs/). 
@@ -223,10 +224,10 @@ cargo run --release
 ```
 
 ##### Considerations
-As expected Rust proved to be a very fast languages, although Hyper footprint of external crates is not small.
+As expected Rust proved to be a very fast languages, although its memory consumption is larger than other binary-compiling languages.
 
 ##### Concurrency and parallelism
-As expected Rust makes use of every available cores. Memory consumption is higher than other binary-compiling languages.
+As expected Rust makes use of every available cores. 
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
@@ -240,10 +241,10 @@ go build go_server.go
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
+Memory consumption is also really good.
 
 ##### Concurrency and parallelism
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
-Memory consumption is also really good.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -257,8 +258,7 @@ crystal build --release ./server/crystal_server.cr
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages.  
-The language executes on a single thread only, proving reactive pattern works quite nicely in this scenario.
+Memory consumption, as for the others binary-compiled languages, is also very good.
 
 ##### Concurrency and parallelism
-As expected Crystal does not supports parallelism: only one CPU is squeezed by the server.  
-Being binary-compiled, the memory consumption is very tiny compared to VM and pre-fork based languages.
+As expected Crystal does not supports parallelism: only one CPU is squeezed by the language.
