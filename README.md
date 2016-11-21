@@ -113,7 +113,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Ring with Jetty](#ring-with-jetty)         |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper](#rust-hyper)                   |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
-| [GO ServeMux](#go-servemux)                 |          91547.00  |               1.08/0.17/8.74  |       8.75  |     291.2  |
+| [GO ServeMux](#go-servemux)                 |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
 | [Crystal HTTP](#crystal-http)               |         115274.81  |               0.87/0.15/9.59  |       9.73  |     111.4  |
 
 ### Rack with Puma
