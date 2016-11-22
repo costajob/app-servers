@@ -37,8 +37,8 @@ I chose to test the following languages/runtime:
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.3 is installed via homebrew.  
-Ruby is the language i have more experience with.  
-I find it an enjoyable language to code with, with a plethora of good libraries and a lovely community.
+Ruby is a scripting language focused on simplicity and productivity, inspired by SmallTalk.  
+Ruby does support concurrency via native threads, but the standard MRI implementation uses an interpreter lock (GIL) to grant thread-safety. Parallelism is supported by pre-forking processes.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.3.4 is installed via homebrew.  
@@ -52,7 +52,7 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) version 7.0.1 is installed by official OSX package.  
-I once used to code in JavaScript much more than today. I left it behind in favor or more "backend" languages: it is a shame, since V8 is pretty fast, ES6 has filled many language lacks and the rise of Node.js has proven JavaScript is much more than an in-browser tool.
+Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features. Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Clojure
 [Clojure](http://clojure.org/) 1.8.0 is installed via homebrew.  
@@ -126,12 +126,11 @@ bundle exec puma -w 7 -t 0:2 --preload app.ru
 ```
 
 ##### Considerations
-Rack is de facto the standard library to expose an HTTP interface in Ruby: it's modular, easy to extend and supported by almost all Ruby App server.  
-Ruby delivers the worst throughput of the pack, consuming also plenty of memory (~30MB per process).  
+Ruby delivers the worst throughput of the pack, but its consistency and latency are indeed very good (which benefits by limiting threads per process). 
+Memory consumption is pretty high also by enabling the copy on write strategy (~30MB per process).  
 
 ##### Concurrency and parallelism
 Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads.
-Limiting threads per process augments throughput and latency for this scenario.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
