@@ -80,7 +80,7 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
 ## Benchmarks
-I decided to test each language by using the standard/built-in HTTP library.
+I decided to test each language by using the standard/built-in HTTP library, relying on external dependencies only when mandatory (Rust).
 
 ### Platform
 I registered these benchmarks with a MacBook PRO 15 mid 2015 having these specs:
@@ -90,7 +90,7 @@ I registered these benchmarks with a MacBook PRO 15 mid 2015 having these specs:
 
 ### RAM and CPU
 I measured RAM and CPU consumption by using the Apple XCode's Instruments and recording max consumption peak.  
-Since both Ruby and Node starts multiple processes (8) i reported the total sum of RAM consumption and CPU.
+Since both Ruby and Node starts multiple processes (8) i reported the total sum of RAM consumption and CPU usage.
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool.
