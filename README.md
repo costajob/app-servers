@@ -75,7 +75,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant 
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.19.4 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.20.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
@@ -114,7 +114,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper](#rust-hyper)                   |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
 | [GO ServeMux](#go-servemux)                 |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
-| [Crystal HTTP](#crystal-http)               |         115274.81  |               0.87/0.15/9.59  |       9.73  |     111.4  |
+| [Crystal HTTP](#crystal-http)               |         115162.64  |               0.87/0.10/8.14  |       9.02  |     112.4  |
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
