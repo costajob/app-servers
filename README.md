@@ -18,7 +18,7 @@
   * [Results](#results)
   * [Resiliency](#resiliency)
   * [Rack with Puma](#rack-with-puma)
-  * [Plug with Cowboy](#plug with cowboy)
+  * [Plug with Cowboy](#plug-with-cowboy)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
   * [Ring with Jetty](#ring-with-jetty)
@@ -107,8 +107,8 @@ Here are the benchmarks results ordered by increasing throughput.
 
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
+| [Plug with Cowboy](#plug-with-cowboy)       |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
 | [Rack with Puma](#rack-with-puma)           |          49339.76  |               0.27/0.56/8.16  |       ~230  |      ~420  |
-| [Plug with Cowboy](#plug-with-cowboy)       |          54823.15  |             2.48/9.97/183.48  |      46.78  |     572.1  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Ring with Jetty](#ring-with-jetty)         |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
@@ -143,7 +143,7 @@ bundle exec puma -w 7 -t 0:2 --preload app.ru
 ```
 
 ##### Considerations
-Ruby delivers the worst throughput of the pack, but its latency and resiliency are indeed very good.
+Ruby delivers solid performance for a scripting language, with very good latency and resiliency.  
 Memory consumption is pretty high (~30MB per process).  
 
 ##### Concurrency and parallelism
@@ -159,9 +159,8 @@ MIX_ENV=prod mix run --no-halt
 ```
 
 ##### Considerations
-Elixir performance are pretty solid but not stellar.  
-To be fair the BEAM VM (on which Elixir and Erlang runs) is not famous to be fast, but to grant reliability and resilience over a distributed system.  
-VM memory consumption is good, thanks to the fact that only one process is created.
+Elixir performance are not stellar. To be fair the BEAM VM is not famous to be fast, but to grant reliability and resilience over a distributed system.  
+Memory consumption is good, thanks to the fact that only one process is created.
 
 ##### Concurrency and parallelism
 Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
