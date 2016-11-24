@@ -121,19 +121,17 @@ Here are the benchmarks results ordered by increasing throughput.
 I tested servers resiliency by augmenting the *wrk* requests to 200 and the number of threads to 8: a point where some sockets errors are generated.
 Here are the results ordered by increasing resiliency:
 
-| App Server                                  | Socket errrors                         ||||
-| :------------------------------------------ | ----------------------------------------: |
-|                                             | connect  | read     | write    | timeout  |
-| :------------------------------------------ | --------:| --------:| --------:| --------:|
-| [Node Cluster](#node-cluster)               |       0  |      38  |      21  |       0  |
-| [Ring with Jetty](#ring-with-jetty)         |       0  |     307  |       0  |       0  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |       0  |     287  |       0  |       0  |
-| [GO ServeMux](#go-servemux)                 |       0  |      60  |       0  |       0  |
-| [Plug with Cowboy](#plug-with-cowboy)       |       0  |      55  |       0  |       0  |
-| [Rust Hyper](#rust-hyper)                   |       0  |      55  |       0  |       0  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |       0  |      53  |       0  |       0  |
-| [Crystal HTTP](#crystal-http)               |       0  |      45  |       0  |       0  |
-| [Rack with Puma](#rack-with-puma)           |       0  |      45  |       0  |       0  |
+| App Server                                  | Socket errrors                             |
+| :------------------------------------------ | -----------------------------------------: |
+| [Node Cluster](#node-cluster)               |  connect 0, read 38,  write 21, timeout 0  |
+| [Ring with Jetty](#ring-with-jetty)         |  connect 0, read 307, write 0,  timeout 0  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |  connect 0, read 287, write 0,  timeout 0  |
+| [GO ServeMux](#go-servemux)                 |  connect 0, read 60,  write 0,  timeout 0  |
+| [Plug with Cowboy](#plug-with-cowboy)       |  connect 0, read 55,  write 0,  timeout 0  |
+| [Rust Hyper](#rust-hyper)                   |  connect 0, read 55,  write 0,  timeout 0  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |  connect 0, read 53,  write 0,  timeout 0  |
+| [Crystal HTTP](#crystal-http)               |  connect 0, read 45,  write 0,  timeout 0  |
+| [Rack with Puma](#rack-with-puma)           |  connect 0, read 45,  write 0,  timeout 0  |
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
