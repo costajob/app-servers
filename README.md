@@ -115,39 +115,23 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper](#rust-hyper)                   |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
 | [GO ServeMux](#go-servemux)                 |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
-| [Crystal HTTP](#crystal-http)               |         115162.64  |               0.87/0.10/8.14  |       9.02  |     112.4  |
+| [Crystal HTTP](#crystal-http)               |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
 
 ### Resiliency
 I tested servers resiliency by augmenting the *wrk* requests to 200 and the number of threads to 8: a point where some sockets errors are generated.
 Here are the results ordered by increasing resiliency:
 
-| App Server                                  | Socket errrors                            |
-| :------------------------------------------ | ----------------------------------------: |
-| [Node Cluster](#node-cluster)               |  connect 0, read 38, write 21, timeout 0  |
-| [Ring with Jetty](#ring-with-jetty)         |  connect 0, read 307, write 0, timeout 0  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |  connect 0, read 287, write 0, timeout 0  |
-| [GO ServeMux](#go-servemux)                 |   connect 0, read 60, write 0, timeout 0  |
-| [Plug with Cowboy](#plug-with-cowboy)       |   connect 0, read 55, write 0, timeout 0  |
-| [Rust Hyper](#rust-hyper)                   |   connect 0, read 55, write 0, timeout 0  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |   connect 0, read 53, write 0, timeout 0  |
-| [Crystal HTTP](#crystal-http)               |   connect 0, read 45, write 0, timeout 0  |
-| [Rack with Puma](#rack-with-puma)           |   connect 0, read 45, write 0, timeout 0  |
-
-### Rack with Puma
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
-
-##### Bootstrap
-
-```
-bundle exec puma -w 7 -t 0:2 --preload app.ru
-```
-
-##### Considerations
-Ruby delivers solid performance for a scripting language, with very good latency and resiliency.  
-Memory consumption is pretty high (~30MB per process).  
-
-##### Concurrency and parallelism
-Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads.
+| App Server                                  | Socket errrors                             |
+| :------------------------------------------ | -----------------------------------------: |
+| [Node Cluster](#node-cluster)               |  connect 0, read 38,  write 21, timeout 0  |
+| [Ring with Jetty](#ring-with-jetty)         |  connect 0, read 307, write 0,  timeout 0  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |  connect 0, read 287, write 0,  timeout 0  |
+| [GO ServeMux](#go-servemux)                 |  connect 0, read 60,  write 0,  timeout 0  |
+| [Plug with Cowboy](#plug-with-cowboy)       |  connect 0, read 55,  write 0,  timeout 0  |
+| [Rust Hyper](#rust-hyper)                   |  connect 0, read 55,  write 0,  timeout 0  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |  connect 0, read 53,  write 0,  timeout 0  |
+| [Crystal HTTP](#crystal-http)               |  connect 0, read 45,  write 0,  timeout 0  |
+| [Rack with Puma](#rack-with-puma)           |  connect 0, read 45,  write 0,  timeout 0  |
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -164,6 +148,22 @@ Memory consumption is good, thanks to the fact that only one process is created.
 
 ##### Concurrency and parallelism
 Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
+
+### Rack with Puma
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
+
+##### Bootstrap
+
+```
+bundle exec puma -w 7 -t 0:2 --preload app.ru
+```
+
+##### Considerations
+Ruby delivers solid performance (for an interpreted language at least), with very good latency and resiliency.  
+Memory consumption is pretty high (~30MB per process).  
+
+##### Concurrency and parallelism
+Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads (which i limited to get better throughput).
 
 ### Nim asynchttpserver
 I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
