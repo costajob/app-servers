@@ -16,6 +16,7 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
+  * [Resiliency](#resiliency)
   * [Rack with Puma](#rack-with-puma)
   * [Plug with Cowboy](#plug with cowboy)
   * [Nim asynchttpserver](#nim-asynchttpserver)
@@ -116,6 +117,22 @@ Here are the benchmarks results ordered by increasing throughput.
 | [GO ServeMux](#go-servemux)                 |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
 | [Crystal HTTP](#crystal-http)               |         115162.64  |               0.87/0.10/8.14  |       9.02  |     112.4  |
 
+### Resiliency
+I tested servers resiliency by augmenting the *wrk* requests to 200 and the number of threads to 8: a point where some sockets errors are generated.
+Here are the results ordered by increasing resiliency:
+
+| App Server                                  | Socket errrors                            |
+| :------------------------------------------ | ----------------------------------------: |
+| [Node Cluster](#node-cluster)               |  connect 0, read 38, write 21, timeout 0  |
+| [Ring with Jetty](#ring-with-jetty)         |  connect 0, read 307, write 0, timeout 0  |
+| [Servlet3 with Jetty](#servlet3-with-jetty) |  connect 0, read 287, write 0, timeout 0  |
+| [GO ServeMux](#go-servemux)                 |   connect 0, read 60, write 0, timeout 0  |
+| [Plug with Cowboy](#plug-with-cowboy)       |   connect 0, read 55, write 0, timeout 0  |
+| [Rust Hyper](#rust-hyper)                   |   connect 0, read 55, write 0, timeout 0  |
+| [Nim asynchttpserver](#nim-asynchttpserver) |   connect 0, read 53, write 0, timeout 0  |
+| [Crystal HTTP](#crystal-http)               |   connect 0, read 45, write 0, timeout 0  |
+| [Rack with Puma](#rack-with-puma)           |   connect 0, read 45, write 0, timeout 0  |
+
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
 
@@ -126,8 +143,8 @@ bundle exec puma -w 7 -t 0:2 --preload app.ru
 ```
 
 ##### Considerations
-Ruby delivers the worst throughput of the pack, but its consistency and latency are indeed very good (which benefits by limiting threads per process). 
-Memory consumption is pretty high also by enabling the copy on write strategy (~30MB per process).  
+Ruby delivers the worst throughput of the pack, but its latency and resiliency are indeed very good.
+Memory consumption is pretty high (~30MB per process).  
 
 ##### Concurrency and parallelism
 Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads.
@@ -176,7 +193,8 @@ node node_server.js
 
 ##### Considerations
 JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
-Node.js has the worst memory footprint of the pack (~40MB per process).
+Node.js has the worst memory footprint of the pack (~40MB per process).  
+Node.js is the only platform producing both read and write errors in the resiliency test.
 
 ##### Concurrency and parallelism
 Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism (like MRI).
@@ -239,7 +257,7 @@ go build go_server.go
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration.  
-Memory consumption is also really good.
+Memory consumption and resiliency are really good.
 
 ##### Concurrency and parallelism
 GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
@@ -256,7 +274,7 @@ crystal build --release ./server/crystal_server.cr
 
 ##### Considerations
 Crystal language recorded the best lap of the pack, outperforming more mature languages.  
-Memory consumption is also very good.
+Memory consumption and resiliency are also very good.
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism yet.
