@@ -108,7 +108,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
 | [Plug with Cowboy](#plug-with-cowboy)       |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
-| [Rack with Puma](#rack-with-puma)           |          49339.76  |               0.27/0.56/8.16  |       ~230  |      ~420  |
+| [Rack with Puma](#rack-with-puma)           |          50002.84  |              0.31/0.65/15.44  |       ~230  |      ~420  |
 | [Nim asynchttpserver](#nim-asynchttpserver) |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Ring with Jetty](#ring-with-jetty)         |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
@@ -155,7 +155,7 @@ I tested Ruby by using a plain [Rack](http://rack.github.io/) application with t
 ##### Bootstrap
 
 ```
-bundle exec puma -w 7 -t 0:2 --preload app.ru
+bundle exec puma -w 7 -t 0:2 app.ru
 ```
 
 ##### Considerations
