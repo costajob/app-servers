@@ -3,12 +3,13 @@
 * [Scope](#scope)
   * [Hello World](#hello-world)
 * [Languages](#languages)
-  * [Ruby](#ruby)
   * [Elixir](#elixir)
+  * [Ruby](#ruby)
   * [Nim](#nim)
   * [Node.js](#nodejs)
   * [Clojure](#clojure)
   * [Java](#java)
+  * [Python](#python)
   * [Rust](#rust)
   * [GO](#go)
   * [Crystal](#crystal)
@@ -16,13 +17,13 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
-  * [Resiliency](#resiliency)
-  * [Rack with Puma](#rack-with-puma)
   * [Plug with Cowboy](#plug-with-cowboy)
+  * [Rack with Puma](#rack-with-puma)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
   * [Ring with Jetty](#ring-with-jetty)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
+  * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Rust Hyper](#rust-hyper)
   * [GO ServeMux](#go-servemux)
   * [Crystal HTTP](#crystal-http)
@@ -36,15 +37,15 @@ The "application" i tested is barely minimal: it is the HTTP version of the "Hel
 ## Languages
 I chose to test the following languages/runtime:
 
-### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.3 is installed via homebrew.  
-Ruby is a scripting language focused on simplicity and productivity, inspired by SmallTalk.  
-Ruby does support concurrency via native threads, but the standard MRI implementation uses an interpreter lock (GIL) to grant thread-safety. Parallelism is supported by pre-forking processes.
-
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.3.4 is installed via homebrew.  
 I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) enthusiasm and finding its *rubyesque* resemblance inviting.  
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
+
+### Ruby
+[Ruby](https://www.ruby-lang.org/en/) 2.3 is installed via homebrew.  
+Ruby is a scripting language focused on simplicity and productivity, inspired by SmallTalk.  
+Ruby does support concurrency via native threads, but the standard MRI implementation uses an interpreter lock (GIL) to grant thread-safety. Parallelism is supported by pre-forking processes.
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.15.0 is installed from source.  
@@ -64,6 +65,11 @@ Clojure is a compiled language, yet remains completely dynamic: every feature su
 [Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
 I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
+
+### Python
+[Python](https://www.python.org/) 3.5 is installed by official OSX package.  
+Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
+It supports several programming paradigms and can count on a broad standard library.
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.13.0 is installed by official OSX package.  
@@ -105,33 +111,18 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
 
-| App Server                                  | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
-| :------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
-| [Plug with Cowboy](#plug-with-cowboy)       |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
-| [Rack with Puma](#rack-with-puma)           |          50002.84  |              0.31/0.65/15.44  |       ~230  |      ~420  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
-| [Node Cluster](#node-cluster)               |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
-| [Ring with Jetty](#ring-with-jetty)         |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
-| [Rust Hyper](#rust-hyper)                   |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
-| [GO ServeMux](#go-servemux)                 |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
-| [Crystal HTTP](#crystal-http)               |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
-
-### Resiliency
-I tested servers resiliency by augmenting the *wrk* requests to 200 and the number of threads to 8: a point where some sockets errors are generated.
-Here are the results ordered by increasing resiliency:
-
-| App Server                                  | Socket errrors                             |
-| :------------------------------------------ | -----------------------------------------: |
-| [Node Cluster](#node-cluster)               |  connect 0, read 38,  write 21, timeout 0  |
-| [Ring with Jetty](#ring-with-jetty)         |  connect 0, read 307, write 0,  timeout 0  |
-| [Servlet3 with Jetty](#servlet3-with-jetty) |  connect 0, read 287, write 0,  timeout 0  |
-| [GO ServeMux](#go-servemux)                 |  connect 0, read 60,  write 0,  timeout 0  |
-| [Plug with Cowboy](#plug-with-cowboy)       |  connect 0, read 55,  write 0,  timeout 0  |
-| [Rust Hyper](#rust-hyper)                   |  connect 0, read 55,  write 0,  timeout 0  |
-| [Nim asynchttpserver](#nim-asynchttpserver) |  connect 0, read 53,  write 0,  timeout 0  |
-| [Crystal HTTP](#crystal-http)               |  connect 0, read 45,  write 0,  timeout 0  |
-| [Rack with Puma](#rack-with-puma)           |  connect 0, read 45,  write 0,  timeout 0  |
+| App Server                                        | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
+| :------------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
+| [Plug with Cowboy](#plug-with-cowboy)             |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
+| [Rack with Puma](#rack-with-puma)                 |          50002.84  |              0.31/0.65/15.44  |       ~230  |      ~420  |
+| [Nim asynchttpserver](#nim-asynchttpserver)       |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
+| [Node Cluster](#node-cluster)                     |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
+| [Ring with Jetty](#ring-with-jetty)               |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
+| [Servlet3 with Jetty](#servlet3-with-jetty)       |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
+| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
+| [Rust Hyper](#rust-hyper)                         |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
+| [GO ServeMux](#go-servemux)                       |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
+| [Crystal HTTP](#crystal-http)                     |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -159,7 +150,7 @@ bundle exec puma -w 7 -t 0:2 app.ru
 ```
 
 ##### Considerations
-Ruby delivers solid performance (for an interpreted language at least), with very good latency and resiliency.  
+Ruby delivers solid performance, with very good latency.  
 Memory consumption is pretty high (~30MB per process).  
 
 ##### Concurrency and parallelism
@@ -193,10 +184,9 @@ node node_server.js
 ##### Considerations
 JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
 Node.js has the worst memory footprint of the pack (~40MB per process).  
-Node.js is the only platform producing both read and write errors in the resiliency test.
 
 ##### Concurrency and parallelism
-Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism (like MRI).
+Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism.
 
 ### Ring with Jetty
 I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
@@ -243,6 +233,21 @@ As expected Rust proved to be a very fast languages, although its memory consump
 
 ##### Concurrency and parallelism
 As expected Rust makes use of every available cores. 
+
+### Gunicorn with Meinheld
+I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapped by the [Meinheld](http://meinheld.org/) Web server. 
+
+##### Bootstrap
+```
+gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
+```
+
+##### Considerations
+Gunicorn and Meinheld combination is blazing fast, surpassing even some compiled languages.  
+Memory footprint is average, considering Gunicorn pre-forks eight processes (~7MB per process). 
+
+##### Concurrency and parallelism
+Gunicorn relies on the pre-forking model to grant parallelism.
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  

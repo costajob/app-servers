@@ -11,6 +11,9 @@ erl_crash.dump
 *.class
 *.beam
 
+# Python
+/servers/__pycache__
+
 # Executable
 crystal_server
 go_server
