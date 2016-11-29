@@ -9,8 +9,8 @@
   * [Node.js](#nodejs)
   * [Clojure](#clojure)
   * [Java](#java)
-  * [Python](#python)
   * [Rust](#rust)
+  * [Python](#python)
   * [GO](#go)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
@@ -23,8 +23,8 @@
   * [Node Cluster](#node-cluster)
   * [Ring with Jetty](#ring-with-jetty)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
-  * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Rust Hyper](#rust-hyper)
+  * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [GO ServeMux](#go-servemux)
   * [Crystal HTTP](#crystal-http)
 
@@ -66,15 +66,15 @@ Clojure is a compiled language, yet remains completely dynamic: every feature su
 I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
-### Python
-[Python](https://www.python.org/) 3.5 is installed by official OSX package.  
-Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
-It supports several programming paradigms and can count on a broad standard library.
-
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.13.0 is installed by official OSX package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
+
+### Python
+[Python](https://www.python.org/) 3.5 is installed by official OSX package.  
+Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
+It supports several programming paradigms and can count on a broad standard library.
 
 ### GO
 [GO](https://golang.org/) language version 1.7.3 is installed by official OSX package.  
@@ -119,8 +119,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)                     |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Ring with Jetty](#ring-with-jetty)               |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
-| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
 | [Rust Hyper](#rust-hyper)                         |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
+| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
 | [GO ServeMux](#go-servemux)                       |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
 | [Crystal HTTP](#crystal-http)                     |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
 
