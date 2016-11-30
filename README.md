@@ -235,7 +235,7 @@ As expected Rust proved to be a very fast languages, although its memory consump
 As expected Rust makes use of every available cores. 
 
 ### Gunicorn with Meinheld
-I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapped by the [Meinheld](http://meinheld.org/) Web server. 
+I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
 
 ##### Bootstrap
 ```
