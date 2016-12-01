@@ -2,8 +2,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.eclipse.jetty.util.thread.QueuedThreadPool;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.server.handler.AbstractHandler;
 
 public class HelloWorld extends AbstractHandler {
@@ -17,7 +19,12 @@ public class HelloWorld extends AbstractHandler {
         }
 
         public static void main(String[] args) throws Exception {
-                Server server = new Server(9292);
+                QueuedThreadPool pool = new QueuedThreadPool();
+                pool.setMaxThreads(50);
+                Server server = new Server(pool);
+                ServerConnector http = new ServerConnector(server);
+                http.setPort(9292);
+                server.addConnector(http);
                 server.setHandler(new HelloWorld());
                 server.start();
                 server.join();

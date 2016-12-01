@@ -8,9 +8,9 @@
   * [Nim](#nim)
   * [Node.js](#nodejs)
   * [Clojure](#clojure)
-  * [Java](#java)
   * [Rust](#rust)
   * [Python](#python)
+  * [Java](#java)
   * [GO](#go)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
@@ -22,9 +22,9 @@
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
   * [Ring with Jetty](#ring-with-jetty)
-  * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Rust Hyper](#rust-hyper)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
+  * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [GO ServeMux](#go-servemux)
   * [Crystal HTTP](#crystal-http)
 
@@ -61,11 +61,6 @@ Node.js is based on the V8 engine, optimized by Google and supporting most of th
 Clojure is a dynamic, general-purpose programming language, strongly inspired by Lisp, that runs on the JVM.  
 Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
 
-### Java
-[Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
-I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
-Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
-
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.13.0 is installed by official OSX package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
@@ -75,6 +70,11 @@ Rust grants parallelism by running safely on multiple threads courtesy of its pr
 [Python](https://www.python.org/) 3.5 is installed by official OSX package.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 It supports several programming paradigms and can count on a broad standard library.
+
+### Java
+[Java](https://www.java.com/en/) 8 comes pre-installed on Xcode 7.31.  
+I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
+Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### GO
 [GO](https://golang.org/) language version 1.7.3 is installed by official OSX package.  
@@ -118,9 +118,9 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)                     |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Ring with Jetty](#ring-with-jetty)               |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
-| [Servlet3 with Jetty](#servlet3-with-jetty)       |          83378.78  |               1.18/0.13/6.47  |     191.25  |     397.1  |
 | [Rust Hyper](#rust-hyper)                         |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
+| [Servlet3 with Jetty](#servlet3-with-jetty)       |          85709.89  |              1.16/0.21/15.61  |     144.90  |     427.3  |
 | [GO ServeMux](#go-servemux)                       |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
 | [Crystal HTTP](#crystal-http)                     |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
 
@@ -197,27 +197,11 @@ lein run
 ```
 
 ##### Considerations
-Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput.  
-What surprises me is that memory footprint is smaller than Java.
+Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput but for some additional burden imposed by additional allocations.  
+Memory footprint is also pretty the same.
 
 ##### Concurrency and parallelism
-Clojure leverages on the JVM to deliver parallelism: indeed it parallelizes better than Java, since it uses all of the available cores.
-
-### Servlet3 with Jetty
-To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
-
-##### Bootstrap
-```
-javac -cp javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld.java
-java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld
-```
-
-##### Considerations
-I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
-Is a known fact that memory consumption is not one of the key benefits of JVM.
-
-##### Concurrency and parallelism
-JVM allows Java to use all of the available cores.  
+Clojure leverages on the JVM to deliver parallelism.
 
 ### Rust Hyper
 Rust does not include (yet) an HTTP server into its standard library, so i picked one of the more mature micro-framework available: [Hyper](http://hyper.rs/). 
@@ -248,6 +232,22 @@ Memory footprint is average, considering Gunicorn pre-forks eight processes (~7M
 
 ##### Concurrency and parallelism
 Gunicorn relies on the pre-forking model to grant parallelism.
+
+### Servlet3 with Jetty
+To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
+
+##### Bootstrap
+```
+javac -cp javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld.java
+java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld
+```
+
+##### Considerations
+I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
+Memory footprint of the JVM is high, at least compared to other VM (i.e. BEAM).
+
+##### Concurrency and parallelism
+JVM allows Java to use all of the available cores.  
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
