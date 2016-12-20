@@ -11,6 +11,7 @@
   * [Rust](#rust)
   * [Python](#python)
   * [Java](#java)
+  * [Scala](#scala)
   * [GO](#go)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
@@ -25,6 +26,7 @@
   * [Rust Hyper](#rust-hyper)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
+  * [Colossus](#colossus)
   * [GO ServeMux](#go-servemux)
   * [Crystal HTTP](#crystal-http)
 
@@ -76,6 +78,11 @@ It supports several programming paradigms and can count on a broad standard libr
 I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
+### Scala
+[Scala](https://www.scala-lang.org/) 2.12 and [SBT](0.13) are installed via homebrew.
+Scala is a general-purpose programming language that runs on the JVM. It has full support for both functional and object oriented programming and a strong static type system.  
+Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
+
 ### GO
 [GO](https://golang.org/) language version 1.7.3 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
@@ -121,6 +128,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rust Hyper](#rust-hyper)                         |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          85709.89  |              1.16/0.21/15.61  |     144.90  |     427.3  |
+| [Colossus](#colossus)                             |          90457.77  |               1.10/0.15/4.11  |     610.88  |     294.2  |
 | [GO ServeMux](#go-servemux)                       |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
 | [Crystal HTTP](#crystal-http)                     |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
 
@@ -248,6 +256,23 @@ Memory footprint of the JVM is high, at least compared to other VM (i.e. BEAM).
 
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
+
+### Colossus
+To test Scala i used [Colossus](http://tumblr.github.io/colossus/): lightweight framework for building high-performance network I/O applications in Scala.
+
+##### Bootstrap
+```
+sbt
+> compile
+> run
+```
+
+##### Considerations
+Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be pretty performant.
+Unfortunately memory footprint is the worst of the pack.
+
+##### Concurrency and parallelism
+JVM allows Scala to use all of the available cores.  
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
