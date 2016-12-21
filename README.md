@@ -79,8 +79,8 @@ I get two Sun certifications back in 2006 and realized the more i delved into Ja
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
 ### Scala
-[Scala](https://www.scala-lang.org/) 2.12 and [SBT](http://www.scala-sbt.org/) 0.13 are installed via homebrew.
-Scala is a general-purpose programming language that runs on the JVM. It has full support for both functional and object oriented programming and a strong static type system.  
+[Scala](https://www.scala-lang.org/) 2.12 and [SBT](http://www.scala-sbt.org/) 0.13 are installed via homebrew.  
+Scala is a general-purpose programming language that runs on the JVM. It has full support for  functional, object oriented programming and a strong static type system.  
 Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
 
 ### GO
@@ -258,7 +258,7 @@ Memory footprint of the JVM is high, at least compared to other VM (i.e. BEAM).
 JVM allows Java to use all of the available cores.  
 
 ### Colossus
-To test Scala i used [Colossus](http://tumblr.github.io/colossus/): lightweight framework for building high-performance network I/O applications in Scala.
+To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications in Scala.
 
 ##### Bootstrap
 ```
@@ -268,7 +268,7 @@ sbt
 ```
 
 ##### Considerations
-Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be pretty performant.
+Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be pretty performant.  
 Unfortunately memory footprint is the worst of the pack.
 
 ##### Concurrency and parallelism
