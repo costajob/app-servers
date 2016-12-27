@@ -45,7 +45,7 @@ I studied Elixir in 2015, surfing the wave of [Prag-Dave](https://pragdave.me/) 
 Being based on [Erlang](https://www.erlang.org/) it supports parallelism out of the box by spawning small (2Kb) processes.
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.3 is installed via homebrew.  
+[Ruby](https://www.ruby-lang.org/en/) 2.4 is installed via homebrew.  
 Ruby is a scripting language focused on simplicity and productivity, inspired by SmallTalk.  
 Ruby does support concurrency via native threads, but the standard MRI implementation uses an interpreter lock (GIL) to grant thread-safety. Parallelism is supported by pre-forking processes.
 
@@ -121,7 +121,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                        | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
 | :------------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
 | [Plug with Cowboy](#plug-with-cowboy)             |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
-| [Rack with Puma](#rack-with-puma)                 |          50002.84  |              0.31/0.65/15.44  |       ~230  |      ~420  |
+| [Rack with Puma](#rack-with-puma)                 |          53747.65  |               0.28/0.47/5.28  |       ~230  |      ~420  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
 | [Node Cluster](#node-cluster)                     |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
 | [Ring with Jetty](#ring-with-jetty)               |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
