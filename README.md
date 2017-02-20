@@ -11,8 +11,8 @@
   * [Rust](#rust)
   * [Python](#python)
   * [Java](#java)
-  * [Scala](#scala)
   * [GO](#go)
+  * [Scala](#scala)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
   * [Platform](#platform)
@@ -26,8 +26,8 @@
   * [Rust Hyper](#rust-hyper)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
-  * [Colossus](#colossus)
   * [GO ServeMux](#go-servemux)
+  * [Colossus](#colossus)
   * [Crystal HTTP](#crystal-http)
 
 ## Scope
@@ -64,7 +64,7 @@ Clojure is a dynamic, general-purpose programming language, strongly inspired by
 Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.13.0 is installed by official OSX package.  
+[Rust](https://www.rust-lang.org/) language version 1.15.1 is installed by official OSX package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -84,7 +84,7 @@ Scala is a general-purpose programming language that runs on the JVM. It has ful
 Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
 
 ### GO
-[GO](https://golang.org/) language version 1.7.5 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.8.0 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -118,19 +118,19 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
 ### Results
 Here are the benchmarks results ordered by increasing throughput.
 
-| App Server                                        | Throughput (req/s) | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU |
-| :------------------------------------------------ | -----------------: | ----------------------------: | ----------: | ---------: |
-| [Plug with Cowboy](#plug-with-cowboy)             |          43653.65  |           10.86/18.94/249.45  |      48.29  |     438.1  |
-| [Rack with Puma](#rack-with-puma)                 |          53747.65  |               0.28/0.47/5.28  |       ~230  |      ~420  |
-| [Nim asynchttpserver](#nim-asynchttpserver)       |          70646.89  |              1.42/0.44/43.32  |       7.15  |      99.9  |
-| [Node Cluster](#node-cluster)                     |          77035.04  |              1.50/1.82/93.68  |       ~316  |      ~551  |
-| [Ring with Jetty](#ring-with-jetty)               |          77258.65  |              1.63/3.21/78.92  |     127.30  |     558.7  |
-| [Rust Hyper](#rust-hyper)                         |          84493.74  |               1.18/0.13/3.73  |      27.71  |     350.4  |
-| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          85655.09  |               1.16/0.21/9.33  |        ~72  |      ~349  |
-| [Servlet3 with Jetty](#servlet3-with-jetty)       |          85709.89  |              1.16/0.21/15.61  |     144.90  |     427.3  |
-| [Colossus](#colossus)                             |          90457.77  |               1.10/0.15/4.11  |     610.88  |     294.2  |
-| [GO ServeMux](#go-servemux)                       |          92355.89  |               1.07/0.17/9.37  |       8.75  |     291.2  |
-| [Crystal HTTP](#crystal-http)                     |         115968.64  |               0.86/0.14/9.61  |       9.02  |     112.4  |
+| App Server                                        | Requests/sec       | Avg. response size (B)  | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU | Threads nbr. |
+| :------------------------------------------------ | -----------------: | ----------------------: | ----------------------------: | ----------: | ---------: | -----------: |
+| [Plug with Cowboy](#plug-with-cowboy)             |          42601.09  |                    147  |           12.38/22.13/228.85  |      51.56  |     415.9  |          22  |
+| [Rack with Puma](#rack-with-puma)                 |          52033.37  |                     71  |               0.26/0.50/6.26  |       ~230  |      ~420  |          80  |
+| [Nim asynchttpserver](#nim-asynchttpserver)       |          70287.84  |                     47  |              1.42/0.23/23.90  |       7.15  |      99.9  |           1  |
+| [Node Cluster](#node-cluster)                     |          76621.85  |                    147  |              1.48/1.66/57.26  |       ~316  |      ~551  |          48  |
+| [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
+| [Rust Hyper](#rust-hyper)                         |          83196.50  |                     83  |               1.20/0.22/4.18  |      27.71  |     350.4  |           9  |
+| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          83268.50  |                    153  |              1.22/0.17/11.70  |        ~72  |      ~349  |           9  |
+| [Servlet3 with Jetty](#servlet3-with-jetty)       |          83992.65  |                    150  |              1.20/0.16/12.91  |     247.90  |     405.5  |          46  |
+| [GO ServeMux](#go-servemux)                       |          85345.17  |                    122  |               1.09/0.17/5.23  |       9.06  |     410.1  |          17  |
+| [Colossus](#colossus)                             |          90575.31  |                     72  |               1.10/0.14/9.94  |     604.04  |     294.2  |          49  |
+| [Crystal HTTP](#crystal-http)                     |         115570.61  |                     95  |               0.86/0.10/6.92  |       8.99  |     112.7  |           8  |
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -158,7 +158,8 @@ bundle exec puma -w 7 -t 0:2 app.ru
 ```
 
 ##### Considerations
-Ruby delivers solid performance, with very good latency.  
+Ruby delivers solid performance, with good latency. 
+Average response size is small, meaning Puma discard some headers along the way.  
 Memory consumption is pretty high (~30MB per process).  
 
 ##### Concurrency and parallelism
@@ -176,7 +177,8 @@ nim cpp -d:release nim_server.nim
 
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
-Memory consumption is the smallest of the pack: unsurprisingly, considering Nim executes on a single thread.
+Nim HTTP library does not treat response headers with regard: the size is the smaller of the tested solutions.  
+Memory consumption is very good: unsurprisingly, considering Nim executes on a single thread only.
 
 ##### Concurrency and parallelism
 As expected Nim asynchttpserver is not parallel by implementation.
@@ -216,12 +218,14 @@ Rust does not include (yet) an HTTP server into its standard library, so i picke
 
 ##### Bootstrap
 ```
+cargo clean
 cargo build --release
 cargo run --release
 ```
 
 ##### Considerations
-As expected Rust proved to be a very fast languages, although its memory consumption is larger than other binary-compiling languages.
+As expected Rust proved to be a very fast languages, although its memory consumption is larger than other binary-compiling languages.  
+Response average size is smaller than expected, meaning the Rust HTTP library seem to ignore some headers.
 
 ##### Concurrency and parallelism
 As expected Rust makes use of every available cores. 
@@ -257,6 +261,22 @@ Memory footprint of the JVM is high, at least compared to other VM (i.e. BEAM).
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
 
+### GO ServeMux
+I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+
+##### Bootstrap
+```
+go build go_server.go
+./go_server
+```
+
+##### Considerations
+GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
+Memory consumption and resiliency are really good.
+
+##### Concurrency and parallelism
+GO uses one routine per connection to distribute the load on all of the cores.
+
 ### Colossus
 To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications in Scala.
 
@@ -268,28 +288,12 @@ sbt
 ```
 
 ##### Considerations
-Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be pretty performant.  
+Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be performant.  
+Response size is small, suggesting Colossus is getting a better throughput than Java by discarding some headers.
 Unfortunately memory footprint is the worst of the pack.
 
 ##### Concurrency and parallelism
 JVM allows Scala to use all of the available cores.  
-
-### GO ServeMux
-I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-I also tested [fast/http](https://github.com/valyala/fasthttp) library: it proved to be faster than ServerMux but its interface is not as readable and the idea is to stick with the language standard library when possible.
-
-##### Bootstrap
-```
-go build go_server.go
-./go_server
-```
-
-##### Considerations
-GO is a pretty fast language and allows using all of the cores with no particular configuration.  
-Memory consumption and resiliency are really good.
-
-##### Concurrency and parallelism
-GO runs natively on all of the cores: indeed it seems to be a little conservative on CPUs percentage usage.  
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -302,7 +306,7 @@ crystal build --release ./server/crystal_server.cr
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outperforming more mature languages.  
+Crystal language recorded the best lap of the pack, although it seems to discard some response headers as well.  
 Memory consumption and resiliency are also very good.
 
 ##### Concurrency and parallelism
