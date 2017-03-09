@@ -55,7 +55,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 7.0.1 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 7.7.2 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features. Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Clojure
@@ -89,7 +89,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant 
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.20.5 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.21.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported.
 
