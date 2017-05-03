@@ -277,8 +277,8 @@ dotnet run -c Release
 ```
 
 ##### Considerations
-ASP.NET Core proved to be fast and on pair with other VM compiled languages. Consistency is somewhat disappointing anyway.  
-Memory consumption is by far the worst of the package, proving .NET on OSX/Linux it is not probably your best bet if want to keep a small footprint.
+ASP.NET Core proved to be fast, on pair with other VM compiled languages. Consistency is somewhat disappointing anyway.  
+Memory consumption is by far the worst of the package, proving .NET on OSX/Linux it is not your best bet to keep a small footprint.
 
 ##### Concurrency and parallelism
 C# runs on several threads to grant parallelism, albeit a bit conservative compared to other languages.
@@ -312,7 +312,7 @@ sbt
 ##### Considerations
 Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be performant.  
 Response size is small, suggesting Colossus is getting a better throughput than Java by discarding some headers.
-Unfortunately memory footprint is higher than the other JVM languages.
+Unfortunately memory footprint is higher than other JVM languages.
 
 ##### Concurrency and parallelism
 JVM allows Scala to use all of the available cores.  
