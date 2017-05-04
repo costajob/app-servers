@@ -1,13 +1,10 @@
-// Copyright (c) .NET Foundation. All rights reserved. 
-// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information. 
-
 using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace aspnetcore
+namespace netcore
 {
     public class PlaintextMiddleware
     {
@@ -23,14 +20,10 @@ namespace aspnetcore
 
         public Task Invoke(HttpContext httpContext)
         {
-            
             httpContext.Response.StatusCode = 200;
             httpContext.Response.ContentType = "text/plain";
-            // HACK: Setting the Content-Length header manually avoids the cost of serializing the int to a string.
-            //       This is instead of: httpContext.Response.ContentLength = _helloWorldPayload.Length;
-            httpContext.Response.Headers["Content-Length"] = "11";
+            httpContext.Response.Headers["Content-Length"] = $"{_helloWorldPayload.Length}";;
             return httpContext.Response.Body.WriteAsync(_helloWorldPayload, 0, _helloWorldPayload.Length);
-
         }
     }
 

@@ -135,7 +135,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rust Hyper](#rust-hyper)                         |          83196.50  |                     83  |               1.20/0.22/4.18  |      27.71  |     350.4  |           9  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          83268.50  |                    153  |              1.22/0.17/11.70  |        ~72  |      ~349  |           9  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83992.65  |                    150  |              1.20/0.16/12.91  |     247.90  |     405.5  |          46  |
-| [.NET Core](#net-core)                            |          84417.70  |                    123  |             1.52/5.39/140.67  |    1004.67  |     299.6  |          41  |
+| [.NET Core](#net-core)                            |          85028.32  |                    123  |            2.14/12.45/246.14  |     995.48  |     299.6  |          41  |
 | [GO ServeMux](#go-servemux)                       |          85345.17  |                    122  |               1.09/0.17/5.23  |       9.06  |     410.1  |          17  |
 | [Colossus](#colossus)                             |          90575.31  |                     72  |               1.10/0.14/9.94  |     604.04  |     294.2  |          49  |
 | [Crystal HTTP](#crystal-http)                     |         115570.61  |                     95  |               0.86/0.10/6.92  |       8.99  |     112.7  |           8  |
@@ -279,7 +279,7 @@ dotnet run -c Release
 
 ##### Considerations
 .NET Core proved to be fast, on pair with other VM compiled languages, although consistency is not stellar.  
-Memory consumption is by far the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
+Memory consumption is the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
 
 ##### Concurrency and parallelism
 C# runs on several threads to grant parallelism, albeit a bit conservative compared to other languages.
