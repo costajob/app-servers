@@ -86,7 +86,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant 
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### C-Sharp
-[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official porcedure](https://www.microsoft.com/net/core#macos).  
+[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
 .NET Core is a new open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.
 
@@ -294,7 +294,7 @@ dotnet run
 ```
 
 ##### Considerations
-Kestrel throughput is very good, althrough its consistency is just fair.
+Kestrel throughput is very good, althrough its consistency is just fair.  
 Memory consumption is the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
 
 ##### Concurrency and parallelism
