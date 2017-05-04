@@ -288,7 +288,7 @@ C# runs on several threads to grant parallelism, albeit a bit conservative compa
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
 
 ##### Bootstrap
-```
+```shell
 go build go_server.go
 ./go_server
 ```
@@ -304,7 +304,7 @@ GO uses one routine per connection to distribute the load on all of the cores.
 To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications in Scala.
 
 ##### Bootstrap
-```
+```shell
 sbt
 > compile
 > run
@@ -323,7 +323,7 @@ I used Crystal HTTP server standard library.
 Crystal uses green threads, called "fibers", spawned inside an event loop via the [libevent](http://libevent.org/) library.
 
 ##### Bootstrap
-```
+```shell
 crystal build --release ./server/crystal_server.cr
 ./crystal_server
 ```
