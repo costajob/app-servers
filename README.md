@@ -82,9 +82,8 @@ Ignoring Java on this comparison is not an option anyway: Java is the most used 
 
 ### C-Sharp
 C-Sharp (C#) language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official porcedure](https://www.microsoft.com/net/core#macos).  
-.NET Core is a new open-source framework for running .NET applications cross platform. 
-C# is a simple, powerful, type-safe, and object-oriented language.  
-It inherited many features form Java, but extended them with modern paradigms such as futures, pattern matching and deconstructions.
+.NET Core is a new open-source framework for running .NET applications cross platform.  
+C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but extended them with modern paradigms such as futures, pattern matching and deconstructions.
 
 ### GO
 [GO](https://golang.org/) language version 1.8.1 is installed by official OSX package.  
@@ -279,7 +278,7 @@ dotnet run -c Release
 ```
 
 ##### Considerations
-.NET Core proved to be fast, on pair with other VM compiled languages, although consistency is worst. 
+.NET Core proved to be fast, on pair with other VM compiled languages, although consistency is not stellar.  
 Memory consumption is by far the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
 
 ##### Concurrency and parallelism
