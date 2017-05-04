@@ -128,7 +128,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                        | Requests/sec       | Avg. response size (B)  | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU | Threads nbr. |
 | :------------------------------------------------ | -----------------: | ----------------------: | ----------------------------: | ----------: | ---------: | -----------: |
 | [Plug with Cowboy](#plug-with-cowboy)             |          42601.09  |                    147  |           12.38/22.13/228.85  |      51.56  |     415.9  |          22  |
-| [Rack with Puma](#rack-with-puma)                 |          52033.37  |                     71  |               0.26/0.50/6.26  |       ~230  |      ~420  |          80  |
+| [Rack with Puma](#rack-with-puma)                 |          52120.40  |                     71  |              0.26/0.54/10.42  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          70287.84  |                     47  |              1.42/0.23/23.90  |       7.15  |      99.9  |           1  |
 | [Node Cluster](#node-cluster)                     |          76621.85  |                    147  |              1.48/1.66/57.26  |       ~316  |      ~551  |          48  |
 | [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
