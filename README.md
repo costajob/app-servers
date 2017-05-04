@@ -11,8 +11,8 @@
   * [Rust](#rust)
   * [Python](#python)
   * [Java](#java)
-  * [C-Sharp](#c-sharp)
   * [GO](#go)
+  * [C-Sharp](#c-sharp)
   * [Scala](#scala)
   * [Crystal](#crystal)
 * [Benchmarks](#benchmarks)
@@ -27,8 +27,8 @@
   * [Rust Hyper](#rust-hyper)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
-  * [.NET Core](#net-core)
   * [GO ServeMux](#go-servemux)
+  * [Kestrel](#kestrel)
   * [Colossus](#colossus)
   * [Crystal HTTP](#crystal-http)
 
@@ -80,15 +80,15 @@ It supports several programming paradigms and can count on a broad standard libr
 I get two Sun certifications back in 2006 and realized the more i delved into Java the less i liked it.
 Ignoring Java on this comparison is not an option anyway: Java is the most used programming language in the world (2016) and some smart folks have invested on it since the 90ies.
 
-### C-Sharp
-C-Sharp (C#) language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official porcedure](https://www.microsoft.com/net/core#macos).  
-.NET Core is a new open-source framework for running .NET applications cross platform.  
-C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.
-
 ### GO
 [GO](https://golang.org/) language version 1.8.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
+
+### C-Sharp
+[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official porcedure](https://www.microsoft.com/net/core#macos).  
+.NET Core is a new open-source framework for running .NET applications cross platform.  
+C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.
 
 ### Scala
 [Scala](https://www.scala-lang.org/) 2.12 and [SBT](http://www.scala-sbt.org/) 0.13 are installed via homebrew.  
@@ -135,8 +135,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rust Hyper](#rust-hyper)                         |          83196.50  |                     83  |               1.20/0.22/4.18  |      27.71  |     350.4  |           9  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          83268.50  |                    153  |              1.22/0.17/11.70  |        ~72  |      ~349  |           9  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83992.65  |                    150  |              1.20/0.16/12.91  |     247.90  |     405.5  |          46  |
-| [.NET Core](#net-core)                            |          85028.32  |                    123  |            2.14/12.45/246.14  |     995.48  |     299.6  |          41  |
 | [GO ServeMux](#go-servemux)                       |          85345.17  |                    122  |               1.09/0.17/5.23  |       9.06  |     410.1  |          17  |
+| [Kestrel](#kestrel)                               |          89001.25  |                    116  |             1.70/8.72/192.61  |    1013.09  |     442.1  |          40  |
 | [Colossus](#colossus)                             |          90575.31  |                     72  |               1.10/0.14/9.94  |     604.04  |     294.2  |          49  |
 | [Crystal HTTP](#crystal-http)                     |         115570.61  |                     95  |               0.86/0.10/6.92  |       8.99  |     112.7  |           8  |
 
@@ -268,22 +268,6 @@ Memory footprint of the JVM is high, at least compared to other VM (i.e. BEAM).
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
 
-### .NET Core
-The project is inspired by the [.NET Benchmarks](https://github.com/aspnet/benchmarks) plain text project.
-
-##### Bootstrap
-```shell
-dotnet restore
-dotnet run -c Release
-```
-
-##### Considerations
-.NET Core proved to be fast, on pair with other VM compiled languages, although consistency is not stellar.  
-Memory consumption is the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
-
-##### Concurrency and parallelism
-C# runs on several threads to grant parallelism, albeit a bit conservative compared to other languages.
-
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
 
@@ -299,6 +283,22 @@ Memory consumption and resiliency are really good.
 
 ##### Concurrency and parallelism
 GO uses one routine per connection to distribute the load on all of the cores.
+
+### Kestrel
+To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel): a cross-platform web server based on the libuv asynchronous I/O library and included by default in the .NET Core template.
+
+##### Bootstrap
+```shell
+dotnet restore
+dotnet run
+```
+
+##### Considerations
+Kestrel throughput is very good, althrough its consistency is just fair.
+Memory consumption is the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
+
+##### Concurrency and parallelism
+Kestrel spawns multiple threads by default to grant parallelism.
 
 ### Colossus
 To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications in Scala.
