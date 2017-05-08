@@ -54,7 +54,8 @@ It supports several programming paradigms and can count on a broad standard libr
 
 ### Node.js
 [Node.js](https://nodejs.org/en/) version 7.10 is installed by official OSX package.  
-Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features. Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
+Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
+Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.4.2 is installed via homebrew.  
