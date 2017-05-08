@@ -153,6 +153,8 @@ MIX_ENV=prod mix run --no-halt
 ##### Considerations
 Elixir performance are not stellar. To be fair the BEAM VM is not famous to be fast, but to grant reliability and resilience over a distributed system.  
 Cowboy includes several headers in the response, including cache-control, date and server, but surprisingly not the Content-Type one.  
+
+##### Memory
 Memory consumption is good, thanks to the fact that only one process is created.
 
 ##### Concurrency and parallelism
@@ -169,6 +171,8 @@ bundle exec puma -w 7 -t 0:2 app.ru
 ##### Considerations
 Ruby delivers solid performance, with good latency. 
 Average response size is small, meaning Puma discard some headers along the way (the date one).  
+
+##### Memory
 Memory consumption is pretty high (~30MB per process).  
 
 ##### Concurrency and parallelism
@@ -187,6 +191,8 @@ nim cpp -d:release nim_server.nim
 ##### Considerations
 Nim proved to keep its promises, being a fast and concise language.  
 Nim HTTP library discards all of the response headers, but for the Content-Length one.
+
+##### Memory
 Memory consumption is very good: unsurprisingly, considering Nim executes on a single thread only.
 
 ##### Concurrency and parallelism
@@ -203,7 +209,9 @@ node node_server.js
 ##### Considerations
 JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
 Node includes several response headers, including Connection type and Transfer-Encoding.  
-Node.js proved to be memory-hungry (~40MB per process).  
+
+##### Memory
+Node.js is the most memory-hungry of pre-forked languages (~40MB per process).  
 
 ##### Concurrency and parallelism
 Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism.
@@ -219,7 +227,9 @@ lein run
 ##### Considerations
 Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput but for some additional burden imposed by additional allocations.  
 Jetty satisfies the principal response headers.  
-Memory footprint is also pretty the same.
+
+##### Memory
+As expected memory footprint is very similar to Java+Jetty.
 
 ##### Concurrency and parallelism
 Clojure leverages on the JVM to deliver parallelism.
@@ -236,8 +246,11 @@ cargo run --release
 ```
 
 ##### Considerations
-As expected Rust proved to be a very fast languages, although its memory consumption is larger than other binary-compiling languages.  
+As expected Rust proved to be a fast language, but not faster than, say, GO.
 Hyper just responds with Content-Length and Date headers.
+
+##### Memory
+Memory footprint is higher than other binary-compiling langugages.
 
 ##### Concurrency and parallelism
 As expected Rust makes use of every available cores. 
@@ -254,6 +267,8 @@ java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151
 ##### Considerations
 I know Java is pretty fast nowadays: thousands of optimizations have been done to the JVM during the last two decades.  
 Again Jetty is consistent treating response headers.  
+
+##### Memory
 Memory footprint of the JVM is unsurprisingly high.
 
 ##### Concurrency and parallelism
@@ -270,7 +285,9 @@ gunicorn -w 7 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
 ##### Considerations
 Gunicorn and Meinheld combination is blazing fast, surpassing even some compiled languages.  
 Mainheld responds with all of the principal HTTP headers.  
-Memory footprint is average, considering Gunicorn pre-forks eight processes (~7MB per process). 
+
+##### Memory
+Memory footprint is good, considering Gunicorn pre-forks eight processes (~7MB per process). 
 
 ##### Concurrency and parallelism
 Gunicorn relies on the pre-forking model to grant parallelism.
@@ -287,6 +304,8 @@ go build go_server.go
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
 Servermux honors both Content-Type and Content-Length main headers.  
+
+##### Memory
 Memory consumption and resiliency are really good.
 
 ##### Concurrency and parallelism
@@ -305,6 +324,8 @@ sbt
 ##### Considerations
 Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus is build) proves to be performant.  
 Colossus gets better throughput than other JVM languages, but just returns content headers.
+
+##### Memory
 Scala memory footprint is on the deeper waters of the river.
 
 ##### Concurrency and parallelism
@@ -322,6 +343,8 @@ dotnet run
 ##### Considerations
 Kestrel throughput is very good, althrough its consistency is just fair.  
 Kestrel discards content headers, preserving just Date, Server and Transfer-Encoding ones.  
+
+##### Memory
 Memory consumption is the worst of the package, proving .NET outside of MS Windows still needs some tweaking.
 
 ##### Concurrency and parallelism
@@ -340,7 +363,9 @@ crystal build --release ./server/crystal_server.cr
 ##### Considerations
 Crystal language recorded the best lap of the pack, outstanding considering it does not rely on parallelism at all. 
 Crystal HTTP library honors the main content headers.
-Memory consumption and resiliency are very good.
+
+##### Memory
+Memory consumption and resiliency are very good.  
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism yet.
