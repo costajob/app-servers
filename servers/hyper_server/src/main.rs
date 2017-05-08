@@ -6,7 +6,7 @@ extern crate num_cpus;
 use hyper::{Decoder, Encoder, Next, HttpStream};
 use hyper::server::{Server, Handler, Request, Response, HttpListener};
 
-static PHRASE: &'static [u8] = b"Hello World!";
+static PHRASE: &'static [u8] = b"Hello World";
 
 struct Hello;
 

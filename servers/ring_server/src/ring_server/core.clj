@@ -3,7 +3,7 @@
 
 (defn handler [request]
   {:status 200
-   :headers {"Content-Type" "text/html"}
+   :headers {"Content-Type" "text/pain"}
    :body "Hello World"})
 
 (defn -main []
