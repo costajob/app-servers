@@ -229,7 +229,7 @@ Ring runs on the Jetty server, thus there is no surprise it is quite close to Ja
 Jetty satisfies the principal response headers.  
 
 ##### Memory
-As expected memory footprint is very similar to Java+Jetty.
+Memory footprint is a bit worst than Java+Jetty.
 
 ##### Concurrency and parallelism
 Clojure leverages on the JVM to deliver parallelism.
