@@ -304,7 +304,7 @@ go build go_server.go
 
 ##### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
-Servermux honors both Content-Type and Content-Length main headers.  
+ServerMux honors both contents headers.  
 
 ##### Memory
 Memory consumption and resiliency are really good.
@@ -313,7 +313,7 @@ Memory consumption and resiliency are really good.
 GO uses one routine per connection to distribute the load on all of the cores.
 
 ### Colossus
-To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications in Scala.
+To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications.
 
 ##### Bootstrap
 ```shell
