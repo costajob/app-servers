@@ -53,7 +53,7 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 7.10 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 8.0.0 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
@@ -98,7 +98,7 @@ According to the official site Rust is a systems programming language that runs 
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
 ### GO
-[GO](https://golang.org/) language version 1.8.1 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.8.3 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -132,7 +132,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Plug with Cowboy](#plug-with-cowboy)             |          43686.45  |                    147  |           12.44/22.22/253.07  |      51.56  |     415.9  |          22  |
 | [Rack with Puma](#rack-with-puma)                 |          52253.58  |                     71  |               0.25/0.53/7.10  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          66368.34  |                     47  |              1.50/0.25/25.86  |       7.15  |      99.9  |           1  |
-| [Node Cluster](#node-cluster)                     |          75769.52  |                    147  |              1.54/1.92/66.08  |       ~316  |      ~551  |          48  |
+| [Node Cluster](#node-cluster)                     |          67597.49  |                    156  |              1.70/1.79/54.39  |       ~338  |      ~574  |          48  |
 | [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
 | [Hyper.rs](#hyperrs)                              |          83310.50  |                     83  |               1.20/0.24/5.96  |      27.71  |     350.4  |           9  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83482.16  |                    150  |               1.18/0.12/8.48  |     247.90  |     405.5  |          46  |
@@ -212,7 +212,7 @@ JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled lan
 Node includes several response headers, including Connection type and Transfer-Encoding.  
 
 ##### Memory
-Node.js is the most memory-hungry of pre-forked languages (~40MB per process).  
+Node.js is the most memory-hungry of pre-forked languages (>40MB per process).  
 
 ##### Concurrency and parallelism
 Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism.
