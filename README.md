@@ -84,15 +84,15 @@ Designed to be concise, many of Scala's design decisions were inspired by critic
 .NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
+### Pony
+[Pony](https://www.ponylang.org/) 0.14.0 is installed via homebrew.  
+Pony is an object-oriented, actor-model, capabilities-secure AOT compiled programming language.  
+Pony is aimed to be type safe, exception safe, memory safe and data race free courtesy of its secure type system.
+
 ### Nim
 [Nim](http://nim-lang.org/) 0.17.0 is installed viw homebrew.  
 Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
-
-### Pony
-[Pony](https://www.ponylang.org/) 0.14.0 is installed via homebrew.  
-Pony is an object-oriented, actor-model, capabilities-secure AOT compiled programming language, compatible with C/C++ code. 
-Pony is aimed to be type safe, exception safe, memory safe and data race free courtesy of its secure type system.
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.22.0 is installed via homebrew.  
