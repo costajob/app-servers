@@ -21,7 +21,7 @@
   * [Wrk](#wrk)
   * [Results](#results)
   * [Plug with Cowboy](#plug-with-cowboy)
-  * [Pony Net/HTTP](#pony-nethttp)
+  * [Pony HTTP Server](#pony-http-server)
   * [Rack with Puma](#rack-with-puma)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
@@ -86,7 +86,7 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 
 ### Pony
 [Pony](https://www.ponylang.org/) 0.14.0 is installed via homebrew.  
-Pony is an object-oriented, actor-model, capabilities-secure AOT compiled programming language.  
+Pony is an object-oriented, actor-model, capabilities-secure ahead of time (AOT) compiled programming language.  
 Pony is aimed to be type safe, exception safe, memory safe and data race free courtesy of its secure type system.
 
 ### Nim
@@ -137,7 +137,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                        | Requests/sec       | Avg. response size (B)  | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU | Threads nbr. |
 | :------------------------------------------------ | -----------------: | ----------------------: | ----------------------------: | ----------: | ---------: | -----------: |
 | [Plug with Cowboy](#plug-with-cowboy)             |          43686.45  |                    147  |           12.44/22.22/253.07  |      51.56  |     415.9  |          22  |
-| [Pony Net/HTTP](#pony-nethttp)                    |          49085.58  |                     74  |              2.06/0.91/45.52  |       26.3  |     421.2  |           6  |
+| [Pony HTTP Server](#pony-http-server)             |          49085.58  |                     74  |              2.06/0.91/45.52  |       26.3  |     421.2  |           6  |
 | [Rack with Puma](#rack-with-puma)                 |          52253.58  |                     71  |               0.25/0.53/7.10  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          66368.34  |                     47  |              1.50/0.25/25.86  |       7.15  |      99.9  |           1  |
 | [Node Cluster](#node-cluster)                     |          69768.44  |                    156  |              1.61/1.81/94.77  |       ~338  |      ~574  |          48  |
@@ -169,8 +169,8 @@ Memory consumption is good, thanks to the fact that only one process is created.
 ##### Concurrency and parallelism
 Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
 
-### Pony Net/HTTP
-To test Pony i used the [Net/HTTP example](https://github.com/ponylang/ponyc/blob/master/examples/httpserver/httpserver.pony) that comes as an example of the official repository.  
+### Pony HTTP Server
+To test Pony i used the [HTTP Server](https://github.com/ponylang/ponyc/blob/master/examples/httpserver/httpserver.pony) that comes as an example of the official repository.  
 
 ##### Bootstrap
 ```shell
@@ -179,14 +179,14 @@ ponyc -pic && mv servers ./pony_server
 ```
 
 ##### Considerations
-Pony language falls short both compared with more mature VM/scripting solutions and with other AOT languages.  
+Pony throughput falls short both compared with more mature VM/scripting solutions and with the other AOT compiled languages.  
 Pony response has a small size and its consistency is pretty good.
 
 ##### Memory
-Pony's memory consumption is good in general, but just average compared to other AOT languages.
+Pony's memory consumption is good in general, but just average compared to other AOT compiled languages.
 
 ##### Concurrency and parallelism
-Pony delivers concurrency thanks to its lightweight actors model (similar to Erlang and Scala).
+Pony delivers full parallelism thanks to its lightweight actors model (similar to Erlang and Scala).
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
