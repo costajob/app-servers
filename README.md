@@ -21,7 +21,7 @@
   * [Wrk](#wrk)
   * [Results](#results)
   * [Plug with Cowboy](#plug-with-cowboy)
-  * [Pony Net/HTTP](#pony-net/http)
+  * [Pony Net/HTTP](#pony-nethttp)
   * [Rack with Puma](#rack-with-puma)
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Node Cluster](#node-cluster)
@@ -137,7 +137,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                        | Requests/sec       | Avg. response size (B)  | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU | Threads nbr. |
 | :------------------------------------------------ | -----------------: | ----------------------: | ----------------------------: | ----------: | ---------: | -----------: |
 | [Plug with Cowboy](#plug-with-cowboy)             |          43686.45  |                    147  |           12.44/22.22/253.07  |      51.56  |     415.9  |          22  |
-| [Pony Net/HTTP](#pony-net/http)                   |          49085.58  |                     74  |              2.06/0.91/45.52  |       26.3  |     421.2  |           6  |
+| [Pony Net/HTTP](#pony-nethttp)                    |          49085.58  |                     74  |              2.06/0.91/45.52  |       26.3  |     421.2  |           6  |
 | [Rack with Puma](#rack-with-puma)                 |          52253.58  |                     71  |               0.25/0.53/7.10  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          66368.34  |                     47  |              1.50/0.25/25.86  |       7.15  |      99.9  |           1  |
 | [Node Cluster](#node-cluster)                     |          69768.44  |                    156  |              1.61/1.81/94.77  |       ~338  |      ~574  |          48  |
