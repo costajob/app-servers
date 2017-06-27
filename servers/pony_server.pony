@@ -16,7 +16,7 @@ actor Main
       auth,
       ListenHandler(env),
       BackendMaker.create(env)
-      where service=service, host=host, reversedns=auth)
+      where service=service, host=host)
 
 class ListenHandler
   let _env: Env
