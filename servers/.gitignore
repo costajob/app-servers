@@ -1,2 +1,6 @@
 __pycache__
 nimcache
+go_server
+crystal_server
+nim_server
+pony_server
