@@ -137,13 +137,13 @@ Here are the benchmarks results ordered by increasing throughput.
 | App Server                                        | Requests/sec       | Avg. response size (B)  | Latency in ms (avg/stdev/max) | Memory (MB) |       %CPU | Threads nbr. |
 | :------------------------------------------------ | -----------------: | ----------------------: | ----------------------------: | ----------: | ---------: | -----------: |
 | [Plug with Cowboy](#plug-with-cowboy)             |          43686.45  |                    147  |           12.44/22.22/253.07  |      51.56  |     415.9  |          22  |
-| [Pony HTTP Server](#pony-http-server)             |          49085.58  |                     74  |              2.06/0.91/45.52  |       26.3  |     421.2  |           6  |
+| [Pony HTTP Server](#pony-http-server)             |          50244.87  |                     74  |              1.99/0.33/12.12  |      21.87  |     351.7  |           6  |
 | [Rack with Puma](#rack-with-puma)                 |          52253.58  |                     71  |               0.25/0.53/7.10  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          66368.34  |                     47  |              1.50/0.25/25.86  |       7.15  |      99.9  |           1  |
 | [Node Cluster](#node-cluster)                     |          69768.44  |                    156  |              1.61/1.81/94.77  |       ~338  |      ~574  |          48  |
 | [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
 | [Hyper.rs](#hyperrs)                              |          83310.50  |                     83  |               1.20/0.24/5.96  |      27.71  |     350.4  |           9  |
-| [Servlet3 with Jetty](#servlet3-with-jetty)       |          83482.16  |                    150  |               1.18/0.12/8.48  |     247.90  |     405.5  |          46  |
+| [Servlet3 with Jetty](#servlet3-with-jetty)       |          83482.16  |                    150  |               1.18/0.12/8.48  |     247.91  |     405.5  |          46  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          84679.61  |                    153  |               1.18/0.23/4.64  |        ~72  |      ~349  |           9  |
 | [GO ServeMux](#go-servemux)                       |          85756.24  |                    122  |              1.16/0.26/16.99  |       9.06  |     410.1  |          17  |
 | [Colossus](#colossus)                             |          89121.37  |                     72  |               1.12/0.16/9.95  |     693.18  |     294.2  |          39  |
@@ -179,14 +179,14 @@ ponyc -pic && mv servers ./pony_server
 ```
 
 ##### Considerations
-Pony throughput falls short both compared with more mature VM/scripting solutions and with the other AOT compiled languages.  
-Pony response has a small size and its consistency is pretty good.
+Pony throughput falls short both compared with other AOT compiled languages and with more mature VM/scripting solutions.  
+Pony response has a small size but its consistency is pretty good.
 
 ##### Memory
-Pony's memory consumption is good in general, but just average compared to other AOT compiled languages.
+Pony's memory consumption is good in general, just average compared to other AOT compiled languages.
 
 ##### Concurrency and parallelism
-Pony delivers full parallelism thanks to its lightweight actors model (similar to Erlang and Scala).
+Pony delivers full parallelism thanks to its lightweight actors model.
 
 ### Rack with Puma
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
