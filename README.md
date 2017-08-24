@@ -20,19 +20,19 @@
   * [Platform](#platform)
   * [Wrk](#wrk)
   * [Results](#results)
-  * [Plug with Cowboy](#plug-with-cowboy)
-  * [Pony HTTP Server](#pony-http-server)
   * [Rack with Puma](#rack-with-puma)
-  * [Nim asynchttpserver](#nim-asynchttpserver)
-  * [Node Cluster](#node-cluster)
-  * [Ring with Jetty](#ring-with-jetty)
-  * [Rust Hyper](#rust-hyper)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
+  * [Node Cluster](#node-cluster)
+  * [Plug with Cowboy](#plug-with-cowboy)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
-  * [GO ServeMux](#go-servemux)
-  * [Kestrel](#kestrel)
+  * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
+  * [Kestrel](#kestrel)
+  * [Pony HTTP Server](#pony-http-server)
+  * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Crystal HTTP](#crystal-http)
+  * [Rust Hyper](#rust-hyper)
+  * [GO ServeMux](#go-servemux)
 
 ## Scope
 The idea behind this repository is to test how HTTP libraries for different languages behave under heavy loading.   
@@ -55,12 +55,12 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 8.1.2 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 8.4.0 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.4.2 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.5.1 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
@@ -80,7 +80,7 @@ Scala is a general-purpose programming language that runs on the JVM. It has ful
 Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
 
 ### C-Sharp
-[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 1.1 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
+[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.0 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
 .NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
@@ -95,12 +95,12 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.22.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.23.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time compilation.  
 For concurrency Crystal adopts the CSP model (like GO) and evented/IO to avoid blocking calls, but parallelism is not yet supported (fibers runs within a single threads).
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.17 is installed by official OSX package.  
+[Rust](https://www.rust-lang.org/) language version 1.19 is installed by official OSX package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -140,15 +140,70 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Pony HTTP Server](#pony-http-server)             |          50244.87  |                     74  |              1.99/0.33/12.12  |      21.87  |     351.7  |           6  |
 | [Rack with Puma](#rack-with-puma)                 |          52253.58  |                     71  |               0.25/0.53/7.10  |       ~230  |      ~420  |          80  |
 | [Nim asynchttpserver](#nim-asynchttpserver)       |          66368.34  |                     47  |              1.50/0.25/25.86  |       7.15  |      99.9  |           1  |
-| [Node Cluster](#node-cluster)                     |          69768.44  |                    156  |              1.61/1.81/94.77  |       ~338  |      ~574  |          48  |
+| [Node Cluster](#node-cluster)                     |          70878.10  |                    147  |              1.79/2.53/71.64  |       ~338  |      ~574  |          48  |
 | [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
-| [Hyper.rs](#hyperrs)                              |          83310.50  |                     83  |               1.20/0.24/5.96  |      27.71  |     350.4  |           9  |
+| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          80359.04  |                    153  |              1.27/0.81/50.48  |        ~72  |      ~349  |           9  |
+| [GO ServeMux](#go-servemux)                       |          83178.80  |                    122  |               1.19/0.18/6.96  |       9.48  |     406.1  |          18  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83482.16  |                    150  |               1.18/0.12/8.48  |     247.91  |     405.5  |          46  |
-| [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          84679.61  |                    153  |               1.18/0.23/4.64  |        ~72  |      ~349  |           9  |
-| [GO ServeMux](#go-servemux)                       |          85756.24  |                    122  |              1.16/0.26/16.99  |       9.06  |     410.1  |          17  |
-| [Colossus](#colossus)                             |          89121.37  |                     72  |               1.12/0.16/9.95  |     693.18  |     294.2  |          39  |
-| [Kestrel](#kestrel)                               |          90238.77  |                    116  |             1.70/8.72/192.61  |    1014.14  |     442.1  |          40  |
-| [Crystal HTTP](#crystal-http)                     |         115670.14  |                     95  |               0.86/0.13/6.22  |       9.59  |     112.7  |           8  |
+| [Kestrel](#kestrel)                               |          84966.00  |                    116  |              1.17/0.47/19.86  |     993.32  |     416.1  |          36  |
+| [Colossus](#colossus)                             |          89586.87  |                     72  |             1.35/4.54/172.05  |     604.18  |     269.2  |          37  |
+| [Hyper.rs](#hyperrs)                              |         110539.06  |                     83  |               0.90/0.20/6.85  |       4.84  |      98.7  |           1  |
+| [Crystal HTTP](#crystal-http)                     |         111339.51  |                     95  |               0.89/0.18/7.36  |      10.02  |     111.2  |           8  |
+
+
+### Rack with Puma
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
+
+##### Bootstrap
+```shell
+bundle exec puma -w 7 -t 0:2 app.ru
+```
+
+##### Considerations
+Ruby delivers solid performance, with good latency. 
+Average response size is small, meaning Puma discard some headers along the way (the date one).  
+
+##### Memory
+Memory consumption is pretty high (~30MB per process).  
+
+##### Concurrency and parallelism
+Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads (which i limited to get better throughput).
+
+### Gunicorn with Meinheld
+I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
+
+##### Bootstrap
+```shell
+gunicorn -w 7 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
+```
+
+##### Considerations
+Gunicorn and Meinheld combination is blazing fast, surpassing even some compiled languages.  
+Mainheld responds with all of the principal HTTP headers.  
+
+##### Memory
+Memory footprint is good, considering Gunicorn pre-forks eight processes (~7MB per process). 
+
+##### Concurrency and parallelism
+Gunicorn relies on the pre-forking model to grant parallelism.
+
+### Node Cluster
+I used Node cluster library to spawn multiple processes, thus granting parallelism.
+
+##### Bootstrap
+```shell
+node node_server.js
+```
+
+##### Considerations
+JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
+Node includes several response headers, including Connection type and Transfer-Encoding.  
+
+##### Memory
+Node.js is the most memory-hungry of pre-forked languages (>40MB per process).  
+
+##### Concurrency and parallelism
+Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -169,120 +224,6 @@ Memory consumption is good, thanks to the fact that only one process is created.
 ##### Concurrency and parallelism
 Elixir VM distributes the workloads on all of the available cores, thus supporting parallelism quite nicely.  
 
-### Pony HTTP Server
-To test Pony i used the [HTTP Server](https://github.com/ponylang/ponyc/blob/master/examples/httpserver/httpserver.pony) that comes as an example of the official repository.  
-
-##### Bootstrap
-```shell
-ponyc -pic && mv servers ./pony_server
-./pony_server
-```
-
-##### Considerations
-Pony throughput falls short both compared with other AOT compiled languages and with more mature VM/scripting solutions.  
-Pony response has a small size but its consistency is pretty good.
-
-##### Memory
-Pony's memory consumption is good in general, just average compared to other AOT compiled languages.
-
-##### Concurrency and parallelism
-Pony delivers full parallelism thanks to its lightweight actors model.
-
-### Rack with Puma
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io/) application server.  
-
-##### Bootstrap
-```shell
-bundle exec puma -w 7 -t 0:2 app.ru
-```
-
-##### Considerations
-Ruby delivers solid performance, with good latency. 
-Average response size is small, meaning Puma discard some headers along the way (the date one).  
-
-##### Memory
-Memory consumption is pretty high (~30MB per process).  
-
-##### Concurrency and parallelism
-Because of MRI's GIL, Puma relies on the pre-forking model for parallelism: 8 processes are forked (one as supervisor), each spawning multiple threads (which i limited to get better throughput).
-
-### Nim asynchttpserver
-I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
-Nim's asyncdispatch library is hard to use with threads, so the server runs on a single core only.  
-
-##### Bootstrap
-```shell
-nim cpp -d:release nim_server.nim
-./nim_server
-```
-
-##### Considerations
-Nim proved to keep its promises, being a fast and concise language.  
-Nim HTTP library discards all of the response headers, but for the Content-Length one.
-
-##### Memory
-Memory consumption is very good: unsurprisingly, considering Nim executes on a single thread only.
-
-##### Concurrency and parallelism
-As expected Nim asynchttpserver is not parallel by implementation.
-
-### Node Cluster
-I used Node cluster library to spawn multiple processes, thus granting parallelism.
-
-##### Bootstrap
-```shell
-node node_server.js
-```
-
-##### Considerations
-JavaScript V8 on Node.js proved to be pretty fast, getting close to compiled languages.  
-Node includes several response headers, including Connection type and Transfer-Encoding.  
-
-##### Memory
-Node.js is the most memory-hungry of pre-forked languages (>40MB per process).  
-
-##### Concurrency and parallelism
-Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model to get parallelism.
-
-### Ring with Jetty
-I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
-
-##### Bootstrap
-```shell
-lein run
-```
-
-##### Considerations
-Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput but for some additional burden imposed by additional allocations.  
-Jetty satisfies the principal response headers.  
-
-##### Memory
-Memory footprint is a bit worst than Java+Jetty.
-
-##### Concurrency and parallelism
-Clojure leverages on the JVM to deliver parallelism.
-
-### Hyper.rs
-Rust does not include (yet) an HTTP server into its standard library, so i picked one of the more mature micro-framework available: [Hyper.rs](http://hyper.rs/). 
-
-##### Bootstrap
-```shell
-export OPENSSL_INCLUDE_DIR=<path-to-openssl-includes>
-cargo clean
-cargo build --release
-cargo run --release
-```
-
-##### Considerations
-As expected Rust proved to be a fast language, but not faster than, say, GO.
-Hyper just responds with Content-Length and Date headers.
-
-##### Memory
-Memory footprint is higher than other AOT languages.
-
-##### Concurrency and parallelism
-As expected Rust makes use of every available cores. 
-
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
@@ -302,43 +243,23 @@ Memory footprint of the JVM is unsurprisingly high.
 ##### Concurrency and parallelism
 JVM allows Java to use all of the available cores.  
 
-### Gunicorn with Meinheld
-I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
+### Ring with Jetty
+I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
 
 ##### Bootstrap
 ```shell
-gunicorn -w 7 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
+lein run
 ```
 
 ##### Considerations
-Gunicorn and Meinheld combination is blazing fast, surpassing even some compiled languages.  
-Mainheld responds with all of the principal HTTP headers.  
+Ring runs on the Jetty server, thus there is no surprise it is quite close to Java throughput but for some additional burden imposed by additional allocations.  
+Jetty satisfies the principal response headers.  
 
 ##### Memory
-Memory footprint is good, considering Gunicorn pre-forks eight processes (~7MB per process). 
+Memory footprint is a bit worst than Java+Jetty.
 
 ##### Concurrency and parallelism
-Gunicorn relies on the pre-forking model to grant parallelism.
-
-### GO ServeMux
-I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
-
-##### Bootstrap
-```shell
-go build go_server.go
-./go_server
-```
-
-##### Considerations
-GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
-ServerMux honors both contents headers. 
-GO compiler is blazing fast, taking `0m0.383s` to build the final binary.
-
-##### Memory
-Memory consumption and resiliency are really good.
-
-##### Concurrency and parallelism
-GO uses one routine per connection to distribute the load on all of the cores.
+Clojure leverages on the JVM to deliver parallelism.
 
 ### Colossus
 To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications.
@@ -370,7 +291,7 @@ dotnet run
 ```
 
 ##### Considerations
-Kestrel throughput is very good, althrough its consistency is just fair.  
+Kestrel throughput is very good, although version 2.0 of .NET Core is slower than previous (1.1).  
 Kestrel discards content headers, preserving just Date, Server and Transfer-Encoding ones.  
 
 ##### Memory
@@ -378,6 +299,45 @@ Memory consumption is the worst of the package, proving .NET outside of MS Windo
 
 ##### Concurrency and parallelism
 Kestrel spawns multiple threads by default to grant parallelism.
+
+### Pony HTTP Server
+To test Pony i used the [HTTP Server](https://github.com/ponylang/ponyc/blob/master/examples/httpserver/httpserver.pony) that comes as an example of the official repository.  
+
+##### Bootstrap
+```shell
+ponyc -pic && mv servers ./pony_server
+./pony_server
+```
+
+##### Considerations
+Pony throughput falls short both compared with other AOT compiled languages and with more mature VM/scripting solutions.  
+Pony response has a small size but its consistency is pretty good.
+
+##### Memory
+Pony's memory consumption is good in general, just average compared to other AOT compiled languages.
+
+##### Concurrency and parallelism
+Pony delivers full parallelism thanks to its lightweight actors model.
+
+### Nim asynchttpserver
+I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
+Nim's asyncdispatch library is hard to use with threads, so the server runs on a single core only.  
+
+##### Bootstrap
+```shell
+nim cpp -d:release nim_server.nim
+./nim_server
+```
+
+##### Considerations
+Nim proved to keep its promises, being a fast and concise language.  
+Nim HTTP library discards all of the response headers, but for the Content-Length one.
+
+##### Memory
+Memory consumption is very good: unsurprisingly, considering Nim executes on a single thread only.
+
+##### Concurrency and parallelism
+As expected Nim asynchttpserver is not parallel by implementation.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -390,11 +350,52 @@ crystal build --release ./server/crystal_server.cr
 ```
 
 ##### Considerations
-Crystal language recorded the best lap of the pack, outstanding considering it does not rely on parallelism at all. 
+Crystal language recorded the best lap of the pack.  
 Crystal HTTP library honors the main content headers.
 
 ##### Memory
-Memory consumption and resiliency are very good.  
+Memory consumption and resiliency are on par with the other AOT languages.  
 
 ##### Concurrency and parallelism
 As expected Crystal does not supports parallelism yet.
+
+### Hyper.rs
+Rust does not include (yet) an HTTP server into its standard library, so i picked one of the more mature micro-framework available: [Hyper.rs](http://hyper.rs/). 
+
+##### Bootstrap
+```shell
+export OPENSSL_INCLUDE_DIR=<path-to-openssl-includes>
+cargo clean
+cargo build --release
+cargo run --release
+```
+
+##### Considerations
+As expected Rust proved to be a fast language, indeed one of the faster ones.
+Hyper just responds with Content-Length and Date headers.
+
+##### Memory
+Memory footprint is the lower of the pack.
+
+##### Concurrency and parallelism
+Hyper server just uses one core, indeed this version proved to be faster then previous one running on multiple cores.
+
+### GO ServeMux
+I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+
+##### Bootstrap
+```shell
+go build go_server.go
+./go_server
+```
+
+##### Considerations
+GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
+ServerMux honors both contents headers. 
+GO compiler is blazing fast, taking `0m0.383s` to build the final binary.
+
+##### Memory
+Memory consumption and resiliency are really good.
+
+##### Concurrency and parallelism
+GO uses one routine per connection to distribute the load on all of the cores.

@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["costajob <costajob@gmail.com>"]
 
 [dependencies]
-env_logger = "0.3.5"
-hyper = {git = "https://github.com/hyperium/hyper"}
-num_cpus = "1.1.0"
+futures = "0.1"
+hyper = "0.11"
+tokio-core = "0.1"
