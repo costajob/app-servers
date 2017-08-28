@@ -6,6 +6,7 @@
   * [Ruby](#ruby)
   * [Python](#python)
   * [Node.js](#nodejs)
+  * [Lua](#lua)
   * [Elixir](#elixir)
   * [Java](#java)
   * [Clojure](#clojure)
@@ -55,9 +56,13 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### Node.js
-[Node.js](https://nodejs.org/en/) version 8.4.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 8.4 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
+
+### Lua
+[Lua](https://www.lua.org/) version 5.2 is installed via homebrew.  
+Lua is an efficient, lightweight, embeddable scripting language. It supports procedural programming, object-oriented programming, functional programming and data-driven programming.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.5.1 is installed via homebrew.  
@@ -105,7 +110,7 @@ According to the official site Rust is a systems programming language that runs 
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
 ### GO
-[GO](https://golang.org/) language version 1.8.3 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.9 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -143,9 +148,9 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Node Cluster](#node-cluster)                     |          70878.10  |                    147  |              1.79/2.53/71.64  |       ~338  |      ~574  |          48  |
 | [Ring with Jetty](#ring-with-jetty)               |          78913.27  |                    157  |              1.44/2.82/84.67  |     127.30  |     558.7  |          73  |
 | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |          80359.04  |                    153  |              1.27/0.81/50.48  |        ~72  |      ~349  |           9  |
-| [GO ServeMux](#go-servemux)                       |          83178.80  |                    122  |               1.19/0.18/6.96  |       9.48  |     406.1  |          18  |
 | [Servlet3 with Jetty](#servlet3-with-jetty)       |          83482.16  |                    150  |               1.18/0.12/8.48  |     247.91  |     405.5  |          46  |
 | [Kestrel](#kestrel)                               |          84966.00  |                    116  |              1.17/0.47/19.86  |     993.32  |     416.1  |          36  |
+| [GO ServeMux](#go-servemux)                       |          85234.28  |                    122  |               1.16/0.17/7.28  |      11.79  |     404.4  |          17  |
 | [Colossus](#colossus)                             |          89586.87  |                     72  |             1.35/4.54/172.05  |     604.18  |     269.2  |          37  |
 | [Hyper.rs](#hyperrs)                              |         110539.06  |                     83  |               0.90/0.20/6.85  |       4.84  |      98.7  |           1  |
 | [Crystal HTTP](#crystal-http)                     |         111339.51  |                     95  |               0.89/0.18/7.36  |      10.02  |     111.2  |           8  |
@@ -375,7 +380,7 @@ As expected Rust proved to be a fast language, indeed one of the faster ones.
 Hyper just responds with Content-Length and Date headers.
 
 #### Memory
-Memory footprint is the lower of the pack.
+Memory footprint is excellent: the whole server runs on a single thread only, thanks to the GC free nature of the language.
 
 #### Concurrency and parallelism
 Hyper server just uses one core, indeed this version proved to be faster then previous one running on multiple cores.
@@ -392,7 +397,6 @@ go build go_server.go
 #### Considerations
 GO is a pretty fast language and allows using all of the cores with no particular configuration since version 1.5.  
 ServerMux honors both contents headers. 
-GO compiler is blazing fast, taking `0m0.383s` to build the final binary.
 
 #### Memory
 Memory consumption and resiliency are really good.
