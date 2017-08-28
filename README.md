@@ -359,7 +359,7 @@ Crystal language recorded the best lap of the pack.
 Crystal HTTP library honors the main content headers.
 
 #### Memory
-Memory consumption and resiliency are on par with the other AOT languages.  
+Memory consumption and resiliency are on par with the other AOT languages: very good.  
 
 #### Concurrency and parallelism
 As expected Crystal does not supports parallelism yet.
@@ -376,11 +376,11 @@ cargo run --release
 ```
 
 #### Considerations
-As expected Rust proved to be a fast language, indeed one of the faster ones.
+As expected Rust proved to be a fast language, indeed one of the faster ones.  
 Hyper just responds with Content-Length and Date headers.
 
 #### Memory
-Memory footprint is excellent: the whole server runs on a single thread only, thanks to the GC free nature of the language.
+Memory footprint is excellent: the whole server runs on a single thread only.
 
 #### Concurrency and parallelism
 Hyper server just uses one core, indeed this version proved to be faster then previous one running on multiple cores.
