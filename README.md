@@ -6,7 +6,6 @@
   * [Ruby](#ruby)
   * [Python](#python)
   * [Node.js](#nodejs)
-  * [Lua](#lua)
   * [Elixir](#elixir)
   * [Java](#java)
   * [Clojure](#clojure)
@@ -59,10 +58,6 @@ It supports several programming paradigms and can count on a broad standard libr
 [Node.js](https://nodejs.org/en/) version 8.4 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
-
-### Lua
-[Lua](https://www.lua.org/) version 5.2 is installed via homebrew.  
-Lua is an efficient, lightweight, embeddable scripting language. It supports procedural programming, object-oriented programming, functional programming and data-driven programming.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.5.1 is installed via homebrew.  
