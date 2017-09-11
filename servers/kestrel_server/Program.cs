@@ -15,7 +15,7 @@ namespace kestrel_server
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseUrls("http://localhost:9292")
+                .UseUrls("http://0.0.0.0:9292")
                 .UseStartup<Startup>()
                 .Build();
             

@@ -24,7 +24,7 @@ impl Service for HelloWorld {
 }
 
 fn main() {
-    let addr = "127.0.0.1:9292".parse().unwrap();
+    let addr = "0.0.0.0:9292".parse().unwrap();
     let server = Http::new().bind(&addr, || Ok(HelloWorld)).unwrap();
     server.run().unwrap();
 }

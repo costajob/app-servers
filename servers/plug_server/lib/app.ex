@@ -8,6 +8,7 @@ defmodule App do
       Plug.Adapters.Cowboy.child_spec(:http, Server, [], port: port)
     ]
 
-    Supervisor.start_link(children, strategy: :one_for_one)
+    opts = [strategy: :one_for_one, name: App.Supervisor]
+    Supervisor.start_link(children, opts)
   end
 end
