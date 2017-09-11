@@ -2,10 +2,11 @@
 
 * [Scope](#scope)
   * [Hello World](#hello-world)
+  * [Disclaimer](#disclaimer)
 * [Languages](#languages)
   * [Ruby](#ruby)
   * [Python](#python)
-  * [Node.js](#nodejs)
+  * [JavaScript](#javascript)
   * [Elixir](#elixir)
   * [Java](#java)
   * [Clojure](#clojure)
@@ -35,11 +36,18 @@
   * [GO ServeMux](#go-servemux)
 
 ## Scope
-The idea behind this repository is to test how HTTP libraries for different languages behave under heavy loading.   
+The idea behind this repository is to test how different languages implements a production-ready HTTP server solution by just relying on their standard library (when available).  
+At the same time i also dared to micro-benchmark the different solutions ;)
 
 ### Hello World
-The "application" I tested is barely minimal: it is the HTTP version of the "Hello World" example.
-The Content-Type header for each applications was set as "text/plain".
+The "application" i tested is barely minimal: it is the HTTP version of the "Hello World" example.  
+This approach allows me to throw into the pack languages i barely know, since it is pretty easy to find out such implementation on the official guides/examples.  
+If you're looking for more complex examples, you should have better luck with the [TechEmpower benchmarks](https://www.techempower.com/benchmarks/).
+
+### Disclaimer
+Please take the following numbers with a grain of salt.  
+It is not my intention to promote one language over another basing on these kind of micro-benchmarks; indeed you **should never pick a language basing on its presumed performance** :trollface:   
+As a prove: am still a happy Ruby programmer, although Ruby scored within the slowest tested solutions here.
 
 ## Languages
 I chose to test the following languages/runtime:
@@ -54,7 +62,7 @@ Ruby is a purely object oriented language but it also supports functional and im
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 It supports several programming paradigms and can count on a broad standard library.
 
-### Node.js
+### JavaScript
 [Node.js](https://nodejs.org/en/) version 8.4 is installed by official OSX package.  
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
