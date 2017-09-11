@@ -37,17 +37,17 @@
 
 ## Scope
 The idea behind this repository is to test how different languages implements a production-ready HTTP server solution by just relying on their standard library (when available).  
-At the same time i also dared to micro-benchmark the different solutions ;)
+At the same time i also dared to micro-benchmark the different solutions :smirk:
 
 ### Hello World
-The "application" i tested is barely minimal: it is the HTTP version of the "Hello World" example.  
+The *application* i tested is barely minimal: it is the HTTP version of the *Hello World* example.  
 This approach allows me to throw into the pack languages i barely know, since it is pretty easy to find out such implementation on the official guides/examples.  
 If you're looking for more complex examples, you should have better luck with the [TechEmpower benchmarks](https://www.techempower.com/benchmarks/).
 
 ### Disclaimer
-Please take the following numbers with a grain of salt.  
-It is not my intention to promote one language over another basing on these kind of micro-benchmarks; indeed you **should never pick a language basing on its presumed performance** :trollface:   
-As a prove: am still a happy Ruby programmer, although Ruby scored within the slowest tested solutions here.
+**Please take the following numbers with a grain of salt.**  
+It is not my intention to promote one language over another basing on these kind of micro-benchmarks.  
+Indeed you should never pick a language basing on its presumed performance :trollface:   
 
 ## Languages
 I chose to test the following languages/runtime:
