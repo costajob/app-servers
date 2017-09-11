@@ -284,7 +284,7 @@ Scala in combination with [Akka](http://akka.io/) (the toolkit on which Colossus
 Colossus gets better throughput than other JVM languages, but just returns content headers.
 
 #### Memory
-Scala memory footprint is on the deeper waters of the river.
+Scala memory footprint is the worst among JVM languages; i suspect the burden of the Akka framework being the main cause.
 
 #### Concurrency and parallelism
 JVM allows Scala to use all of the available cores.  
@@ -342,7 +342,7 @@ Nim proved to keep its promises, being a fast and concise language.
 Nim HTTP library discards all of the response headers, but for the Content-Length one.
 
 #### Memory
-Memory consumption is very good: unsurprisingly, considering Nim executes on a single thread only.
+Memory consumption is very good, indeed Nim executes on a single thread only (no GC).
 
 #### Concurrency and parallelism
 As expected Nim asynchttpserver is not parallel by implementation.
@@ -379,11 +379,11 @@ cargo run --release
 ```
 
 #### Considerations
-As expected Rust proved to be a fast language, indeed one of the faster ones.  
+Rust proved to be one of the faster tested languages.  
 Hyper just responds with Content-Length and Date headers.
 
 #### Memory
-Memory footprint is excellent: the whole server runs on a single thread only.
+Memory footprint is excellent: the whole server runs on a single thread only (no GC).
 
 #### Concurrency and parallelism
 Hyper server just uses one core, indeed this version proved to be faster then previous one running on multiple cores.
