@@ -401,13 +401,13 @@ The benchmarks proved the throughput is not so different between pre-forked, VM-
 When looking at memory footprint the gap is much more clear: AOT languages leave pre-forked and VM-based ones in the dust.
 
 ### Different philosophies
-This tests also highlight the different philosophies of each language: at one end there is GO's "battery-included" approach, at the other one there's Rust minimalistic way to require everything as an external dependency.  
+These tests highlight the different philosophies behind each language: at one end there is GO's "battery-included" approach, at the other side there is Rust minimalism to require everything as an external dependency.  
 
 ### Concurrency VS parallelism
 I am surprised that some of the fastest implementation does not support parallelism at all.  
-Rust and Nim just run on a single thread (thanks to the lack of garbage collector), while both Rust and Crystal does not even stress the unique CPU they use.  
-The numbers will probably be different on a 32 cores rack, but considering the standard dyno is single core and 512MB RAM, you are warned.
+Rust and Nim run on a single thread (thanks to the lack of garbage collector); both Rust and Crystal does not even stress the unique CPU they use.  
+The numbers will probably be different on a 32 cores rack, but considering the standard dyno has just one core and 512MB RAM, you'd better ponder about your choice.
 
 ### A matter of taste
-All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform (luckily for me Crystal is very "rubesque").  
-Just keep in mind there is no silver bullet: while you can do more or less everything with each of the tested languages, each of them excel on a specific use case and struggle when used against its "nature".
+All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform.  
+Just keep in mind there is no silver bullet: while you can do more or less everything with each of the tested languages, each of them excel on few specific use cases and struggle when used against their "true nature".
