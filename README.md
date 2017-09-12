@@ -120,7 +120,7 @@ Rust grants parallelism by running safely on multiple threads courtesy of its pr
 I used [wrk](https://github.com/wg/wrk) as the loading tool, running on a dedicated workstation to avoid unreliable results.  
 I measured each application server six times, picking the best lap (but for VM based languages demanding longer warm-up).  
 ```shell
-wrk -t 4 -c 100 -d30s --timeout 2000 http://127.0.0.1:9292
+wrk -t 4 -c 100 -d30s --timeout 2000 http://<client-ip>:9292
 ```
 
 ### Platforms
