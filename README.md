@@ -31,7 +31,7 @@
   * [Nim asynchttpserver](#nim-asynchttpserver)
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
-  * [Rust Hyper](#rust-hyper)
+  * [Tokio minihttp](#tokio-minihttp)
 * [Conclusions](#conclusions)
   * [Raw data](#raw-data)
   * [Different philosophies](#different-philosophies)
@@ -42,7 +42,7 @@
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
 
 ### Hello World
-The *application* i tested is barely minimal: it is the HTTP version of the *Hello World* example.  
+The *application* i tested is minimal: the HTTP version of the *Hello World* example.  
 This approach allows including languages i barely know, since it is pretty easy to find such implementation online.  
 If you're looking for more complex examples, you will have better luck with the [TechEmpower benchmarks](https://www.techempower.com/benchmarks/).
 
@@ -110,7 +110,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant 
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.19 is installed by official OSX package.  
+[Rust](https://www.rust-lang.org/) language version 1.20 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -154,8 +154,8 @@ Here are the benchmarks results ordered by increasing throughput.
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |   36753.91  |    2.70/0.24/19.83  |     ~320  |    ~340  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |   40055.46  |    2.49/0.12/16.17  |     9.74  |   233.5  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |   40751.92  |    2.44/0.19/15.07  |   917.51  |   372.8  |
+| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |   43384.67  |    2.30/0.24/17.13  |     5.21  |    53.3  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |   44002.32  |    2.26/0.11/12.01  |     9.05  |    48.3  |
-| [Rust](#rust)             | [Hyper.rs](#hyperrs)                              |   45942.53  |    2.17/0.14/17.22  |     7.87  |    75.2  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |   48055.03  |    1.99/0.21/17.11  |   599.87  |   149.0  |
 | [Nim](#nim)               | [Nim asynchttpserver](#nim-asynchttpserver)       |   50477.35  |    1.97/0.37/22.03  |     6.79  |    90.6  |
 
@@ -372,25 +372,25 @@ GO memory consumption is good, considering the complex runtime embedded.
 #### CPU
 GO uses one routine per connection to distribute the load on all of the cores.
 
-### Hyper.rs
-Rust does not include (yet) an HTTP server into its standard library, so i picked one of the more mature micro-framework available: [Hyper.rs](http://hyper.rs/). 
+### Tokio minihttp
+Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
 
 #### Bootstrap
 ```shell
-cd servers/hyper_server && \
+cd servers/tokio_minihttp && \
 cargo clean && \
 cargo build --release && \
 cargo run --release
 ```
 
 #### Throughput
-Hyper server is quite fast.
+Rust proved being quite fast.
 
 #### Memory
-Memory footprint is really good.
+Memory footprint is outstanding.
 
 #### CPU
-This server implementation does not support parallelism.
+Tokio minihttp implementation does not support parallelism.
 
 ## Conclusions
 
@@ -402,7 +402,7 @@ When looking at memory footprint the gap is much more clear: AOT languages leave
 This tests also highlight the different philosophies of each language: at one end there is GO's "battery-included" approach, at the other one there's Rust minimalistic way to require everything as an external dependency.  
 
 ### Concurrency VS parallelism
-I am surprised that some of the fastest implementation does not support parallelism at all: Rust and Nim just run on a single thread (thanks to the lack of garbage collector), while Crystal does not even stress the unique CPU it uses.
+I am surprised that some of the fastest implementation does not support parallelism at all: Rust and Nim just run on a single thread (thanks to the lack of garbage collector), while both Rust and Crystal does not even stress the unique used CPU.
 Again: this will probably change on a workstation with more than 16 physical CPUs, but considering the standard virtual slice you will get is one vCPU and 512MB RAM, it is something you should keep in mind.
 
 ### A matter of taste
