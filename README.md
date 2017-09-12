@@ -16,10 +16,12 @@
   * [Crystal](#crystal)
   * [GO](#go)
   * [Rust](#rust)
-* [Benchmark](#benchmark)
+* [Tools](#tools)
   * [Wrk](#wrk)
   * [Platforms](#platforms)
-  * [Numbers](#results)
+  * [RAM and CPU](#ram-and-cpu)
+* [Benchmarks](#benchmarks)
+  * [Results](#results)
   * [Rack with Passenger](#rack-with-passenger)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
@@ -28,7 +30,7 @@
   * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
-  * [Nim asynchttpserver](#nim-asynchttpserver)
+  * [Asynchttpserver](#asynchttpserver)
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
   * [Tokio minihttp](#tokio-minihttp)
@@ -114,7 +116,7 @@ At the same time GO takes a straight approach to parallelism, coming with built 
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
-## Benchmark
+## Tools
 
 ### Wrk
 I used [wrk](https://github.com/wg/wrk) as the loading tool, running on a dedicated workstation to avoid unreliable results.  
@@ -141,9 +143,10 @@ The `wrk` client is running on a desktop with the following specs:
 I measured RAM and CPU consumption by using [Apple XCode Instruments](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/index.html) and recording max consumption peak.  
 For the languages relying on pre-forking i reported the average consumption by taking a snapshot during the stress period.
 
-### Numbers
+## Benchmarks
 Here are the benchmarks results ordered by increasing throughput.
 
+### Results
 | Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
 | [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
@@ -157,8 +160,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |   43384.67  |    2.30/0.24/17.13  |     5.21  |    53.3  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |   44002.32  |    2.26/0.11/12.01  |     9.05  |    48.3  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |   48055.03  |    1.99/0.21/17.11  |   599.87  |   149.0  |
-| [Nim](#nim)               | [Nim asynchttpserver](#nim-asynchttpserver)       |   50477.35  |    1.97/0.37/22.03  |     6.79  |    90.6  |
-
+| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |   50477.35  |    1.97/0.37/22.03  |     6.79  |    90.6  |
 
 ### Rack with Passenger
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Passenger](https://www.phusionpassenger.com/) application server (builtin engine).  
@@ -205,7 +207,7 @@ Memory consumption is divided by:
 Gunicorn relies on the pre-forking model to grant parallelism.
 
 ### Node Cluster
-I used Node cluster library to spawn multiple processes, thus granting parallelism.
+I used the cluster library included into Node's standard libary.
 
 #### Bootstrap
 ```shell
@@ -310,7 +312,7 @@ dotnet run
 ```
 
 #### Throughput
-Kestrel throughput is very good, although version 2.0 of .NET Core is slower than previous one (1.1).  
+Kestrel throughput is very good, although .NET Core 2.0 is slower than previous version (1.1).  
 
 #### Memory
 Memory consumption is far the worst of the tested languages, proving .NET outside of MS Windows still needs some tweaking.
@@ -318,8 +320,8 @@ Memory consumption is far the worst of the tested languages, proving .NET outsid
 #### CPU
 Kestrel spawns multiple threads to grant parallelism.
 
-### Nim asynchttpserver
-I used the Nim asynchttpserver module to implement a high performance asynchronous server.  
+### Asynchttpserver
+I used the the asynchttpserver module to implement an asynchronous server with Nim.  
 
 #### Bootstrap
 ```shell
@@ -328,13 +330,13 @@ nim cpp -d:release servers/nim_server.nim && \
 ```
 
 #### Throughput
-Nim proved to be blazing fast.
+Nim recorded the best throughput.
 
 #### Memory
 Memory consumption is excellent.
 
 #### CPU
-Nim asynchttpserver is not parallel by implementation.
+Asynchttpserver is not parallel by implementation.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
@@ -367,10 +369,10 @@ go run servers/go_server.go
 GO is a pretty fast language, although a bit slower since version 1.7.
 
 #### Memory
-GO memory consumption is good, considering the complex runtime embedded.
+GO memory consumption is good, considering the embedded runtime.
 
 #### CPU
-GO uses one routine per connection to distribute the load on all of the cores.
+GO uses one routine per connection to run on all of the cores.
 
 ### Tokio minihttp
 Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
@@ -390,7 +392,7 @@ Rust proved being quite fast.
 Memory footprint is outstanding.
 
 #### CPU
-Tokio minihttp implementation does not support parallelism.
+Tokio minihttp server does not support parallelism.
 
 ## Conclusions
 
@@ -402,8 +404,9 @@ When looking at memory footprint the gap is much more clear: AOT languages leave
 This tests also highlight the different philosophies of each language: at one end there is GO's "battery-included" approach, at the other one there's Rust minimalistic way to require everything as an external dependency.  
 
 ### Concurrency VS parallelism
-I am surprised that some of the fastest implementation does not support parallelism at all: Rust and Nim just run on a single thread (thanks to the lack of garbage collector), while both Rust and Crystal does not even stress the unique used CPU.
-Again: this will probably change on a workstation with more than 16 physical CPUs, but considering the standard virtual slice you will get is one vCPU and 512MB RAM, it is something you should keep in mind.
+I am surprised that some of the fastest implementation does not support parallelism at all.  
+Rust and Nim just run on a single thread (thanks to the lack of garbage collector), while both Rust and Crystal does not even stress the unique CPU they use.  
+The numbers will probably be different on a 32 cores rack, but considering the standard dyno is single core and 512MB RAM, you are warned.
 
 ### A matter of taste
 All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform (luckily for me Crystal is very "rubesque").  
