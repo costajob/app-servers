@@ -174,9 +174,6 @@ bundle exec passenger start --rackup app.ru \
 --address 0.0.0.0 --port 9292 --environment production --daemonize
 ```
 
-#### Throughput
-Ruby performance is the worst of the tested languages.
-
 #### Memory
 Memory consumption is divided by: 
 * 8 child process, each consuming about 16MB
@@ -184,7 +181,7 @@ Memory consumption is divided by:
 * 3 additional processes monitor the balancer, consuming about 8MB
 
 #### CPU
-Ruby relies on the pre-forking model for parallelism.
+Passenger uses all the available cores via pre-forking.
 
 ### Gunicorn with Meinheld
 I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
@@ -195,27 +192,21 @@ cd servers/ && \
 gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
 ```
 
-#### Throughput
-Gunicorn+Meinheld proved to be pretty fast.
-
 #### Memory
 Memory consumption is divided by:
 * 8 child process, each consuming about 7MB
 * 1 parent process consuming about 20MB
 
 #### CPU
-Gunicorn relies on the pre-forking model to grant parallelism.
+Gunicorn relies on pre-forking for parallelism.
 
 ### Node Cluster
-I used the cluster library included into Node's standard libary.
+I used the cluster library included into Node's standard library.
 
 #### Bootstrap
 ```shell
 node servers/node_server.js
 ```
-
-#### Throughput
-Node.js proved to be pretty fast.
 
 #### Memory
 Memory consumption is divided by:
@@ -223,7 +214,7 @@ Memory consumption is divided by:
 * 1 parent process consuming about 26MB
 
 #### CPU
-Node relies on the reactor pattern to grant non-blocking calls and uses the pre-forking model for parallelism.
+Node parallelizes multiple processes via pre-forking.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -235,14 +226,11 @@ MIX_ENV=prod mix compile && \
 MIX_ENV=prod mix run --no-halt
 ```
 
-#### Throughput
-Elixir performance is just fair.
-
 #### Memory
 Memory consumption is good for a VM language.
 
 #### CPU
-BEAM (Erlang VM) is the only platform which uses of all of the available CPUs.
+BEAM (Erlang VM) distributes loading on all of the available cores.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
@@ -254,14 +242,11 @@ javac -cp javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar H
 java -server -cp .:javax.servlet-3.0.0.v201112011016.jar:jetty-all-9.2.14.v20151106.jar HelloWorld
 ```
 
-#### Throughput
-Java is pretty fast with proper warm-up.
-
 #### Memory
 Memory footprint of the JVM is, unsurprisingly, high.
 
 #### CPU
-JVM support multi-threading natively, distributing the loading on all of the available cores.  
+JVM support parallelism via multi-threading.
 
 ### Ring with Jetty
 I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
@@ -271,9 +256,6 @@ I used the default library to interface Clojure with HTTP: the [Ring](https://gi
 cd servers/ring_server && \
 lein run
 ```
-
-#### Throughput
-Clojure throughput is very close to Java.
 
 #### Memory
 Memory footprint is worst than Java, probably because of the burden imposed by additional allocations.
@@ -292,14 +274,11 @@ sbt
 > run
 ```
 
-#### Throughput
-Scala in combination with [Akka](http://akka.io/) (on which Colossus is build) is one of the fastest platform.
-
 #### Memory
 Scala memory footprint is the worst among JVM languages, i suspect the burden of Akka being the main cause.
 
 #### CPU
-JVM allows Scala to use all of the available cores.  
+Akka actors-based model allows Scala to support parallelism.
 
 ### Kestrel
 To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel): a cross-platform web server based on the libuv asynchronous I/O library.
@@ -310,9 +289,6 @@ cd servers/kestrel_server && \
 dotnet restore && \
 dotnet run
 ```
-
-#### Throughput
-Kestrel throughput is very good, although .NET Core 2.0 is slower than previous version (1.1).  
 
 #### Memory
 Memory consumption is far the worst of the tested languages, proving .NET outside of MS Windows still needs some tweaking.
@@ -329,9 +305,6 @@ nim cpp -d:release servers/nim_server.nim && \
 ./servers/nim_server
 ```
 
-#### Throughput
-Nim recorded the best throughput.
-
 #### Memory
 Memory consumption is excellent.
 
@@ -347,15 +320,11 @@ crystal build --release servers/crystal_server.cr && \
 ./crystal_server
 ```
 
-#### Throughput
-Crystal comes with a production-ready HTTP server.
-
 #### Memory
 Crystal memory usage is good, considering it embeds a garbage collector.
 
 #### CPU
-As expected Crystal does not supports parallelism yet.
-CPU usage is the lower of the pack.
+Crystal does not supports parallelism yet.
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
@@ -365,14 +334,11 @@ I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard li
 go run servers/go_server.go
 ```
 
-#### Throughput
-GO is a pretty fast language, although a bit slower since version 1.7.
-
 #### Memory
 GO memory consumption is good, considering the embedded runtime.
 
 #### CPU
-GO uses one routine per connection to run on all of the cores.
+GO uses one routine per connection to run more than one core.
 
 ### Tokio minihttp
 Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
@@ -384,9 +350,6 @@ cargo clean && \
 cargo build --release && \
 cargo run --release
 ```
-
-#### Throughput
-Rust proved being quite fast.
 
 #### Memory
 Memory footprint is outstanding.
