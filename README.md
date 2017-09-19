@@ -57,7 +57,7 @@ Indeed you should never pick a language just basing on its presumed performance.
 I chose to test the following languages:
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.4 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.4.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a scripting language focused on simplicity and productivity, inspired by SmallTalk.  
 Ruby is a purely object oriented language but it also supports functional and imperative paradigms. I tested Ruby MRI implementation, offering concurrency via threads and parallelism via pre-forking.
 
@@ -297,7 +297,7 @@ Memory consumption is far the worst of the tested languages, proving .NET outsid
 Kestrel spawns multiple threads to grant parallelism.
 
 ### Asynchttpserver
-I used the the asynchttpserver module to implement an asynchronous server with Nim.  
+I used the asynchttpserver module to implement an asynchronous server with Nim.  
 
 #### Bootstrap
 ```shell
@@ -367,9 +367,8 @@ When looking at memory footprint the gap is much more clear: AOT languages leave
 These tests highlight the different philosophies behind each language: at one end there is GO's "battery-included" approach, at the other side there is Rust minimalism to require everything as an external dependency.  
 
 ### Concurrency VS parallelism
-I am surprised that some of the fastest implementation does not support parallelism at all.  
-Rust and Nim run on a single thread (thanks to the lack of garbage collector); both Rust and Crystal does not even stress the unique CPU they use.  
-The numbers will probably be different on a 32 cores rack, but considering the standard dyno has just one core and 512MB RAM, you'd better ponder about your choice.
+I am surprised that some of the fastest implementation does not relies on parallelism at all.  
+The numbers will probably be different on a 32 cores rack, but considering the standard dyno has just one core and 512MB RAM, you'd better ponder your options.
 
 ### A matter of taste
 All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform.  
