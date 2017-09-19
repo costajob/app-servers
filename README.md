@@ -368,7 +368,7 @@ These tests highlight the different philosophies behind each language: at one en
 
 ### Concurrency VS parallelism
 I am surprised that some of the fastest implementation does not relies on parallelism at all.  
-The numbers will probably be different on a 32 cores rack, but considering the standard dyno has just one core and 512MB RAM, you'd better ponder your options.
+The numbers will probably be different on a 32 cores rack, but considering the standard [Heroku's dyno](https://www.heroku.com/pricing) has just one core and 512MB RAM, you'd better ponder your options.
 
 ### A matter of taste
 All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform.  
