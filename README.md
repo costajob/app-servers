@@ -12,6 +12,7 @@
   * [Clojure](#clojure)
   * [Scala](#scala)
   * [C-Sharp](#c-sharp)
+  * [Swift](#swift)
   * [Nim](#nim)
   * [Crystal](#crystal)
   * [GO](#go)
@@ -30,6 +31,7 @@
   * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
+  * [Kitura](#kitura)
   * [Asynchttpserver](#asynchttpserver)
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
@@ -96,6 +98,11 @@ Designed to be concise, many of Scala's design decisions were inspired by critic
 .NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
+### Swift
+[Swift](https://developer.apple.com/swift/) 3.1 comes pre-installed on OSX Sierra.  
+Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux.  
+Swift took language ideas from Objective-C, Rust, Haskell, Ruby, Python, C#, CLU, and far too many others to list.
+
 ### Nim
 [Nim](http://nim-lang.org/) 0.17.2 is installed viw homebrew.  
 Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
@@ -150,6 +157,7 @@ Here are the benchmarks results ordered by increasing throughput.
 | Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
 | [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
+| [Swift](#swift)           | [Kitura](#kitura)                                 |   30819.12  |    3.26/0.44/13.89  |    12.22  |   558.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |   32527.13  |    3.03/0.28/18.18  |    41.62  |   525.3  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |   35693.92  |    2.79/0.25/17.65  |   276.24  |   360.5  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |   36111.90  |    2.76/0.19/18.35  |      ~75  |    ~160  |
@@ -295,6 +303,22 @@ Memory consumption is far the worst of the tested languages, proving .NET outsid
 
 #### CPU
 Kestrel spawns multiple threads to grant parallelism.
+
+### Kitura
+[Kitura](http://www.kitura.io/) is a web framework and web server that is created for web services written in Swift.
+
+#### Bootstrap
+```shell
+cd servers/kitura_server && \
+swift build && \
+.build/debug/kitura_server
+```
+
+#### Memory
+Memory consumption on par with the other AOT compiled languages, thus good.
+
+#### CPU
+Kitura uses several threads to distribute the loading on all of the available cores.
 
 ### Asynchttpserver
 I used the asynchttpserver module to implement an asynchronous server with Nim.  
