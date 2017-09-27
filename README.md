@@ -315,7 +315,7 @@ swift build && \
 ```
 
 #### Memory
-Memory consumption on par with the other AOT compiled languages, thus good.
+Memory consumption is on par with other AOT compiled languages, thus good.
 
 #### CPU
 Kitura uses several threads to distribute the loading on all of the available cores.
