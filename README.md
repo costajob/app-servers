@@ -100,8 +100,8 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 
 ### Swift
 [Swift](https://developer.apple.com/swift/) 3.1 comes pre-installed on OSX Sierra.  
-Swift is a general-purpose, multi-paradigm, compiled programming language developed by Apple Inc. for iOS, macOS, watchOS, tvOS, and Linux.  
-Swift took language ideas from Objective-C, Rust, Haskell, Ruby, Python, C#, CLU, and far too many others to list.
+Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.  
+Swift supports parallelism courtesy of its asynchronous design approach, that relies on multi-threading.
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.17.2 is installed viw homebrew.  
