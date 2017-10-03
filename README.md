@@ -7,6 +7,7 @@
   * [Ruby](#ruby)
   * [Python](#python)
   * [JavaScript](#javascript)
+  * [Dart](#dart)
   * [Elixir](#elixir)
   * [Java](#java)
   * [Clojure](#clojure)
@@ -73,6 +74,11 @@ It supports several programming paradigms and can count on a broad standard libr
 Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
+### Dart
+[Dart](https://www.dartlang.org/) version 1.2.4 is installed via homebrew.  
+Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
+It supports interfaces, mixins, abstract classes, generics, optional typing, and concurrency though asynchronous execution and actor-based model.
+
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.5.1 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
@@ -99,7 +105,7 @@ Designed to be concise, many of Scala's design decisions were inspired by critic
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Swift
-[Swift](https://developer.apple.com/swift/) 3.1 comes pre-installed on OSX Sierra.  
+[Swift](https://developer.apple.com/swift/) 3.1 comes pre-installed with Xcode 8.3.  
 Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.  
 Swift supports parallelism courtesy of its asynchronous design approach, that relies on multi-threading.
 
@@ -156,6 +162,7 @@ Here are the benchmarks results ordered by increasing throughput.
 ### Results
 | Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
+| [Dart](#dart)             | [Dart Async](#dart-async)                         |   24024.63  |    4.19/0.67/53.28  |   126.39  |   114.3  |
 | [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |   30819.12  |    3.26/0.44/13.89  |    12.22  |   558.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |   32527.13  |    3.03/0.28/18.18  |    41.62  |   525.3  |
@@ -223,6 +230,22 @@ Memory consumption is divided by:
 
 #### CPU
 Node parallelizes multiple processes via pre-forking.
+
+### Dart Async
+Dart HTTP server relies on the async library for concurrency. 
+
+#### Bootstrap
+```shell
+dart servers/dart_server.dart
+```
+
+#### Memory
+Memory consumption is average, considering just one process is spawned.
+
+#### CPU
+Clearly Dart server does not run in parallel.  
+Unfortunately Dart has no pre-forking cluster library like Node. 
+Parallelism is supported via the [isolate](https://api.dartlang.org/stable/1.24.2/dart-isolate/Isolate-class.html) library, but it is not clear how to implement a HTTP server with it (i will reserve to try harder here, since single-process throughput is promising).
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
@@ -395,5 +418,5 @@ I am surprised that some of the fastest implementation does not relies on parall
 The numbers will probably be different on a 32 cores rack, but considering the minimal `hosting-slice` has just 1 vCPU and 512MB RAM, you'd better ponder your options.
 
 ### A matter of taste
-All that said, which language you'll pick is just a matter of personal taste: i am quite happy with Ruby, although it proved to be the slowest platform.  
+All that said, which language you'll pick is just a matter of personal taste.  
 Just keep in mind there is no silver bullet: while you can do more or less everything with each of the tested languages, each of them excel on few specific use cases and struggle when used against their "true nature".
