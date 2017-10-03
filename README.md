@@ -243,9 +243,8 @@ dart servers/dart_server.dart
 Memory consumption is average, considering just one process is spawned.
 
 #### CPU
-Clearly Dart server does not run in parallel.  
-Unfortunately Dart has no pre-forking cluster library like Node. 
-Parallelism is supported via the [isolate](https://api.dartlang.org/stable/1.24.2/dart-isolate/Isolate-class.html) library, but it is not clear how to implement a HTTP server with it (i will reserve to try harder here, since single-process throughput is promising).
+Dart server does not seem to support parallelism and unfortunately it cannot rely on  a standard pre-forking library like Node does.  
+Parallelism is supported via the [isolate](https://api.dartlang.org/stable/1.24.2/dart-isolate/Isolate-class.html) library, but the related APIs lacks examples of a concrete implementation (i will reserve to return on it within some weeks).
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
