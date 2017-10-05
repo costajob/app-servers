@@ -27,6 +27,7 @@
   * [Rack with Passenger](#rack-with-passenger)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
+  * [Dart HttpServer](#dart-http-server)
   * [Plug with Cowboy](#plug-with-cowboy)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Ring with Jetty](#ring-with-jetty)
@@ -162,7 +163,7 @@ Here are the benchmarks results ordered by increasing throughput.
 ### Results
 | Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart Async](#dart-async)                         |   24024.63  |    4.19/0.67/53.28  |   126.39  |   114.3  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |   26818.76  |    3.70/0.17/11.32  |   121.14  |   214.1  |
 | [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |   30819.12  |    3.26/0.44/13.89  |    12.22  |   558.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |   32527.13  |    3.03/0.28/18.18  |    41.62  |   525.3  |
@@ -231,8 +232,8 @@ Memory consumption is divided by:
 #### CPU
 Node parallelizes multiple processes via pre-forking.
 
-### Dart Async
-Dart HTTP server relies on the async library for concurrency. 
+### Dart HttpServer
+A plain HTTP server is embedded into the Dart standard library.
 
 #### Bootstrap
 ```shell
@@ -243,8 +244,7 @@ dart servers/dart_server.dart
 Memory consumption is average, considering just one process is spawned.
 
 #### CPU
-Dart server does not seem to support parallelism and unfortunately it cannot rely on  a standard pre-forking library like Node does.  
-Parallelism is supported via the [isolate](https://api.dartlang.org/stable/1.24.2/dart-isolate/Isolate-class.html) library, but the related APIs lacks examples of a concrete implementation (i will reserve to return on it within some weeks).
+Dart server supports parallelism courtesy of the Isolate library, which abstracts multi-threading in server environment.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
