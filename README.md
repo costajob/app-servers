@@ -163,7 +163,7 @@ Here are the benchmarks results ordered by increasing throughput.
 ### Results
 | Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |   26818.76  |    3.70/0.17/11.32  |   121.14  |   214.1  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |   26818.76  |    3.70/0.17/11.32  |   121.14  |   240.1  |
 | [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |   30819.12  |    3.26/0.44/13.89  |    12.22  |   558.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |   32527.13  |    3.03/0.28/18.18  |    41.62  |   525.3  |
