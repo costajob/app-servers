@@ -76,7 +76,7 @@ Node.js is based on the V8 engine, optimized by Google and supporting most of th
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 1.2.4 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 1.24 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
 It supports interfaces, mixins, abstract classes, generics, optional typing, and concurrency though asynchronous execution and actor-based model.
 
