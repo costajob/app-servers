@@ -38,11 +38,6 @@
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
   * [Tokio minihttp](#tokio-minihttp)
-* [Conclusions](#conclusions)
-  * [Raw data](#raw-data)
-  * [Different philosophies](#different-philosophies)
-  * [Concurrency VS parallelism](#concurrency-vs-parallelism)
-  * [A matter of taste](#a-matter-of-taste)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -390,20 +385,3 @@ Memory footprint is outstanding.
 
 #### CPU
 Tokio minihttp server does not support parallelism.
-
-## Conclusions
-
-### Raw data
-The benchmarks proved the throughput is not so different between pre-forked, VM-based and AOT languages, albeit not on a 4 core (8 hyper-threads) workstation.  
-When looking at memory footprint the gap is much more clear: AOT languages leave pre-forked and VM-based ones in the dust.
-
-### Different philosophies
-These tests highlight the different philosophies behind each language: at one end there is GO's "battery-included" approach, at the other side there is Rust minimalism to require everything as an external dependency.  
-
-### Concurrency VS parallelism
-I am surprised that some of the fastest implementation does not relies on parallelism at all.  
-The numbers will probably be different on a 32 cores rack, but considering the minimal `hosting-slice` has just 1 vCPU and 512MB RAM, you'd better ponder your options.
-
-### A matter of taste
-All that said, which language you'll pick is just a matter of personal taste.  
-Just keep in mind there is no silver bullet: while you can do more or less everything with each of the tested languages, each of them excel on few specific use cases and struggle when used against their "true nature".
