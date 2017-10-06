@@ -20,7 +20,7 @@
   * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
-  * [Platforms](#platforms)
+  * [Platform](#platform)
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
@@ -134,7 +134,7 @@ I measured each application server six times, picking the best lap (but for VM b
 wrk -t 4 -c 100 -d30s --timeout 2000 http://<client-ip>:9292
 ```
 
-### Platforms
+### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
 * OSX El Captain
 * 2.2 GHz Intel Core i7 (4 cores)
