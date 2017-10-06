@@ -76,7 +76,7 @@ Node.js is based on the V8 engine, optimized by Google and supporting most of th
 Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 1.24 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 1.24.2 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
 It supports interfaces, mixins, abstract classes, generics, optional typing, and concurrency though asynchronous execution and actor-based model.
 
@@ -121,7 +121,7 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 For concurrency Crystal adopts the CSP model and evented/IO (via [libevent](http://libevent.org/)) to avoid blocking calls, but parallelism is not yet supported.
 
 ### GO
-[GO](https://golang.org/) language version 1.9 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.9.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -133,24 +133,16 @@ Rust grants parallelism by running safely on multiple threads courtesy of its pr
 ## Tools
 
 ### Wrk
-I used [wrk](https://github.com/wg/wrk) as the loading tool, running on a dedicated workstation to avoid unreliable results.  
+I used [wrk](https://github.com/wg/wrk) as the loading tool.  
 I measured each application server six times, picking the best lap (but for VM based languages demanding longer warm-up).  
 ```shell
 wrk -t 4 -c 100 -d30s --timeout 2000 http://<client-ip>:9292
 ```
 
 ### Platforms
-
-#### Server
-The HTTP server implementation runs on a MacBook PRO 15 mid 2015 having these specs:
+These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
 * OSX El Captain
 * 2.2 GHz Intel Core i7 (4 cores)
-* 16 GB 1600 MHz DDR3
-
-#### Client
-The `wrk` client is running on a desktop with the following specs:
-* Ubuntu 16.04
-* 3.4 GHz Intel Core i5 (4 cores)
 * 16 GB 1600 MHz DDR3
 
 ### RAM and CPU
@@ -158,36 +150,32 @@ I measured RAM and CPU consumption by using [Apple XCode Instruments](https://de
 For the languages relying on pre-forking i reported the average consumption by taking a snapshot during the stress period.
 
 ## Benchmarks
-Here are the benchmarks results ordered by increasing throughput.
 
 ### Results
-| Language                  | App Server                                        | Req./sec    | Latency (ms)        | RAM (MB)  | CPU (%)  |
-| :------------------------ | :------------------------------------------------ | ----------: | ------------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |   26818.76  |    3.70/0.17/11.32  |   121.14  |   240.1  |
-| [Ruby](#ruby)             | [Rack with Passenger](#rack-with-passenger)       |   27454.69  |    3.64/0.64/18.99  |     ~150  |    ~300  |
-| [Swift](#swift)           | [Kitura](#kitura)                                 |   30819.12  |    3.26/0.44/13.89  |    12.22  |   558.8  |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |   32527.13  |    3.03/0.28/18.18  |    41.62  |   525.3  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |   35693.92  |    2.79/0.25/17.65  |   276.24  |   360.5  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |   36111.90  |    2.76/0.19/18.35  |      ~75  |    ~160  |
-| [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |   36113.18  |    2.75/0.25/21.92  |   187.36  |   197.5  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |   36753.91  |    2.70/0.24/19.83  |     ~320  |    ~340  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |   40055.46  |    2.49/0.12/16.17  |     9.74  |   233.5  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |   40751.92  |    2.44/0.19/15.07  |   917.51  |   372.8  |
-| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |   43384.67  |    2.30/0.24/17.13  |     5.21  |    53.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |   44002.32  |    2.26/0.11/12.01  |     9.05  |    48.3  |
-| [Scala](#scala)           | [Colossus](#colossus)                             |   48055.03  |    1.99/0.21/17.11  |   599.87  |   149.0  |
-| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |   50477.35  |    1.97/0.37/22.03  |     6.79  |    90.6  |
-
-### Rack with Passenger
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Passenger](https://www.phusionpassenger.com/) application server (builtin engine).  
+| Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
+| :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
+| [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43355.01  |    46.57  |   479.3  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |         49059.38  |   118.33  |   438.1  |
+| [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
+| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         72731.74  |    > 390  |   > 530  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75627.14  |   317.33  |   549.5  |
+| [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         80850.10  |   164.96  |   416.4  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         81211.66  |     > 70  |   > 340  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         81488.31  |    10.13  |   395.7  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         83977.00  |  1050.08  |   409.8  |
+| [Scala](#scala)           | [Colossus](#colossus)                             |         87025.70  |   599.89  |   286.4  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        103109.33  |    10.24  |   110.4  |
+| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        104810.94  |     4.41  |    99.5  |
+                                                                                                   
+### Rack with Puma                                                                                 
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puhe [Puma](http://puma.io) application server.
 
 #### Bootstrap
 ```shell
 cd servers/rack_server && \
-bundle exec passenger start --rackup app.ru \
---engine builtin --disable-turbocaching --disable-security-update-check \
---spawn-method direct --min-instances 8 --max-pool-size 8 --max-request-queue-size 1024 \
---address 0.0.0.0 --port 9292 --environment production --daemonize
+bundle exec puma -w 8 --preload -e production app.ru
 ```
 
 #### Memory
@@ -197,7 +185,7 @@ Memory consumption is divided by:
 * 3 additional processes monitor the balancer, consuming about 8MB
 
 #### CPU
-Passenger uses all the available cores via pre-forking.
+Puma uses all the available cores via pre-forking.
 
 ### Gunicorn with Meinheld
 I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
