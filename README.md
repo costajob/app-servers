@@ -174,10 +174,7 @@ bundle exec puma -w 8 --preload -e production app.ru
 ```
 
 #### Memory
-Memory consumption is divided by: 
-* 8 child process, each consuming about 16MB
-* 1 parent process consuming about 11MB
-* 3 additional processes monitor the balancer, consuming about 8MB
+Memory consumption is high: a total of 9 processes are forked (1 supervisor + 8 workers).
 
 #### CPU
 Puma uses all the available cores via pre-forking.
@@ -192,9 +189,7 @@ gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
 ```
 
 #### Memory
-Memory consumption is divided by:
-* 8 child process, each consuming about 7MB
-* 1 parent process consuming about 20MB
+Memory consumption good, considering parallelism is supported via pre-forking.
 
 #### CPU
 Gunicorn relies on pre-forking for parallelism.
@@ -208,9 +203,7 @@ node servers/node_server.js
 ```
 
 #### Memory
-Memory consumption is divided by:
-* 8 child process, each consuming about 37MB
-* 1 parent process consuming about 26MB
+Memory consumption is the higher within pre-forked parallelism based languages.
 
 #### CPU
 Node parallelizes multiple processes via pre-forking.
@@ -224,7 +217,7 @@ dart servers/dart_server.dart
 ```
 
 #### Memory
-Memory consumption is average, considering just one process is spawned.
+Memory consumption is average for a VM based language.
 
 #### CPU
 Dart server supports parallelism courtesy of the Isolate library, which abstracts multi-threading in server environment.
@@ -240,7 +233,7 @@ MIX_ENV=prod mix run --no-halt
 ```
 
 #### Memory
-Memory consumption is good for a VM language.
+Memory consumption is the best within VM based languages.
 
 #### CPU
 BEAM (Erlang VM) distributes loading on all of the available cores.
@@ -288,7 +281,7 @@ sbt
 ```
 
 #### Memory
-Scala memory footprint is the worst among JVM languages, i suspect the burden of Akka being the main cause.
+Scala memory footprint is the worst among JVM languages.
 
 #### CPU
 Akka actors-based model allows Scala to support parallelism.
@@ -304,7 +297,7 @@ dotnet run
 ```
 
 #### Memory
-Memory consumption is far the worst of the tested languages, proving .NET outside of MS Windows still needs some tweaking.
+Memory consumption is the worst of tested languages, proving .NET outside of MS Windows still needs some tweaking.
 
 #### CPU
 Kestrel spawns multiple threads to grant parallelism.
