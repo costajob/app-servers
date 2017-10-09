@@ -1,6 +1,6 @@
 name "vibe_server"
 description "A simple vibe.d server application."
 authors "Michele Costa"
-copyright "Copyright © 2017, Michele Costa"
-license "proprietary"
+copyright " "
+license "MIT"
 dependency "vibe-d" version="~>0.7.30"

@@ -18,7 +18,7 @@
   * [Crystal](#crystal)
   * [GO](#go)
   * [Rust](#rust)
-  * [D](#d-lang)
+  * [D](#d)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platform](#platform)
@@ -39,6 +39,7 @@
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
   * [Tokio minihttp](#tokio-minihttp)
+  * [Vibe](#vibe)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -137,7 +138,7 @@ It combines efficiency, control and modeling power with safety and programmer pr
 I used [wrk](https://github.com/wg/wrk) as the loading tool.  
 I measured each application server six times, picking the best lap (but for VM based languages demanding longer warm-up).  
 ```shell
-wrk -t 4 -c 100 -d30s --timeout 2000 http://<client-ip>:9292
+wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 ```
 
 ### Platform
@@ -156,6 +157,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         35039.24  |    32.52  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43355.01  |    46.57  |   479.3  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |         49059.38  |   118.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
@@ -384,3 +386,19 @@ Memory footprint is outstanding.
 
 #### CPU
 Tokio minihttp server does not support parallelism.
+
+### Vibe
+D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
+
+#### Bootstrap
+```shell
+cd servers/vibe_server && \
+dub run
+```
+
+#### Memory
+Memory footprint is fair for an AOT compiled language
+
+#### CPU
+Vibe standard implementation does not run in parallel.  
+Parallelism works by relying on port-reuse by multiple threads, an option currently not supported by OSX.

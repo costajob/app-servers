@@ -11,5 +11,5 @@ void main()
 
 void hello(HTTPServerRequest req, HTTPServerResponse res)
 {
-	res.writeBody("Hello World");
+	res.writeBody("Hello, World!");
 }
