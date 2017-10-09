@@ -14,11 +14,11 @@
   * [Scala](#scala)
   * [C-Sharp](#c-sharp)
   * [Swift](#swift)
-  * [Nim](#nim)
   * [Crystal](#crystal)
-  * [GO](#go)
-  * [Rust](#rust)
   * [D](#d)
+  * [GO](#go)
+  * [Nim](#nim)
+  * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platform](#platform)
@@ -35,11 +35,11 @@
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
   * [Kitura](#kitura)
-  * [Asynchttpserver](#asynchttpserver)
   * [Crystal HTTP](#crystal-http)
-  * [GO ServeMux](#go-servemux)
-  * [Tokio minihttp](#tokio-minihttp)
   * [Vibe](#vibe)
+  * [GO ServeMux](#go-servemux)
+  * [Asynchttpserver](#asynchttpserver)
+  * [Tokio minihttp](#tokio-minihttp)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -107,30 +107,30 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.  
 Swift supports parallelism courtesy of its asynchronous design approach, that relies on multi-threading.
 
-### Nim
-[Nim](http://nim-lang.org/) 0.17.2 is installed viw homebrew.  
-Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
-Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
-
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.23.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
 For concurrency Crystal adopts the CSP model and evented/IO (via [libevent](http://libevent.org/)) to avoid blocking calls, but parallelism is not yet supported.
+
+### D
+[D](https://dlang.org/) language's LDC compiler 1.4.0 is installed via homebrew.  
+D is a general-purpose programming language with static typing, systems-level access, and C-like syntax.  
+It combines efficiency, control and modeling power with safety and programmer productivity.
 
 ### GO
 [GO](https://golang.org/) language version 1.9.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
+### Nim
+[Nim](http://nim-lang.org/) 0.17.2 is installed viw homebrew.  
+Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
+Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
+
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.20 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
-
-### D
-[D](https://dlang.org/) language LDC compiler 1.4.0 is installed by homebrew.  
-D is a general-purpose programming language with static typing, systems-level access, and C-like syntax.  
-It combines efficiency, control and modeling power with safety and programmer productivity.
 
 ## Tools
 
@@ -157,7 +157,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
-| [D](#d)                   | [Vibe](#vibe)                                     |         35039.24  |    32.52  |    99.8  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         36006.39  |    32.52  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43355.01  |    46.57  |   479.3  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |         49059.38  |   118.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
@@ -326,21 +326,6 @@ Memory consumption is on par with other AOT compiled languages, thus good.
 #### CPU
 Kitura uses several threads to distribute the loading on all of the available cores.
 
-### Asynchttpserver
-I used the asynchttpserver module to implement an asynchronous server with Nim.  
-
-#### Bootstrap
-```shell
-nim cpp -d:release servers/nim_server.nim && \
-./servers/nim_server
-```
-
-#### Memory
-Memory consumption is excellent.
-
-#### CPU
-Asynchttpserver is not parallel by implementation.
-
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
 
@@ -356,6 +341,22 @@ Crystal memory usage is good, considering it embeds a garbage collector.
 #### CPU
 Crystal does not supports parallelism yet.
 
+### Vibe
+D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
+
+#### Bootstrap
+```shell
+cd servers/vibe_server && \
+dub run
+```
+
+#### Memory
+Memory footprint is fair for an AOT compiled language
+
+#### CPU
+Vibe standard implementation does not run in parallel.  
+Parallelism works by relying on port-reuse by multiple threads, an option currently not supported by OSX.
+
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
 
@@ -369,6 +370,21 @@ GO memory consumption is good, considering the embedded runtime.
 
 #### CPU
 GO uses one routine per connection to run more than one core.
+
+### Asynchttpserver
+I used the asynchttpserver module to implement an asynchronous server with Nim.  
+
+#### Bootstrap
+```shell
+nim cpp -d:release servers/nim_server.nim && \
+./servers/nim_server
+```
+
+#### Memory
+Memory consumption is excellent.
+
+#### CPU
+Asynchttpserver is not parallel by implementation.
 
 ### Tokio minihttp
 Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
@@ -386,19 +402,3 @@ Memory footprint is outstanding.
 
 #### CPU
 Tokio minihttp server does not support parallelism.
-
-### Vibe
-D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
-
-#### Bootstrap
-```shell
-cd servers/vibe_server && \
-dub run
-```
-
-#### Memory
-Memory footprint is fair for an AOT compiled language
-
-#### CPU
-Vibe standard implementation does not run in parallel.  
-Parallelism works by relying on port-reuse by multiple threads, an option currently not supported by OSX.
