@@ -18,6 +18,7 @@
   * [Crystal](#crystal)
   * [GO](#go)
   * [Rust](#rust)
+  * [D](#d-lang)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platforms](#platforms)
@@ -129,6 +130,11 @@ At the same time GO takes a straight approach to parallelism, coming with built 
 [Rust](https://www.rust-lang.org/) language version 1.20 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
+
+### D
+[D](https://dlang.org/) language LDC compiler 1.4.0 is installed by homebrew.  
+D is a general-purpose programming language with static typing, systems-level access, and C-like syntax.  
+It combines efficiency, control and modeling power with safety and programmer productivity.
 
 ## Tools
 
