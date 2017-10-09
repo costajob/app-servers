@@ -21,7 +21,7 @@
   * [D](#d-lang)
 * [Tools](#tools)
   * [Wrk](#wrk)
-  * [Platforms](#platforms)
+  * [Platform](#platform)
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
@@ -39,11 +39,6 @@
   * [Crystal HTTP](#crystal-http)
   * [GO ServeMux](#go-servemux)
   * [Tokio minihttp](#tokio-minihttp)
-* [Conclusions](#conclusions)
-  * [Raw data](#raw-data)
-  * [Different philosophies](#different-philosophies)
-  * [Concurrency VS parallelism](#concurrency-vs-parallelism)
-  * [A matter of taste](#a-matter-of-taste)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -145,7 +140,7 @@ I measured each application server six times, picking the best lap (but for VM b
 wrk -t 4 -c 100 -d30s --timeout 2000 http://<client-ip>:9292
 ```
 
-### Platforms
+### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
 * OSX El Captain
 * 2.2 GHz Intel Core i7 (4 cores)
@@ -185,10 +180,7 @@ bundle exec puma -w 8 --preload -e production app.ru
 ```
 
 #### Memory
-Memory consumption is divided by: 
-* 8 child process, each consuming about 16MB
-* 1 parent process consuming about 11MB
-* 3 additional processes monitor the balancer, consuming about 8MB
+Memory consumption is high: a total of 9 processes are forked (1 supervisor + 8 workers).
 
 #### CPU
 Puma uses all the available cores via pre-forking.
@@ -203,9 +195,7 @@ gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
 ```
 
 #### Memory
-Memory consumption is divided by:
-* 8 child process, each consuming about 7MB
-* 1 parent process consuming about 20MB
+Memory consumption good, considering parallelism is supported via pre-forking.
 
 #### CPU
 Gunicorn relies on pre-forking for parallelism.
@@ -219,9 +209,7 @@ node servers/node_server.js
 ```
 
 #### Memory
-Memory consumption is divided by:
-* 8 child process, each consuming about 37MB
-* 1 parent process consuming about 26MB
+Memory consumption is the higher within pre-forked parallelism based languages.
 
 #### CPU
 Node parallelizes multiple processes via pre-forking.
@@ -235,7 +223,7 @@ dart servers/dart_server.dart
 ```
 
 #### Memory
-Memory consumption is average, considering just one process is spawned.
+Memory consumption is average for a VM based language.
 
 #### CPU
 Dart server supports parallelism courtesy of the Isolate library, which abstracts multi-threading in server environment.
@@ -251,7 +239,7 @@ MIX_ENV=prod mix run --no-halt
 ```
 
 #### Memory
-Memory consumption is good for a VM language.
+Memory consumption is the best within VM based languages.
 
 #### CPU
 BEAM (Erlang VM) distributes loading on all of the available cores.
@@ -299,7 +287,7 @@ sbt
 ```
 
 #### Memory
-Scala memory footprint is the worst among JVM languages, i suspect the burden of Akka being the main cause.
+Scala memory footprint is the worst among JVM languages.
 
 #### CPU
 Akka actors-based model allows Scala to support parallelism.
@@ -315,7 +303,7 @@ dotnet run
 ```
 
 #### Memory
-Memory consumption is far the worst of the tested languages, proving .NET outside of MS Windows still needs some tweaking.
+Memory consumption is the worst of tested languages, proving .NET outside of MS Windows still needs some tweaking.
 
 #### CPU
 Kestrel spawns multiple threads to grant parallelism.
@@ -396,20 +384,3 @@ Memory footprint is outstanding.
 
 #### CPU
 Tokio minihttp server does not support parallelism.
-
-## Conclusions
-
-### Raw data
-The benchmarks proved the throughput is not so different between pre-forked, VM-based and AOT languages, albeit not on a 4 core (8 hyper-threads) workstation.  
-When looking at memory footprint the gap is much more clear: AOT languages leave pre-forked and VM-based ones in the dust.
-
-### Different philosophies
-These tests highlight the different philosophies behind each language: at one end there is GO's "battery-included" approach, at the other side there is Rust minimalism to require everything as an external dependency.  
-
-### Concurrency VS parallelism
-I am surprised that some of the fastest implementation does not relies on parallelism at all.  
-The numbers will probably be different on a 32 cores rack, but considering the minimal `hosting-slice` has just 1 vCPU and 512MB RAM, you'd better ponder your options.
-
-### A matter of taste
-All that said, which language you'll pick is just a matter of personal taste.  
-Just keep in mind there is no silver bullet: while you can do more or less everything with each of the tested languages, each of them excel on few specific use cases and struggle when used against their "true nature".
