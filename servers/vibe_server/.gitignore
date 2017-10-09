@@ -2,6 +2,7 @@
 docs.json
 __dummy.html
 docs/
+vibe_server
 vibe_server.so
 vibe_server.dylib
 vibe_server.dll
