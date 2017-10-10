@@ -173,7 +173,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        104810.94  |     4.41  |    99.5  |
                                                                                                    
 ### Rack with Puma                                                                                 
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puhe [Puma](http://puma.io) application server.
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io) application server.
 
 #### Bootstrap
 ```shell
