@@ -28,7 +28,7 @@
   * [Rack with Passenger](#rack-with-passenger)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
-  * [Dart HttpServer](#dart-http-server)
+  * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
   * [Servlet3 with Jetty](#servlet3-with-jetty)
   * [Ring with Jetty](#ring-with-jetty)
@@ -159,7 +159,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         36006.39  |    32.52  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43355.01  |    46.57  |   479.3  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-http-server)              |         49059.38  |   118.33  |   438.1  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)              |         49059.38  |   118.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         72731.74  |    > 390  |   > 530  |
