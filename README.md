@@ -369,7 +369,7 @@ go run servers/go_server.go
 GO memory consumption is good, considering the embedded runtime.
 
 #### CPU
-GO uses one routine per connection to run more than one core.
+GO uses one routine per connection to deliver parallelism.
 
 ### Asynchttpserver
 I used the asynchttpserver module to implement an asynchronous server with Nim.  
