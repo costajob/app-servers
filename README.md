@@ -161,7 +161,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         49059.38  |   118.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
-| [D](#d)                   | [Vibe](#vibe)                                     |         72086.26  |    15.68  |    99.8  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         72086.26  |    26.14  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         72731.74  |    > 390  |   > 530  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75627.14  |   317.33  |   549.5  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         80850.10  |   164.96  |   416.4  |
@@ -321,7 +321,7 @@ swift build && \
 ```
 
 #### Memory
-Memory consumption is just fair, considering Swift is an AOT compiled language.
+Memory consumption is good.
 
 #### CPU
 Kitura uses several threads to distribute the loading on all of the available cores.
@@ -352,7 +352,7 @@ dub build --build=release --force --compiler=ldc2 && \
 ```
 
 #### Memory
-Memory footprint is fair for an AOT compiled language
+Memory footprint is just fair, considering D is an AOT compiled language
 
 #### CPU
 Vibe standard implementation does not run in parallel.  
