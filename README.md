@@ -157,11 +157,11 @@ For the languages relying on pre-forking i reported the average consumption by t
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
-| [D](#d)                   | [Vibe](#vibe)                                     |         36006.39  |    32.52  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43355.01  |    46.57  |   479.3  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)              |         49059.38  |   118.33  |   438.1  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         49059.38  |   118.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         49528.83  |    > 180  |   > 390  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         72086.26  |    15.68  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         72731.74  |    > 390  |   > 530  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75627.14  |   317.33  |   549.5  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         80850.10  |   164.96  |   416.4  |
@@ -321,7 +321,7 @@ swift build && \
 ```
 
 #### Memory
-Memory consumption is on par with other AOT compiled languages, thus good.
+Memory consumption is just fair, considering Swift is an AOT compiled language.
 
 #### CPU
 Kitura uses several threads to distribute the loading on all of the available cores.
@@ -347,7 +347,8 @@ D language official documentation suggests using the [Vibe](http://vibed.org/) f
 #### Bootstrap
 ```shell
 cd servers/vibe_server && \
-dub run
+dub build --build=release --force --compiler=ldc2 && \
+./vibe_server
 ```
 
 #### Memory
