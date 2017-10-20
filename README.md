@@ -143,7 +143,7 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 
 ### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
-* OSX El Captain
+* OSX Sierra
 * 2.2 GHz Intel Core i7 (4 cores)
 * 16 GB 1600 MHz DDR3
 
