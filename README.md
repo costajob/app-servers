@@ -63,7 +63,7 @@ Ruby is a scripting language focused on simplicity and productivity, inspired by
 I tested Ruby MRI implementation, offering concurrency via threads and parallelism via pre-forking.
 
 ### Python
-[Python](https://www.python.org/) 3.6 is installed by official OSX package.  
+[Python](https://www.python.org/) 2.7.10 is installed by official OSX package.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 It supports several programming paradigms and can count on a broad standard library.
 
@@ -88,7 +88,7 @@ Java is the most used programming language worldwide, thanks to its JVM that kep
 Java is a strongly-typed, compiled, object oriented language and was a pioneer taking parallelism as first-class via multi-threading.
 
 ### Clojure
-[Clojure](http://clojure.org/) 1.8.0 is installed via homebrew.  
+[Clojure](http://clojure.org/) 1.9.0 is installed via homebrew.  
 Clojure is a dynamic, general-purpose programming language, strongly inspired by Lisp, running on the JVM.  
 Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
 
@@ -118,7 +118,7 @@ D is a general-purpose programming language with static typing, systems-level ac
 It combines efficiency, control and modeling power with safety and programmer productivity.
 
 ### GO
-[GO](https://golang.org/) language version 1.9.1 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.9.2 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -128,7 +128,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.20 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.22 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -163,14 +163,14 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         72086.26  |    26.14  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         72731.74  |    > 390  |   > 530  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75627.14  |   317.33  |   549.5  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75722.37  |   317.33  |   549.5  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         80850.10  |   164.96  |   416.4  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         81211.66  |     > 70  |   > 340  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         81488.31  |    10.13  |   395.7  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         83127.90  |    11.96  |   403.1  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         83204.82  |     > 70  |   > 340  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         83977.00  |  1050.08  |   409.8  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         87025.70  |   599.89  |   286.4  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        103109.33  |    10.24  |   110.4  |
-| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        104810.94  |     4.41  |    99.5  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        110547.90  |    10.24  |   110.4  |
+| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        110561.33  |     5.17  |    99.5  |
                                                                                                    
 ### Rack with Puma                                                                                 
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io) application server.
