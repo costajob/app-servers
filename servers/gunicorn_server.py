@@ -1,4 +1,4 @@
-def app(environ, start_response):
+def app(_, start_response):
     data = b"Hello World"
     start_response("200 OK", [
         ("Content-Type", "text/plain"),
