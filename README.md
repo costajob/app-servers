@@ -159,10 +159,10 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
-| [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50019.67  |    > 160  |   > 390  |
+| [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50198.39  |    > 160  |   > 390  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
-| [D](#d)                   | [Vibe](#vibe)                                     |         71848.43  |   223.95  |    99.8  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         71848.43  |    42.99  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         77581.72  |  1000.53  |   497.6  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         82297.93  |     > 80  |   > 340  |
