@@ -160,10 +160,10 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50019.67  |    > 160  |   > 390  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         71848.43  |   223.95  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         75722.37  |   317.33  |   549.5  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         77581.72  |  1000.53  |   497.6  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         82297.93  |     > 80  |   > 340  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         82353.69  |    12.10  |   395.1  |
@@ -177,30 +177,20 @@ I tested Ruby by using a plain [Rack](http://rack.github.io/) application with t
 
 #### Bootstrap
 ```shell
-cd servers/rack_server && \
+cd servers/rack_server
 bundle exec puma -w 8 --preload -e production app.ru
 ```
 
-#### Memory
-Memory consumption is high: a total of 9 processes are forked (1 supervisor + 8 workers).
-
-#### CPU
-Puma uses all the available cores via pre-forking.
 
 ### Gunicorn with Meinheld
 I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
 
 #### Bootstrap
 ```shell
-cd servers/ && \
+cd servers
 gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
 ```
 
-#### Memory
-Memory consumption good, considering parallelism is supported via pre-forking.
-
-#### CPU
-Gunicorn relies on pre-forking for parallelism.
 
 ### Node Cluster
 I used the cluster library included into Node's standard library.
@@ -210,11 +200,6 @@ I used the cluster library included into Node's standard library.
 node servers/node_server.js
 ```
 
-#### Memory
-Memory consumption is the higher within pre-forked parallelism based languages.
-
-#### CPU
-Node parallelizes multiple processes via pre-forking.
 
 ### Dart HttpServer
 A plain HTTP server is embedded into the Dart standard library.
@@ -224,140 +209,93 @@ A plain HTTP server is embedded into the Dart standard library.
 dart servers/dart_server.dart
 ```
 
-#### Memory
-Memory consumption is average for a VM based language.
-
-#### CPU
-Dart server supports parallelism courtesy of the Isolate library, which abstracts multi-threading in server environment.
 
 ### Plug with Cowboy
 I tested Elixir by using [Plug](https://github.com/elixir-lang/plug) library that provides a [Cowboy](https://github.com/ninenines/cowboy) adapter.
 
 #### Bootstrap
 ```shell
-cd servers/plug_server && \
-MIX_ENV=prod mix compile && \
+cd servers/plug_server
+MIX_ENV=prod mix compile
 MIX_ENV=prod mix run --no-halt
 ```
 
-#### Memory
-Memory consumption is the best within VM based languages.
-
-#### CPU
-BEAM (Erlang VM) distributes loading on all of the available cores.
 
 ### Servlet3 with Jetty
 To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
 
 #### Bootstrap
 ```shell
-cd servers/jetty_server && \
-javac -cp jetty-all-uber.jar HelloWorld.java && \
+cd servers/jetty_server
+javac -cp jetty-all-uber.jar HelloWorld.java
 java -server -cp .:jetty-all-uber.jar HelloWorld
 ```
 
-#### Memory
-Memory footprint of the JVM is, unsurprisingly, high.
-
-#### CPU
-JVM support parallelism via multi-threading.
 
 ### Ring with Jetty
 I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
 
 #### Bootstrap
 ```shell
-cd servers/ring_server && \
+cd servers/ring_server
 lein run
 ```
 
-#### Memory
-Memory footprint is worst than Java, probably because of the burden imposed by additional allocations.
-
-#### CPU
-Clojure leverages on the JVM to deliver parallelism.
 
 ### Colossus
 To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications.
 
 #### Bootstrap
 ```shell
-cd servers/colossus_server && \
+cd servers/colossus_server
 sbt
 > compile
 > run
 ```
 
-#### Memory
-Scala memory footprint is the worst among JVM languages.
-
-#### CPU
-Akka actors-based model allows Scala to support parallelism.
 
 ### Kestrel
 To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel): a cross-platform web server based on the libuv asynchronous I/O library.
 
 #### Bootstrap
 ```shell
-cd servers/kestrel_server && \
-dotnet restore && \
+cd servers/kestrel_server
+dotnet restore
 dotnet run
 ```
 
-#### Memory
-Memory consumption is the worst of tested languages, proving .NET outside of MS Windows still needs some tweaking.
-
-#### CPU
-Kestrel spawns multiple threads to grant parallelism.
 
 ### Kitura
 [Kitura](http://www.kitura.io/) is a web framework and web server that is created for web services written in Swift.
 
 #### Bootstrap
 ```shell
-cd servers/kitura_server && \
-swift build && \
+cd servers/kitura_server
+swift build
 .build/debug/kitura_server
 ```
 
-#### Memory
-Memory consumption is good.
-
-#### CPU
-Kitura uses several threads to distribute the loading on all of the available cores.
 
 ### Crystal HTTP
 I used Crystal HTTP server standard library.  
 
 #### Bootstrap
 ```shell
-crystal build --release servers/crystal_server.cr && \
+crystal build --release servers/crystal_server.cr
 ./crystal_server
 ```
 
-#### Memory
-Crystal memory usage is good, considering it embeds a garbage collector.
-
-#### CPU
-Crystal does not supports parallelism yet.
 
 ### Vibe
 D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
 
 #### Bootstrap
 ```shell
-cd servers/vibe_server && \
-dub build --build=release --force --compiler=ldc2 && \
+cd servers/vibe_server
+dub build --build=release --force --compiler=ldc2
 ./vibe_server
 ```
 
-#### Memory
-Latest version of Vibe seems to not free memory on each wrk hit, so consumption is
-incremental by about 30MB each time (i opened an issue on Vibe repository).
-
-#### CPU
-Vibe standard implementation does not run in parallel.  
-Parallelism works by relying on port-reuse by multiple threads, an option currently not supported by OSX.
 
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
@@ -367,40 +305,24 @@ I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard li
 go run servers/go_server.go
 ```
 
-#### Memory
-GO memory consumption is good, considering the embedded runtime.
-
-#### CPU
-GO uses one routine per connection to deliver parallelism.
 
 ### Asynchttpserver
 I used the asynchttpserver module to implement an asynchronous server with Nim.  
 
 #### Bootstrap
 ```shell
-nim cpp -d:release servers/nim_server.nim && \
+nim cpp -d:release servers/nim_server.nim
 ./servers/nim_server
 ```
 
-#### Memory
-Memory consumption is excellent.
-
-#### CPU
-Asynchttpserver is not parallel by implementation.
 
 ### Tokio minihttp
 Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
 
 #### Bootstrap
 ```shell
-cd servers/tokio_minihttp && \
-cargo clean && \
-cargo build --release && \
+cd servers/tokio_minihttp
+cargo clean
+cargo build --release
 cargo run --release
 ```
-
-#### Memory
-Memory footprint is outstanding.
-
-#### CPU
-Tokio minihttp server does not support parallelism.
