@@ -1,26 +1,26 @@
-import colossus._
-import core._
-import service._
-import protocols.http._
-import UrlParsing._
-import HttpMethod._
 import akka.actor.ActorSystem
+import colossus.core.IOSystem
+import colossus.protocols.http.Http
+import colossus.protocols.http.HttpMethod._
+import colossus.protocols.http.UrlParsing._
+import colossus.protocols.http.{HttpServer, Initializer, RequestHandler}
+import colossus.service.Callback.Implicits._
+import colossus.service.GenRequestHandler.PartialHandler
 
-class HelloService(context: ServerContext) extends HttpService(context) {
-  def handle = {
-    case request @ Get on Root => {
-      Callback.successful(request.ok("Hello World"))
+object HelloWorld extends App {
+
+  implicit val actorSystem = ActorSystem()
+  implicit val ioSystem    = IOSystem()
+
+  HttpServer.start("hello-world", 9292) { initContext =>
+    new Initializer(initContext) {
+      override def onConnect: RequestHandlerFactory =
+        serverContext =>
+          new RequestHandler(serverContext) {
+            override def handle: PartialHandler[Http] = {
+              case request @ Get on Root => request.ok("Hello World")
+            }
+        }
     }
   }
-}
-
-class HelloInitializer(worker: WorkerRef) extends Initializer(worker) {
-  def onConnect = context => new HelloService(context)
-}
-
-object Main extends App {
-  implicit val actorSystem = ActorSystem()
-  implicit val io = IOSystem()
-
-  Server.start("hello-world", 9292){ worker => new HelloInitializer(worker) }
 }
