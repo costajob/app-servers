@@ -13,7 +13,6 @@
   * [Clojure](#clojure)
   * [Scala](#scala)
   * [C-Sharp](#c-sharp)
-  * [Swift](#swift)
   * [Crystal](#crystal)
   * [D](#d)
   * [GO](#go)
@@ -34,7 +33,6 @@
   * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
-  * [Kitura](#kitura)
   * [Crystal HTTP](#crystal-http)
   * [Vibe](#vibe)
   * [GO ServeMux](#go-servemux)
@@ -102,11 +100,6 @@ Designed to be concise, many of Scala's design decisions were inspired by critic
 .NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
-### Swift
-[Swift](https://developer.apple.com/swift/) 3.1 comes pre-installed with Xcode 8.3.  
-Swift is a general-purpose programming language built using a modern approach to safety, performance, and software design patterns.  
-Swift supports parallelism courtesy of its asynchronous design approach, that relies on multi-threading.
-
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.24.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
@@ -156,7 +149,6 @@ For the languages relying on pre-forking i reported the average consumption by t
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Swift](#swift)           | [Kitura](#kitura)                                 |         32181.76  |    14.11  |   553.5  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50198.39  |    > 160  |   > 390  |
@@ -262,17 +254,6 @@ To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fu
 cd servers/kestrel_server
 dotnet restore
 dotnet run
-```
-
-
-### Kitura
-[Kitura](http://www.kitura.io/) is a web framework and web server that is created for web services written in Swift.
-
-#### Bootstrap
-```shell
-cd servers/kitura_server
-swift build
-.build/debug/kitura_server
 ```
 
 
