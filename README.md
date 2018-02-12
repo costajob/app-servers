@@ -81,7 +81,7 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
 ### Java
-[Java](https://www.java.com/en/) 9.0.4 is installed by official OSX package. 
+[Java](https://www.java.com/en/) 9.0.4 is installed by official OSX package.  
 Java is the most used programming language worldwide, thanks to its JVM that kept the promise "write once, run anywhere".  
 Java is a strongly-typed, compiled, object oriented language and was a pioneer taking parallelism as first-class via multi-threading.
 
