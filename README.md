@@ -101,7 +101,7 @@ Designed to be concise, many of Scala's design decisions were inspired by critic
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.24.1 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.24.2 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
 For concurrency Crystal adopts the CSP model and evented/IO (via [libevent](http://libevent.org/)) to avoid blocking calls, but parallelism is not yet supported.
 
@@ -116,7 +116,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant 
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.17.2 is installed viw homebrew.  
+[Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
 Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
@@ -153,7 +153,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
 | [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50198.39  |    > 160  |   > 390  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
-| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         64317.22  |     6.78  |    99.8  |
+| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         71848.43  |    42.99  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         77581.72  |  1000.53  |   497.6  |
@@ -161,8 +161,9 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        100558.50  |    11.27  |   110.4  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        102409.64  |     5.17  |    99.5  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        111711.13  |    10.82  |   109.9  |
+
                                                                                                    
 ### Rack with Puma                                                                                 
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io) application server.
