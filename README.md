@@ -121,7 +121,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.23 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.24.1 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -161,8 +161,8 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
-| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |        102409.64  |     5.17  |    99.5  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        111711.13  |    10.82  |   109.9  |
+| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         86281.79  |     4.13  |   144.5  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
 
                                                                                                    
 ### Rack with Puma                                                                                 
