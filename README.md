@@ -157,7 +157,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         77581.72  |  1000.53  |   497.6  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         82297.93  |     > 80  |   > 340  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         84680.10  |     > 80  |   > 340  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
