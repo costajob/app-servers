@@ -96,7 +96,7 @@ Scala is a general-purpose programming language that runs on the JVM. It has ful
 Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
 
 ### C-Sharp
-[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.4 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
+[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.101 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
 .NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
@@ -156,7 +156,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         77581.72  |  1000.53  |   497.6  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         84680.10  |     > 80  |   > 340  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
