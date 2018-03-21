@@ -76,7 +76,7 @@ Dart is an object-oriented, class defined, single inheritance language using a C
 It supports interfaces, mixins, abstract classes, generics, optional typing, and concurrency though asynchronous execution and actor-based model.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.6.1 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.6.4 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
