@@ -25,7 +25,7 @@
 * [Benchmarks](#benchmarks)
   * [Results](#results)
   * [Rack with Passenger](#rack-with-passenger)
-  * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
+  * [Japronto](#japronto)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
@@ -157,12 +157,12 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         84680.10  |     > 80  |   > 340  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         86281.79  |     4.13  |   144.5  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
+| [Python](#python)         | [Japronto](#japronto)                             |        114297.68  |     8.38  |    97.9  |
 
                                                                                                    
 ### Rack with Puma                                                                                 
@@ -175,13 +175,13 @@ bundle exec puma -w 8 --preload -e production app.ru
 ```
 
 
-### Gunicorn with Meinheld
-I started a plain WSGI application on the [Gunicorn](http://gunicorn.org/) application server wrapping [Meinheld](http://meinheld.org/) workers. 
+### Japronto
+I picked the [Japronto](https://github.com/squeaky-pl/japronto) toolkit, an asynchronous Python 3.5+ HTTP toolkit integrated with pipelining HTTP server.
 
 #### Bootstrap
 ```shell
 cd servers
-gunicorn -w 8 gunicorn_server:app -b :9292 -k meinheld.gmeinheld.MeinheldWorker
+python3 japronto_server.py
 ```
 
 
