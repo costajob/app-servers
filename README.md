@@ -112,7 +112,7 @@ It combines efficiency, control and modeling power with safety and programmer pr
 
 ### GO
 [GO](https://golang.org/) language version 1.10 is installed by official OSX package.  
-GO focuses on simplicity by intentionally lacking features considered redundant (an approach i am a fan of). It tries to address verbosity by using type inference, duck typing and a dry syntax.  
+GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Nim
