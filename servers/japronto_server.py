@@ -1,7 +1,9 @@
 from japronto import Application
 
+
 def hello(request):
     return request.Response(text='Hello World')
+
 
 app = Application()
 app.router.add_route('/', hello)

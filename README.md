@@ -111,7 +111,7 @@ D is a general-purpose programming language with static typing, systems-level ac
 It combines efficiency, control and modeling power with safety and programmer productivity.
 
 ### GO
-[GO](https://golang.org/) language version 1.10 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
@@ -121,7 +121,7 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.24.1 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.25 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -160,7 +160,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
-| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         86281.79  |     4.13  |   144.5  |
+| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
 | [Python](#python)         | [Japronto](#japronto)                             |        114297.68  |     8.38  |    97.9  |
 
