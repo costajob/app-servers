@@ -1,4 +1,3 @@
-from sys import argv
 from japronto import Application
 
 
@@ -13,5 +12,4 @@ class App(Application):
 
 if __name__ == '__main__':
     app = App()
-    workers = int(argv[1]) if len(argv) > 1 else None
-    app.run(port=9292, worker_num=workers)
+    app.run(port=9292)

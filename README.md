@@ -162,7 +162,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
-| [Python](#python)         | [Japronto](#japronto)                             |        114297.68  |     8.38  |    97.9  |
+| [Python](#python)         | [Japronto](#japronto)                             |        114451.89  |     8.38  |    97.9  |
 
                                                                                                    
 ### Rack with Puma                                                                                 
@@ -180,7 +180,7 @@ I tested Python by [Japronto](https://github.com/squeaky-pl/japronto): an asynch
 
 #### Bootstrap
 ```shell
-python3 -B servers/japronto_server.py # specify an int to spwan more workers
+python3 -B servers/japronto_server.py
 ```
 
 
