@@ -176,7 +176,7 @@ bundle exec puma -w 8 --preload -e production app.ru
 
 
 ### Japronto
-I tested Python by [Japronto](https://github.com/squeaky-pl/japronto): an asynchronous Python 3.5+ HTTP toolkit integrated with pipelining HTTP server.
+I tested Python by [Japronto](https://github.com/squeaky-pl/japronto): an asynchronous Python 3.5+ HTTP toolkit built upon [uvloop](https://github.com/MagicStack/uvloop) and [picohttpparser]()https://github.com/h2o/picohttpparser.
 
 #### Bootstrap
 ```shell
