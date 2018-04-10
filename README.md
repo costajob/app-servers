@@ -180,8 +180,7 @@ I tested Python by [Japronto](https://github.com/squeaky-pl/japronto): an asynch
 
 #### Bootstrap
 ```shell
-cd servers
-python3 japronto_server.py
+python3 -B servers/japronto_server.py # specify an int to spwan more workers
 ```
 
 
