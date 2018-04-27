@@ -181,7 +181,7 @@ I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](ht
 #### Bootstrap
 ```shell
 cd servers
-gunicorn -w 6 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
+gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
 ```
 
 
