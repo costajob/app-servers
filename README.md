@@ -24,8 +24,8 @@
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
-  * [Rack with Passenger](#rack-with-passenger)
-  * [Japronto](#japronto)
+  * [Puma](#puma)
+  * [Gunicorn](#gunicorn)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
@@ -56,7 +56,7 @@ Indeed you should never pick a language just basing on its presumed performance.
 I chose to test the following languages:
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.5.0 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a scripting language focused on simplicity and productivity, inspired by Lisp, with elements of Perl & Smalltalk.  
 I tested Ruby MRI implementation, offering concurrency via threads and parallelism via pre-forking.
 
@@ -152,7 +152,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         45663.49  |     8.88  |    99.8  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
-| [Ruby](#ruby)             | [Rack with Puma](#rack-with-puma)                 |         50198.39  |    > 160  |   > 390  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         50198.39  |    > 160  |   > 390  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
@@ -161,11 +161,11 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
+| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89093.40  |     > 40  |   > 300  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
-| [Python](#python)         | [Japronto](#japronto)                             |        114451.89  |     8.38  |    97.9  |
 
                                                                                                    
-### Rack with Puma                                                                                 
+### Puma                                                                                 
 I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io) application server.
 
 #### Bootstrap
@@ -175,12 +175,13 @@ bundle exec puma -w 8 --preload -e production app.ru
 ```
 
 
-### Japronto
-I tested Python by [Japronto](https://github.com/squeaky-pl/japronto): an asynchronous Python 3.5+ HTTP toolkit built upon [uvloop](https://github.com/MagicStack/uvloop) and [picohttpparser](https://github.com/h2o/picohttpparser).
+### Gunicorn
+I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](http://meinheld.org/) workers.
 
 #### Bootstrap
 ```shell
-python3 -B servers/japronto_server.py
+cd servers
+gunicorn -w 6 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
 ```
 
 
