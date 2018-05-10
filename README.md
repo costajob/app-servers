@@ -113,8 +113,8 @@ Nim is an efficient, Python inspired, strong typed language that comes with a pr
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### C
-[C](https://en.wikipedia.org/wiki/C_(programming_language)) language is pre-installed in Apple LLVM (clang-802.0.42).  
-C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators.  
+[C](https://en.wikipedia.org/wiki/C_(programming_language)) language is pre-installed on Apple LLVM (clang-802.0.42).  
+C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators.
 C was originally designed for and implemented on the UNIX operating system on the DEC PDP-11, by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
 
 ### D
@@ -287,7 +287,7 @@ nim cpp -d:release servers/nim_server.nim
 
 
 ### H2O
-I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server.
+I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server via a [mruby](https://github.com/mruby/mruby) handler.
 
 #### Bootstrap
 ```shell
