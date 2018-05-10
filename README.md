@@ -160,8 +160,8 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [D](#d)                   | [Vibe](#vibe)                                     |         45663.49  |     8.88  |    99.8  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         50198.39  |    > 160  |   > 390  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
