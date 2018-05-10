@@ -1,0 +1,13 @@
+listen: 9292
+temp-buffer-path: "/tmp"
+hosts:
+  "0.0.0.0":
+    paths:
+      /:
+        mruby.handler: |
+          Proc.new do |env|
+            [200, {'content-type' => 'text/plain'}, ["Hello World"]]
+          end
+access-log: /dev/null
+error-log: /dev/stderr
+pid-file: /tmp/h2o_server.pid

@@ -14,9 +14,10 @@
   * [Scala](#scala)
   * [C-Sharp](#c-sharp)
   * [Crystal](#crystal)
+  * [Nim](#nim)
+  * [C](#c)
   * [D](#d)
   * [GO](#go)
-  * [Nim](#nim)
   * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
@@ -34,9 +35,10 @@
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
+  * [Asynchttpserver](#asynchttpserver)
+  * [H2O](#h2o)
   * [Vibe](#vibe)
   * [GO ServeMux](#go-servemux)
-  * [Asynchttpserver](#asynchttpserver)
   * [Tokio minihttp](#tokio-minihttp)
 
 ## Scope
@@ -105,6 +107,16 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
 For concurrency Crystal adopts the CSP model and evented/IO (via [libevent](http://libevent.org/)) to avoid blocking calls, but parallelism is not yet supported.
 
+### Nim
+[Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
+Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
+Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
+
+### C
+[C](https://en.wikipedia.org/wiki/C_(programming_language)) language is pre-installed in Apple LLVM (clang-802.0.42).  
+C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators.  
+C was originally designed for and implemented on the UNIX operating system on the DEC PDP-11, by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
+
 ### D
 [D](https://dlang.org/) language's LDC compiler 1.7.0 is installed via homebrew.  
 D is a general-purpose programming language with static typing, systems-level access, and C-like syntax.  
@@ -114,11 +126,6 @@ It combines efficiency, control and modeling power with safety and programmer pr
 [GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
-
-### Nim
-[Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
-Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
-Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.25 is installed by official package.  
@@ -162,6 +169,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
 | [Python](#python)         | [Gunicorn](#gunicorn)                             |         89093.40  |     > 40  |   > 300  |
+| [C](#c)                   | [H2O](#h2o)                                       |         89156.28  |    28.22  |   296.8  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
 
                                                                                                    
@@ -268,6 +276,26 @@ crystal build --release servers/crystal_server.cr
 ```
 
 
+### Asynchttpserver
+I used the asynchttpserver module to implement an asynchronous server with Nim.  
+
+#### Bootstrap
+```shell
+nim cpp -d:release servers/nim_server.nim
+./servers/nim_server
+```
+
+
+### H2O
+I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server.
+
+#### Bootstrap
+```shell
+cd servers/vibe_server
+sudo h2o -m daemon -c h2o_server
+```
+
+
 ### Vibe
 D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
 
@@ -285,16 +313,6 @@ I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard li
 #### Bootstrap
 ```shell
 go run servers/go_server.go
-```
-
-
-### Asynchttpserver
-I used the asynchttpserver module to implement an asynchronous server with Nim.  
-
-#### Bootstrap
-```shell
-nim cpp -d:release servers/nim_server.nim
-./servers/nim_server
 ```
 
 
