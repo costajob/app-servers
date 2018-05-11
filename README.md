@@ -59,8 +59,8 @@ I chose to test the following languages:
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
-Ruby is a scripting language focused on simplicity and productivity, inspired by Lisp, with elements of Perl & Smalltalk.  
-I tested Ruby MRI implementation, offering concurrency via threads and parallelism via pre-forking.
+Ruby is a general-purpose, interpreted, dynamic programming language. 
+It focuses on simplicity and productivity, inspired by Lisp, Perl, Python and Smalltalk.  
 
 ### Python
 [Python](https://www.python.org/) 3.6.4 is installed by official OSX package.  
@@ -157,8 +157,8 @@ For the languages relying on pre-forking i reported the average consumption by t
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
 | [D](#d)                   | [Vibe](#vibe)                                     |         45663.49  |     8.88  |    99.8  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47482.25  |   116.33  |   438.1  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         50198.39  |    > 160  |   > 390  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         48042.45  |   207.12  |   514.1  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         49849.45  |    > 160  |   > 390  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         77818.55  |    > 240  |   > 390  |
@@ -173,12 +173,11 @@ For the languages relying on pre-forking i reported the average consumption by t
 
                                                                                                    
 ### Puma                                                                                 
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application with the [Puma](http://puma.io) application server.
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application served by [Puma](http://puma.io).
 
 #### Bootstrap
 ```shell
-cd servers/rack_server
-bundle exec puma -w 8 --preload -e production app.ru
+puma -w 8 -t 8 --preload servers/puma_server.ru
 ```
 
 
