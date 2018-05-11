@@ -68,9 +68,8 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 8.9.4 is installed by official OSX package.  
-Node.js is based on the V8 engine, optimized by Google and supporting most of the new ES6 features.   
-Node.js leverages on the JavaScript built-in event loop to grant concurrency. Parallelism is supported via pre-forking.
+[Node.js](https://nodejs.org/en/) version 10.1.0 is installed by official OSX package.  
+Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
 [Dart](https://www.dartlang.org/) version 1.24.3 is installed via homebrew.  
@@ -115,7 +114,7 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 ### C
 [C](https://en.wikipedia.org/wiki/C_(programming_language)) language is pre-installed on Apple LLVM (clang-802.0.42).  
 C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators.
-C was originally designed for and implemented on the UNIX operating system on the DEC PDP-11, by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
+C was originally designed for and implemented on the UNIX operating system by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
 
 ### D
 [D](https://dlang.org/) language's LDC compiler 1.7.0 is installed via homebrew.  
@@ -162,14 +161,14 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         50198.39  |    > 160  |   > 390  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         73177.31  |    > 440  |   > 530  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         77818.55  |    > 240  |   > 390  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
 | [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
-| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89093.40  |     > 40  |   > 300  |
 | [C](#c)                   | [H2O](#h2o)                                       |         89156.28  |    28.22  |   296.8  |
+| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89163.05  |     > 40  |   > 300  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
 
                                                                                                    

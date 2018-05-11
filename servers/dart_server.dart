@@ -20,7 +20,7 @@ _startServer(arg) {
 
 void main() {
   final int _CORES = Platform.numberOfProcessors ~/ 2;
-  for (int i = 0; i < _CORES - 1; i++) {
+  for (int i = 0; i < _CORES; i++) {
     Isolate.spawn(_startServer, null);
   }
   _startServer(null);
