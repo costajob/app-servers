@@ -127,7 +127,7 @@ GO focuses on simplicity by intentionally lacking features considered redundant.
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.25 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.26.0 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
@@ -321,6 +321,5 @@ Rust standard library does not include a HTTP server, so i relied on a minimal l
 ```shell
 cd servers/tokio_minihttp
 cargo clean
-cargo build --release
 cargo run --release
 ```
