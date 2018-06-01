@@ -142,7 +142,7 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 
 ### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
-* OSX Sierra
+* OSX High Sierra
 * 2.2 GHz Intel Core i7 (4 cores)
 * 16 GB 1600 MHz DDR3
 
@@ -165,10 +165,10 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
 | [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         85226.46  |    11.92  |   405.1  |
-| [Rust](#rust)             | [Tokio minihttp](#tokio-minihttp)                 |         87874.32  |     5.14  |   146.2  |
-| [C](#c)                   | [H2O](#h2o)                                       |         89156.28  |    28.22  |   296.8  |
-| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89163.05  |     > 40  |   > 300  |
+| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89323.93  |     > 40  |   > 300  |
+| [Rust](#rust)             | [Actyx](#actix)                                   |         91016.05  |    17.64  |   402.5  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         96283.20  |    13.21  |   436.1  |
+| [C](#c)                   | [H2O](#h2o)                                       |        100711.48  |    29.47  |   385.6  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
 
                                                                                                    
@@ -289,7 +289,7 @@ I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server via
 
 #### Bootstrap
 ```shell
-cd servers/vibe_server
+cd servers
 sudo h2o -m daemon -c h2o_server
 ```
 
@@ -314,12 +314,12 @@ go run servers/go_server.go
 ```
 
 
-### Tokio minihttp
-Rust standard library does not include a HTTP server, so i relied on a minimal library named [Tokio minihttp](https://github.com/tokio-rs/tokio-minihttp). 
+### Actix
+I tested Rust by using [Actix](https://actix.rs/), an actor-based HTTP server based on Tokio. 
 
 #### Bootstrap
 ```shell
-cd servers/tokio_minihttp
+cd servers/actix-server
 cargo clean
 cargo run --release
 ```

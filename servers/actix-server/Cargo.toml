@@ -1,0 +1,7 @@
+[package]
+name = "actix-server"
+version = "0.1.0"
+authors = ["costajob <costajob@gmail.com>"]
+
+[dependencies]
+actix-web = "0.6"
