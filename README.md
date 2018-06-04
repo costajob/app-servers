@@ -155,21 +155,21 @@ For the languages relying on pre-forking i reported the average consumption by t
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         44021.73  |    52.17  |   497.2  |
-| [D](#d)                   | [Vibe](#vibe)                                     |         45663.49  |     8.88  |    99.8  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         48042.45  |   207.12  |   514.1  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         49849.45  |    > 160  |   > 390  |
-| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         63661.79  |     6.78  |    99.8  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         64205.73  |   447.33  |   579.5  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         77818.55  |    > 240  |   > 390  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         79498.88  |   980.86  |   502.4  |
-| [Scala](#scala)           | [Colossus](#colossus)                             |         85073.26  |   932.20  |   310.2  |
-| [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         85116.78  |   284.52  |   438.1  |
-| [Python](#python)         | [Gunicorn](#gunicorn)                             |         89323.93  |     > 40  |   > 300  |
-| [Rust](#rust)             | [Actyx](#actix)                                   |         91016.05  |    17.64  |   402.5  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         96283.20  |    13.21  |   436.1  |
-| [C](#c)                   | [H2O](#h2o)                                       |        100711.48  |    29.47  |   385.6  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        109524.88  |    10.82  |   109.9  |
+| [D](#d)                   | [Vibe](#vibe)                                     |         34343.60  |      4.5  |    99.8  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43100.86  |     42.4  |   530.8  |
+| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         56869.13  |    > 160  |   > 390  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         58336.01  |    171.5  |   568.6  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         60310.97  |    403.8  |   593.2  |
+| [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         84284.27  |    241.6  |   535.8  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 330  |   > 390  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
+| [Scala](#scala)           | [Colossus](#colossus)                             |         95120.73  |    732.1  |   409.3  |
+| [Rust](#rust)             | [Actix](#actix)                                   |         96614.22  |      8.1  |   402.5  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
+| [C](#c)                   | [H2O](#h2o)                                       |         99066.68  |     23.8  |   386.1  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
+| [Python](#python)         | [Gunicorn](#gunicorn)                             |        100932.26  |     > 30  |   > 350  |
 
                                                                                                    
 ### Puma                                                                                 
@@ -289,8 +289,7 @@ I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server via
 
 #### Bootstrap
 ```shell
-cd servers
-sudo h2o -m daemon -c h2o_server
+sudo h2o -c servers/h2o_server
 ```
 
 
