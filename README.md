@@ -63,7 +63,7 @@ Ruby is a general-purpose, interpreted, dynamic programming language.
 It focuses on simplicity and productivity, inspired by Lisp, Perl, Python and Smalltalk.  
 
 ### Python
-[Python](https://www.python.org/) 3.6.4 is installed by official OSX package.  
+[Python](https://www.python.org/) 3.6.5 is installed by official OSX package.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 It supports several programming paradigms and can count on a broad standard library.
 
@@ -314,7 +314,7 @@ go run servers/go_server.go
 
 
 ### Actix
-I tested Rust by using [Actix](https://actix.rs/), an actor-based HTTP server based on Tokio. 
+I tested Rust by using [Actix](https://actix.rs/), an actor-based HTTP server based on the [Tokio](https://tokio.rs/) toolkit. 
 
 #### Bootstrap
 ```shell
