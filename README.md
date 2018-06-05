@@ -39,7 +39,7 @@
   * [H2O](#h2o)
   * [Vibe](#vibe)
   * [GO ServeMux](#go-servemux)
-  * [Tokio minihttp](#tokio-minihttp)
+  * [Actix](#actix)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
