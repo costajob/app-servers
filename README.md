@@ -26,7 +26,8 @@
 * [Benchmarks](#benchmarks)
   * [Results](#results)
   * [Puma](#puma)
-  * [Gunicorn](#gunicorn)
+  * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
+  * [Japronto](#japronto)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
@@ -169,7 +170,8 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
 | [C](#c)                   | [H2O](#h2o)                                       |         99066.68  |     23.8  |   386.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
-| [Python](#python)         | [Gunicorn](#gunicorn)                             |        100932.26  |     > 30  |   > 350  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 30  |   > 350  |
+| Cython                    | [Japronto](#japronto)                             |        135341.30  |      > 9  |   > 190  |
 
                                                                                                    
 ### Puma                                                                                 
@@ -181,13 +183,22 @@ puma -w 8 -t 8 --preload servers/puma_server.ru
 ```
 
 
-### Gunicorn
+### Gunicorn with Meinheld
 I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](http://meinheld.org/) workers.
 
 #### Bootstrap
 ```shell
 cd servers
 gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
+```
+
+
+### Japronto
+[Japronto](https://github.com/squeaky-pl/japronto) is an async app server implemented in [Cython](http://cython.org/) on top of [uvloop](http://uvloop.readthedocs.io/) and [H2O Picoserver](#h2o) libraries.
+
+#### Bootstrap
+```shell
+python3 servers/japronto_server.py 2
 ```
 
 
