@@ -31,7 +31,7 @@
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
-  * [Servlet3 with Jetty](#servlet3-with-jetty)
+  * [Jetty NIO](#jetty-nio)
   * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
@@ -105,7 +105,6 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.24.2 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
-For concurrency Crystal adopts the CSP model and evented/IO (via [libevent](http://libevent.org/)) to avoid blocking calls, but parallelism is not yet supported.
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
@@ -162,7 +161,6 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56869.13  |    > 160  |   > 390  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         58336.01  |    171.5  |   568.6  |
 | [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         60310.97  |    403.8  |   593.2  |
-| [Java](#java)             | [Servlet3 with Jetty](#servlet3-with-jetty)       |         84284.27  |    241.6  |   535.8  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 330  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         95120.73  |    732.1  |   409.3  |
@@ -171,6 +169,7 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [C](#c)                   | [H2O](#h2o)                                       |         99066.68  |     23.8  |   386.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 30  |   > 350  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    244.7  |   440.1  |
 | Cython                    | [Japronto](#japronto)                             |        135341.30  |      > 9  |   > 190  |
 
                                                                                                    
@@ -231,8 +230,8 @@ MIX_ENV=prod mix run --no-halt
 ```
 
 
-### Servlet3 with Jetty
-To test Java i used [Jetty](http://www.eclipse.org/jetty/): a modern, stable and quite fast servlet container.  
+### Jetty NIO
+To test Java i used [Jetty](http://www.eclipse.org/jetty/) levereging on the non blocking IO (NIO) APIs.  
 
 #### Bootstrap
 ```shell
