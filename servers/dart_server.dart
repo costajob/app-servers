@@ -1,23 +1,15 @@
-import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
-const int _LEN = 11;
-const int _PORT = 9292;
-const String _HOST = '0.0.0.0';
-const String _GREET = 'Hello World';
+_startServer(arg) async {
+  var server = await HttpServer.bind('0.0.0.0', 9292, shared: true);
 
-_startServer(arg) {
-  List<int> response = UTF8.encode(_GREET);
-  HttpServer.bind(_HOST, _PORT, shared:true).then((server) {
-    server.listen((HttpRequest request) {
-      request.response
-        ..headers.contentType = new ContentType('text', 'plain')
-        ..headers.contentLength = _LEN
-        ..add(response)
-        ..close();
-    });
-  });
+  await for (HttpRequest request in server) {
+    request.response
+      ..write('Hello, world')
+      ..close();
+  }
 }
 
 void main() {

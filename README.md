@@ -10,15 +10,10 @@
   * [Dart](#dart)
   * [Elixir](#elixir)
   * [Java](#java)
-  * [Clojure](#clojure)
-  * [Scala](#scala)
   * [C-Sharp](#c-sharp)
   * [Crystal](#crystal)
   * [Nim](#nim)
-  * [C](#c)
-  * [D](#d)
   * [GO](#go)
-  * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platform](#platform)
@@ -32,15 +27,10 @@
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
   * [Jetty NIO](#jetty-nio)
-  * [Ring with Jetty](#ring-with-jetty)
-  * [Colossus](#colossus)
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
   * [Asynchttpserver](#asynchttpserver)
-  * [H2O](#h2o)
-  * [Vibe](#vibe)
   * [GO ServeMux](#go-servemux)
-  * [Actix](#actix)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -87,16 +77,6 @@ While preserving Erlang key-features, Elixir is strongly influenced by Ruby synt
 Java is the most used programming language worldwide, thanks to its JVM that kept the promise "write once, run anywhere".  
 Java is a strongly-typed, compiled, object oriented language and was a pioneer taking parallelism as first-class via multi-threading.
 
-### Clojure
-[Clojure](http://clojure.org/) 1.9.0 is installed via homebrew.  
-Clojure is a dynamic, general-purpose programming language, strongly inspired by Lisp, running on the JVM.  
-Clojure is a compiled language, yet remains completely dynamic: every feature supported by Clojure is supported at runtime.
-
-### Scala
-[Scala](https://www.scala-lang.org/) 2.12.4 and [SBT](http://www.scala-sbt.org/) 1.1.0 are installed via homebrew.  
-Scala is a general-purpose programming language that runs on the JVM. It has full support for  functional, object oriented programming and a strong static type system.  
-Designed to be concise, many of Scala's design decisions were inspired by criticism of Java's shortcomings.
-
 ### C-Sharp
 [C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.300 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
 .NET Core is an open-source framework for running .NET applications cross platform.  
@@ -111,25 +91,10 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
-### C
-[C](https://en.wikipedia.org/wiki/C_(programming_language)) language is pre-installed on Apple LLVM (clang-802.0.42).  
-C is a general-purpose programming language with features economy of expression, modern flow control and data structures, and a rich set of operators.
-C was originally designed for and implemented on the UNIX operating system by [Dennis Ritchie](https://en.wikipedia.org/wiki/Dennis_Ritchie).
-
-### D
-[D](https://dlang.org/) language's LDC compiler 1.7.0 is installed via homebrew.  
-D is a general-purpose programming language with static typing, systems-level access, and C-like syntax.  
-It combines efficiency, control and modeling power with safety and programmer productivity.
-
 ### GO
 [GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
-
-### Rust
-[Rust](https://www.rust-lang.org/) language version 1.26.0 is installed by official package.  
-According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
-Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
 ## Tools
 
@@ -155,22 +120,16 @@ For the languages relying on pre-forking i reported the average consumption by t
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [D](#d)                   | [Vibe](#vibe)                                     |         34343.60  |      4.5  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43100.86  |     42.4  |   530.8  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56869.13  |    > 160  |   > 390  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         58336.01  |    171.5  |   568.6  |
-| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         60310.97  |    403.8  |   593.2  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         54573.24  |    158.1  |   573.1  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 330  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
-| [Scala](#scala)           | [Colossus](#colossus)                             |         95120.73  |    732.1  |   409.3  |
-| [Rust](#rust)             | [Actix](#actix)                                   |         96614.22  |      8.1  |   402.5  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
-| [C](#c)                   | [H2O](#h2o)                                       |         99066.68  |     23.8  |   386.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 30  |   > 350  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    244.7  |   440.1  |
-| Cython                    | [Japronto](#japronto)                             |        135341.30  |      > 9  |   > 190  |
 
                                                                                                    
 ### Puma                                                                                 
@@ -189,15 +148,6 @@ I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](ht
 ```shell
 cd servers
 gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
-```
-
-
-### Japronto
-[Japronto](https://github.com/squeaky-pl/japronto) is an async app server implemented in [Cython](http://cython.org/) on top of [uvloop](http://uvloop.readthedocs.io/) and [H2O Picoserver](#h2o) libraries.
-
-#### Bootstrap
-```shell
-python3 servers/japronto_server.py 2
 ```
 
 
@@ -241,28 +191,6 @@ java -server -cp .:jetty-all-uber.jar HelloWorld
 ```
 
 
-### Ring with Jetty
-I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
-
-#### Bootstrap
-```shell
-cd servers/ring_server
-lein run
-```
-
-
-### Colossus
-To test Scala i used [Colossus](http://tumblr.github.io/colossus/): a lightweight framework for building high-performance network I/O applications.
-
-#### Bootstrap
-```shell
-cd servers/colossus_server
-sbt
-> compile
-> run
-```
-
-
 ### Kestrel
 To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel): a cross-platform web server based on the libuv asynchronous I/O library.
 
@@ -294,41 +222,10 @@ nim cpp -d:release servers/nim_server.nim
 ```
 
 
-### H2O
-I tested C language by using the [H2O](https://h2o.examp1e.net/) HTTP server via a [mruby](https://github.com/mruby/mruby) handler.
-
-#### Bootstrap
-```shell
-sudo h2o -c servers/h2o_server
-```
-
-
-### Vibe
-D language official documentation suggests using the [Vibe](http://vibed.org/) framework for Web development.
-
-#### Bootstrap
-```shell
-cd servers/vibe_server
-dub build --build=release --force --compiler=ldc2
-./vibe_server
-```
-
-
 ### GO ServeMux
 I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
 
 #### Bootstrap
 ```shell
 go run servers/go_server.go
-```
-
-
-### Actix
-I tested Rust by using [Actix](https://actix.rs/), an actor-based HTTP server based on the [Tokio](https://tokio.rs/) toolkit. 
-
-#### Bootstrap
-```shell
-cd servers/actix-server
-cargo clean
-cargo run --release
 ```
