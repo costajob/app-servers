@@ -32,7 +32,7 @@
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
   * [Jetty NIO](#jetty-nio)
-  * [Immutant Web](#immutant-web)
+  * [Ring with Jetty](#ring-with-jetty)
   * [Colossus](#colossus)
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
@@ -160,12 +160,12 @@ For the languages relying on pre-forking i reported the average consumption by t
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56869.13  |    > 160  |   > 390  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         58336.01  |    171.5  |   568.6  |
+| [Clojure](#clojure)       | [Ring with Jetty](#ring-with-jetty)               |         60310.97  |    403.8  |   593.2  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 330  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
 | [Scala](#scala)           | [Colossus](#colossus)                             |         95120.73  |    732.1  |   409.3  |
 | [Rust](#rust)             | [Actix](#actix)                                   |         96614.22  |      8.1  |   402.5  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
-| [Clojure](#clojure)       | [Immutant Web](#immutant-web)                     |         98464.51  |    329.8  |   461.2  |
 | [C](#c)                   | [H2O](#h2o)                                       |         99066.68  |     23.8  |   386.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 30  |   > 350  |
@@ -241,13 +241,12 @@ java -server -cp .:jetty-all-uber.jar HelloWorld
 ```
 
 
-### Immutant Web
-I tested Clojure by using [Immutant Web](https://github.com/ikitommi/immutant): a library based on the [Undertow](http://undertow.io/) async server.
-
+### Ring with Jetty
+I used the default library to interface Clojure with HTTP: the [Ring](https://github.com/ring-clojure/ring) library.
 
 #### Bootstrap
 ```shell
-cd servers/immutant_server
+cd servers/ring_server
 lein run
 ```
 
