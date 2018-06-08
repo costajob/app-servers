@@ -2,19 +2,20 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
 
-_startServer(arg) async {
-  var server = await HttpServer.bind('0.0.0.0', 9292, shared: true);
+const String _HOST = '0.0.0.0';
+const String _GREET = 'Hello World';
 
+_startServer(arg) async {
+  var server = await HttpServer.bind(_HOST, 9292, shared: true);
   await for (HttpRequest request in server) {
     request.response
-      ..write('Hello, world')
+      ..write(_GREET)
       ..close();
   }
 }
 
 void main() {
-  final int _CORES = Platform.numberOfProcessors;
-  for (int i = 0; i < _CORES; i++)
+  for (int i = 0; i < Platform.numberOfProcessors; i++)
     Isolate.spawn(_startServer, null);
   _startServer(null);
 }

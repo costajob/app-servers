@@ -13,7 +13,7 @@ public class HelloWorld
 {
 	public static void main(String[] args) throws Exception
         {
-                QueuedThreadPool threadPool = new QueuedThreadPool(25, 5);
+                QueuedThreadPool threadPool = new QueuedThreadPool(15, 5);
                 Server server = new Server(threadPool);
                 ServerConnector connector = new ServerConnector(server);
                 connector.setPort(9292);

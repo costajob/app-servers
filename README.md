@@ -14,6 +14,7 @@
   * [Crystal](#crystal)
   * [Nim](#nim)
   * [GO](#go)
+  * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platform](#platform)
@@ -22,7 +23,6 @@
   * [Results](#results)
   * [Puma](#puma)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
-  * [Japronto](#japronto)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
@@ -31,6 +31,7 @@
   * [Crystal HTTP](#crystal-http)
   * [Asynchttpserver](#asynchttpserver)
   * [GO ServeMux](#go-servemux)
+  * [Hyper](#hyper)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
@@ -46,7 +47,9 @@ It is not my intention to promote one language over another basing on micro-benc
 Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
-I chose to test the following languages:
+I have limited the languages range to a specific runtime: this way i can focus on a specific stack, keeping it updated to the last available version/APIs.  
+So for JVM i just picked Java, not Scala, Clojure or Kotlin.  
+Where possible i relied just on the standard library, but when it is non-prodution ready (i.e. Ruby WEBrick) or where the language footprint is deliberately reduced to a minimum (i.e. Rust) 
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
@@ -73,7 +76,7 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
 ### Java
-[Java](https://www.java.com/en/) 9.0.4 is installed by official OSX package.  
+[Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
 Java is the most used programming language worldwide, thanks to its JVM that kept the promise "write once, run anywhere".  
 Java is a strongly-typed, compiled, object oriented language and was a pioneer taking parallelism as first-class via multi-threading.
 
@@ -95,6 +98,11 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 [GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
 At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
+
+### Rust
+[Rust](https://www.rust-lang.org/) language version 1.26.2 is installed by official package.  
+According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
+Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
 
 ## Tools
 
@@ -122,14 +130,15 @@ For the languages relying on pre-forking i reported the average consumption by t
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43100.86  |     42.4  |   530.8  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         56869.13  |    > 160  |   > 390  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         54573.24  |    158.1  |   573.1  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 330  |   > 390  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         58710.33  |    > 100  |   > 390  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 240  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
+| [Rust](#rust)             | [Hyper](#hyper)                                   |         96881.29  |      2.9  |   502.4  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 30  |   > 350  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    244.7  |   440.1  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 40  |   > 350  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
 ### Puma                                                                                 
@@ -222,10 +231,11 @@ nim cpp -d:release servers/nim_server.nim
 ```
 
 
-### GO ServeMux
-I opted for the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+### Hyper
+I tested Rust by using [Hyper](https://hyper.rs/), a HTTP client/server based on the [Tokio](https://tokio.rs/) toolkit.
 
 #### Bootstrap
 ```shell
-go run servers/go_server.go
+cd servers/hyper_server
+cargo run --release
 ```
