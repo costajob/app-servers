@@ -78,7 +78,7 @@ While preserving Erlang key-features, Elixir is strongly influenced by Ruby synt
 ### Java
 [Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
 Java is the most used programming language worldwide, thanks to its JVM that kept the promise "write once, run anywhere".  
-Java is a strongly-typed, compiled, object oriented language and was a pioneer taking parallelism as first-class via multi-threading.
+Java is a general-purpose language that is concurrent, class-based, object-oriented and specifically designed to have as few implementation dependencies as possible.
 
 ### C-Sharp
 [C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.300 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
@@ -91,13 +91,13 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
-Nim is an efficient, Python inspired, strong typed language that comes with a pretty flexible compliler able to produce code in C (default), C++, JavaScript or ObjectiveC.  
+Nim is an efficient, Python inspired, strong typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
 [GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
-At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (goroutines).  
+At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.26.2 is installed by official package.  
