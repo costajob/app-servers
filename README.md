@@ -47,7 +47,7 @@ It is not my intention to promote one language over another basing on micro-benc
 Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
-I have limited the languages range to a specific runtime: this way i can focus on a specific stack, keeping it updated to the last available version/APIs.  
+I have limited the languages range to a specific runtime: this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
 So for JVM i just picked Java, not Scala, Clojure or Kotlin.  
 Where possible i relied just on the standard library, but when it is non-prodution ready (i.e. Ruby WEBrick) or where the language footprint is deliberately reduced to a minimum (i.e. Rust) 
 
