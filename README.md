@@ -47,9 +47,8 @@ It is not my intention to promote one language over another basing on micro-benc
 Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
-I have filtered the languages by single runtime: this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
-So for JVM i just picked Java, not Scala, Clojure or Kotlin.  
-Where possible i relied just on the standard library, but when it is non-production ready (i.e. Ruby WEBrick) or where the language footprint is deliberately reduced to a minimum (i.e. Rust) 
+I have filtered the languages by single runtime (i.e. Java on JVM): this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
+Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby WEBrick) or where the language footprint is deliberately minimal (i.e. Rust). 
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
@@ -68,7 +67,7 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 ### Dart
 [Dart](https://www.dartlang.org/) version 1.24.3 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
-It supports interfaces, mixins, abstract classes, generics, optional typing, and concurrency though asynchronous execution and actor-based model.
+It is part of a Google ambitious project that range from server, Web and cross-platform mobile programming (via [Flutter](https://flutter.io/)).
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.6.4 is installed via homebrew.  
@@ -77,32 +76,30 @@ While preserving Erlang key-features, Elixir is strongly influenced by Ruby synt
 
 ### Java
 [Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
-Java is the most used programming language worldwide, thanks to its JVM that kept the promise "write once, run anywhere".  
-Java is a general-purpose language that is concurrent, class-based, object-oriented and specifically designed to have as few implementation dependencies as possible.
+Java is a general-purpose language that is concurrent, class-based, object-oriented and, from version 8, supports functional paradigms.
+It is based on a virtual machine (JVM) that kept the promise "write once, run anywhere".
 
 ### C-Sharp
 [C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.300 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
-.NET Core is an open-source framework for running .NET applications cross platform.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.24.2 is installed via homebrew.  
-Crystal has a syntax very close to Ruby, but brings some desirable features such as strong typing (hidden by a pretty smart type inference algorithm) and ahead of time (AOT) compilation.  
+Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.18.0 is installed viw homebrew.  
-Nim is an efficient, Python inspired, strong typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
+[Nim](http://nim-lang.org/) 0.18.0 is installed via homebrew.  
+Nim is an efficient, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
 [GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
-GO focuses on simplicity by intentionally lacking features considered redundant. It tries to address verbosity by using type inference, duck typing and a dry syntax.  
-At the same time GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
+GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.26.2 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
-Rust grants parallelism by running safely on multiple threads courtesy of its pretty unique ownership model.
+These bounds are granted courtesy of Rust's pretty unique ownership model enforced by the compiler.
 
 ## Tools
 
@@ -161,7 +158,7 @@ gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
 
 
 ### Node Cluster
-I used the cluster library included into Node's standard library.
+I used the cluster module included into Node's standard library.
 
 #### Bootstrap
 ```shell
@@ -170,7 +167,7 @@ node servers/node_server.js
 
 
 ### Dart HttpServer
-A plain HTTP server is embedded into the Dart standard library.
+I used the async HTTP server embedded into the Dart standard library.
 
 #### Bootstrap
 ```shell
@@ -190,7 +187,7 @@ MIX_ENV=prod mix run --no-halt
 
 
 ### Jetty NIO
-To test Java i used [Jetty](http://www.eclipse.org/jetty/) levereging on the non blocking IO (NIO) APIs.  
+I tested Java by using [Jetty](http://www.eclipse.org/jetty/) with the non blocking IO (NIO) APIs.  
 
 #### Bootstrap
 ```shell
@@ -222,12 +219,21 @@ crystal build --release servers/crystal_server.cr
 
 
 ### Asynchttpserver
-I used the asynchttpserver module to implement an asynchronous server with Nim.  
+I used the asynchttpserver standard module of Nim.  
 
 #### Bootstrap
 ```shell
 nim cpp -d:release servers/nim_server.nim
 ./servers/nim_server
+```
+
+
+### GO ServeMux
+I used the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+
+#### Bootstrap
+```shell
+go run servers/go_server.go
 ```
 
 
