@@ -64,8 +64,8 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 
 ### Dart
 [Dart](https://www.dartlang.org/) version 1.24.3 is installed via homebrew.  
-Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
-It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile platforms (via [Flutter](https://flutter.io/)).
+Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.
+It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile-side (cross-platforms).
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.6.4 is installed via homebrew.  
@@ -78,7 +78,7 @@ Java is a general-purpose language that is concurrent, class-based, object-orien
 It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
 
 ### C-Sharp
-[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.300 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
+[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.3 framework.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
@@ -91,7 +91,7 @@ Nim is an efficient, Python inspired, statically typed language that comes with 
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
-[GO](https://golang.org/) language version 1.10.1 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.10.3 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
@@ -110,13 +110,13 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 
 ### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
-* OSX High Sierra
+* macOS High Sierra
 * 2.2 GHz Intel Core i7 (4 cores)
 * 16 GB 1600 MHz DDR3
 
 ### RAM and CPU
-I measured RAM and CPU consumption by using [Apple XCode Instruments](https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/InstrumentsUserGuide/index.html) and recording max consumption peak.  
-For the languages relying on pre-forking i reported the average consumption by taking a snapshot during the stress period.
+I measured RAM and CPU consumption by using macOS Activity Monitor dashboard and recording max consumption peak.  
+For the languages relying on pre-forking parallelism i reported the average consumption by taking a snapshot during the stress period.
 
 ## Benchmarks
 
