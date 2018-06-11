@@ -34,7 +34,7 @@
   * [Hyper](#hyper)
 
 ## Scope
-The idea behind this repository is to benchmark different languages implementation of HTTP server by relying on their standard library (when possible).
+The idea behind this repository is to benchmark different languages implementation of HTTP server.
 
 ### Hello World
 The *application* i tested is minimal: the HTTP version of the *Hello World* example.  
@@ -42,8 +42,7 @@ This approach allows including languages i barely know, since it is pretty easy 
 If you're looking for more complex examples, you will have better luck with the [TechEmpower benchmarks](https://www.techempower.com/benchmarks/).
 
 ### Disclaimer
-Please do take the following numbers with a grain of salt.  
-It is not my intention to promote one language over another basing on micro-benchmarks.  
+Please do take the following numbers with a grain of salt: it is not my intention to promote one language over another basing on micro-benchmarks.  
 Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
@@ -52,8 +51,7 @@ Where possible i just relied on the standard library, but when it is not product
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
-Ruby is a general-purpose, interpreted, dynamic programming language. 
-It focuses on simplicity and productivity, inspired by Lisp, Perl, Python and Smalltalk.  
+Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity According to his creator Ruby is inspired by Lisp, Perl, Python and Smalltalk.  
 
 ### Python
 [Python](https://www.python.org/) 3.6.5 is installed by official OSX package.  
@@ -67,7 +65,7 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 ### Dart
 [Dart](https://www.dartlang.org/) version 1.24.3 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.  
-It is part of a Google ambitious project that range from server, Web and cross-platform mobile programming (via [Flutter](https://flutter.io/)).
+It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile platforms (via [Flutter](https://flutter.io/)).
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.6.4 is installed via homebrew.  
@@ -77,7 +75,7 @@ While preserving Erlang key-features, Elixir is strongly influenced by Ruby synt
 ### Java
 [Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
 Java is a general-purpose language that is concurrent, class-based, object-oriented and, from version 8, supports functional paradigms.
-It is based on a virtual machine (JVM) that kept the promise "write once, run anywhere".
+It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
 
 ### C-Sharp
 [C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core](https://www.microsoft.com/net/core) 2.1.300 framework, by following the [official guideline](https://www.microsoft.com/net/core#macos).  
