@@ -47,7 +47,7 @@ Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
 I have filtered the languages by single runtime (i.e. Java on JVM): this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
-Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby WEBrick) or where the language footprint is deliberately minimal (i.e. Rust). 
+Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
