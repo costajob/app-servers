@@ -207,7 +207,7 @@ dotnet run
 
 
 ### Crystal HTTP
-I used Crystal HTTP server standard library.  
+I used Crystal HTTP server standard library, not supporting parallelism yet.  
 
 #### Bootstrap
 ```shell
@@ -217,11 +217,11 @@ crystal build --release servers/crystal_server.cr
 
 
 ### Asynchttpserver
-I used the asynchttpserver standard module of Nim.  
+I used the asynchttpserver standard module of Nim, not supporting parallelism yet.
 
 #### Bootstrap
 ```shell
-nim cpp -d:release servers/nim_server.nim
+nim c -d:release servers/nim_server.nim
 ./servers/nim_server
 ```
 
