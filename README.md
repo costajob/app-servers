@@ -10,7 +10,7 @@
   * [Dart](#dart)
   * [Elixir](#elixir)
   * [Java](#java)
-  * [C-Sharp](#c-sharp)
+  * [C-sharp](#c-sharp)
   * [Crystal](#crystal)
   * [Nim](#nim)
   * [GO](#go)
@@ -77,8 +77,8 @@ While preserving Erlang key-features, Elixir is strongly influenced by Ruby synt
 Java is a general-purpose language that is concurrent, class-based, object-oriented and, from version 8, supports functional paradigms.
 It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
 
-### C-Sharp
-[C-Sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is installed as a companion of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.3 framework.  
+### C-sharp
+[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.3 framework.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
