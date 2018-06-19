@@ -82,7 +82,7 @@ It is based on a battle-tested virtual machine (JVM) that kept the promise "writ
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.24.2 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.25.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
@@ -128,7 +128,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         54573.24  |    158.1  |   573.1  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         58710.33  |    > 100  |   > 390  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 240  |   > 390  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         93787.24  |      8.5  |   112.2  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         95018.03  |      8.5  |   104.4  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         96881.29  |      2.9  |   502.4  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
