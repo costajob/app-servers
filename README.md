@@ -95,7 +95,7 @@ Nim supports metaprogramming, functional, message passing, procedural, and objec
 GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.26.2 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.27.0 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 These bounds are granted courtesy of Rust's pretty unique ownership model enforced by the compiler.
 
