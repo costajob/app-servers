@@ -54,7 +54,7 @@ Where possible i just relied on the standard library, but when it is not product
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity According to his creator Ruby is inspired by Lisp, Perl, Python and Smalltalk.  
 
 ### Python
-[Python](https://www.python.org/) 3.6.5 is installed by official OSX package.  
+[Python](https://www.python.org/) 3.7.0 is installed via homebrew.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 It supports several programming paradigms and can count on a broad standard library.
 
