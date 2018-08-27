@@ -59,16 +59,16 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 10.1.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 10.9.0 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 1.24.3 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.0.0 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.
 It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile-side (cross-platforms).
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.6.4 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.7.3 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
@@ -78,11 +78,11 @@ Java is a general-purpose language that is concurrent, class-based, object-orien
 It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
 
 ### C-sharp
-[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.3 framework.  
+[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.4 framework.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.25.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.26.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
@@ -91,11 +91,11 @@ Nim is an efficient, Python inspired, statically typed language that comes with 
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
-[GO](https://golang.org/) language version 1.10.3 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.11 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.27.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.28.0 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 These bounds are granted courtesy of Rust's pretty unique ownership model enforced by the compiler.
 
@@ -123,15 +123,15 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43100.86  |     42.4  |   530.8  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         36833.66  |    422.1  |   527.1  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         54573.24  |    158.1  |   573.1  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         51349.23  |     42.4  |   495.1  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         58710.33  |    > 100  |   > 390  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87201.81  |    > 240  |   > 390  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         95018.03  |      8.5  |   104.4  |
-| [Rust](#rust)             | [Hyper](#hyper)                                   |         96881.29  |      2.9  |   502.4  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97401.82  |      7.2  |   447.3  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         99359.00  |    959.7  |   495.4  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88866.37  |    > 240  |   > 390  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         96434.94  |    979.6  |   495.4  |
+| [Rust](#rust)             | [Hyper](#hyper)                                   |         96847.92  |      3.7  |   497.4  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97703.19  |      7.6  |   454.1  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 40  |   > 350  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
