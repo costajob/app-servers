@@ -126,13 +126,13 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         36833.66  |    422.1  |   527.1  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         51349.23  |     42.4  |   495.1  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         58710.33  |    > 100  |   > 390  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         56411.07  |    > 100  |   > 390  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88866.37  |    > 240  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         96434.94  |    979.6  |   495.4  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         96847.92  |      3.7  |   497.4  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97703.19  |      7.6  |   454.1  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100932.26  |     > 40  |   > 350  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         98563.64  |     > 40  |   > 350  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
