@@ -82,7 +82,7 @@ It is based on a battle-tested virtual machine (JVM) that kept the promise "writ
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.26.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.26.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
