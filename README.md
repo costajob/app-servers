@@ -50,7 +50,7 @@ I have filtered the languages by single runtime (i.e. Java on JVM): this way i c
 Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.5.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.5.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity According to his creator Ruby is inspired by Lisp, Perl, Python and Smalltalk.  
 
 ### Python
@@ -82,7 +82,7 @@ It is based on a battle-tested virtual machine (JVM) that kept the promise "writ
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.26.1 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.27.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
@@ -91,11 +91,11 @@ Nim is an efficient, Python inspired, statically typed language that comes with 
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
-[GO](https://golang.org/) language version 1.11 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.11.2 is installed by official OSX package.  
 GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.28.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.30.0 is installed by official package.  
 According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
 These bounds are granted courtesy of Rust's pretty unique ownership model enforced by the compiler.
 
@@ -126,7 +126,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         36833.66  |    422.1  |   527.1  |
 | [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         51349.23  |     42.4  |   495.1  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         56411.07  |    > 100  |   > 390  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         58319.59  |    > 100  |   > 390  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         86917.54  |   1560.0  |   509.6  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87484.85  |    > 450  |   > 390  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
