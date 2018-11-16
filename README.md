@@ -29,7 +29,7 @@
   * [Jetty NIO](#jetty-nio)
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
-  * [Asynchttpserver](#asynchttpserver)
+  * [httpbeast](#httpbeast)
   * [GO ServeMux](#go-servemux)
   * [Hyper](#hyper)
 
