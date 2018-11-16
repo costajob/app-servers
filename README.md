@@ -78,7 +78,7 @@ Java is a general-purpose language that is concurrent, class-based, object-orien
 It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
 
 ### C-sharp
-[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core]((https://www.microsoft.com/net/core#macos) 2.1.4 framework.  
+[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.1.4 framework.  
 C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
 
 ### Crystal
@@ -126,13 +126,13 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    303.1  |   543.1  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43696.79  |     44.4  |   616.1  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         58319.59  |    > 100  |   > 390  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         86917.54  |   1560.0  |   509.6  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1660.0  |   514.3  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         89375.77  |    > 450  |   > 390  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
-| [Rust](#rust)             | [Hyper](#hyper)                                   |         96847.92  |      3.7  |   497.4  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97703.19  |      7.6  |   454.1  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         98563.64  |     > 40  |   > 350  |
+| [Rust](#rust)             | [Hyper](#hyper)                                   |         96087.43  |      4.3  |   483.3  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100421.42  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
