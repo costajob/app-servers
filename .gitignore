@@ -21,4 +21,4 @@ erl_crash.dump
 # Executable
 crystal_server
 go_server
-nim_server
+httpbeast_server

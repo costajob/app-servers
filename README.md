@@ -59,16 +59,16 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 It supports several programming paradigms and can count on a broad standard library.
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 10.12.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 11.1.0 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.0.0 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.1.0 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.
 It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile-side (cross-platforms).
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.7.3 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.7.4 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
 While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
 
@@ -86,7 +86,7 @@ C# is a simple, powerful, type-safe, object-oriented language. It inherited many
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.18.0 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 0.19.0 is installed via homebrew.  
 Nim is an efficient, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
@@ -123,12 +123,12 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         36833.66  |    422.1  |   527.1  |
-| [Nim](#nim)               | [Asynchttpserver](#asynchttpserver)               |         46263.57  |      5.7  |    99.8  |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         51349.23  |     42.4  |   495.1  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    303.1  |   543.1  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43696.79  |     44.4  |   616.1  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         58319.59  |    > 100  |   > 390  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         86917.54  |   1560.0  |   509.6  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87484.85  |    > 450  |   > 390  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         89375.77  |    > 450  |   > 390  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         96847.92  |      3.7  |   497.4  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         97703.19  |      7.6  |   454.1  |
@@ -216,13 +216,13 @@ crystal build --release servers/crystal_server.cr
 ```
 
 
-### Asynchttpserver
-I used the asynchttpserver standard module of Nim, not supporting parallelism yet.
+### httpbeast
+To test Nim i opted for the [httpbeast](https://github.com/dom96/httpbeast) library: an asynchronous server relying on Nim HTTP standard library.
 
 #### Bootstrap
 ```shell
-nim c -d:release servers/nim_server.nim
-./servers/nim_server
+nim c -d:release servers/httpbeast_server.nim
+./servers/httpbeast_server
 ```
 
 
