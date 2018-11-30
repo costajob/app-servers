@@ -132,7 +132,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         96087.43  |      4.3  |   483.3  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100421.42  |     > 40  |   > 380  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
@@ -151,7 +151,7 @@ I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](ht
 #### Bootstrap
 ```shell
 cd servers
-gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 gunicorn_server:app
+gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 meinheld_server:app
 ```
 
 
