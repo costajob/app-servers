@@ -4,6 +4,7 @@
   * [Hello World](#hello-world)
   * [Disclaimer](#disclaimer)
 * [Languages](#languages)
+  * [PHP](#php)
   * [Ruby](#ruby)
   * [Python](#python)
   * [JavaScript](#javascript)
@@ -21,6 +22,7 @@
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
+  * [Swoole](#swoole)
   * [Agoo](#agoo)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
@@ -48,6 +50,10 @@ Indeed you should never pick a language just basing on its presumed performance.
 ## Languages
 I have filtered the languages by single runtime (i.e. Java on JVM): this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
 Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
+
+### PHP
+[PHP](http://www.php.net/) 7.1.16 is installed by source.  
+PHP is a popular general-purpose scripting language that is especially suited to web development.
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
@@ -127,6 +133,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43696.79  |     44.4  |   616.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1660.0  |   514.3  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         89375.77  |    > 450  |   > 390  |
+| [PHP](#php)               | [Swoole](#swoole)                                 |         92459.85  |     15.8  |   229.9  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
@@ -136,6 +143,14 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
+### Swoole                                                                                 
+I tested PHP by using [Swoole](https://github.com/swoole/swoole-src): an asynchronous, coroutine-based concurrency networking engine.
+
+#### Bootstrap
+```shell
+php servers/swoole_server.php 
+```
+
 ### Agoo                                                                                 
 I tested Ruby by using [Agoo](https://github.com/ohler55/agoo): a minimal, high performant HTTP server with pre-forking built in.
 
