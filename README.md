@@ -21,7 +21,7 @@
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
-  * [Puma](#puma)
+  * [Agoo](#agoo)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
@@ -125,23 +125,23 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    303.1  |   543.1  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43696.79  |     44.4  |   616.1  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         58319.59  |    > 100  |   > 390  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1660.0  |   514.3  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         89375.77  |    > 450  |   > 390  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
+| [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         96087.43  |      4.3  |   483.3  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
 
                                                                                                    
-### Puma                                                                                 
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application served by [Puma](http://puma.io).
+### Agoo                                                                                 
+I tested Ruby by using [Agoo](https://github.com/ohler55/agoo): a minimal, high performant HTTP server with pre-forking built in.
 
 #### Bootstrap
 ```shell
-puma -w 8 -t 8 --preload servers/puma_server.ru
+WORKERS=4 ruby server/agoo_server.rb
 ```
 
 
