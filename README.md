@@ -57,12 +57,11 @@ PHP is a popular general-purpose scripting language that is especially suited to
 
 ### Ruby
 [Ruby](https://www.ruby-lang.org/en/) 2.5.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
-Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity According to his creator Ruby is inspired by Lisp, Perl, Python and Smalltalk.  
+Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity. 
 
 ### Python
 [Python](https://www.python.org/) 3.7.1 is installed via homebrew.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
-It supports several programming paradigms and can count on a broad standard library.
 
 ### JavaScript
 [Node.js](https://nodejs.org/en/) version 11.1.0 is installed by official OSX package.  
@@ -71,39 +70,34 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 ### Dart
 [Dart](https://www.dartlang.org/) version 2.1.0 is installed via homebrew.  
 Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.
-It is part of a Google ambitious project to use a single language to program server-side, client-side and mobile-side (cross-platforms).
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.7.4 is installed via homebrew.  
-Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM.  
-While preserving Erlang key-features, Elixir is strongly influenced by Ruby syntax and supports compile-time metaprogramming with macros and polymorphism.
+Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
 ### Java
 [Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
-Java is a general-purpose language that is concurrent, class-based, object-oriented and, from version 8, supports functional paradigms.
-It is based on a battle-tested virtual machine (JVM) that kept the promise "write once, run anywhere".
+Java is a VM based general-purpose language that is concurrent, object-oriented and, from version 8, supports functional paradigms.
 
 ### C-sharp
 [C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.1.4 framework.  
-C# is a simple, powerful, type-safe, object-oriented language. It inherited many features from Java, but recently added some desirable paradigms such as futures, pattern matching and deconstructions.  
+C# is a simple, powerful, type-safe, object-oriented language.
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.27.0 is installed via homebrew.  
-Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and raw metal speed, thanks to ahead of time (AOT) compilation.  
+Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.19.0 is installed via homebrew.  
 Nim is an efficient, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
-Nim supports metaprogramming, functional, message passing, procedural, and object-oriented coding style.
 
 ### GO
 [GO](https://golang.org/) language version 1.11.2 is installed by official OSX package.  
-GO focuses on simplicity by intentionally lacking features considered redundant. GO takes a straight approach to parallelism, coming with built in [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) and green threads (go-routines).  
+GO is an AOT language that focuses on simplicity by intentionally lacking features considered redundant. 
 
 ### Rust
 [Rust](https://www.rust-lang.org/) language version 1.30.0 is installed by official package.  
-According to the official site Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.  
-These bounds are granted courtesy of Rust's pretty unique ownership model enforced by the compiler.
+Rust is an AOT and GC-free programming language that prevents segfaults, and guarantees thread safety.  
 
 ## Tools
 
