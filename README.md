@@ -69,7 +69,7 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 
 ### Dart
 [Dart](https://www.dartlang.org/) version 2.1.0 is installed via homebrew.  
-Dart is an object-oriented, class defined, single inheritance language using a C-style syntax that transcompiles optionally into JavaScript.
+Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
 [Elixir](http://elixir-lang.org/) 1.7.4 is installed via homebrew.  
@@ -77,11 +77,11 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 
 ### Java
 [Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
-Java is a VM based general-purpose language that is concurrent, object-oriented and, from version 8, supports functional paradigms.
+Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
 ### C-sharp
 [C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.1.4 framework.  
-C# is a simple, powerful, type-safe, object-oriented language.
+C# is a VM based, statically typed, thread safe, object-oriented language.
 
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.27.0 is installed via homebrew.  
@@ -89,15 +89,15 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 
 ### Nim
 [Nim](http://nim-lang.org/) 0.19.0 is installed via homebrew.  
-Nim is an efficient, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
+Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
 [GO](https://golang.org/) language version 1.11.2 is installed by official OSX package.  
-GO is an AOT language that focuses on simplicity by intentionally lacking features considered redundant. 
+GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.30.0 is installed by official package.  
-Rust is an AOT and GC-free programming language that prevents segfaults, and guarantees thread safety.  
+[Rust](https://www.rust-lang.org/) language version 1.30.1 is installed by official package.  
+Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
 
