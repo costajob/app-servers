@@ -33,7 +33,7 @@
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
   * [GO ServeMux](#go-servemux)
-  * [Hyper](#hyper)
+  * [may_minihttp](#may_minihttp)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server.
@@ -131,10 +131,10 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
-| [Rust](#rust)             | [Hyper](#hyper)                                   |         96087.43  |      4.3  |   483.3  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
+| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        132209.16  |      4.4  |   199.4  |
 
                                                                                                    
 ### Swoole                                                                                 
@@ -244,11 +244,11 @@ go run servers/go_server.go
 ```
 
 
-### Hyper
-I tested Rust by using [Hyper](https://hyper.rs/), a HTTP client/server based on the [Tokio](https://tokio.rs/) toolkit.
+### may_minihttp
+I tested Rust by using [may_minihttp](https://github.com/Xudong-Huang/may_minihttp), a minimal HTTP client/server based on the [May](https://github.com/Xudong-Huang/may) coroutine library.
 
 #### Bootstrap
 ```shell
-cd servers/hyper_server
+cd servers/minihttp_server
 cargo run --release
 ```
