@@ -96,7 +96,7 @@ Nim is an AOT, Python inspired, statically typed language that comes with an amb
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.30.1 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.31.0 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -134,7 +134,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
-| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        132209.16  |      4.4  |   199.4  |
+| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        133564.50  |      4.4  |   199.4  |
 
                                                                                                    
 ### Swoole                                                                                 
