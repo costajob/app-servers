@@ -32,7 +32,7 @@
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
-  * [GO ServeMux](#go-servemux)
+  * [fasthttp](#fasthttp)
   * [may_minihttp](#may_minihttp)
 
 ## Scope
@@ -131,9 +131,9 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
 | [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         99310.23  |      7.6  |   454.1  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
+| [GO](#go)                 | [fasthttp](#fasthttp)                             |        117843.97  |      4.3  |   307.6  |
 | [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        133564.50  |      4.4  |   199.4  |
 
                                                                                                    
@@ -235,12 +235,12 @@ nim c -d:release servers/httpbeast_server.nim
 ```
 
 
-### GO ServeMux
-I used the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.  
+### fasthttp
+I used the [fasthttp](https://github.com/valyala/fasthttp) HTTP server to test GO language.
 
 #### Bootstrap
 ```shell
-go run servers/go_server.go
+go run servers/fasthttp_server.go
 ```
 
 

@@ -20,5 +20,5 @@ erl_crash.dump
 
 # Executable
 crystal_server
-go_server
+fasthttp_server
 httpbeast_server
