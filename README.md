@@ -92,7 +92,7 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.11.2 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.11.4 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
