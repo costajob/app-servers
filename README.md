@@ -155,12 +155,12 @@ WORKERS=4 ruby server/agoo_server.rb
 
 
 ### Gunicorn with Meinheld
-I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](http://meinheld.org/) workers.
+I tested Python by using [Gunicorn](http://gunicorn.org/) spawning [Meinheld](http://meinheld.org/) workers with a plain WSGI compliant server.
 
 #### Bootstrap
 ```shell
 cd servers
-gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 meinheld_server:app
+gunicorn -w 4 -k meinheld.gmeinheld.MeinheldWorker -b :9292 wsgi_server:app
 ```
 
 
