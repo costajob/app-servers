@@ -56,7 +56,7 @@ Where possible i just relied on the standard library, but when it is not product
 PHP is a popular general-purpose scripting language that is especially suited to web development.
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.5.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.6.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity. 
 
 ### Python
@@ -64,7 +64,7 @@ Ruby is a general-purpose, interpreted, dynamic programming language, focused on
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 11.1.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 11.10.0 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
@@ -72,7 +72,7 @@ Node.js is based on the V8 JavaScript engine, optimized by Google and supporting
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.7.4 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.8.1 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
 ### Java
@@ -80,23 +80,23 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
 ### C-sharp
-[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.1.4 framework.  
+[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.2.104 framework.  
 C# is a VM based, statically typed, thread safe, object-oriented language.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.27.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.27.2 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.19.0 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 0.19.4 is installed via homebrew.  
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.11.4 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.11.5 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.31.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.32.0 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -123,18 +123,18 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    303.1  |   543.1  |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43696.79  |     44.4  |   616.1  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1660.0  |   514.3  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         89375.77  |    > 450  |   > 390  |
-| [PHP](#php)               | [Swoole](#swoole)                                 |         92459.85  |     15.8  |   229.9  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         93422.95  |      3.4  |    99.9  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         94571.88  |      8.4  |   105.4  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    323.1  |   543.1  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42654.72  |     43.0  |   560.3  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         82474.32  |    > 450  |   > 390  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1520.0  |   514.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         89101.30  |      7.9  |   111.9  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         91358.77  |      3.4  |    99.9  |
+| [PHP](#php)               | [Swoole](#swoole)                                 |         93091.24  |     15.8  |   229.9  |
 | [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100422.70  |     > 40  |   > 380  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    224.4  |   433.5  |
-| [GO](#go)                 | [fasthttp](#fasthttp)                             |        117843.97  |      4.3  |   307.6  |
-| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        133564.50  |      4.4  |   199.4  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99970.23  |     > 40  |   > 380  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    243.7  |   433.5  |
+| [GO](#go)                 | [fasthttp](#fasthttp)                             |        113411.34  |      4.3  |   307.6  |
+| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        125310.17  |      4.7  |   199.4  |
 
                                                                                                    
 ### Swoole                                                                                 
@@ -145,12 +145,13 @@ I tested PHP by using [Swoole](https://github.com/swoole/swoole-src): an asynchr
 php servers/swoole_server.php 
 ```
 
+
 ### Agoo                                                                                 
 I tested Ruby by using [Agoo](https://github.com/ohler55/agoo): a minimal, high performant HTTP server with pre-forking built in.
 
 #### Bootstrap
 ```shell
-WORKERS=4 ruby server/agoo_server.rb
+WORKERS=4 ruby servers/agoo_server.rb
 ```
 
 
@@ -211,7 +212,7 @@ To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fu
 ```shell
 cd servers/kestrel_server
 dotnet restore
-dotnet run
+dotnet run --configuration Release
 ```
 
 

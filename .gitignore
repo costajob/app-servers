@@ -14,6 +14,7 @@ erl_crash.dump
 # Python
 /servers/__pycache__
 /servers/*.pyc
+/servers/.wsgi
 
 # Crystal
 *.dwarf
