@@ -16,8 +16,8 @@ defmodule PlugServer.Mixfile do
   end
 
   defp deps do
-   [{:cowboy, "~> 2.6"},
-    {:plug, "~> 1.7"},
-    {:plug_cowboy, "~> 2.0"}]
+   [{:cowboy, "~> 2.6.3"},
+    {:plug, "~> 1.8"},
+    {:plug_cowboy, "~> 2.0.2"}]
   end
 end

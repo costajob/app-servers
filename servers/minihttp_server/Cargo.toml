@@ -1,7 +1,0 @@
-[package]
-name = "minihttp_server"
-version = "0.1.0"
-authors = ["costajob <costajob@gmail.com>"]
-
-[dependencies]
-may_minihttp = { git = "https://github.com/Xudong-Huang/may_minihttp.git" }

@@ -1,5 +1,4 @@
-import options, asyncdispatch, json
-import httpbeast
+import asyncdispatch, httpbeast, options
 
 const settings = httpbeast.initSettings(Port(9292))
 

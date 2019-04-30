@@ -4,7 +4,6 @@
   * [Hello World](#hello-world)
   * [Disclaimer](#disclaimer)
 * [Languages](#languages)
-  * [PHP](#php)
   * [Ruby](#ruby)
   * [Python](#python)
   * [JavaScript](#javascript)
@@ -22,8 +21,7 @@
   * [RAM and CPU](#ram-and-cpu)
 * [Benchmarks](#benchmarks)
   * [Results](#results)
-  * [Swoole](#swoole)
-  * [Agoo](#agoo)
+  * [Puma](#puma)
   * [Gunicorn with Meinheld](#gunicorn-with-meinheld)
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
@@ -32,8 +30,8 @@
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
-  * [fasthttp](#fasthttp)
-  * [may_minihttp](#may_minihttp)
+  * [GO ServeMux](#go-servemux)
+  * [Actix Web](#actix-web)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server.
@@ -51,24 +49,20 @@ Indeed you should never pick a language just basing on its presumed performance.
 I have filtered the languages by single runtime (i.e. Java on JVM): this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
 Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
 
-### PHP
-[PHP](http://www.php.net/) 7.1.16 is installed by source.  
-PHP is a popular general-purpose scripting language that is especially suited to web development.
-
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.6.1 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.6.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity. 
 
 ### Python
-[Python](https://www.python.org/) 3.7.1 is installed via homebrew.  
+[Python](https://www.python.org/) 3.7.3 is installed via homebrew.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 11.10.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 12.0.0 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.1.0 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.2.0 is installed via homebrew.  
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
@@ -76,15 +70,15 @@ Dart is a VM based, object-oriented, sound typed language using a C-style syntax
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
 ### Java
-[Java](https://www.java.com/en/) JDK 10.0.1 is installed by official OSX package.  
+[Java](https://www.java.com/en/) JDK 12.0.1 is installed by official OSX package.  
 Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
 ### C-sharp
-[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.2.104 framework.  
+[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.2.4 framework.  
 C# is a VM based, statically typed, thread safe, object-oriented language.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.27.2 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.28.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
@@ -92,11 +86,11 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.11.5 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.12.4 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.32.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.34.1 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -123,35 +117,25 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    323.1  |   543.1  |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42654.72  |     43.0  |   560.3  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         82474.32  |    > 450  |   > 390  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         87081.09  |   1520.0  |   514.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         89101.30  |      7.9  |   111.9  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         91358.77  |      3.4  |    99.9  |
-| [PHP](#php)               | [Swoole](#swoole)                                 |         93091.24  |     15.8  |   229.9  |
-| [Ruby](#ruby)             | [Agoo](#agoo)                                     |         95466.31  |     > 30  |   > 440  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99970.23  |     > 40  |   > 380  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        104570.11  |    243.7  |   433.5  |
-| [GO](#go)                 | [fasthttp](#fasthttp)                             |        113411.34  |      4.3  |   307.6  |
-| [Rust](#rust)             | [may_minihttp](#may_minihttp)                     |        125310.17  |      4.7  |   199.4  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    164.2  |   533.4  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43759.01  |     45.3  |   614.3  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         55521.09  |    > 110  |   > 520  |
+| [GO](#go)                 | [GO servermux](#go-servermux)                     |         70035.75  |      8.4  |   554.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         72347.59  |      8.4  |   105.1  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         85832.09  |   > 1500  |   516.4  |
+| [Rust](#rust)             | [Actix Web](#actix-web)                           |         86774.65  |     19.2  |   342.5  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         88269.54  |     24.4  |    99.7  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         92112.56  |    > 190  |   > 500  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         97885.15  |     > 40  |   > 380  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105960.47  |    233.1  |   436.3  |
 
                                                                                                    
-### Swoole                                                                                 
-I tested PHP by using [Swoole](https://github.com/swoole/swoole-src): an asynchronous, coroutine-based concurrency networking engine.
+### Puma
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application served by [Puma](http://puma.io).
 
 #### Bootstrap
 ```shell
-php servers/swoole_server.php 
-```
-
-
-### Agoo                                                                                 
-I tested Ruby by using [Agoo](https://github.com/ohler55/agoo): a minimal, high performant HTTP server with pre-forking built in.
-
-#### Bootstrap
-```shell
-WORKERS=4 ruby servers/agoo_server.rb
+puma -w 8 -t 2 --preload servers/puma_server.ru
 ```
 
 
@@ -231,25 +215,25 @@ To test Nim i opted for the [httpbeast](https://github.com/dom96/httpbeast) libr
 
 #### Bootstrap
 ```shell
-nim c -d:release servers/httpbeast_server.nim
+nim c -d:release --threads:on servers/httpbeast_server.nim
 ./servers/httpbeast_server
 ```
 
 
-### fasthttp
-I used the [fasthttp](https://github.com/valyala/fasthttp) HTTP server to test GO language.
+### GO ServeMux
+I used the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library.
 
 #### Bootstrap
 ```shell
-go run servers/fasthttp_server.go
+go run servers/servermux_server.go
 ```
 
 
-### may_minihttp
-I tested Rust by using [may_minihttp](https://github.com/Xudong-Huang/may_minihttp), a minimal HTTP client/server based on the [May](https://github.com/Xudong-Huang/may) coroutine library.
+### Actix Web
+I tested Rust by using the [Actix](https://actix.rs/) actor system, also inclusive of a Web framework.
 
 #### Bootstrap
 ```shell
-cd servers/minihttp_server
+cd servers/actix_server
 cargo run --release
 ```
