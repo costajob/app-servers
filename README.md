@@ -115,7 +115,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ## Benchmarks
 
 ### Results
-| Language                  | App Server                                        | Req./sec (local)  | RAM (MB)  | CPU (%)  |
+| Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    164.2  |   533.4  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43759.01  |     45.3  |   614.3  |
