@@ -30,7 +30,7 @@
   * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
-  * [GO ServeMux](#go-servemux)
+  * [GO ServeMux](#go-servermux)
   * [Actix Web](#actix-web)
 
 ## Scope
@@ -120,8 +120,8 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         37433.00  |    164.2  |   533.4  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         43759.01  |     45.3  |   614.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         55521.09  |    > 110  |   > 520  |
-| [GO](#go)                 | [GO servermux](#go-servermux)                     |         70035.75  |      8.4  |   554.3  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         72347.59  |      8.4  |   105.1  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         73065.84  |      8.4  |   554.3  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         85832.09  |   > 1500  |   516.4  |
 | [Rust](#rust)             | [Actix Web](#actix-web)                           |         86774.65  |     19.2  |   342.5  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         88269.54  |     24.4  |    99.7  |
@@ -225,7 +225,7 @@ I used the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library
 
 #### Bootstrap
 ```shell
-go run servers/servermux_server.go
+go run servers/servemux_server.go
 ```
 
 
