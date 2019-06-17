@@ -117,8 +117,8 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         36582.58  |    171.5  |   539.3  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42882.01  |     45.3  |   619.0  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47303.00  |     37.6  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56407.56  |    > 110  |   > 520  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         71541.10  |      8.4  |   554.3  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         74116.73  |      8.4  |   105.1  |
@@ -159,11 +159,12 @@ node servers/node_server.js
 
 
 ### Dart HttpServer
-I used the async HTTP server embedded into the Dart standard library.
+I used the async HTTP server embedded into the Dart standard library and compiled it with AOT runtime.
 
 #### Bootstrap
 ```shell
-dart servers/dart_server.dart
+dart2aot servers/dart_server.dart ./dart_server.dart.aot
+dartaotruntime dart_server.dart.aot
 ```
 
 
