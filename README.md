@@ -31,7 +31,7 @@
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
   * [GO ServeMux](#go-servermux)
-  * [Actix Web](#actix-web)
+  * [Hyper](#hyper)
 
 ## Scope
 The idea behind this repository is to benchmark different languages implementation of HTTP server.
@@ -58,15 +58,15 @@ Ruby is a general-purpose, interpreted, dynamic programming language, focused on
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 12.4.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 12.4.7 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.3.2 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.4.0 is installed via homebrew.  
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.8.2 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.9.1 is installed via homebrew.  
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
 ### Java
@@ -82,15 +82,15 @@ C# is a VM based, statically typed, thread safe, object-oriented language.
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.20.0 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 0.20.2 is installed via homebrew.  
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.12.6 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.12.7 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.35.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.36.0 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -117,17 +117,17 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42882.01  |     45.3  |   619.0  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         47303.00  |     37.6  |   539.3  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         56407.56  |    > 110  |   > 520  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         71541.10  |      8.4  |   554.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         74116.73  |      8.4  |   105.1  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         84942.38  |   > 1500  |   516.4  |
-| [Rust](#rust)             | [Actix Web](#actix-web)                           |         86608.21  |     19.2  |   345.4  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88414.08  |    > 200  |   > 300  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         92058.25  |      3.4  |    99.7  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        100735.84  |     > 40  |   > 380  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105333.17  |    233.1  |   436.3  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42576.07  |     45.3  |   619.0  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         46801.31  |     37.6  |   539.3  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         52613.27  |    > 110  |   > 520  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         69386.11  |      8.4  |   554.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         72660.30  |      8.4  |   105.1  |
+| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         84576.95  |   > 1500  |   516.4  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88281.60  |    > 200  |   > 300  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         89566.66  |      3.4  |    99.7  |
+| [Rust](#rust)             | [Hyper](#hyper)                                   |         92338.90  |      4.5  |   450.0  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99332.36  |     > 40  |   > 380  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105190.80  |    233.1  |   436.3  |
 
                                                                                                    
 ### Puma
@@ -230,11 +230,11 @@ go run servers/servemux_server.go
 ```
 
 
-### Actix Web
-I tested Rust by using the [Actix](https://actix.rs/) actor system, also inclusive of a Web framework.
+### Hyper
+I tested Rust by using the [Hyper](https://hyper.rs/), an HTTP implementation based on Tokio.io.
 
 #### Bootstrap
 ```shell
-cd servers/actix_server
+cd servers/hyper_server
 cargo run --release
 ```
