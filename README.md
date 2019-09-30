@@ -10,7 +10,6 @@
   * [Dart](#dart)
   * [Elixir](#elixir)
   * [Java](#java)
-  * [C-sharp](#c-sharp)
   * [Crystal](#crystal)
   * [Nim](#nim)
   * [GO](#go)
@@ -58,11 +57,11 @@ Ruby is a general-purpose, interpreted, dynamic programming language, focused on
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 12.4.7 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 12.11.0 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.4.0 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.5.1 is installed via homebrew.  
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
@@ -73,24 +72,20 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 [Java](https://www.java.com/en/) JDK 12.0.1 is installed by official OSX package.  
 Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
-### C-sharp
-[C-sharp](https://en.wikipedia.org/wiki/C_Sharp_(programming_language)) (C#) 7.0 language is part of the [.NET Core](https://www.microsoft.com/net/core) 2.2.4 framework.  
-C# is a VM based, statically typed, thread safe, object-oriented language.
-
 ### Crystal
 [Crystal](http://crystal-lang.org/) 0.31.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 0.20.2 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 1.0.0 is installed via homebrew.  
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.12.7 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.13.1 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.36.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.38.0 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -120,14 +115,13 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42576.07  |     45.3  |   619.0  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         46801.31  |     37.6  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         52613.27  |    > 110  |   > 520  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         69386.11  |      8.4  |   554.3  |
-| [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         84576.95  |   > 1500  |   516.4  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88281.60  |    > 200  |   > 300  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |         89566.66  |      3.4  |    99.7  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         83465.51  |      8.4  |   554.3  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88191.81  |    > 150  |   > 300  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         92338.90  |      4.5  |   450.0  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99332.36  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105190.80  |    233.1  |   436.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        114429.67  |      8.4  |   282.3  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |        113488.20  |     24.1  |    99.7  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        116210.94  |      8.4  |   282.3  |
 
                                                                                                    
 ### Puma
@@ -190,17 +184,6 @@ java -server -cp .:jetty-all-uber.jar HelloWorld
 ```
 
 
-### Kestrel
-To test C# i opted for [Kestrel](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/servers/kestrel): a cross-platform web server based on the libuv asynchronous I/O library.
-
-#### Bootstrap
-```shell
-cd servers/kestrel_server
-dotnet restore
-dotnet run --configuration Release
-```
-
-
 ### Crystal HTTP
 I used Crystal HTTP server standard library, enabling parallelism by using the `preview` flag.  
 
@@ -216,7 +199,7 @@ To test Nim i opted for the [httpbeast](https://github.com/dom96/httpbeast) libr
 
 #### Bootstrap
 ```shell
-nim c -d:release servers/httpbeast_server.nim
+nim c --threads:on servers/httpbeast_server.nim
 ./servers/httpbeast_server
 ```
 
