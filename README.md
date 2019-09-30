@@ -69,7 +69,7 @@ Dart is a VM based, object-oriented, sound typed language using a C-style syntax
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
 ### Java
-[Java](https://www.java.com/en/) JDK 12.0.1 is installed by official OSX package.  
+[Java](https://www.java.com/en/) JDK 13.0.0 is installed by official OSX package.  
 Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
 ### Crystal
@@ -112,16 +112,16 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         42576.07  |     45.3  |   619.0  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         46801.31  |     37.6  |   539.3  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         52613.27  |    > 110  |   > 520  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         45477.66  |     45.3  |   619.0  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         45817.35  |     47.2  |   539.3  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         56979.27  |    > 110  |   > 520  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         83465.51  |      8.4  |   554.3  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88191.81  |    > 150  |   > 300  |
-| [Rust](#rust)             | [Hyper](#hyper)                                   |         92338.90  |      4.5  |   450.0  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99332.36  |     > 40  |   > 380  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105190.80  |    233.1  |   436.3  |
+| [Rust](#rust)             | [Hyper](#hyper)                                   |         97421.94  |      4.5  |   450.0  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        110583.42  |     > 40  |   > 380  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |        113488.20  |     24.1  |    99.7  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        116210.94  |      8.4  |   282.3  |
+| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        116388.13  |    233.1  |   436.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        117125.36  |      8.4  |   282.3  |
 
                                                                                                    
 ### Puma
