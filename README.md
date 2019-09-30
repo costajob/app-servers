@@ -78,7 +78,7 @@ Java is a VM based, statically typed, general-purpose language that is thread sa
 C# is a VM based, statically typed, thread safe, object-oriented language.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.29.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.31.0 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
@@ -121,13 +121,13 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         46801.31  |     37.6  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         52613.27  |    > 110  |   > 520  |
 | [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         69386.11  |      8.4  |   554.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |         72660.30  |      8.4  |   105.1  |
 | [C-Sharp](#c-sharp)       | [Kestrel](#kestrel)                               |         84576.95  |   > 1500  |   516.4  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88281.60  |    > 200  |   > 300  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |         89566.66  |      3.4  |    99.7  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         92338.90  |      4.5  |   450.0  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |         99332.36  |     > 40  |   > 380  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        105190.80  |    233.1  |   436.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        114429.67  |      8.4  |   282.3  |
 
                                                                                                    
 ### Puma
@@ -202,11 +202,11 @@ dotnet run --configuration Release
 
 
 ### Crystal HTTP
-I used Crystal HTTP server standard library, not supporting parallelism yet.  
+I used Crystal HTTP server standard library, enabling parallelism by using the `preview` flag.  
 
 #### Bootstrap
 ```shell
-crystal build --release servers/crystal_server.cr
+crystal build -Dpreview_mt --release servers/crystal_server.cr
 ./crystal_server
 ```
 
