@@ -73,7 +73,7 @@ Elixir is a purely functional language that runs on the [Erlang](https://www.erl
 Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
 
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.31.0 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.31.1 is installed via homebrew.  
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
@@ -99,7 +99,7 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 
 ### Platform
 These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
-* macOS High Sierra
+* macOS Mojave
 * 2.2 GHz Intel Core i7 (4 cores)
 * 16 GB 1600 MHz DDR3
 
@@ -121,7 +121,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        110583.42  |     > 40  |   > 380  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |        113488.20  |     24.1  |    99.7  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        116388.13  |    233.1  |   436.3  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        117125.36  |      8.4  |   282.3  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        120141.48  |      8.4  |   282.3  |
 
                                                                                                    
 ### Puma
@@ -185,7 +185,7 @@ java -server -cp .:jetty-all-uber.jar HelloWorld
 
 
 ### Crystal HTTP
-I used Crystal HTTP server standard library, enabling parallelism by using the `preview` flag.  
+I used Crystal HTTP server standard library, enabling parallelism by using the `preview_mt` flag.  
 
 #### Bootstrap
 ```shell
