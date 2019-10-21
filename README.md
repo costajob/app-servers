@@ -26,7 +26,6 @@
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
   * [Jetty NIO](#jetty-nio)
-  * [Kestrel](#kestrel)
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
   * [GO ServeMux](#go-servermux)
