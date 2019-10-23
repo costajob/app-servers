@@ -48,15 +48,15 @@ I have filtered the languages by single runtime (i.e. Java on JVM): this way i c
 Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.6.3 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 2.6.5 is installed via [rbenv](https://github.com/rbenv/rbenv).  
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity. 
 
 ### Python
-[Python](https://www.python.org/) 3.7.3 is installed via homebrew.  
+[Python](https://www.python.org/) 3.8.0 is installed via homebrew.  
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 12.11.0 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 13.0.1 is installed by official OSX package.  
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
@@ -80,7 +80,7 @@ Crystal has a syntax very close to Ruby, but brings some desirable features such
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.13.1 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.13.3 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
@@ -114,9 +114,9 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         45477.66  |     45.3  |   619.0  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         45817.35  |     47.2  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56979.27  |    > 110  |   > 520  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |         83465.51  |      8.4  |   554.3  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         88191.81  |    > 150  |   > 300  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         80078.68  |    > 150  |   > 300  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         97421.94  |      4.5  |   450.0  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |        106755.60  |      7.3  |   441.5  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        110583.42  |     > 40  |   > 380  |
 | [Nim](#nim)               | [httpbeast](#httpbeast)                           |        113488.20  |     24.1  |    99.7  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        116388.13  |    233.1  |   436.3  |
