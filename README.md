@@ -60,7 +60,7 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic progra
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.5.1 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.6.1 is installed via homebrew.  
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
@@ -112,7 +112,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         45477.66  |     45.3  |   619.0  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         45817.35  |     47.2  |   539.3  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         48280.33  |     45.9  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56979.27  |    > 110  |   > 520  |
 | [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         80078.68  |    > 150  |   > 300  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         97421.94  |      4.5  |   450.0  |
@@ -152,12 +152,12 @@ node servers/node_server.js
 
 
 ### Dart HttpServer
-I used the async HTTP server embedded into the Dart standard library and compiled it with AOT runtime.
+I used the async HTTP server embedded into the Dart standard library and compiled it with `dart2native` AOT compiler.
 
 #### Bootstrap
 ```shell
-dart2aot servers/dart_server.dart ./dart_server.dart.aot
-dartaotruntime dart_server.dart.aot
+dart2native servers/dart_server.dart -k aot
+dartaotruntime servers/dart_server.aot
 ```
 
 
