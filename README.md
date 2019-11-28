@@ -76,15 +76,15 @@ Java is a VM based, statically typed, general-purpose language that is thread sa
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 1.0.0 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 1.0.2 is installed via homebrew.  
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.13.3 is installed by official OSX package.  
+[GO](https://golang.org/) language version 1.13.4 is installed by official OSX package.  
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
 
 ### Rust
-[Rust](https://www.rust-lang.org/) language version 1.38.0 is installed by official package.  
+[Rust](https://www.rust-lang.org/) language version 1.39.0 is installed by official package.  
 Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
@@ -114,12 +114,12 @@ For the languages relying on pre-forking parallelism i reported the average cons
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         45477.66  |     45.3  |   619.0  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         48280.33  |     45.9  |   539.3  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         56979.27  |    > 110  |   > 520  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         80078.68  |    > 150  |   > 300  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         84260.52  |    > 150  |   > 300  |
 | [Rust](#rust)             | [Hyper](#hyper)                                   |         97421.94  |      4.5  |   450.0  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |        106755.60  |      7.3  |   441.5  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |        109945.72  |      7.3  |   441.5  |
 | [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        110583.42  |     > 40  |   > 380  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |        113488.20  |     24.1  |    99.7  |
 | [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        116388.13  |    233.1  |   436.3  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |        116588.18  |     24.1  |    99.7  |
 | [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        120141.48  |      8.4  |   282.3  |
 
                                                                                                    
@@ -198,7 +198,7 @@ To test Nim i opted for the [httpbeast](https://github.com/dom96/httpbeast) libr
 
 #### Bootstrap
 ```shell
-nim c --threads:on servers/httpbeast_server.nim
+nim c -d:release --threads:on servers/httpbeast_server.nim
 ./servers/httpbeast_server
 ```
 

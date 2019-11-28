@@ -5,4 +5,4 @@ authors = ["costajob <costajob@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-hyper = "0.12.33"
+hyper = "0.12.35"

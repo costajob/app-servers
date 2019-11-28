@@ -15,7 +15,8 @@ _startServer(arg) async {
 }
 
 void main() {
-  for (int i = 0; i < Platform.numberOfProcessors; i++)
+  final cpus = Platform.numberOfProcessors;
+  for (int i = 0; i < cpus; i++)
     Isolate.spawn(_startServer, null);
   _startServer(null);
 }
