@@ -9,11 +9,9 @@
   * [JavaScript](#javascript)
   * [Dart](#dart)
   * [Elixir](#elixir)
-  * [Java](#java)
   * [Crystal](#crystal)
   * [Nim](#nim)
   * [GO](#go)
-  * [Rust](#rust)
 * [Tools](#tools)
   * [Wrk](#wrk)
   * [Platform](#platform)
@@ -25,7 +23,6 @@
   * [Node Cluster](#node-cluster)
   * [Dart HttpServer](#dart-httpserver)
   * [Plug with Cowboy](#plug-with-cowboy)
-  * [Jetty NIO](#jetty-nio)
   * [Crystal HTTP](#crystal-http)
   * [httpbeast](#httpbeast)
   * [GO ServeMux](#go-servermux)
@@ -44,48 +41,40 @@ Please do take the following numbers with a grain of salt: it is not my intentio
 Indeed you should never pick a language just basing on its presumed performance.
 
 ## Languages
-I have filtered the languages by single runtime (i.e. Java on JVM): this way i can focus on a specific stack, keeping it updated to the last available version/APIs. 
-Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python) or where the language footprint is deliberately minimal (i.e. Rust). 
+I have became lazy with years and just adopt languages i can install via `homebrew`, sorry Oracle/MS. This also allows me to benchmark them in a single session, thus trying to use an environment as neutral as possible.
+Where possible i just relied on the standard library, but when it is not production-ready (i.e. Ruby, Python).
 
 ### Ruby
-[Ruby](https://www.ruby-lang.org/en/) 2.6.5 is installed via [rbenv](https://github.com/rbenv/rbenv).  
+[Ruby](https://www.ruby-lang.org/en/) 3.0.0 is used. 
 Ruby is a general-purpose, interpreted, dynamic programming language, focused on simplicity and productivity. 
 
 ### Python
-[Python](https://www.python.org/) 3.8.0 is installed via homebrew.  
+[Python](https://www.python.org/) 3.9.1 is used.
 Python is a widely used high-level, general-purpose, interpreted, dynamic programming language.  
 
 ### JavaScript
-[Node.js](https://nodejs.org/en/) version 13.0.1 is installed by official OSX package.  
+[Node.js](https://nodejs.org/en/) version 15.5.0 is used.
 Node.js is based on the V8 JavaScript engine, optimized by Google and supporting most of the new language's features.   
 
 ### Dart
-[Dart](https://www.dartlang.org/) version 2.6.1 is installed via homebrew.  
+[Dart](https://www.dartlang.org/) version 2.10.4 is used.
 Dart is a VM based, object-oriented, sound typed language using a C-style syntax that transcompiles optionally into JavaScript.
 
 ### Elixir
-[Elixir](http://elixir-lang.org/) 1.9.1 is installed via homebrew.  
+[Elixir](http://elixir-lang.org/) 1.11.2 is used.
 Elixir is a purely functional language that runs on the [Erlang](https://www.erlang.org/) VM and is strongly influenced by the Ruby syntax.
 
-### Java
-[Java](https://www.java.com/en/) JDK 13.0.0 is installed by official OSX package.  
-Java is a VM based, statically typed, general-purpose language that is thread safe, object-oriented and, from version 8, supports functional paradigms.
-
 ### Crystal
-[Crystal](http://crystal-lang.org/) 0.31.1 is installed via homebrew.  
+[Crystal](http://crystal-lang.org/) 0.35.1 is used.
 Crystal has a syntax very close to Ruby, but brings some desirable features such as statically typing and ahead of time (AOT) compilation.  
 
 ### Nim
-[Nim](http://nim-lang.org/) 1.0.2 is installed via homebrew.  
+[Nim](http://nim-lang.org/) 1.4.2 is used.
 Nim is an AOT, Python inspired, statically typed language that comes with an ambitious compiler aimed to produce code in C, C++, JavaScript or ObjectiveC.
 
 ### GO
-[GO](https://golang.org/) language version 1.13.4 is installed by official OSX package.  
+[GO](https://golang.org/) 1.15.6 is used.
 GO is an AOT language that focuses on simplicity and offers a broad standard library with [CSP](https://en.wikipedia.org/wiki/Communicating_sequential_processes) constructs built in.
-
-### Rust
-[Rust](https://www.rust-lang.org/) language version 1.39.0 is installed by official package.  
-Rust is an AOT, garbage collector free programming language, preventing segfaults and granting thread safety.
 
 ## Tools
 
@@ -97,10 +86,10 @@ wrk -t 4 -c 100 -d30s --timeout 2000 http://0.0.0.0:9292
 ```
 
 ### Platform
-These benchmarks are recorded on a MacBook PRO 15 mid 2015 having these specs:
-* macOS Mojave
-* 2.2 GHz Intel Core i7 (4 cores)
-* 16 GB 1600 MHz DDR3
+These benchmarks are recorded on a MacBook PRO 13 2019 having these specs:
+* macOS Catalina
+* 1.4 GHz Quad-Core Intel Core i5
+* 8 GB 2133 MHz LPDDR3
 
 ### RAM and CPU
 I measured RAM and CPU consumption by using macOS Activity Monitor dashboard and recording max consumption peak.  
@@ -111,16 +100,14 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
-| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         45477.66  |     45.3  |   619.0  |
-| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         48280.33  |     45.9  |   539.3  |
-| [Ruby](#ruby)             | [Puma](#puma)                                     |         56979.27  |    > 110  |   > 520  |
-| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         84260.52  |    > 150  |   > 300  |
-| [Rust](#rust)             | [Hyper](#hyper)                                   |         97421.94  |      4.5  |   450.0  |
-| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |        109945.72  |      7.3  |   441.5  |
-| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        110583.42  |     > 40  |   > 380  |
-| [Java](#java)             | [Jetty NIO](#jetty-nio)                           |        116388.13  |    233.1  |   436.3  |
-| [Nim](#nim)               | [httpbeast](#httpbeast)                           |        116588.18  |     24.1  |    99.7  |
-| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        120141.48  |      8.4  |   282.3  |
+| [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         46416.25  |     50.5  |   583.8  |
+| [Ruby](#ruby)             | [Puma](#puma)                                     |         47975.36  |    > 100  |   > 580  |
+| [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         59335.33  |    193.2  |   429.1  |
+| [JavaScript](#javascript) | [Node Cluster](#node-cluster)                     |         87208.47  |    > 200  |   > 240  |
+| [GO](#go)                 | [GO ServeMux](#go-servemux)                       |        103847.10  |     10.0  |   429.1  |
+| [Python](#python)         | [Gunicorn with Meinheld](#gunicorn-with-meinheld) |        120105.65  |     > 40  |   > 380  |
+| [Nim](#nim)               | [httpbeast](#httpbeast)                           |        128257.98  |     11.4  |    99.6  |
+| [Crystal](#crystal)       | [Crystal HTTP](#crystal-http)                     |        132699.78  |      8.5  |   246.7  |
 
                                                                                                    
 ### Puma
@@ -172,17 +159,6 @@ MIX_ENV=prod mix run --no-halt
 ```
 
 
-### Jetty NIO
-I tested Java by using [Jetty](http://www.eclipse.org/jetty/) with the non blocking IO (NIO) APIs.  
-
-#### Bootstrap
-```shell
-cd servers/jetty_server
-javac -cp jetty-all-uber.jar HelloWorld.java
-java -server -cp .:jetty-all-uber.jar HelloWorld
-```
-
-
 ### Crystal HTTP
 I used Crystal HTTP server standard library, enabling parallelism by using the `preview_mt` flag.  
 
@@ -209,14 +185,4 @@ I used the [HTTP ServeMux](https://golang.org/pkg/net/http/) GO standard library
 #### Bootstrap
 ```shell
 go run servers/servemux_server.go
-```
-
-
-### Hyper
-I tested Rust by using the [Hyper](https://hyper.rs/), an HTTP implementation based on Tokio.io.
-
-#### Bootstrap
-```shell
-cd servers/hyper_server
-cargo run --release
 ```
