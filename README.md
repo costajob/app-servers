@@ -100,6 +100,7 @@ For the languages relying on pre-forking parallelism i reported the average cons
 ### Results
 | Language                  | App Server                                        | Requests/sec      | RAM (MB)  | CPU (%)  |
 | :------------------------ | :------------------------------------------------ | ----------------: |---------: |--------: |
+| [Ruby+MJIT](#ruby)        | [Puma](#puma)                                     |         36455.88  |    > 100  |   > 580  |
 | [Elixir](#elixir)         | [Plug with Cowboy](#plug-with-cowboy)             |         46416.25  |     50.5  |   583.8  |
 | [Ruby](#ruby)             | [Puma](#puma)                                     |         47975.36  |    > 100  |   > 580  |
 | [Dart](#dart)             | [Dart HttpServer](#dart-httpserver)               |         59335.33  |    193.2  |   429.1  |
@@ -111,11 +112,11 @@ For the languages relying on pre-forking parallelism i reported the average cons
 
                                                                                                    
 ### Puma
-I tested Ruby by using a plain [Rack](http://rack.github.io/) application served by [Puma](http://puma.io).
+I tested Ruby by using a plain [Rack](http://rack.github.io/) application served by [Puma](http://puma.io).  
 
 #### Bootstrap
 ```shell
-puma -w 8 -t 2 --preload servers/rack_server.ru
+RUBYOPT='--jit' puma -w 8 -t 2 --preload servers/rack_server.ru
 ```
 
 
